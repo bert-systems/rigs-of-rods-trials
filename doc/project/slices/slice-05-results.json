@@ -1,0 +1,804 @@
+{
+  "schema": 1,
+  "slice": 5,
+  "branch": "dev",
+  "build": {
+    "time": "2026-10-09T08:37:56.5293587-04:00",
+    "exe": "D:\\Rigs of Rods\\trial-slice-05-2026-10-09-033000\\build\\bin\\RoR.exe",
+    "sha256": "A23CEB4EEFC682D40A412CD569D771341CEE5925A0DE5D41CC94BE15F8488544",
+    "sourceRecord": "source-20261009-083522-1008.json",
+    "clean": false,
+    "nativeLog": "D:\\Rigs of Rods\\trial-slice-05-2026-10-09-033000\\logs\\native-20261009-083522-1008.log",
+    "dependencyCache": "Existing Conan cache; new native outputs",
+    "exitCode": 0
+  },
+  "nativeSourceFileCount": 474,
+  "sourceInventoryMatches": true,
+  "session": "D:\\Rigs of Rods\\trial-slice-05-2026-10-09-033000",
+  "qualificationProfile": "beam-transition-reference-v1",
+  "selected": [
+    {
+      "scenario": "yield-tension-v1",
+      "id": "d3b5f068f1dd41649d34e7b8b2048580",
+      "event": {
+        "tick": 1,
+        "beam": 0,
+        "kind": 5,
+        "lengthM": 1.0499991178512573,
+        "oldRestM": 1,
+        "newRestM": 1.034999966621399,
+        "oldK": 10000,
+        "newK": 10000,
+        "oldStrengthN": 2000,
+        "newStrengthN": 1650.00048828125,
+        "oldStorageJ": 12.499558929519594,
+        "newStorageJ": 1.1248726880808135,
+        "lawStressN": -149.99151611328125,
+        "restStoragePortJ": -11.37468624143878,
+        "removedStoragePortJ": 0
+      },
+      "qualification": {
+        "status": "Passed",
+        "scope": "beam-transition-reference-v1: pinned dry 100 kg/one-beam native law, storage ports and force epochs; material fracture dissipation and vehicles unqualified",
+        "checks": [
+          {
+            "name": "pinned initial storage / J",
+            "observed": 2.3841846541472478e-05,
+            "limit": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "pinned initial kinetic energy / J",
+            "observed": 0,
+            "limit": 1e-08,
+            "passed": true
+          },
+          {
+            "name": "expected one native transition",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected parameter transitions",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected strength transitions",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected removed beams",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "transition tick/kind/beam mismatches",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "reference world-coordinate position discrepancy / m",
+            "observed": 1.6213753877947212e-05,
+            "limit": 5e-05,
+            "passed": true
+          },
+          {
+            "name": "reference velocity discrepancy / m/s",
+            "observed": 6.028728583268306e-06,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference generated applied force discrepancy / N",
+            "observed": 0.011032624454010431,
+            "limit": 0.05,
+            "passed": true
+          },
+          {
+            "name": "reference consumed applied force discrepancy / N",
+            "observed": 0.011032624454010431,
+            "limit": 0.05,
+            "passed": true
+          },
+          {
+            "name": "pinned moving mass discrepancy / kg",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference elastic storage discrepancy / J",
+            "observed": 0.00012524644110056826,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference rest/removal storage port discrepancy / J",
+            "observed": 7.508532185340755e-06,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference event old/new storage discrepancy / J",
+            "observed": 7.508532187117112e-06,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference rest/strength state discrepancy",
+            "observed": 0.0004882812504547474,
+            "limit": 0.002,
+            "passed": true
+          },
+          {
+            "name": "core closure envelope with declared ports / J",
+            "observed": 0.002989531810504036,
+            "limit": 0.1,
+            "passed": true
+          },
+          {
+            "name": "unattributed node force L1 / N",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "force reconstruction L1 / N",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "integration impulse discrepancy / kg m/s",
+            "observed": 6.025947407728438e-07,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "kinetic midpoint-work discrepancy / J",
+            "observed": 8.941164758157361e-08,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "uncommanded state energy / J",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "foreign channel work / J",
+            "observed": 0,
+            "limit": 1e-08,
+            "passed": true
+          },
+          {
+            "name": "simulated duration error / s",
+            "observed": 4.7497451305389404e-08,
+            "limit": 0.001,
+            "passed": true
+          }
+        ]
+      },
+      "records": 2000,
+      "executableSha256": "A23CEB4EEFC682D40A412CD569D771341CEE5925A0DE5D41CC94BE15F8488544"
+    },
+    {
+      "scenario": "yield-compression-v1",
+      "id": "1797988e7c4346fabba0e657189f980b",
+      "event": {
+        "tick": 1,
+        "beam": 0,
+        "kind": 1,
+        "lengthM": 0.9500008821487427,
+        "oldRestM": 1,
+        "newRestM": 0.9649999737739563,
+        "oldK": 10000,
+        "newK": 10000,
+        "oldStrengthN": 2000,
+        "newStrengthN": 2000,
+        "oldStorageJ": 12.499558929519594,
+        "newStorageJ": 1.1248637479077672,
+        "lawStressN": 149.9909210205078,
+        "restStoragePortJ": -11.374695181611827,
+        "removedStoragePortJ": 0
+      },
+      "qualification": {
+        "status": "Passed",
+        "scope": "beam-transition-reference-v1: pinned dry 100 kg/one-beam native law, storage ports and force epochs; material fracture dissipation and vehicles unqualified",
+        "checks": [
+          {
+            "name": "pinned initial storage / J",
+            "observed": 5.960465188081798e-06,
+            "limit": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "pinned initial kinetic energy / J",
+            "observed": 0,
+            "limit": 1e-08,
+            "passed": true
+          },
+          {
+            "name": "expected one native transition",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected parameter transitions",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected strength transitions",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected removed beams",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "transition tick/kind/beam mismatches",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "reference world-coordinate position discrepancy / m",
+            "observed": 1.596175703244551e-05,
+            "limit": 5e-05,
+            "passed": true
+          },
+          {
+            "name": "reference velocity discrepancy / m/s",
+            "observed": 9.057688761457405e-06,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference generated applied force discrepancy / N",
+            "observed": 0.009382274146844338,
+            "limit": 0.05,
+            "passed": true
+          },
+          {
+            "name": "reference consumed applied force discrepancy / N",
+            "observed": 0.009382274146844338,
+            "limit": 0.05,
+            "passed": true
+          },
+          {
+            "name": "pinned moving mass discrepancy / kg",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference elastic storage discrepancy / J",
+            "observed": 0.00012421842802323724,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference rest/removal storage port discrepancy / J",
+            "observed": 1.4316409178150025e-06,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference event old/new storage discrepancy / J",
+            "observed": 8.580174855055134e-06,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference rest/strength state discrepancy",
+            "observed": 2.622604367008563e-08,
+            "limit": 0.002,
+            "passed": true
+          },
+          {
+            "name": "core closure envelope with declared ports / J",
+            "observed": 0.0030377114486218873,
+            "limit": 0.1,
+            "passed": true
+          },
+          {
+            "name": "unattributed node force L1 / N",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "force reconstruction L1 / N",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "integration impulse discrepancy / kg m/s",
+            "observed": 6.032580746051508e-07,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "kinetic midpoint-work discrepancy / J",
+            "observed": 8.941399211320625e-08,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "uncommanded state energy / J",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "foreign channel work / J",
+            "observed": 0,
+            "limit": 1e-08,
+            "passed": true
+          },
+          {
+            "name": "simulated duration error / s",
+            "observed": 4.7497451305389404e-08,
+            "limit": 0.001,
+            "passed": true
+          }
+        ]
+      },
+      "records": 2000,
+      "executableSha256": "A23CEB4EEFC682D40A412CD569D771341CEE5925A0DE5D41CC94BE15F8488544"
+    },
+    {
+      "scenario": "fracture-v1",
+      "id": "ef16fb0629794b4f9061a71945173e07",
+      "event": {
+        "tick": 1,
+        "beam": 0,
+        "kind": 2,
+        "lengthM": 1.0499999523162842,
+        "oldRestM": 1,
+        "newRestM": 1,
+        "oldK": 10000,
+        "newK": 10000,
+        "oldStrengthN": 200,
+        "newStrengthN": 200,
+        "oldStorageJ": 12.499976158153459,
+        "newStorageJ": 12.499976158153459,
+        "lawStressN": -499.99951171875,
+        "restStoragePortJ": 0,
+        "removedStoragePortJ": -12.499976158153459
+      },
+      "qualification": {
+        "status": "Passed",
+        "scope": "beam-transition-reference-v1: pinned dry 100 kg/one-beam native law, storage ports and force epochs; material fracture dissipation and vehicles unqualified",
+        "checks": [
+          {
+            "name": "pinned initial storage / J",
+            "observed": 2.3841846541472478e-05,
+            "limit": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "pinned initial kinetic energy / J",
+            "observed": 0,
+            "limit": 1e-08,
+            "passed": true
+          },
+          {
+            "name": "expected one native transition",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected parameter transitions",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected strength transitions",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected removed beams",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "transition tick/kind/beam mismatches",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "reference world-coordinate position discrepancy / m",
+            "observed": 1.2207031250044409e-05,
+            "limit": 5e-05,
+            "passed": true
+          },
+          {
+            "name": "reference velocity discrepancy / m/s",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference generated applied force discrepancy / N",
+            "observed": 0,
+            "limit": 0.05,
+            "passed": true
+          },
+          {
+            "name": "reference consumed applied force discrepancy / N",
+            "observed": 0,
+            "limit": 0.05,
+            "passed": true
+          },
+          {
+            "name": "pinned moving mass discrepancy / kg",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference elastic storage discrepancy / J",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference rest/removal storage port discrepancy / J",
+            "observed": 2.3841846564565117e-05,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference event old/new storage discrepancy / J",
+            "observed": 4.7683693129130234e-05,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference rest/strength state discrepancy",
+            "observed": 0,
+            "limit": 0.002,
+            "passed": true
+          },
+          {
+            "name": "core closure envelope with declared ports / J",
+            "observed": 0,
+            "limit": 0.1,
+            "passed": true
+          },
+          {
+            "name": "unattributed node force L1 / N",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "force reconstruction L1 / N",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "integration impulse discrepancy / kg m/s",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "kinetic midpoint-work discrepancy / J",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "uncommanded state energy / J",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "foreign channel work / J",
+            "observed": 0,
+            "limit": 1e-08,
+            "passed": true
+          },
+          {
+            "name": "simulated duration error / s",
+            "observed": 4.7497451305389404e-08,
+            "limit": 0.001,
+            "passed": true
+          }
+        ]
+      },
+      "records": 2000,
+      "executableSha256": "A23CEB4EEFC682D40A412CD569D771341CEE5925A0DE5D41CC94BE15F8488544"
+    },
+    {
+      "scenario": "protected-beam-v1",
+      "id": "786eab53225847ec84b0f2d413cf1936",
+      "event": {
+        "tick": 1,
+        "beam": 0,
+        "kind": 4,
+        "lengthM": 1.0499987602233887,
+        "oldRestM": 1,
+        "newRestM": 1,
+        "oldK": 10000,
+        "newK": 10000,
+        "oldStrengthN": 200,
+        "newStrengthN": 400,
+        "oldStorageJ": 12.499380119379566,
+        "newStorageJ": 12.499380119379566,
+        "lawStressN": -499.98760986328125,
+        "restStoragePortJ": 0,
+        "removedStoragePortJ": 0
+      },
+      "qualification": {
+        "status": "Passed",
+        "scope": "beam-transition-reference-v1: pinned dry 100 kg/one-beam native law, storage ports and force epochs; material fracture dissipation and vehicles unqualified",
+        "checks": [
+          {
+            "name": "pinned initial storage / J",
+            "observed": 2.3841846541472478e-05,
+            "limit": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "pinned initial kinetic energy / J",
+            "observed": 0,
+            "limit": 1e-08,
+            "passed": true
+          },
+          {
+            "name": "expected one native transition",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected parameter transitions",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected strength transitions",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "expected removed beams",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "transition tick/kind/beam mismatches",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "reference world-coordinate position discrepancy / m",
+            "observed": 1.5976664075600944e-05,
+            "limit": 5e-05,
+            "passed": true
+          },
+          {
+            "name": "reference velocity discrepancy / m/s",
+            "observed": 8.269144224526404e-06,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference generated applied force discrepancy / N",
+            "observed": 0.009180239400905066,
+            "limit": 0.05,
+            "passed": true
+          },
+          {
+            "name": "reference consumed applied force discrepancy / N",
+            "observed": 0.009180239400905066,
+            "limit": 0.05,
+            "passed": true
+          },
+          {
+            "name": "pinned moving mass discrepancy / kg",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference elastic storage discrepancy / J",
+            "observed": 0.0003855083442960705,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference rest/removal storage port discrepancy / J",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference event old/new storage discrepancy / J",
+            "observed": 1.0223252832730623e-05,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "reference rest/strength state discrepancy",
+            "observed": 0,
+            "limit": 0.002,
+            "passed": true
+          },
+          {
+            "name": "core closure envelope with declared ports / J",
+            "observed": 0.031662205123694775,
+            "limit": 0.1,
+            "passed": true
+          },
+          {
+            "name": "unattributed node force L1 / N",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "force reconstruction L1 / N",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "integration impulse discrepancy / kg m/s",
+            "observed": 2.384168351632354e-06,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "kinetic midpoint-work discrepancy / J",
+            "observed": 1.192096823384364e-06,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "uncommanded state energy / J",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "foreign channel work / J",
+            "observed": 0,
+            "limit": 1e-08,
+            "passed": true
+          },
+          {
+            "name": "simulated duration error / s",
+            "observed": 4.7497451305389404e-08,
+            "limit": 0.001,
+            "passed": true
+          }
+        ]
+      },
+      "records": 2000,
+      "executableSha256": "A23CEB4EEFC682D40A412CD569D771341CEE5925A0DE5D41CC94BE15F8488544"
+    }
+  ],
+  "checks": {
+    "yield-tension-v1": {
+      "short": "432e5d2146dc4f1eb7544446bebd9296",
+      "long": "d3b5f068f1dd41649d34e7b8b2048580",
+      "exactStatePrefixSha256": "7a8bc6b6bad741ce3cb20ad41e36993bdf6b064375dc6026c3eb2b2b5e39e0e4",
+      "prefixTicks": 400
+    },
+    "yield-compression-v1": {
+      "short": "d8f268416a2c4428bdb1feb491a11f60",
+      "long": "1797988e7c4346fabba0e657189f980b",
+      "exactStatePrefixSha256": "bf3d33d6104ad58a276f21036c4c3d95ad78f7ddec79bf379d7587ddc3299198",
+      "prefixTicks": 400
+    },
+    "fracture-v1": {
+      "short": "935631caf7844f4a9026751fecdb161d",
+      "long": "ef16fb0629794b4f9061a71945173e07",
+      "exactStatePrefixSha256": "acd6bcecdeeac29cb2a434fddbce94be52761f100444c755346fb6fade48e129",
+      "prefixTicks": 400
+    },
+    "protected-beam-v1": {
+      "short": "95e3e04092f1401781215569c0f98054",
+      "long": "786eab53225847ec84b0f2d413cf1936",
+      "exactStatePrefixSha256": "0c06211f56c3ba02a2014d075c73ce5aedb22946b08b64c9cabb8404707aa8a3",
+      "prefixTicks": 400
+    },
+    "elevenFreshNativeProcesses": true,
+    "allCompleteScopedPassed": true,
+    "boundedPagesAndInvalidInputs": true
+  },
+  "uiChecks": {
+    "yield-tension-v1": {
+      "attempt": "d3b5f068f1dd41649d34e7b8b2048580",
+      "oneExactTransitionVisible": true
+    },
+    "yield-compression-v1": {
+      "attempt": "1797988e7c4346fabba0e657189f980b",
+      "oneExactTransitionVisible": true
+    },
+    "fracture-v1": {
+      "attempt": "ef16fb0629794b4f9061a71945173e07",
+      "oneExactTransitionVisible": true
+    },
+    "protected-beam-v1": {
+      "attempt": "786eab53225847ec84b0f2d413cf1936",
+      "oneExactTransitionVisible": true
+    },
+    "desktopNoOverflow": true,
+    "mobileNoOverflow": true,
+    "missingAttemptRejected": true,
+    "noPageErrors": true
+  },
+  "completedAttempts": 11,
+  "retainedInitialFailedQualification": "57da6d8386d141debd690db25f527d74",
+  "nativeExecutableSha256": "A23CEB4EEFC682D40A412CD569D771341CEE5925A0DE5D41CC94BE15F8488544",
+  "limitations": [
+    "Scoped native law/reference agreement, not calibrated material failure or dissipation",
+    "Tick-boundary net transitions, not each intermediate mutation",
+    "No new barrier/vehicle-science qualification",
+    "Observer overhead target remains unmet",
+    "No new video or Codex GPU-playback qualification"
+  ],
+  "package": {
+    "zip": "D:\\Rigs of Rods\\trial-slice-05-2026-10-09-033000\\report\\slice-05-evidence.zip",
+    "bytes": 14346176,
+    "sha256": "6F2982AF4A93A02AAA15382BA57E3D497B32A7A1A20F3BB7FCEDCD89E89778FA",
+    "verifiedFiles": 785,
+    "rawFiles": 192,
+    "rawBytes": 58114475,
+    "extractedReport": "D:\\Rigs of Rods\\trial-slice-05-2026-10-09-033000\\report\\bundle-extracted\\report\\index.html",
+    "allExtractedHashesMatch": true,
+    "originalsRetained": true
+  },
+  "reportChecks": {
+    "checks": {
+      "original": {
+        "images": 11,
+        "nonblankPixels": true,
+        "localLinksExist": true,
+        "desktopNoOverflow": true,
+        "mobileNoOverflow": true
+      },
+      "portable": {
+        "images": 11,
+        "nonblankPixels": true,
+        "localLinksExist": true,
+        "desktopNoOverflow": true,
+        "mobileNoOverflow": true
+      }
+    },
+    "errors": []
+  }
+}

@@ -36,6 +36,13 @@ app.MapPost("/api/experiments",(ExperimentDefinition definition,TrialService s)=
     try{return Results.Ok(new{attemptIds=s.Enqueue(definition)});}
     catch(ArgumentException e){return Results.BadRequest(new{error=e.Message});}
 });
+app.MapGet("/api/attempts/{id}/transitions",(string id,long? offset,int? limit,TrialService s)=>{
+    var a=s.Find(id);if(a==null||a.Execution is not ("Completed" or "Failed" or "Cancelled"))return Results.NotFound();
+    try{string path=Path.Combine(a.ArchivePath!,"steps.rort");return Results.Ok(TransitionReader.Read(path,ArchiveReader.Inspect(path),offset??0,limit??50));}
+    catch(ArgumentException e){return Results.BadRequest(new{error=e.Message});}
+    catch(InvalidDataException e){return Results.Conflict(new{error=e.Message});}
+    catch(IOException e){return Results.Conflict(new{error=e.Message});}
+});
 app.MapPost("/api/attempts/{id}/{operation}",(string id,string operation,TrialService s)=>{
     try{s.Command(id,operation);return Results.Ok(new{accepted=true});}
     catch(ArgumentException e){return Results.BadRequest(new{error=e.Message});}

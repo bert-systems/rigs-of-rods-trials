@@ -36,7 +36,7 @@ public sealed class TrialService : BackgroundService
             }
         }
     }
-    public object Configuration => new { gameBin, archive, renderer, evidenceFrames, scenarios=new[]{"coast-v1","barrier-v1","freefall-v1","spring-v1","damper-v1"}, nativeCoverage="accounting-v2",
+    public object Configuration => new { gameBin, archive, renderer, evidenceFrames, scenarios=new[]{"coast-v1","barrier-v1","freefall-v1","spring-v1","damper-v1","yield-tension-v1","yield-compression-v1","fracture-v1","protected-beam-v1"}, nativeCoverage="accounting-v2 / transition-flags-v2",
         retention="Manual; no automatic deletion", captureProfile="Every-step aggregates; barrier all-node/channel/beam/contact detail at 2 kHz, 2 s pre/4 s post; ~200 Hz summaries",
         unavailable=new[]{"Nonlinear storage and full model energy closure","Driven journeys","Flight/gust/particles"} };
     public object Snapshot(string? selected=null,bool compact=false)
@@ -181,7 +181,9 @@ public sealed class TrialService : BackgroundService
         a.ExecutableSha256=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(exe)));
         if(a.ExecutableSha256!=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(source)))) throw new IOException("Copied executable hash mismatch.");
         AtomicJson(Path.Combine(dir,"manifest.json"),new {
-            schema=4,resourceEstimate=a.Definition.Scenario=="barrier-v1"?WorkerResources.DetailEstimate:null,
+            schema=5,transitionFlags="1 linear parameters / 2 removed / 4 strength / 8 unsupported parameters; state changes, not calibrated fracture energy",
+            transitionFixture=Contract.TransitionFixture(a.Definition.Scenario)?new {profile="beam-transition-reference-v1",springNpm=10000,damperNspm=0,initialExtensionM=a.Definition.Scenario=="yield-compression-v1"?-.05:.05,yieldN=a.Definition.Scenario.StartsWith("yield-")?200:1e9,initialStrengthN=a.Definition.Scenario.StartsWith("yield-")?2000:200,plasticCoefficient=.25,protectedCabNode=a.Definition.Scenario=="protected-beam-v1"}:null,
+            resourceEstimate=a.Definition.Scenario=="barrier-v1"?WorkerResources.DetailEstimate:null,
             impactProfile=a.Definition.Scenario=="barrier-v1"?"whole-pilot-f32-v1 / barrier-approach-capture-v1":null,
             requiredDetail=a.Definition.Scenario=="barrier-v1"?new{preTicks=4000,postTicks=8000,nodeBytes=256,beamBytes=112,contactBytes=104,prehistoryBudgetMiB=1024,writerQueueBudgetMiB=3072,rawReservationGiB=3,resourceProfile="daf-detail-resources-v2"}:null,
             barrierAsset=a.Definition.Scenario=="barrier-v1"?new{asset="controlled-concrete-box-v1",geometry="native fixed collision box and visible mesh; resolved transform/material in barrier.json",speedDefinition="Signed movable-node COM velocity along frozen direction at front-node crossing 0.25 m before face",speedToleranceMps=Math.Max(.1,(a.Definition.TargetImpactSpeedMps??a.Definition.LaunchSpeedMps)*.02),alignmentDegrees=1,lateralM=.25}:null,
@@ -191,7 +193,7 @@ public sealed class TrialService : BackgroundService
             privateExecutable=exe,requestedEnvironment=e,pressurePa=e.Density*287.05*e.TemperatureK,
             temperatureAdoption="Recorded dry-air state; drag uses explicit density; thermal exchange unimplemented",
             beamLengthKernel=a.Definition.Scenario is "coast-v1" or "barrier-v1"?"native fast inverse-square-root":"fixture precise square-root",
-            fixtureGeometry=a.Definition.Scenario is "coast-v1" or "barrier-v1"?null:new {movingMassKg=100,fixedNodes=3,restLengthM=1,extensionM=.05,springNpm=a.Definition.Scenario=="freefall-v1"?0:10000,damperNspm=a.Definition.Scenario=="damper-v1"?200:0,drag=false,groundContact=false},
+            fixtureGeometry=a.Definition.Scenario is "coast-v1" or "barrier-v1"?null:new {movingMassKg=100,fixedNodes=3,restLengthM=1,extensionM=a.Definition.Scenario=="yield-compression-v1"?-.05:.05,springNpm=a.Definition.Scenario=="freefall-v1"?0:10000,damperNspm=a.Definition.Scenario=="damper-v1"?200:0,drag=false,groundContact=false},
             coverage=a.Coverage,scope=a.Definition.Scenario is "coast-v1" or "barrier-v1"?"Vehicle study: partial model coverage":"Pinned analytical dry fixture; no vehicle/impact generalization",
             units="SI; native world axes Y-up; movable node cohort",retention="manual",
             assetHashes=Directory.GetFiles(Path.Combine(bin,"content"),"*.zip").ToDictionary(f=>Path.GetFileName(f),
@@ -341,6 +343,7 @@ public sealed class TrialService : BackgroundService
             }
             if(probe!=null)a.Metrics["performanceProbe"]=probe;
             a.Metrics["qualification"]=qualification;
+            if(!off&&check.Complete)a.Metrics["beamTransitions"]=TransitionReader.Read(Path.Combine(dir,"steps.rort"),check,0,20);
             if(detail!=null){a.Metrics["impactDetail"]=detail;a.Metrics["impactQualification"]=ImpactQualification.Evaluate(a.Definition,detail,ReadJson(Path.Combine(dir,"approach.json")),a.Execution=="Completed",a.Capture=="Complete");}
 
             AddEvent(a,"finished",$"{a.Execution}; capture {a.Capture}; validation {a.Validation} ({qualification.Scope}).");

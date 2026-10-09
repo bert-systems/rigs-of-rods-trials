@@ -58,6 +58,23 @@ function DetailInspector({attempt}){
  <h4>Actual terrain/object applications ({frame.contacts.length})</h4><table><thead><tr><th>Node / feature</th><th>Applied vector · N</th><th>Normal vector · N</th><th>Tangential vector · N</th></tr></thead><tbody>{frame.contacts.map((c,i)=><tr key={i}><td>{c.node} / {c.barrier?'barrier':'surface'} {c.feature}</td><td>{vector(c.appliedForceN)}</td><td>{vector(c.normalForceN)}</td><td>{vector(c.tangentialForceN)}</td></tr>)}</tbody></table></>}
  </section>;
 }
+function TransitionView({attempt}){
+ const summary=attempt.metrics.beamTransitions;
+ const [page,setPage]=useState(summary),[error,setError]=useState(''),[busy,setBusy]=useState(false);
+ const load=async offset=>{setBusy(true);setError('');try{
+  const r=await fetch(`/api/attempts/${attempt.id}/transitions?offset=${offset}&limit=20`);
+  if(!r.ok)throw Error('The transition archive could not be verified.');setPage(await r.json());
+ }catch(e){setError(e.message);}finally{setBusy(false);}};
+ const kinds=k=>[k&1?'Parameters':null,k&2?'Removed':null,k&4?'Strength':null,k&8?'Unsupported parameters':null].filter(Boolean).join(' + ');
+ return <section className="accounting transition-panel"><div className="section-title"><h3>Beam transition ledger</h3><span>{summary.projectionComplete?'COMPLETE PROJECTION':'DENSE DETAIL REQUIRED'}</span></div>
+ <p>{summary.parameterChanges} parameter changes · {summary.strengthChanges} strength changes · {summary.removed} removed · {summary.omitted} omitted from aggregate projection.</p>
+ <p>Rest/stiffness storage port: {scienceFmt(summary.restStoragePortJ)} J · removal storage port: {scienceFmt(summary.removedStoragePortJ)} J. These are signed model storage changes. Strength-only changes carry no spring-energy port. Material fracture dissipation remains unqualified.</p>
+ {error&&<div className="warning">{error}</div>}
+ <table><thead><tr><th>Tick / beam</th><th>Change</th><th>Rest · old → new m</th><th>Strength · old → new N</th><th>Rest / removal port · J</th></tr></thead><tbody>{page.events.map((e,i)=><tr key={i}><td>{e.tick} / {e.beam}</td><td>{kinds(e.kind)}</td><td>{fmt(e.oldRestM,6)} → {fmt(e.newRestM,6)}</td><td>{fmt(e.oldStrengthN,5)} → {fmt(e.newStrengthN,5)}</td><td>{scienceFmt(e.restStoragePortJ)} / {scienceFmt(e.removedStoragePortJ)}</td></tr>)}</tbody></table>
+ {summary.total===0&&<p>No aggregate transitions recorded.</p>}
+ <div className="controls"><button disabled={busy||page.offset===0} onClick={()=>load(Math.max(0,page.offset-20))}>Previous transitions</button><span>{page.offset+page.events.length} of {page.total}</span><button disabled={busy||page.offset+page.events.length>=page.total} onClick={()=>load(page.offset+20)}>Next transitions</button></div>
+ </section>;
+}
 function App(){
  const [data,setData]=useState(null),[form,setForm]=useState(initial),[selected,setSelected]=useState(null);
  const [error,setError]=useState(''),[live,setLive]=useState(false),[sending,setSending]=useState(false),[tab,setTab]=useState('Trials');
@@ -81,9 +98,10 @@ function App(){
  const sample=current?.latest,history=current?.history??[];
  const off=current?.definition.observation==='off';
  const fixture=!['coast-v1','barrier-v1'].includes(form.scenario);const barrier=form.scenario==='barrier-v1';
+ const transitionFixture=fixture&&!['freefall-v1','spring-v1','damper-v1'].includes(form.scenario);
  const scenario=value=>setForm(f=>({...f,scenario:value,vehicle:['coast-v1','barrier-v1'].includes(value)?'b6b0UID-semi.truck':'ror-'+value+'.truck',
-   launchSpeedMps:value==='barrier-v1'?6.2:value==='coast-v1'?5:0,targetImpactSpeedMps:5,barrierDistanceM:12,durationSeconds:value==='barrier-v1'?9:value==='coast-v1'?12:value==='freefall-v1'?.5:5,
-   settleSeconds:['coast-v1','barrier-v1'].includes(value)?3:0,environment:{...f.environment,gravity:['spring-v1','damper-v1'].includes(value)?0:-9.81,windX:0,windY:0,windZ:0}}));
+   launchSpeedMps:value==='barrier-v1'?6.2:value==='coast-v1'?5:0,targetImpactSpeedMps:5,barrierDistanceM:12,durationSeconds:value==='barrier-v1'?9:value==='coast-v1'?12:value==='freefall-v1'?.5:['spring-v1','damper-v1'].includes(value)?5:.2,
+   settleSeconds:['coast-v1','barrier-v1'].includes(value)?3:0,environment:{...f.environment,gravity:['coast-v1','barrier-v1','freefall-v1'].includes(value)?-9.81:0,windX:0,windY:0,windZ:0}}));
  const num=(key,value,env=false)=>setForm(f=>env?{...f,environment:{...f.environment,[key]:value}}:{...f,[key]:value});
  async function post(url,body){
   const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','X-Trials-Session':token.current??''},body:JSON.stringify(body??{})});
@@ -110,13 +128,14 @@ function App(){
  <FormContext.Provider value={{form,num}}><form onSubmit={enqueue}><label>Experiment name<input value={form.name} maxLength={120} onChange={e=>setForm({...form,name:e.target.value})} required/></label>
  <label>Study scenario<select value={form.scenario} onChange={e=>scenario(e.target.value)}>
  <option value="barrier-v1">Daf controlled barrier · 2 kHz detail</option><option value="coast-v1">Daf rolling coast · study</option><option value="freefall-v1">Free fall · dry fixture</option>
- <option value="spring-v1">Linear spring · dry fixture</option><option value="damper-v1">Spring + damper · dry fixture</option></select></label>
+ <option value="spring-v1">Linear spring · dry fixture</option><option value="damper-v1">Spring + damper · dry fixture</option>
+ <option value="yield-tension-v1">Tensile yield + strength · fixture</option><option value="yield-compression-v1">Compressive yield · fixture</option><option value="fracture-v1">Beam removal · fixture</option><option value="protected-beam-v1">Protected beam strength · fixture</option></select></label>
  <label>Observation profile<select value={form.observation==='off'?'off':form.accounting?'full':'basic'} onChange={e=>setForm(f=>({...f,observation:e.target.value==='off'?'off':'full',accounting:e.target.value==='full',performanceProbe:e.target.value==='off'?true:f.performanceProbe}))}>
  <option value="full">Full force / core energy ledger</option><option value="basic">Channels disabled · base ledger</option><option value="off">Ledger off · control probe only</option></select></label>
  <label className="probe-option"><input type="checkbox" checked={form.performanceProbe} disabled={form.observation==='off'} onChange={e=>setForm({...form,performanceProbe:e.target.checked})}/> Timing / equivalence probe</label>
  <div className="asset"><span>Vehicle / fixture</span><strong>{fixture?'100 kg movable node + fixed anchors':'Daf Semi'}</strong><small>{form.vehicle}</small></div>
  <div className="asset"><span>Terrain</span><strong>Simple Test Terrain</strong><small>simple2.terrn2</small></div>
- <div className="form-pair"><Field label="Release speed · m/s" k="launchSpeedMps" min="0" max="20"/><Field label="Observe · s" k="durationSeconds" min={fixture?".1":"1"} max={fixture?"5":"120"}/></div>
+ <div className="form-pair"><Field label="Release speed · m/s" k="launchSpeedMps" min="0" max="20"/><Field label="Observe · s" k="durationSeconds" min={fixture?".1":"1"} max={transitionFixture?"1":fixture?"5":"120"}/></div>
  <div className="form-pair"><Field label="Settling · s" k="settleSeconds" min={fixture?"0":"2"} max={fixture?"0":"30"}/><Field label="Repeats" k="repeats" min="1" max="20" step="1"/></div>
  {barrier&&<><div className="form-pair"><Field label="Barrier distance from front · m" k="barrierDistanceM" min="1" max="100"/><Field label="Target approach speed · m/s" k="targetImpactSpeedMps" min=".1" max="20"/></div>
  <div className="setup-note">Fixed concrete box: 16 m wide, 6 m high, 1 m deep. All nodes, force channels, beams and terrain/object contacts: every 0.5 ms, 2 s before / 4 s after consumed impact. Release and target speeds are separate; no continuous speed correction.</div></>}
@@ -124,7 +143,7 @@ function App(){
  <Field label="Gravity Y · m/s²" k="gravity" env min="-30" max="0"/>
  <div className="form-pair"><Field label="Temperature · K" k="temperatureK" env min="180" max="350"/><Field label="Density · kg/m³" k="density" env min=".001" max="3"/></div>
  <div className="wind-fields">{['X','Y','Z'].map(axis=><Field key={axis} label={'Wind '+axis+' · m/s'} k={'wind'+axis} env min="-30" max="30"/>)}</div></details>
- <div className="setup-note">{fixture?"Pinned dry/contactless state: 100 kg, 1 m rest length, 0.05 m extension, k=10,000 N/m; damper c=200 Ns/m. Free fall disables beam stiffness.":"Settle, initialize rolling motion, then coast with propulsion off."} Each attempt gets a fresh process and private profile.</div>
+ <div className="setup-note">{fixture?"Pinned dry/contactless state: 100 kg, 1 m rest length, ±0.05 m extension, k=10,000 N/m. Transition fixtures: 200 N yield / 2,000 N strength or 200 N removal threshold; compression uses negative extension. Free fall disables stiffness; damper c=200 Ns/m.":"Settle, initialize rolling motion, then coast with propulsion off."} Each attempt gets a fresh process and private profile.</div>
  <button className="primary" disabled={sending||!live}>{sending?'Saving revision…':'Queue experiment'} <span>→</span></button></form></FormContext.Provider>
  <div className="scope-note"><strong>Current study scope</strong><p>16 force channels, linear beam storage, state/work ports and required transition capture. Analytical dry fixtures have scoped qualification. Controlled approach/capture checks are separate from vehicle constitutive and nonlinear energy qualification.</p></div></aside>
  <section className="monitor"><div className="attempts"><div className="section-title"><h2>Trial queue</h2><span>{attempts.length} ATTEMPTS · SERIAL</span></div>
@@ -174,6 +193,7 @@ function App(){
  {current.metrics?.impactQualification?.checks?.length>0&&<table><thead><tr><th>Approach / capture check</th><th>Observed</th><th>Limit</th><th>Result</th></tr></thead><tbody>{current.metrics.impactQualification.checks.map(c=><tr key={c.name}><td>{c.name}</td><td>{scienceFmt(c.observed)}</td><td>{scienceFmt(c.limit)}</td><td>{c.passed?'Passed':'Failed'}</td></tr>)}</tbody></table>}
  </section>}
  {current?.metrics?.impactDetail?.records>0&&<DetailInspector key={current.id} attempt={current}/>}
+ {current?.metrics?.beamTransitions&&<TransitionView key={current.id} attempt={current}/>}
  {current?.metrics?.performanceProbe&&<section className="accounting"><div className="section-title"><h3>Performance probe</h3><span>RELEASED STEPS · WALL ELAPSED</span></div><p>Median {fmt(current.metrics.performanceProbe.medianUs,3)} µs · p95 {fmt(current.metrics.performanceProbe.p95Us,3)} µs · {current.metrics.performanceProbe.releasedRecords} released records · {current.metrics.performanceProbe.fingerprints} state fingerprints. Timing includes native work, job barriers and enabled ledger reduction; probe sampling/queueing is excluded. Fingerprints are diagnostic samples, not a checkpoint.</p></section>}
  <div className="bottom-pair"><section className="environment"><div className="section-title"><h3>Effective dry environment</h3><span>{sample&&!off?'NATIVE SAMPLE':'REQUESTED'}</span></div>
  <div className="env-grid"><div>Gravity<strong>{fmt(sample?.gravityMps2??env.gravity)} m/s²</strong></div><div>Air density<strong>{fmt(sample?.densityKgM3??env.density,3)} kg/m³</strong></div><div>Temperature<strong>{fmt(env.temperatureK)} K</strong></div><div>Steady wind<strong>{(sample?.windMps??[env.windX,env.windY,env.windZ]).map(v=>fmt(v)).join(' / ')} m/s</strong></div></div><p>Density and relative wind feed generic dry drag. Temperature is recorded; thermal exchange is outside this model.</p></section>

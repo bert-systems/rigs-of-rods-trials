@@ -35,6 +35,8 @@ inline const char* ChannelName(int c)
 struct ChannelRecord { Vec force; double work=0; Vec generated; };
 struct BeamTransition
 {
+    // kind bits: 1 linear rest/stiffness, 2 removed, 4 strength, 8 unsupported rest/stiffness.
+    // Strength is state metadata; it does not change Hookean storage by itself.
     std::uint32_t beam=0,kind=0;
     double length=0,oldRest=0,newRest=0,oldK=0,newK=0,oldStrength=0,newStrength=0,oldStorage=0,newStorage=0,stress=0;
 };

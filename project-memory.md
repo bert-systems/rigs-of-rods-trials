@@ -1,5 +1,20 @@
 # Project memory
 
+### 2026-10-09 — Slice 05: native beam transition qualification on dev
+
+Implemented the next authorized major slice on dev. Native strength-only changes now emit event bit4 without an elastic-energy port, in unchanged aggregate schema 2/2080. Added dry tensile/compressive yield, native beam removal and synthetic cab-node break-guard fixtures, an independent native-rule/reference gate, bounded CRC-verified transition pages and React before/after/port views. Manifest schema 5 declares flags. Tick-boundary net changes do not resolve every intermediate mutation.
+
+Fresh MSVC 19.44 x64 Release build, existing Conan cache; native SHA A23CEB4EEFC682D40A412CD569D771341CEE5925A0DE5D41CC94BE15F8488544. All 474 native source hashes match. Session D:\Rigs of Rods\trial-slice-05-2026-10-09-033000 (name is an identifier; actual build start 08:35 EDT). Eight new native processes, 0.2/1 s per scenario, Passed scoped reference with zero loss and exact first-400-tick state prefixes. Three original analytical fixtures Passed unchanged limits. CTest 1/1, locked managed build/contracts, CRC-valid semantic corruption checks, final 12-capture reader reinspection, production React and desktop/mobile browser checks pass.
+
+Tensile rest 1→1.035 m/strength 2000→1650.000488 N, compression rest 1→0.965 m/strength unchanged, about -11.3747 J rest ports. Removal port about -12.499976 J; protected strength 200→400 N with zero energy ports. These are model storage/bookkeeping and native-rule checks, not calibrated material dissipation. All transitions occur in initialization prime at tick 1. Later collision-induced fracture, nonlinear/vehicle closure and observer overhead remain open; no new barrier matrix was run.
+
+First attempt 57da6d8386d141debd690db25f527d74 remains Complete/Failed from the initial checker candidate (wrong force offsets and 10 micrometre world tolerance below float32 rounding). Corrected checker froze 50 micrometre position envelope and separate force epochs; unchanged data passes final offline reference reinspection. Original result was not overwritten and historical fixture limits were not relaxed.
+
+Ordinary PNG evidence includes four actual workbench ledgers, qualification panel, native renderer screenshot and raw-record scientific plots; no new video/Codex GPU playback claim. To fit all qualification runs, only this session's transient compiler .obj/.pch outputs were pruned (0.65 GiB); logs/runtime/source records, all previous sessions and all recorded originals remain. Build can recreate those objects.
+
+[Delivery](doc/project/slices/slice-05.md), [results](doc/project/slices/slice-05-results.json), [HTML report](doc/project/reports/trial-slice-05-2026-10-09.html). Evidence packaging and publication identities are in session report/package.json and report/publication.json. Commit/push dev; the user controls periodic dev-to-master pull requests.
+
+
 ### 2026-10-09 — Development branch workflow
 
 The user requested a durable `dev` branch from `master` and ongoing development on `dev`, with periodic manual pull requests into `master`. Created `dev` at the completed Slice 04 master merge, `b43b4bab6d760aeb55cbbfa239555f96c358769e`. Commit/push verified future slices to `origin/dev`; isolated feature branches, when needed, start from and integrate into `dev`. The user controls periodic promotion to `master`. This supersedes the earlier standing authorization to automatically merge each major slice into `master`; dated delivery/publication records remain historical facts. Updated AGENTS.md, PROJECT.md and TODO to carry this workflow into future sessions. This is a branch/documentation change; no simulation code/build/evidence was changed.

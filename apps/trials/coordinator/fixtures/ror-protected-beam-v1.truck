@@ -1,0 +1,23 @@
+RoR analytical protected-beam-v1
+fileformatversion 3
+globals
+100, 0, tracks/beam
+nodes
+0, 1.05, 0, 0, c
+1, 0, 0, 0, c
+2, 0, 0, 1, c
+3, 0, 1, 0, c
+beams
+set_beam_defaults 10000, 200, 1000000000, 1000000000, 0.08, tracks/beam
+0, 1
+1, 2
+2, 3
+fixes
+1
+2
+3
+cameras
+0, 1, 2
+engine
+800, 2000, 100, 1, 1, 1, 1, -1
+end

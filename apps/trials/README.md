@@ -112,3 +112,12 @@ Qualification consumes significant storage/time and retains deliberate failures.
 Dashboard envelopes preserve all 200 Hz summary maxima in 20 Hz points; history is restored on coordinator restart. `api/state?compact=true&selected=<id>` limits history arrays to the focused attempt. Source-built scene evidence uses continuous native PNGs, then `native-frames-video.py`, `media-evidence.py` and `verify-media.py`. Ordinary-image playback is primary; Chrome verification does not establish Codex GPU video playback.
 
 See [Slice 04 delivery](../../doc/project/slices/slice-04.md) and [illustrated report](../../doc/project/reports/trial-slice-04-2026-10-09.html). Retain the existing analytical acceptance limits. Vehicle material/energy closure, fracture qualification, observer overhead, barrier off-mode equivalence, driven journeys and broader environment/flight remain open.
+
+
+## Slice 05: beam transitions
+
+Select tensile yield, compressive yield, beam removal or protected-beam strength in the scenario form. These immutable dry fixtures use zero gravity/settling/release, one 100 kg moving node, k=10,000 N/m and 0.1–1 s duration. The protected scenario isolates a synthetic cab-node flag; it has no cab contact surface. See [transition format/qualification](transition-format.md).
+
+The retained Beam transition ledger shows before/after rest/strength, signed rest/removal storage ports, event kinds and aggregate omissions. Pages recheck CRCs; absent/invalid/incomplete data cannot invent a verified view. Strength-only changes carry no elastic-energy port. Scoped native-reference Passed does not establish material fracture energy or vehicle qualification.
+
+Run `tools/trials/verify-slice-05.py --session <unique-session>` against port 54325 after building/starting with the normal runbook. It retains eight native transition trials, three unchanged analytical regressions and checks exact state prefixes. `verify-slice-05-ui.py` captures actual workbench evidence. Final `dotnet run --project tests/trials/contracts-tests.csproj -c Release -- <new-test-output> <session/archive>` adds native reinspection and CRC-valid wrong-kind/port/storage/epoch rejection. Full illustration: [Slice 05 report](../../doc/project/reports/trial-slice-05-2026-10-09.html).

@@ -60,11 +60,13 @@ void Runtime::InitializeFixture(Actor& actor)
 {
     if(actor.ar_num_nodes!=4 || actor.ar_num_beams<1){m_scope_violation=true;return;}
     actor.ar_origin=Ogre::Vector3(500,20,500); // preserve local-coordinate precision in the controlled fixture
-    const Ogre::Vector3 offsets[]={Ogre::Vector3(1.05f,0,0),Ogre::Vector3(0,0,0),Ogre::Vector3(0,0,1),Ogre::Vector3(0,1,0)};
+    const Ogre::Vector3 offsets[]={Ogre::Vector3(m_scenario=="yield-compression-v1"?.95f:1.05f,0,0),Ogre::Vector3(0,0,0),Ogre::Vector3(0,0,1),Ogre::Vector3(0,1,0)};
     for(int i=0;i<actor.ar_num_nodes;++i)
     {
         node_t& n=actor.ar_nodes[i];
         n.nd_immovable=i!=0;n.nd_no_ground_contact=true;
+        // The protected fixture isolates the real cab-node break guard without a contact surface.
+        n.nd_cab_node=m_scenario=="protected-beam-v1" && i==0;
         n.mass=i==0?100.f:1.f;n.Velocity=Ogre::Vector3::ZERO;
         n.RelPosition=offsets[i];
         n.AbsPosition=actor.ar_origin+n.RelPosition;
@@ -79,6 +81,12 @@ void Runtime::InitializeFixture(Actor& actor)
         b.k=m_scenario=="freefall-v1"?0.f:10000.f;
         b.d=m_scenario=="damper-v1"?200.f:0.f;
         b.L=1.f;b.refL=1.f;b.strength=1e9f;b.maxposstress=1e9f;b.maxnegstress=-1e9f;b.minmaxposnegstress=1e9f;
+        if(m_scenario=="yield-tension-v1" || m_scenario=="yield-compression-v1"){
+            b.plastic_coef=.25f;b.strength=2000.f;b.maxposstress=200.f;b.maxnegstress=-200.f;b.minmaxposnegstress=200.f;
+        }
+        if(m_scenario=="fracture-v1" || m_scenario=="protected-beam-v1"){
+            b.strength=200.f;b.minmaxposnegstress=200.f;
+        }
     }
     if(actor.ar_engine){actor.ar_engine->stopEngine();actor.ar_engine->setGear(0);}
 }
@@ -109,11 +117,12 @@ void Runtime::Energy(Actor& actor,bool before)
             l.record.peak_beam_stress=std::max(l.record.peak_beam_stress,std::abs(static_cast<double>(b.stress)));
             const bool changed=b.L!=l.beam_rest[i]||b.k!=l.beam_k[i];
             const bool removed=l.beam_active[i]&&!active;
-            if(changed||removed)
+            const bool strength=b.strength!=l.beam_strength[i];
+            if(changed||removed||strength)
             {
                 if(!(active && eligible))length=Length(b);
                 BeamTransition event;
-                event.beam=i;event.kind=(changed?(eligible?1:8):0)|(removed?2:0);
+                event.beam=i;event.kind=(changed?(eligible?1:8):0)|(removed?2:0)|(strength?4:0);
                 event.length=length;event.oldRest=l.beam_rest[i];event.newRest=b.L;
                 event.oldK=l.beam_k[i];event.newK=b.k;event.oldStrength=l.beam_strength[i];event.newStrength=b.strength;
                 event.oldStorage=eligible?LinearStorage(event.oldK,length,event.oldRest):0;

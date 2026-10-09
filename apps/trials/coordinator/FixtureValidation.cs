@@ -12,6 +12,7 @@ public static class FixtureValidation
         if(d.Observation=="off")return new("NotReady","Ledger disabled; control probe only, no force/energy qualification",[]);
         if(d.Scenario is "coast-v1" or "barrier-v1")return new("NotReady","Vehicle constitutive/storage and environment qualification pending",[]);
         if(!executionComplete||!capture.Complete||!d.Accounting)return new("NotReady",scope,[]);
+        if(Contract.TransitionFixture(d.Scenario))return TransitionValidation.Evaluate(path,d);
         var checks=new List<Item>();
         void Max(string name,double value,double limit)=>checks.Add(new(name,value,limit,double.IsFinite(value)&&value<=limit));
         double time=0,refX=0,refV=0,x0=0,initialEnergy=0,energy0=0,workSum=0;

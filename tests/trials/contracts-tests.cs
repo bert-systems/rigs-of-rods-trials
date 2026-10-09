@@ -9,6 +9,12 @@ Check(Contract.Validate(new("repeat",Repeats:21)).Count>0,"repeat bound");
 Check(Contract.Validate(new("spring",0,5,0,1,new(Gravity:0),Vehicle:"ror-spring-v1.truck",Scenario:"spring-v1")).Count==0,"qualified dry zero-g fixture accepted");
 Check(Contract.Validate(new("spring",0,5,0,1,new(Gravity:0),Scenario:"spring-v1")).Count>0,"fixture asset mismatch rejected");
 Check(Contract.Validate(new("damper",0,5,0,1,new(Gravity:0,WindX:1),Vehicle:"ror-damper-v1.truck",Scenario:"damper-v1")).Count>0,"fixture wind rejected");
+foreach(string scenario in new[]{"yield-tension-v1","yield-compression-v1","fracture-v1","protected-beam-v1"}){
+ var definition=new ExperimentDefinition(scenario,0,.2,0,1,new(Gravity:0),Vehicle:"ror-"+scenario+".truck",Scenario:scenario);
+ Check(Contract.Validate(definition).Count==0,"pinned transition fixture accepted: "+scenario);
+ Check(Contract.Validate(definition with {DurationSeconds=2}).Count>0,"transition fixture qualification duration bounded");
+ Check(Contract.Validate(definition with {Environment=new(Gravity:-9.81)}).Count>0,"transition fixture dry zero gravity required");
+}
 Check(ArchiveReader.Crc(Encoding.ASCII.GetBytes("123456789"))==0xcbf43926,"standard CRC check");
 string dir=args.Length>0?Path.GetFullPath(args[0]):throw new Exception("Provide an outside-Git test output directory.");
 Directory.CreateDirectory(dir);
@@ -131,6 +137,22 @@ envelopes.Add(projected,System.Text.Json.JsonSerializer.SerializeToElement(new{t
 Check(projected.ImpactHistory[^1].GetProperty("gap").GetBoolean(),"gap/loss breaks scientific chart path");
 Console.WriteLine("PASS: peak-preserving projection and visible gap semantics");
 
+byte[] strengthRecord=new byte[2080];
+BitConverter.GetBytes(1ul).CopyTo(strengthRecord,0);BitConverter.GetBytes(1u).CopyTo(strengthRecord,12);
+BitConverter.GetBytes(.0005).CopyTo(strengthRecord,24);BitConverter.GetBytes(100.0).CopyTo(strengthRecord,32);
+BitConverter.GetBytes(4u).CopyTo(strengthRecord,1348);BitConverter.GetBytes(1ul).CopyTo(strengthRecord,1360);
+BitConverter.GetBytes(1u).CopyTo(strengthRecord,1368);BitConverter.GetBytes(4u).CopyTo(strengthRecord,1380);
+BitConverter.GetBytes(200.0).CopyTo(strengthRecord,1424);BitConverter.GetBytes(400.0).CopyTo(strengthRecord,1432);
+WriteV2("strength.rort",strengthRecord);string strengthPath=Path.Combine(dir,"strength.rort");
+var strengthCheck=ArchiveReader.Inspect(strengthPath);var strengthPage=TransitionReader.Read(strengthPath,strengthCheck,0,1);
+Check(strengthPage.ProjectionComplete&&strengthPage.StrengthChanges==1&&strengthPage.ParameterChanges==0&&strengthPage.Removed==0&&strengthPage.RestStoragePortJ==0&&strengthPage.RemovedStoragePortJ==0,"strength-only transition does not invent energy or removal");
+Check(TransitionReader.Read(strengthPath,strengthCheck,1,1).Events.Count==0,"transition pagination ends without repeated events");
+bool invalidPage=false;try{TransitionReader.Read(strengthPath,strengthCheck,0,101);}catch(ArgumentException){invalidPage=true;}
+Check(invalidPage,"transition API bounded page size");
+bool invalidCapture=false;try{TransitionReader.Read(strengthPath,strengthCheck with {Complete=false});}catch(InvalidDataException){invalidCapture=true;}
+Check(invalidCapture,"incomplete aggregate cannot serve verified transition view");
+Console.WriteLine("PASS: transition fixtures, strength-only zero storage ports, bounded pages and quality gate");
+
 
 if(args.Length>1){
  var inspected=new List<object>();
@@ -138,6 +160,25 @@ if(args.Length>1){
   var check=ProbeReader.Inspect(path);Check(check.Complete&&check.Closed,"retained native probe reinspection: "+path);
   string aggregate=Path.Combine(Path.GetDirectoryName(path)!,"steps.rort");
   if(File.Exists(aggregate))Check(ArchiveReader.Inspect(aggregate).Complete,"retained native aggregate reinspection: "+aggregate);
+  string manifest=Path.Combine(Path.GetDirectoryName(path)!,"manifest.json");
+  using var m=System.Text.Json.JsonDocument.Parse(File.ReadAllText(manifest));
+  var definition=System.Text.Json.JsonSerializer.Deserialize<ExperimentDefinition>(m.RootElement.GetProperty("definition").GetRawText(),Contract.Json)!;
+  if(Contract.TransitionFixture(definition.Scenario)){
+   var original=ArchiveReader.Inspect(aggregate);
+   Check(FixtureValidation.Evaluate(aggregate,definition,original,true).Status=="Passed","final independent native transition reference: "+aggregate);
+   var originalBytes=File.ReadAllBytes(aggregate);int length=BitConverter.ToInt32(originalBytes,24);
+   foreach(var mutation in new[]{"kind","port","storage","epoch"}){
+    var forged=(byte[])originalBytes.Clone();
+    if(mutation=="kind")BitConverter.GetBytes(0u).CopyTo(forged,32+1380);
+    if(mutation=="port")BitConverter.GetBytes(10.0).CopyTo(forged,32+1232);
+    if(mutation=="storage")BitConverter.GetBytes(200.0).CopyTo(forged,32+1440);
+    if(mutation=="epoch")BitConverter.GetBytes(1ul).CopyTo(forged,32+1352);
+    BitConverter.GetBytes(ArchiveReader.Crc(forged.AsSpan(32,length).ToArray())).CopyTo(forged,28);
+    string forgedPath=Path.Combine(dir,definition.Scenario+"-"+mutation+".rort");File.WriteAllBytes(forgedPath,forged);
+    var forgedCheck=ArchiveReader.Inspect(forgedPath);Check(forgedCheck.Complete,"forged reference retains valid capture CRC");
+    Check(FixtureValidation.Evaluate(forgedPath,definition,forgedCheck,true).Status=="Failed","CRC-valid wrong "+mutation+" cannot earn scientific Passed");
+   }
+  }
   inspected.Add(new{path,check});
  }
  File.WriteAllText(Path.Combine(dir,"native-reinspection.json"),System.Text.Json.JsonSerializer.Serialize(inspected,Contract.Json));

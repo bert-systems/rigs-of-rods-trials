@@ -55,6 +55,12 @@ int main()
     for(int j=0;j<9;j++)ledger.Transition(transition);
     Check(ledger.record.event_dropped==1&&(ledger.record.flags&16)&&!(ledger.record.flags&1),"dense detail distinguishes projection truncation from required capture loss");
     ledger.detail_transitions=false;
+    ledger.Begin(242,3,1,.5);
+    BeamTransition strength_only;strength_only.kind=4;strength_only.oldStrength=200;strength_only.newStrength=400;
+    strength_only.oldStorage=12.5;strength_only.newStorage=12.5;
+    ledger.Transition(strength_only);
+    Check(ledger.record.event_count==1&&ledger.record.plastic_events==0&&ledger.record.break_events==0&&
+        Near(ledger.record.rest_storage_port,0)&&Near(ledger.record.removed_storage_port,0),"strength-only state change carries no elastic-energy port");
     ledger.Begin(25,3,1,.5);
     ledger.Consume(1,2,Vec(),Vec(),Vec(),Vec(),true);
     ledger.Begin(26,3,1,.5);
