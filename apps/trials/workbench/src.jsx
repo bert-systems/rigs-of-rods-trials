@@ -2,8 +2,8 @@ import React, {useEffect,useState,useRef} from 'react';
 import {createRoot} from 'react-dom/client';
 import './style.css';
 
-const initial={name:'Daf steady-wind coast',launchSpeedMps:5,durationSeconds:12,settleSeconds:3,repeats:1,
- scenario:'coast-v1',vehicle:'b6b0UID-semi.truck',terrain:'simple2.terrn2',accounting:true,observation:'full',performanceProbe:false,
+const initial={name:'Daf controlled barrier impact',launchSpeedMps:6.2,durationSeconds:9,settleSeconds:3,repeats:1,
+ scenario:'barrier-v1',barrierDistanceM:12,targetImpactSpeedMps:5,detailFault:'none',vehicle:'b6b0UID-semi.truck',terrain:'simple2.terrn2',accounting:true,observation:'full',performanceProbe:false,
  environment:{gravity:-9.81,temperatureK:288.15,density:1.225,windX:0,windY:0,windZ:0}};
 const norm=v=>v?Math.hypot(...v):0;
 const fmt=(n,d=2)=>Number.isFinite(n)?n.toLocaleString(undefined,{maximumFractionDigits:d}):'—';
@@ -20,7 +20,7 @@ function Spark({points,field,vector=false,title,unit}){
  const colors=['#38c7bb','#69a5ff','#f5b863'];
  const paths=Array.from({length:vector?3:1},(_,axis)=>{
   let path='';
-  points.forEach((p,i)=>{const gap=i>0&&p.tick-points[i-1].tick>100;path+=(i===0||gap?'M':'L')+x(i).toFixed(2)+','+y(values[i][axis]).toFixed(2)+' ';});
+  points.forEach((p,i)=>{const gap=p.gap||i>0&&p.tick-points[i-1].tick>100;path+=(i===0||gap?'M':'L')+x(i).toFixed(2)+','+y(values[i][axis]).toFixed(2)+' ';});
   return <path key={axis} d={path} fill="none" stroke={colors[axis]} strokeWidth="2"/>;
  });
  return <section className="chart"><div className="section-title"><h3>{title}</h3><span>{unit}</span></div>
@@ -36,16 +36,39 @@ function Field({label,k,env=false,min,max,step='any'}){
  const {form,num}=React.useContext(FormContext);
  return <label>{label}<input type="number" step={step} min={min} max={max} value={env?form.environment[k]:form[k]} onChange={e=>num(k,e.target.value,env)} required/></label>;
 }
+function DetailInspector({attempt}){
+ const d=attempt.metrics.impactDetail;
+ const [tick,setTick]=useState(d.triggerTick),[node,setNode]=useState(0),[beam,setBeam]=useState(0);
+ const [frame,setFrame]=useState(null),[error,setError]=useState(''),[busy,setBusy]=useState(false);
+ const load=async e=>{e.preventDefault();setBusy(true);setFrame(null);setError('');
+  try{const response=await fetch(`/api/attempts/${attempt.id}/detail?tick=${tick}&node=${node}&beam=${beam}`);
+   if(!response.ok)throw new Error(response.status===404?'This tick is not in the verified archive. A gap is not interpolated.':'The recorded frame could not be verified.');
+   setFrame(await response.json());}catch(e){setError(e.message);}finally{setBusy(false);}};
+ const vector=v=>v.map(x=>fmt(x,4)).join(' / ');
+ return <section className="accounting"><div className="section-title"><h3>Archived tick inspector</h3><span>CRC VERIFIED · EXACT NATIVE TICK</span></div>
+ <p>Select a retained tick, node and beam. Float32 solver state; generated beam forces belong to this tick, while carried node channels are consumed at integration.</p>
+ <form onSubmit={load} className="detail-query"><label>Tick<input type="number" step="1" required min={d.firstTick} max={d.lastTick} value={tick} onChange={e=>setTick(+e.target.value)}/></label>
+ <label>Node ID<input type="number" step="1" required min="0" max={d.nodes-1} value={node} onChange={e=>setNode(+e.target.value)}/></label>
+ <label>Beam ID<input type="number" step="1" required min="0" max={d.beams-1} value={beam} onChange={e=>setBeam(+e.target.value)}/></label>
+ <button disabled={busy}>{busy?'Verifying…':'Inspect tick'}</button></form>
+ {error&&<div className="warning">{error}</div>}
+ {frame&&<><p>Tick {frame.tick} · node {frame.node.id}: position {vector(frame.node.positionM)} m · velocity {vector(frame.node.velocityMps)} m/s · consumed force {vector(frame.node.consumedForceN)} N.</p>
+ <p>Beam {frame.beam.id}: nodes {frame.beam.node1}/{frame.beam.node2}, length {fmt(frame.beam.lengthM,6)} m, rest {fmt(frame.beam.restM,6)} m, stress {fmt(frame.beam.stressN)} N, strength {fmt(frame.beam.strengthN)} N. Applied endpoint forces: {vector(frame.beam.generatedNode1ForceN)} / {vector(frame.beam.generatedNode2ForceN)} N.</p>
+ <table><thead><tr><th>Node channel</th><th>Consumed force X / Y / Z · N</th></tr></thead><tbody>{Object.entries(frame.node.channels).map(([name,f])=><tr key={name}><td>{name}</td><td>{vector(f)}</td></tr>)}</tbody></table>
+ <h4>Actual terrain/object applications ({frame.contacts.length})</h4><table><thead><tr><th>Node / feature</th><th>Applied vector · N</th><th>Normal vector · N</th><th>Tangential vector · N</th></tr></thead><tbody>{frame.contacts.map((c,i)=><tr key={i}><td>{c.node} / {c.barrier?'barrier':'surface'} {c.feature}</td><td>{vector(c.appliedForceN)}</td><td>{vector(c.normalForceN)}</td><td>{vector(c.tangentialForceN)}</td></tr>)}</tbody></table></>}
+ </section>;
+}
 function App(){
  const [data,setData]=useState(null),[form,setForm]=useState(initial),[selected,setSelected]=useState(null);
  const [error,setError]=useState(''),[live,setLive]=useState(false),[sending,setSending]=useState(false),[tab,setTab]=useState('Trials');
  const token=useRef(null);
+ const selectedRef=useRef(selected);selectedRef.current=selected;
  useEffect(()=>{
   let cancelled=false,timer;
   async function poll(){
    try{
     if(!token.current)token.current=(await (await fetch('/api/session')).json()).session;
-    const response=await fetch('/api/state');
+    const response=await fetch('/api/state?compact=true&selected='+encodeURIComponent(selectedRef.current??''));
     if(!response.ok)throw Error('Live state unavailable');
     const next=await response.json();if(!cancelled){setData(next);setLive(true);}
    }catch(e){if(!cancelled)setLive(false);}
@@ -54,13 +77,13 @@ function App(){
   return()=>{cancelled=true;clearTimeout(timer);};
  },[]);
  const attempts=data?.attempts??[];
- const current=attempts.find(a=>a.id===selected)??attempts.at(-1);
+ const current=attempts.find(a=>a.id===selected)??attempts.find(a=>['Running','Finalizing','Starting','Paused','Pausing','Resuming'].includes(a.execution))??attempts.at(-1);
  const sample=current?.latest,history=current?.history??[];
  const off=current?.definition.observation==='off';
- const fixture=form.scenario!=='coast-v1';
- const scenario=value=>setForm(f=>({...f,scenario:value,vehicle:value==='coast-v1'?'b6b0UID-semi.truck':'ror-'+value+'.truck',
-   launchSpeedMps:value==='coast-v1'?5:0,durationSeconds:value==='coast-v1'?12:value==='freefall-v1'?.5:5,
-   settleSeconds:value==='coast-v1'?3:0,environment:{...f.environment,gravity:['spring-v1','damper-v1'].includes(value)?0:-9.81,windX:0,windY:0,windZ:0}}));
+ const fixture=!['coast-v1','barrier-v1'].includes(form.scenario);const barrier=form.scenario==='barrier-v1';
+ const scenario=value=>setForm(f=>({...f,scenario:value,vehicle:['coast-v1','barrier-v1'].includes(value)?'b6b0UID-semi.truck':'ror-'+value+'.truck',
+   launchSpeedMps:value==='barrier-v1'?6.2:value==='coast-v1'?5:0,targetImpactSpeedMps:5,barrierDistanceM:12,durationSeconds:value==='barrier-v1'?9:value==='coast-v1'?12:value==='freefall-v1'?.5:5,
+   settleSeconds:['coast-v1','barrier-v1'].includes(value)?3:0,environment:{...f.environment,gravity:['spring-v1','damper-v1'].includes(value)?0:-9.81,windX:0,windY:0,windZ:0}}));
  const num=(key,value,env=false)=>setForm(f=>env?{...f,environment:{...f.environment,[key]:value}}:{...f,[key]:value});
  async function post(url,body){
   const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','X-Trials-Session':token.current??''},body:JSON.stringify(body??{})});
@@ -69,7 +92,7 @@ function App(){
  async function enqueue(event){
   event.preventDefault();setSending(true);setError('');
   try{const payload={...form,environment:Object.fromEntries(Object.entries(form.environment).map(([k,v])=>[k,Number(v)]))};
-  for(const k of ['launchSpeedMps','durationSeconds','settleSeconds','repeats'])payload[k]=Number(payload[k]);
+  for(const k of ['launchSpeedMps','durationSeconds','settleSeconds','repeats','barrierDistanceM','targetImpactSpeedMps'])payload[k]=Number(payload[k]);
   const result=await post('/api/experiments',payload);setSelected(result.attemptIds[0]);}catch(e){setError(e.message);}finally{setSending(false);}
  }
  async function command(op){setError('');try{await post('/api/attempts/'+current.id+'/'+op);}catch(e){setError(e.message);}}
@@ -86,7 +109,7 @@ function App(){
  <div className="workspace"><aside className="author"><div className="section-title"><h2>New experiment</h2><span>PINNED PILOT</span></div>
  <FormContext.Provider value={{form,num}}><form onSubmit={enqueue}><label>Experiment name<input value={form.name} maxLength={120} onChange={e=>setForm({...form,name:e.target.value})} required/></label>
  <label>Study scenario<select value={form.scenario} onChange={e=>scenario(e.target.value)}>
- <option value="coast-v1">Daf rolling coast · study</option><option value="freefall-v1">Free fall · dry fixture</option>
+ <option value="barrier-v1">Daf controlled barrier · 2 kHz detail</option><option value="coast-v1">Daf rolling coast · study</option><option value="freefall-v1">Free fall · dry fixture</option>
  <option value="spring-v1">Linear spring · dry fixture</option><option value="damper-v1">Spring + damper · dry fixture</option></select></label>
  <label>Observation profile<select value={form.observation==='off'?'off':form.accounting?'full':'basic'} onChange={e=>setForm(f=>({...f,observation:e.target.value==='off'?'off':'full',accounting:e.target.value==='full',performanceProbe:e.target.value==='off'?true:f.performanceProbe}))}>
  <option value="full">Full force / core energy ledger</option><option value="basic">Channels disabled · base ledger</option><option value="off">Ledger off · control probe only</option></select></label>
@@ -95,13 +118,15 @@ function App(){
  <div className="asset"><span>Terrain</span><strong>Simple Test Terrain</strong><small>simple2.terrn2</small></div>
  <div className="form-pair"><Field label="Release speed · m/s" k="launchSpeedMps" min="0" max="20"/><Field label="Observe · s" k="durationSeconds" min={fixture?".1":"1"} max={fixture?"5":"120"}/></div>
  <div className="form-pair"><Field label="Settling · s" k="settleSeconds" min={fixture?"0":"2"} max={fixture?"0":"30"}/><Field label="Repeats" k="repeats" min="1" max="20" step="1"/></div>
+ {barrier&&<><div className="form-pair"><Field label="Barrier distance from front · m" k="barrierDistanceM" min="1" max="100"/><Field label="Target approach speed · m/s" k="targetImpactSpeedMps" min=".1" max="20"/></div>
+ <div className="setup-note">Fixed concrete box: 16 m wide, 6 m high, 1 m deep. All nodes, force channels, beams and terrain/object contacts: every 0.5 ms, 2 s before / 4 s after consumed impact. Release and target speeds are separate; no continuous speed correction.</div></>}
  <details open={tab==='Environment'}><summary>Gravity, air and steady wind</summary>
  <Field label="Gravity Y · m/s²" k="gravity" env min="-30" max="0"/>
  <div className="form-pair"><Field label="Temperature · K" k="temperatureK" env min="180" max="350"/><Field label="Density · kg/m³" k="density" env min=".001" max="3"/></div>
  <div className="wind-fields">{['X','Y','Z'].map(axis=><Field key={axis} label={'Wind '+axis+' · m/s'} k={'wind'+axis} env min="-30" max="30"/>)}</div></details>
  <div className="setup-note">{fixture?"Pinned dry/contactless state: 100 kg, 1 m rest length, 0.05 m extension, k=10,000 N/m; damper c=200 Ns/m. Free fall disables beam stiffness.":"Settle, initialize rolling motion, then coast with propulsion off."} Each attempt gets a fresh process and private profile.</div>
  <button className="primary" disabled={sending||!live}>{sending?'Saving revision…':'Queue experiment'} <span>→</span></button></form></FormContext.Provider>
- <div className="scope-note"><strong>Current study scope</strong><p>16 force channels, linear beam storage, state/work ports and required transition capture. Analytical dry fixtures have scoped qualification. Vehicle impact and nonlinear storage remain pending.</p></div></aside>
+ <div className="scope-note"><strong>Current study scope</strong><p>16 force channels, linear beam storage, state/work ports and required transition capture. Analytical dry fixtures have scoped qualification. Controlled approach/capture checks are separate from vehicle constitutive and nonlinear energy qualification.</p></div></aside>
  <section className="monitor"><div className="attempts"><div className="section-title"><h2>Trial queue</h2><span>{attempts.length} ATTEMPTS · SERIAL</span></div>
  {attempts.length===0?<div className="empty">Define an experiment to launch the source-built worker.</div>:<div className="queue-list">{attempts.slice().reverse().map(a=><button key={a.id} className={'queue-item '+(a.id===current?.id?'selected':'')} onClick={()=>setSelected(a.id)}><div><strong>{a.definition.name}</strong><small>{a.id.slice(0,8)} · {a.definition.launchSpeedMps} m/s · {a.retryOf?'retry':'new attempt'}</small></div><span className={'pill '+a.execution.toLowerCase()}>{a.execution}</span></button>)}</div>}</div>
  <div className="run-header"><div><div className="eyebrow">SELECTED ATTEMPT</div><h2>{current?.definition.name??'No active attempt'}</h2><p>{current?current.id:'Ready for a controlled study'}</p></div><div className="controls">
@@ -135,11 +160,25 @@ function App(){
  <p>{current.metrics.qualification.scope}</p><table><thead><tr><th>Check</th><th>Observed</th><th>Maximum</th><th>Result</th></tr></thead><tbody>
  {current.metrics.qualification.checks.map(c=><tr key={c.name}><td>{c.name}</td><td>{scienceFmt(c.observed)}</td><td>{scienceFmt(c.limit)}</td><td>{c.passed?'Passed':'Failed'}</td></tr>)}</tbody></table></section>}
  </>}
+ {current?.definition?.scenario==='barrier-v1'&&<section className="accounting impact-panel"><div className="section-title"><h3>Controlled barrier / detailed impact</h3><span>{current.metrics?.impactQualification?.status??'CAPTURING'}</span></div>
+ <p>{current.execution==='Finalizing'&&<strong>Physics finished; native archive is draining. </strong>}Approach/capture profile: barrier-approach-capture-v1. Scientific vehicle qualification: {current.validation}. {current.definition.detailFault!=='none'&&<strong className="bad">Injected qualification fault: {current.definition.detailFault}</strong>}</p>
+ <div className="env-grid"><div>First consumed contact<strong>Tick {current.impact?.triggerTick??current.metrics?.impactDetail?.triggerTick??'—'}</strong></div>
+ <div>Peak individual contact<strong>{fmt(current.metrics?.impactDetail?.peakApplicationForceN??current.impact?.peakApplicationForceN)} N</strong></div>
+ <div>Peak net barrier force<strong>{fmt(current.metrics?.impactDetail?.peakNetBarrierForceN??current.impact?.peakNetBarrierForceN)} N</strong></div>
+ <div>Barrier impulse X / Y / Z<strong>{(current.metrics?.impactDetail?.barrierImpulseNs??current.impact?.barrierImpulseNs??[]).map(v=>fmt(v)).join(' / ')} N·s</strong></div>
+ <div>Required detail frames<strong>{current.metrics?.impactDetail?.records??current.detailProgress?.durable??current.impact?.detailDurable??'—'}</strong></div>
+ <div>Detail loss<strong>{current.metrics?.impactDetail?.dropped??current.workerStatus?.detailDropped??'—'}</strong></div></div>
+ <Spark points={current.impactHistory??[]} field="peakNetBarrierForceN" title="Barrier contact force · peak preserved per summary" unit="N"/>
+ <p>Archive window: {current.metrics?.impactDetail?.firstTick??'—'} to {current.metrics?.impactDetail?.lastTick??'—'} · parameter transitions {current.metrics?.impactDetail?.parameterTransitions??'—'} · strength transitions {current.metrics?.impactDetail?.strengthTransitions??'—'} · removed beams {current.metrics?.impactDetail?.removedBeams??'—'}. Dense beam capture preserves transitions omitted from the aggregate projection. Removed storage is not measured fracture dissipation.</p>
+ {current.metrics?.impactDetail?.problem&&<div className="warning">{current.metrics.impactDetail.problem}</div>}
+ {current.metrics?.impactQualification?.checks?.length>0&&<table><thead><tr><th>Approach / capture check</th><th>Observed</th><th>Limit</th><th>Result</th></tr></thead><tbody>{current.metrics.impactQualification.checks.map(c=><tr key={c.name}><td>{c.name}</td><td>{scienceFmt(c.observed)}</td><td>{scienceFmt(c.limit)}</td><td>{c.passed?'Passed':'Failed'}</td></tr>)}</tbody></table>}
+ </section>}
+ {current?.metrics?.impactDetail?.records>0&&<DetailInspector key={current.id} attempt={current}/>}
  {current?.metrics?.performanceProbe&&<section className="accounting"><div className="section-title"><h3>Performance probe</h3><span>RELEASED STEPS · WALL ELAPSED</span></div><p>Median {fmt(current.metrics.performanceProbe.medianUs,3)} µs · p95 {fmt(current.metrics.performanceProbe.p95Us,3)} µs · {current.metrics.performanceProbe.releasedRecords} released records · {current.metrics.performanceProbe.fingerprints} state fingerprints. Timing includes native work, job barriers and enabled ledger reduction; probe sampling/queueing is excluded. Fingerprints are diagnostic samples, not a checkpoint.</p></section>}
  <div className="bottom-pair"><section className="environment"><div className="section-title"><h3>Effective dry environment</h3><span>{sample&&!off?'NATIVE SAMPLE':'REQUESTED'}</span></div>
  <div className="env-grid"><div>Gravity<strong>{fmt(sample?.gravityMps2??env.gravity)} m/s²</strong></div><div>Air density<strong>{fmt(sample?.densityKgM3??env.density,3)} kg/m³</strong></div><div>Temperature<strong>{fmt(env.temperatureK)} K</strong></div><div>Steady wind<strong>{(sample?.windMps??[env.windX,env.windY,env.windZ]).map(v=>fmt(v)).join(' / ')} m/s</strong></div></div><p>Density and relative wind feed generic dry drag. Temperature is recorded; thermal exchange is outside this model.</p></section>
  <section className="events"><div className="section-title"><h3>Attempt timeline</h3><span>DURABLE EVENTS</span></div>{current?.events?.slice(-5).reverse().map(e=><div className="event" key={e.sequence}><i/><div><strong>{e.kind}</strong><p>{e.message}</p></div></div>)??<p>No attempt events yet.</p>}</section></div>
- {current&&<section className="archive"><div><h3>Retained evidence</h3><p>Every-step binary records and checksums, manifests, requested inputs and scoped outcomes.</p><div className="links">{['manifest.json','result.json','process-provenance.json',...(off?['probe.rort']:['steps.rort','beam-transitions.jsonl']),...(!off&&current.definition.performanceProbe?['probe.rort']:[])].map(name=><a key={name} href={'/api/attempts/'+current.id+'/artifacts/'+name}>{name}</a>)}</div></div><div className="controls"><button disabled={!terminal.includes(current.execution)} onClick={()=>command('retry')}>New retry</button><button disabled={!terminal.includes(current.execution)||current.archived} onClick={()=>command('archive')}>{current.archived?'Archived · retained':'Mark archived'}</button></div></section>}
+ {current&&<section className="archive"><div><h3>Retained evidence</h3><p>Every-step binary records and checksums, manifests, requested inputs and scoped outcomes.</p><div className="links">{['manifest.json','result.json','process-provenance.json',...(off?['probe.rort']:['steps.rort','beam-transitions.jsonl']),...(current.definition.scenario==='barrier-v1'?['detail.rort','detail-health.json','detail-profile.json','barrier.json','approach.json','impact-events.jsonl','impact-beam-transitions.jsonl','contact-materials.json']:[]),...(!off&&current.definition.performanceProbe?['probe.rort']:[])].map(name=><a key={name} href={'/api/attempts/'+current.id+'/artifacts/'+name}>{name}</a>)}</div></div><div className="controls"><button disabled={!terminal.includes(current.execution)} onClick={()=>command('retry')}>New retry</button><button disabled={!terminal.includes(current.execution)||current.archived} onClick={()=>command('archive')}>{current.archived?'Archived · retained':'Mark archived'}</button></div></section>}
  <footer>Captured sample: {fmt(sample?.timeSeconds,3)} s; native clock and recorder publication are independent. Coverage: {current?.coverage??'Awaiting native worker'}. Complete capture alone does not establish physical validation.</footer>
  </section></div></main></div>;
 }

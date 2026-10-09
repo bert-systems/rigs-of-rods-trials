@@ -8,6 +8,8 @@ set(SOURCE_FILES
         trials/TrialRuntime.{h,cpp}
         trials/TrialPhysics.cpp
         trials/TrialProbe.cpp
+        trials/TrialDetail.{h,cpp}
+        trials/TrialBarrier.cpp
         Application.{h,cpp}
         ForwardDeclarations.h
         AppContext.{h,cpp}

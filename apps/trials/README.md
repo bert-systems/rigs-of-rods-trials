@@ -1,10 +1,10 @@
-# Local trial workbench — through Slice 02
+# Local trial workbench — through Slice 04
 
 React 19.3 and ASP.NET Core/.NET 10 run a serial queue of fresh source-built RoR workers. Each attempt has an immutable configuration, private copied runtime/profile, native binary capture, SQLite catalog and separately reported execution/capture/scientific-validation states.
 
 This first slice supports Daf Semi (`b6b0UID-semi.truck`), Simple Test Terrain (`simple2.terrn2`), settling followed by initialized rolling motion and a propulsion-free coast. It records consumed forces, ground/object-contact force deltas, movable-node momentum, kinetic energy and kinetic-work integration residuals. Vehicle attempts remain scientific NotReady; pinned dry analytical fixtures now have scoped acceptance.
 
-The native observer archives one **aggregate** record per physics tick (~2 kHz), publishes summaries at ~200 Hz, and the UI requests state about 10 Hz. Slice 02 adds 16 force channels, core storage/work ports, bounded beam parameter/removal snapshots and native analytical fixtures. Raw detail windows, barrier trials, full nonlinear/plastic/fracture closure and coherent atmospherics remain future slices. The ledger identity tests are useful accounting tests; they are not engine calibration.
+The native observer archives one **aggregate** record per physics tick (~2 kHz), publishes summaries at ~200 Hz, and the UI requests state about 10 Hz. Slice 02 adds 16 force channels, core storage/work ports and native analytical fixtures. Slice 04 adds a controlled barrier and required 2 kHz node/contact/beam impact windows, peak-preserving live envelopes and an archived tick inspector. Full nonlinear/plastic/fracture closure and coherent atmospherics remain future work. The ledger identity tests are useful accounting tests; they are not engine calibration.
 
 ## Build and start on the verified Windows workstation
 
@@ -39,7 +39,7 @@ The check needs Playwright, installed Chrome, and FFmpeg at the workstation path
 - Every-step capture gaps, nonfinite observations or I/O errors are sticky incomplete quality. The worker continues observing. Only complete supported dry analytical fixtures can earn scoped Passed; vehicle validation remains NotReady.
 - Pause/resume acknowledgements record their applied tick. Recorder publication can lag physics; independent native heartbeat time drives the dashboard clock.
 - Cancellation retains partial capture. Retries create new IDs and private worker processes. Archive currently marks and retains data; it does not delete files.
-- New launches hold below an 11 GiB free-space threshold. A startup lease of 120 s, active wall budget of 300 s and paused lease of 1800 s are engineering safeguards awaiting broader performance qualification.
+- Non-barrier launches hold below an 11 GiB free-space threshold. Barrier preflight requires 3 GiB raw-data reservation plus a 10 GiB floor, 6 GiB available RAM and a writable storage probe. A startup lease of 120 s, active wall budget of 300 s and paused lease of 1800 s are engineering safeguards awaiting broader performance qualification.
 - Explicit renderer profiles are Direct3D9 or OpenGL, windowed1280×720. OpenGL was verified after Slice 02 Direct3D9 device creation failed. General renderer configuration and asset-catalog selection come later.
 
 See [Slice 01 evidence and delivery](../../doc/project/slices/slice-01.md) and the [implementation specification](../../doc/project/design/trial-platform-implementation-spec.md).
@@ -83,3 +83,32 @@ Use a unique session. This machine completed the fresh build at `-Parallel 6` af
 After every attempt is terminal, stop the explicitly owned coordinator, restart the same archive with `-EvidenceFrames`, then run `--phase visual`. Preserve failure outputs. These scripts require the current source-built capability handshake. The report generator/template are dated Slice 03 evidence tooling; inspect before reuse and do not overwrite historical sessions.
 
 The benchmark uses three interleaved fresh-process repeats/profile at 5 and 15 m/s, plus base-ledger, analytical and steady-wind comparisons. UI disconnects during coast cost characterization; compact status polling remains. Two scheduled native screenshots are still common to benchmark runs. Continuous native screenshot requests supply only the visual phase. Neither off mode nor the common timer constitutes an uninstrumented upstream/process-CPU benchmark. Proposed ≤10% overhead remains unmet.
+
+## Slice 04 controlled barrier and detailed impact
+
+Select `barrier-v1`, full accounting, a target approach speed, release speed and barrier distance. The UI defaults to 6.2 m/s release, 5 m/s target and 12 m distance. The qualified 3/5/10 m/s target setups use releases 3.8/6.2/12.25 m/s and distances 7.2/12/24 m, with 3 s settle and 9 s observed motion. The native orange box is 16 m wide, 6 m high and 1 m deep, using the existing concrete contact law. There is no speed clamp after release.
+
+Approach is the first released tick with the frontmost node within 0.25 m of the face; speed is signed mass-weighted COM velocity on the frozen approach direction. Limits are max(0.1 m/s, 2% target), 1 degree heading and 0.25 m lateral displacement. `barrier-approach-capture-v1` Passed qualifies these initial conditions and complete required capture only. Vehicle scientific validation remains NotReady.
+
+First nonzero consumed barrier force triggers inclusive tick −4000 through +8000: 12,001 frames. `detail.rort` records native float32 state, actual applied contact increments, all 16 consumed node channels, dense beam endpoint writes and before/after parameter/strength/removal state. Normal/tangential vectors, impulse and midpoint contact work are derived from these records. Work is not validated concrete dissipation; removed storage is not fracture energy. See [detail-format.md](detail-format.md) for exact layout and failure semantics.
+
+The realized pilot has 176 nodes and 744 beams. Resource profile `daf-detail-resources-v2` needs ~782 MiB separate history and ~3 GiB queue, and writes about 1.55 GB per six-second window. The initial 768 MiB history/256 MiB queue proposals failed on this workstation and remain retained. Every required loss is sticky Incomplete. No automatic rate reduction hides loss. Finalizing shows ongoing durable writing after physics finishes. The detailed profile is qualified for these single-impact 9+3 s runs; longer/separated/retriggered windows and broader workloads remain qualification work.
+
+```powershell
+.\tools\trials\start.ps1 -Session $trialSession -Port 54324 -Renderer OpenGL
+python tools/trials/verify-slice-04.py --session $trialSession --phase matrix --speed 3 --release 3.8
+python tools/trials/verify-slice-04.py --session $trialSession --phase matrix --speed 5 --release 6.2
+python tools/trials/verify-slice-04.py --session $trialSession --phase matrix --speed 10 --release 12.25
+# After all attempts finish, restart the verified owned coordinator with -EvidenceFrames.
+python tools/trials/verify-slice-04.py --session $trialSession --phase faults --release 6.2
+python tools/trials/verify-slice-04.py --session $trialSession --phase controls --release 6.2
+python tools/trials/verify-slice-04.py --session $trialSession --phase regression
+python tools/trials/verify-slice-04-ui.py --session $trialSession
+python tools/trials/analyze-slice-04.py --session $trialSession
+```
+
+Qualification consumes significant storage/time and retains deliberate failures. Fault injections exercise missing prehistory, one full-admission drop and partial-write rollback; they do not physically fill the drive. Pause tests wait for both the applied command and refreshed native paused status. Worker termination is restricted to the verified owned process. A manual retry has a new attempt ID/process. Inspector endpoint `/api/attempts/{id}/detail?tick=...&node=...&beam=...` serves verified retained frames only after terminal execution; bounds, missing ticks and corruption are rejected.
+
+Dashboard envelopes preserve all 200 Hz summary maxima in 20 Hz points; history is restored on coordinator restart. `api/state?compact=true&selected=<id>` limits history arrays to the focused attempt. Source-built scene evidence uses continuous native PNGs, then `native-frames-video.py`, `media-evidence.py` and `verify-media.py`. Ordinary-image playback is primary; Chrome verification does not establish Codex GPU video playback.
+
+See [Slice 04 delivery](../../doc/project/slices/slice-04.md) and [illustrated report](../../doc/project/reports/trial-slice-04-2026-10-09.html). Retain the existing analytical acceptance limits. Vehicle material/energy closure, fracture qualification, observer overhead, barrier off-mode equivalence, driven journeys and broader environment/flight remain open.

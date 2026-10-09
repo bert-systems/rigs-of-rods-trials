@@ -7,7 +7,8 @@ public sealed record ExperimentDefinition(string Name, double LaunchSpeedMps = 5
     double DurationSeconds = 12, double SettleSeconds = 3, int Repeats = 1,
     EnvironmentConfig? Environment = null, string Vehicle = "b6b0UID-semi.truck",
     string Terrain = "simple2.terrn2", string Scenario = "coast-v1", bool Accounting = true,
-    string Observation = "full", bool PerformanceProbe = false);
+    string Observation = "full", bool PerformanceProbe = false, double BarrierDistanceM = 12,
+    double? TargetImpactSpeedMps = null, string DetailFault = "none");
 public sealed record AttemptEvent(long Sequence, DateTimeOffset Time, string Kind, string Message);
 public sealed class Attempt
 {
@@ -29,6 +30,9 @@ public sealed class Attempt
     public JsonElement? WorkerStatus { get; set; }
     public JsonElement? Latest { get; set; }
     public List<JsonElement> History { get; set; } = [];
+    public JsonElement? Impact { get; set; }
+    public JsonElement? DetailProgress { get; set; }
+    public List<JsonElement> ImpactHistory { get; set; } = [];
     public List<AttemptEvent> Events { get; set; } = [];
     public Dictionary<string, object> Metrics { get; set; } = [];
     public bool CancelRequested { get; set; }
@@ -44,7 +48,8 @@ public static class Contract
         if(d.Observation=="off"&&!d.PerformanceProbe)errors.Add("Ledger-off runs require the declared timing/state probe.");
         if (string.IsNullOrWhiteSpace(d.Name) || d.Name.Length > 120) errors.Add("Name must contain 1–120 characters.");
         bool fixture=d.Scenario is "freefall-v1" or "spring-v1" or "damper-v1";
-        if ((!fixture && d.Scenario!="coast-v1") || d.Terrain!="simple2.terrn2" ||
+        bool barrier=d.Scenario=="barrier-v1";
+        if ((!fixture && !barrier && d.Scenario!="coast-v1") || d.Terrain!="simple2.terrn2" ||
             d.Vehicle!=(fixture?"ror-"+d.Scenario+".truck":"b6b0UID-semi.truck"))
             errors.Add("Choose a pinned coast or analytical fixture scenario/asset pair.");
         if (!double.IsFinite(d.LaunchSpeedMps) || d.LaunchSpeedMps < 0 || d.LaunchSpeedMps > 20) errors.Add("Launch speed must be 0–20 m/s.");
@@ -52,6 +57,15 @@ public static class Contract
         if (!double.IsFinite(d.SettleSeconds) || (fixture ? d.SettleSeconds!=0 : d.SettleSeconds<2||d.SettleSeconds>30)) errors.Add("Fixtures require zero settling; coast requires 2–30 s.");
         if(fixture && d.LaunchSpeedMps!=0)errors.Add("Fixtures use the pinned initial state, with zero release speed.");
         if (d.Repeats < 1 || d.Repeats > 20) errors.Add("Repeats must be 1–20.");
+        if(d.DetailFault is not ("none" or "queue-overflow" or "storage-error" or "short-history"))errors.Add("Unknown detail fault qualification profile.");
+        if(!barrier&&d.DetailFault!="none")errors.Add("Detail fault profiles require the controlled barrier scenario.");
+        if(barrier){
+            if(d.Observation!="full"||!d.Accounting)errors.Add("Barrier detail requires full force accounting.");
+            if(!double.IsFinite(d.BarrierDistanceM)||d.BarrierDistanceM<1||d.BarrierDistanceM>100)errors.Add("Barrier distance must be 1–100 m from the initial front.");
+            double target=d.TargetImpactSpeedMps??d.LaunchSpeedMps;
+            if(!double.IsFinite(target)||target<=0||target>20||d.LaunchSpeedMps<=0)errors.Add("Barrier target/release speeds must be >0 and ≤20 m/s.");
+            if(d.DurationSeconds<6)errors.Add("Barrier duration must be at least 6 s; pre/post coverage is verified from actual trigger ticks.");
+        }
         var e = d.Environment ?? new();
         if (!double.IsFinite(e.Gravity) || e.Gravity < -30 || (d.Scenario is "spring-v1" or "damper-v1" ? e.Gravity!=0 : e.Gravity>=0))
             errors.Add("Coast/freefall require negative gravity; spring/damper require zero gravity.");

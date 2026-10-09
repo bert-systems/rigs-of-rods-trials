@@ -1,0 +1,1012 @@
+{
+  "slice": 4,
+  "date": "2026-10-09",
+  "base": "5bfcb126270544e79f5410cc726648e884967ebd",
+  "branch": "codex/trials-slice-04",
+  "session": "D:\\Rigs of Rods\\trial-slice-04-2026-10-09-011428",
+  "nativeSha256": "560F21EB692A33125292C0CA1C418674698DCF2406F05F4DF27EEA9231086CC9",
+  "sourceInventory": "source-20261009-015649-3790.json",
+  "contentCommit": "34fefdd126784bf87b068fc283f812525d159dd7",
+  "matrix": [
+    {
+      "targetMps": 3,
+      "releaseMps": 3.8,
+      "distanceM": 7.199999999999999,
+      "approachMps": 3.0631816463422887,
+      "triggerTick": 10202,
+      "peakApplicationN": 711769.0020780888,
+      "peakNetN": 1361202.7388985439,
+      "impulseNs": [
+        49825.00538739659,
+        -15575.172603504721,
+        132.1676102204952
+      ],
+      "midpointContactWorkJ": -3553.5705034645216,
+      "parameterTransitions": 0,
+      "strengthTransitions": 0,
+      "removedBeams": 0,
+      "repeats": 5,
+      "spreadPeakNetN": 0.0,
+      "spreadImpulseXNs": 0.0,
+      "stepMedianUsRange": [
+        138,
+        139.8
+      ],
+      "workerWallSecondsRange": [
+        87.0041492,
+        94.6074977
+      ]
+    },
+    {
+      "targetMps": 5,
+      "releaseMps": 6.2,
+      "distanceM": 12,
+      "approachMps": 5.0662421821901695,
+      "triggerTick": 10267,
+      "peakApplicationN": 1171817.6952223238,
+      "peakNetN": 2219684.9390852912,
+      "impulseNs": [
+        81863.34645960457,
+        -25996.915220993236,
+        422.6714006953391
+      ],
+      "midpointContactWorkJ": -9363.422393013632,
+      "parameterTransitions": 0,
+      "strengthTransitions": 0,
+      "removedBeams": 0,
+      "repeats": 5,
+      "spreadPeakNetN": 0.0,
+      "spreadImpulseXNs": 0.0,
+      "stepMedianUsRange": [
+        136.8,
+        142.1
+      ],
+      "workerWallSecondsRange": [
+        70.8605167,
+        91.780916
+      ]
+    },
+    {
+      "targetMps": 10,
+      "releaseMps": 12.25,
+      "distanceM": 24,
+      "approachMps": 9.99618253676426,
+      "triggerTick": 10329,
+      "peakApplicationN": 2324125.8359386213,
+      "peakNetN": 5095062.58673902,
+      "impulseNs": [
+        160527.13700909,
+        -30620.485170886637,
+        -90.74601044423721
+      ],
+      "midpointContactWorkJ": -34563.804954522864,
+      "parameterTransitions": 179,
+      "strengthTransitions": 0,
+      "removedBeams": 0,
+      "repeats": 5,
+      "spreadPeakNetN": 0.0,
+      "spreadImpulseXNs": 0.0,
+      "stepMedianUsRange": [
+        138.8,
+        140.3
+      ],
+      "workerWallSecondsRange": [
+        73.831334,
+        82.8088548
+      ]
+    }
+  ],
+  "attemptIds": [
+    "d3669ec7d18f4a08801e558ac67aad05",
+    "efe2ec7a24994118bceaeee206ab1c54",
+    "d2333df1475f4640864c5dfa4f75b249",
+    "8a127285ca9e4a2d9c5dd36978f38b77",
+    "6f1b023ac31346d18ff246ba646ca12d",
+    "c4e2c9b2c4c7427ea52146961395a1d8",
+    "e206ced5160c4098a50179253f39deab",
+    "4ac85ffd3ba543be8206262c2a5216ad",
+    "40aa4c1af42440bb976df7ea8f278fea",
+    "db3cc45f92c9443290532eb3fe8315e4",
+    "0fb8924eeb774943a06139911c71e675",
+    "c84fb758535143b0aa111bd6a4798e3a",
+    "3fbcbedc78d6453a9ee4689ebfaeb8e2",
+    "bcacea0547a84203b9ee67b08d22415e",
+    "709acfaac94f4639a8db46616f6d46a0"
+  ],
+  "operational": {
+    "faults": {
+      "checks": {
+        "short-history": {
+          "continuedAfterLoss": true,
+          "independentSuccessor": "d281d22669f84f299282b202de172e30"
+        },
+        "queue-overflow": {
+          "continuedAfterLoss": true,
+          "independentSuccessor": "5d38f16c0f6a4651bf9ff138ccaaddcc"
+        },
+        "storage-error": {
+          "continuedAfterLoss": true,
+          "independentSuccessor": "c7f4cbb75ab64bbdb9cf8d16f750b933"
+        }
+      },
+      "attempts": [
+        {
+          "id": "e7e15dd5a8b2455eabe1c5dab601eec7",
+          "execution": "Completed",
+          "capture": "Incomplete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 9001,
+            "closed": true,
+            "complete": false,
+            "problem": "Required detail loss or writer failure.",
+            "firstTick": 9267,
+            "lastTick": 18267,
+            "triggerTick": 10267,
+            "dropped": 0,
+            "missingRequiredTicks": 3000,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 59298,
+            "barrierApplications": 844,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 1171817.6952223238,
+            "peakNetBarrierForceN": 2219684.9390852912,
+            "barrierImpulseNs": [
+              81863.34645960457,
+              -25996.915220993236,
+              422.6714006953391
+            ],
+            "barrierWorkJ": -9363.422393013632,
+            "maxBeamStrain": 11.191851615905762,
+            "nodePeakForceN": {
+              "73": 1171817.6952223238,
+              "71": 995584.6807798315,
+              "74": 1085790.4080022948,
+              "72": 998215.3090366061,
+              "67": 70316.37103685795,
+              "68": 44532.827887086874
+            },
+            "normalImpulseNs": [
+              81863.34673505201,
+              0,
+              0.053348930087186434
+            ],
+            "tangentialImpulseNs": [
+              -0.0002754476524308781,
+              -25996.915220993236,
+              422.6180517652517
+            ],
+            "peakNormalApplicationForceN": 1169672.458972644,
+            "peakTangentialApplicationForceN": 277213.117961158
+          }
+        },
+        {
+          "id": "d281d22669f84f299282b202de172e30",
+          "execution": "Completed",
+          "capture": "Complete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 12001,
+            "closed": true,
+            "complete": true,
+            "problem": null,
+            "firstTick": 6267,
+            "lastTick": 18267,
+            "triggerTick": 10267,
+            "dropped": 0,
+            "missingRequiredTicks": 0,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 77363,
+            "barrierApplications": 844,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 1171817.6952223238,
+            "peakNetBarrierForceN": 2219684.9390852912,
+            "barrierImpulseNs": [
+              81863.34645960457,
+              -25996.915220993236,
+              422.6714006953391
+            ],
+            "barrierWorkJ": -9363.422393013632,
+            "maxBeamStrain": 11.191851615905762,
+            "nodePeakForceN": {
+              "73": 1171817.6952223238,
+              "71": 995584.6807798315,
+              "74": 1085790.4080022948,
+              "72": 998215.3090366061,
+              "67": 70316.37103685795,
+              "68": 44532.827887086874
+            },
+            "normalImpulseNs": [
+              81863.34673505201,
+              0,
+              0.053348930087186434
+            ],
+            "tangentialImpulseNs": [
+              -0.0002754476524308781,
+              -25996.915220993236,
+              422.6180517652517
+            ],
+            "peakNormalApplicationForceN": 1169672.458972644,
+            "peakTangentialApplicationForceN": 277213.117961158
+          }
+        },
+        {
+          "id": "fa826c89e3214b0db380dffadb969368",
+          "execution": "Completed",
+          "capture": "Incomplete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 12000,
+            "closed": true,
+            "complete": false,
+            "problem": "Required detail loss or writer failure.",
+            "firstTick": 6267,
+            "lastTick": 18267,
+            "triggerTick": 10267,
+            "dropped": 1,
+            "missingRequiredTicks": 1,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 77359,
+            "barrierApplications": 844,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 1171817.6952223238,
+            "peakNetBarrierForceN": 2219684.9390852912,
+            "barrierImpulseNs": [
+              81863.34645960457,
+              -25996.915220993236,
+              422.6714006953391
+            ],
+            "barrierWorkJ": -9363.422393013632,
+            "maxBeamStrain": 11.191851615905762,
+            "nodePeakForceN": {
+              "73": 1171817.6952223238,
+              "71": 995584.6807798315,
+              "74": 1085790.4080022948,
+              "72": 998215.3090366061,
+              "67": 70316.37103685795,
+              "68": 44532.827887086874
+            },
+            "normalImpulseNs": [
+              81863.34673505201,
+              0,
+              0.053348930087186434
+            ],
+            "tangentialImpulseNs": [
+              -0.0002754476524308781,
+              -25996.915220993236,
+              422.6180517652517
+            ],
+            "peakNormalApplicationForceN": 1169672.458972644,
+            "peakTangentialApplicationForceN": 277213.117961158
+          }
+        },
+        {
+          "id": "5d38f16c0f6a4651bf9ff138ccaaddcc",
+          "execution": "Completed",
+          "capture": "Complete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 12001,
+            "closed": true,
+            "complete": true,
+            "problem": null,
+            "firstTick": 6267,
+            "lastTick": 18267,
+            "triggerTick": 10267,
+            "dropped": 0,
+            "missingRequiredTicks": 0,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 77363,
+            "barrierApplications": 844,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 1171817.6952223238,
+            "peakNetBarrierForceN": 2219684.9390852912,
+            "barrierImpulseNs": [
+              81863.34645960457,
+              -25996.915220993236,
+              422.6714006953391
+            ],
+            "barrierWorkJ": -9363.422393013632,
+            "maxBeamStrain": 11.191851615905762,
+            "nodePeakForceN": {
+              "73": 1171817.6952223238,
+              "71": 995584.6807798315,
+              "74": 1085790.4080022948,
+              "72": 998215.3090366061,
+              "67": 70316.37103685795,
+              "68": 44532.827887086874
+            },
+            "normalImpulseNs": [
+              81863.34673505201,
+              0,
+              0.053348930087186434
+            ],
+            "tangentialImpulseNs": [
+              -0.0002754476524308781,
+              -25996.915220993236,
+              422.6180517652517
+            ],
+            "peakNormalApplicationForceN": 1169672.458972644,
+            "peakTangentialApplicationForceN": 277213.117961158
+          }
+        },
+        {
+          "id": "f286fda1aa734ce292e548f1eff54d65",
+          "execution": "Completed",
+          "capture": "Incomplete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 12000,
+            "closed": true,
+            "complete": false,
+            "problem": "Required detail loss or writer failure.",
+            "firstTick": 6267,
+            "lastTick": 18267,
+            "triggerTick": 10267,
+            "dropped": 0,
+            "missingRequiredTicks": 1,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 77354,
+            "barrierApplications": 843,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 1085790.4080022948,
+            "peakNetBarrierForceN": 2219684.9390852912,
+            "barrierImpulseNs": [
+              81278.51018182634,
+              -26013.190142664687,
+              454.1494158623394
+            ],
+            "barrierWorkJ": -7600.607426776692,
+            "maxBeamStrain": 11.191851615905762,
+            "nodePeakForceN": {
+              "73": 391296.0943701492,
+              "71": 995584.6807798315,
+              "74": 1085790.4080022948,
+              "72": 998215.3090366061,
+              "67": 70316.37103685795,
+              "68": 44532.827887086874
+            },
+            "normalImpulseNs": [
+              81278.51047778745,
+              0,
+              0.05296780239273439
+            ],
+            "tangentialImpulseNs": [
+              -0.00029596133137480056,
+              -26013.190142664687,
+              454.0964480599465
+            ],
+            "peakNormalApplicationForceN": 1084139.9695420805,
+            "peakTangentialApplicationForceN": 277213.117961158
+          }
+        },
+        {
+          "id": "c7f4cbb75ab64bbdb9cf8d16f750b933",
+          "execution": "Completed",
+          "capture": "Complete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 12001,
+            "closed": true,
+            "complete": true,
+            "problem": null,
+            "firstTick": 6267,
+            "lastTick": 18267,
+            "triggerTick": 10267,
+            "dropped": 0,
+            "missingRequiredTicks": 0,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 77363,
+            "barrierApplications": 844,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 1171817.6952223238,
+            "peakNetBarrierForceN": 2219684.9390852912,
+            "barrierImpulseNs": [
+              81863.34645960457,
+              -25996.915220993236,
+              422.6714006953391
+            ],
+            "barrierWorkJ": -9363.422393013632,
+            "maxBeamStrain": 11.191851615905762,
+            "nodePeakForceN": {
+              "73": 1171817.6952223238,
+              "71": 995584.6807798315,
+              "74": 1085790.4080022948,
+              "72": 998215.3090366061,
+              "67": 70316.37103685795,
+              "68": 44532.827887086874
+            },
+            "normalImpulseNs": [
+              81863.34673505201,
+              0,
+              0.053348930087186434
+            ],
+            "tangentialImpulseNs": [
+              -0.0002754476524308781,
+              -25996.915220993236,
+              422.6180517652517
+            ],
+            "peakNormalApplicationForceN": 1169672.458972644,
+            "peakTangentialApplicationForceN": 277213.117961158
+          }
+        }
+      ]
+    },
+    "controls": {
+      "checks": {
+        "pauseResume": {
+          "pausedTick": 8746,
+          "nativeClockStopped": true
+        },
+        "cancelPrefix": {
+          "attempt": "a0e7e59e0d454e6fbf0a7a2e630e64ef",
+          "retainedFrames": 6195
+        },
+        "crashAndFreshRetry": {
+          "crashed": "2a290b53877c42278eff9b11afbf9efc",
+          "successor": "e770251b916c48879a22d2ea302ceb63",
+          "manualRetry": "ee45a2d9ca2f4fd6b23a9d04ee32b11a",
+          "retainedVerifiedFrames": 592
+        }
+      },
+      "attempts": [
+        {
+          "id": "c4cd432a1861454f9fe038d91eaf1e4e",
+          "execution": "Completed",
+          "capture": "Complete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 12001,
+            "closed": true,
+            "complete": true,
+            "problem": null,
+            "firstTick": 6267,
+            "lastTick": 18267,
+            "triggerTick": 10267,
+            "dropped": 0,
+            "missingRequiredTicks": 0,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 77363,
+            "barrierApplications": 844,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 1171817.6952223238,
+            "peakNetBarrierForceN": 2219684.9390852912,
+            "barrierImpulseNs": [
+              81863.34645960457,
+              -25996.915220993236,
+              422.6714006953391
+            ],
+            "barrierWorkJ": -9363.422393013632,
+            "maxBeamStrain": 11.191851615905762,
+            "nodePeakForceN": {
+              "73": 1171817.6952223238,
+              "71": 995584.6807798315,
+              "74": 1085790.4080022948,
+              "72": 998215.3090366061,
+              "67": 70316.37103685795,
+              "68": 44532.827887086874
+            },
+            "normalImpulseNs": [
+              81863.34673505201,
+              0,
+              0.053348930087186434
+            ],
+            "tangentialImpulseNs": [
+              -0.0002754476524308781,
+              -25996.915220993236,
+              422.6180517652517
+            ],
+            "peakNormalApplicationForceN": 1169672.458972644,
+            "peakTangentialApplicationForceN": 277213.117961158
+          }
+        },
+        {
+          "id": "a0e7e59e0d454e6fbf0a7a2e630e64ef",
+          "execution": "Cancelled",
+          "capture": "Incomplete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 6195,
+            "closed": true,
+            "complete": false,
+            "problem": "Required detail loss or writer failure.",
+            "firstTick": 6267,
+            "lastTick": 12461,
+            "triggerTick": 10267,
+            "dropped": 0,
+            "missingRequiredTicks": 5806,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 37012,
+            "barrierApplications": 844,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 1171817.6952223238,
+            "peakNetBarrierForceN": 2219684.9390852912,
+            "barrierImpulseNs": [
+              81863.34645960457,
+              -25996.915220993236,
+              422.6714006953391
+            ],
+            "barrierWorkJ": -9363.422393013632,
+            "maxBeamStrain": 11.191851615905762,
+            "nodePeakForceN": {
+              "73": 1171817.6952223238,
+              "71": 995584.6807798315,
+              "74": 1085790.4080022948,
+              "72": 998215.3090366061,
+              "67": 70316.37103685795,
+              "68": 44532.827887086874
+            },
+            "normalImpulseNs": [
+              81863.34673505201,
+              0,
+              0.053348930087186434
+            ],
+            "tangentialImpulseNs": [
+              -0.0002754476524308781,
+              -25996.915220993236,
+              422.6180517652517
+            ],
+            "peakNormalApplicationForceN": 1169672.458972644,
+            "peakTangentialApplicationForceN": 277213.117961158
+          }
+        },
+        {
+          "id": "2a290b53877c42278eff9b11afbf9efc",
+          "execution": "Failed",
+          "capture": "Incomplete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 592,
+            "closed": false,
+            "complete": false,
+            "problem": "No clean detail footer; verified prefix retained.",
+            "firstTick": 6267,
+            "lastTick": 6858,
+            "triggerTick": 10267,
+            "dropped": 0,
+            "missingRequiredTicks": 0,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 3556,
+            "barrierApplications": 0,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 0,
+            "peakNetBarrierForceN": 0,
+            "barrierImpulseNs": [
+              0,
+              0,
+              0
+            ],
+            "barrierWorkJ": 0,
+            "maxBeamStrain": 11.106761932373047,
+            "nodePeakForceN": {},
+            "normalImpulseNs": [
+              0,
+              0,
+              0
+            ],
+            "tangentialImpulseNs": [
+              0,
+              0,
+              0
+            ],
+            "peakNormalApplicationForceN": 0,
+            "peakTangentialApplicationForceN": 0
+          }
+        },
+        {
+          "id": "e770251b916c48879a22d2ea302ceb63",
+          "execution": "Completed",
+          "capture": "Complete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 12001,
+            "closed": true,
+            "complete": true,
+            "problem": null,
+            "firstTick": 6267,
+            "lastTick": 18267,
+            "triggerTick": 10267,
+            "dropped": 0,
+            "missingRequiredTicks": 0,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 77363,
+            "barrierApplications": 844,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 1171817.6952223238,
+            "peakNetBarrierForceN": 2219684.9390852912,
+            "barrierImpulseNs": [
+              81863.34645960457,
+              -25996.915220993236,
+              422.6714006953391
+            ],
+            "barrierWorkJ": -9363.422393013632,
+            "maxBeamStrain": 11.191851615905762,
+            "nodePeakForceN": {
+              "73": 1171817.6952223238,
+              "71": 995584.6807798315,
+              "74": 1085790.4080022948,
+              "72": 998215.3090366061,
+              "67": 70316.37103685795,
+              "68": 44532.827887086874
+            },
+            "normalImpulseNs": [
+              81863.34673505201,
+              0,
+              0.053348930087186434
+            ],
+            "tangentialImpulseNs": [
+              -0.0002754476524308781,
+              -25996.915220993236,
+              422.6180517652517
+            ],
+            "peakNormalApplicationForceN": 1169672.458972644,
+            "peakTangentialApplicationForceN": 277213.117961158
+          }
+        },
+        {
+          "id": "ee45a2d9ca2f4fd6b23a9d04ee32b11a",
+          "execution": "Completed",
+          "capture": "Complete",
+          "validation": "NotReady",
+          "detail": {
+            "records": 12001,
+            "closed": true,
+            "complete": true,
+            "problem": null,
+            "firstTick": 6267,
+            "lastTick": 18267,
+            "triggerTick": 10267,
+            "dropped": 0,
+            "missingRequiredTicks": 0,
+            "nodes": 176,
+            "beams": 744,
+            "contactApplications": 77363,
+            "barrierApplications": 844,
+            "parameterTransitions": 0,
+            "strengthTransitions": 0,
+            "removedBeams": 0,
+            "peakApplicationForceN": 1171817.6952223238,
+            "peakNetBarrierForceN": 2219684.9390852912,
+            "barrierImpulseNs": [
+              81863.34645960457,
+              -25996.915220993236,
+              422.6714006953391
+            ],
+            "barrierWorkJ": -9363.422393013632,
+            "maxBeamStrain": 11.191851615905762,
+            "nodePeakForceN": {
+              "73": 1171817.6952223238,
+              "71": 995584.6807798315,
+              "74": 1085790.4080022948,
+              "72": 998215.3090366061,
+              "67": 70316.37103685795,
+              "68": 44532.827887086874
+            },
+            "normalImpulseNs": [
+              81863.34673505201,
+              0,
+              0.053348930087186434
+            ],
+            "tangentialImpulseNs": [
+              -0.0002754476524308781,
+              -25996.915220993236,
+              422.6180517652517
+            ],
+            "peakNormalApplicationForceN": 1169672.458972644,
+            "peakTangentialApplicationForceN": 277213.117961158
+          }
+        }
+      ]
+    },
+    "regression": {
+      "checks": {},
+      "attempts": [
+        {
+          "id": "4d345fb7e0f649359b5f295bd8619cb0",
+          "execution": "Completed",
+          "capture": "Complete",
+          "validation": "Passed",
+          "detail": null
+        },
+        {
+          "id": "2e53a0b76b32442a9fb177fd4dc0df99",
+          "execution": "Completed",
+          "capture": "Complete",
+          "validation": "Passed",
+          "detail": null
+        },
+        {
+          "id": "3e3aef8230a848e5b986a250e7404a06",
+          "execution": "Completed",
+          "capture": "Complete",
+          "validation": "Passed",
+          "detail": null
+        }
+      ]
+    }
+  },
+  "browser": {
+    "attemptId": "709acfaac94f4639a8db46616f6d46a0",
+    "checks": {
+      "displayEnvelopePreservesRawPeak": true,
+      "indexedFrameVisible": true,
+      "desktopNoPageOverflow": true,
+      "boundsAndMissingTickRejected": true,
+      "mobileNoPageOverflow": true,
+      "invalidDefinitionRejected": true,
+      "browserErrors": []
+    }
+  },
+  "independentAnalysis": {
+    "runs": [
+      {
+        "id": "0fb8924eeb774943a06139911c71e675",
+        "target": 10,
+        "records": 12001,
+        "bytes": 1549884220,
+        "maxFloat32ChannelReconstructionErrorN": 0.03193112164111154,
+        "maxNodeMomentumKickResidualKgMps": 0.00015798782288443554,
+        "peakApplicationForceN": 2324125.8359386213,
+        "peakNetBarrierForceN": 5095062.58673902,
+        "barrierImpulseNs": [
+          160527.13700909,
+          -30620.485170886637,
+          -90.74601044423721
+        ]
+      },
+      {
+        "id": "3fbcbedc78d6453a9ee4689ebfaeb8e2",
+        "target": 10,
+        "records": 12001,
+        "bytes": 1549884220,
+        "maxFloat32ChannelReconstructionErrorN": 0.03193112164111154,
+        "maxNodeMomentumKickResidualKgMps": 0.00015798782288443554,
+        "peakApplicationForceN": 2324125.8359386213,
+        "peakNetBarrierForceN": 5095062.58673902,
+        "barrierImpulseNs": [
+          160527.13700909,
+          -30620.485170886637,
+          -90.74601044423721
+        ]
+      },
+      {
+        "id": "40aa4c1af42440bb976df7ea8f278fea",
+        "target": 5,
+        "records": 12001,
+        "bytes": 1550558348,
+        "maxFloat32ChannelReconstructionErrorN": 0.017485258109802875,
+        "maxNodeMomentumKickResidualKgMps": 7.902234882088399e-05,
+        "peakApplicationForceN": 1171817.6952223238,
+        "peakNetBarrierForceN": 2219684.9390852912,
+        "barrierImpulseNs": [
+          81863.34645960457,
+          -25996.915220993236,
+          422.6714006953391
+        ]
+      },
+      {
+        "id": "4ac85ffd3ba543be8206262c2a5216ad",
+        "target": 5,
+        "records": 12001,
+        "bytes": 1550558348,
+        "maxFloat32ChannelReconstructionErrorN": 0.017485258109802875,
+        "maxNodeMomentumKickResidualKgMps": 7.902234882088399e-05,
+        "peakApplicationForceN": 1171817.6952223238,
+        "peakNetBarrierForceN": 2219684.9390852912,
+        "barrierImpulseNs": [
+          81863.34645960457,
+          -25996.915220993236,
+          422.6714006953391
+        ]
+      },
+      {
+        "id": "6f1b023ac31346d18ff246ba646ca12d",
+        "target": 3,
+        "records": 12001,
+        "bytes": 1551168620,
+        "maxFloat32ChannelReconstructionErrorN": 0.016128413639775345,
+        "maxNodeMomentumKickResidualKgMps": 3.95262293255344e-05,
+        "peakApplicationForceN": 711769.0020780888,
+        "peakNetBarrierForceN": 1361202.7388985439,
+        "barrierImpulseNs": [
+          49825.00538739659,
+          -15575.172603504721,
+          132.1676102204952
+        ]
+      },
+      {
+        "id": "709acfaac94f4639a8db46616f6d46a0",
+        "target": 10,
+        "records": 12001,
+        "bytes": 1549884220,
+        "maxFloat32ChannelReconstructionErrorN": 0.03193112164111154,
+        "maxNodeMomentumKickResidualKgMps": 0.00015798782288443554,
+        "peakApplicationForceN": 2324125.8359386213,
+        "peakNetBarrierForceN": 5095062.58673902,
+        "barrierImpulseNs": [
+          160527.13700909,
+          -30620.485170886637,
+          -90.74601044423721
+        ]
+      },
+      {
+        "id": "8a127285ca9e4a2d9c5dd36978f38b77",
+        "target": 3,
+        "records": 12001,
+        "bytes": 1551168620,
+        "maxFloat32ChannelReconstructionErrorN": 0.016128413639775345,
+        "maxNodeMomentumKickResidualKgMps": 3.95262293255344e-05,
+        "peakApplicationForceN": 711769.0020780888,
+        "peakNetBarrierForceN": 1361202.7388985439,
+        "barrierImpulseNs": [
+          49825.00538739659,
+          -15575.172603504721,
+          132.1676102204952
+        ]
+      },
+      {
+        "id": "bcacea0547a84203b9ee67b08d22415e",
+        "target": 10,
+        "records": 12001,
+        "bytes": 1549884220,
+        "maxFloat32ChannelReconstructionErrorN": 0.03193112164111154,
+        "maxNodeMomentumKickResidualKgMps": 0.00015798782288443554,
+        "peakApplicationForceN": 2324125.8359386213,
+        "peakNetBarrierForceN": 5095062.58673902,
+        "barrierImpulseNs": [
+          160527.13700909,
+          -30620.485170886637,
+          -90.74601044423721
+        ]
+      },
+      {
+        "id": "c4e2c9b2c4c7427ea52146961395a1d8",
+        "target": 5,
+        "records": 12001,
+        "bytes": 1550558348,
+        "maxFloat32ChannelReconstructionErrorN": 0.017485258109802875,
+        "maxNodeMomentumKickResidualKgMps": 7.902234882088399e-05,
+        "peakApplicationForceN": 1171817.6952223238,
+        "peakNetBarrierForceN": 2219684.9390852912,
+        "barrierImpulseNs": [
+          81863.34645960457,
+          -25996.915220993236,
+          422.6714006953391
+        ]
+      },
+      {
+        "id": "c84fb758535143b0aa111bd6a4798e3a",
+        "target": 10,
+        "records": 12001,
+        "bytes": 1549884220,
+        "maxFloat32ChannelReconstructionErrorN": 0.03193112164111154,
+        "maxNodeMomentumKickResidualKgMps": 0.00015798782288443554,
+        "peakApplicationForceN": 2324125.8359386213,
+        "peakNetBarrierForceN": 5095062.58673902,
+        "barrierImpulseNs": [
+          160527.13700909,
+          -30620.485170886637,
+          -90.74601044423721
+        ]
+      },
+      {
+        "id": "d2333df1475f4640864c5dfa4f75b249",
+        "target": 3,
+        "records": 12001,
+        "bytes": 1551168620,
+        "maxFloat32ChannelReconstructionErrorN": 0.016128413639775345,
+        "maxNodeMomentumKickResidualKgMps": 3.95262293255344e-05,
+        "peakApplicationForceN": 711769.0020780888,
+        "peakNetBarrierForceN": 1361202.7388985439,
+        "barrierImpulseNs": [
+          49825.00538739659,
+          -15575.172603504721,
+          132.1676102204952
+        ]
+      },
+      {
+        "id": "d3669ec7d18f4a08801e558ac67aad05",
+        "target": 3,
+        "records": 12001,
+        "bytes": 1551168620,
+        "maxFloat32ChannelReconstructionErrorN": 0.016128413639775345,
+        "maxNodeMomentumKickResidualKgMps": 3.95262293255344e-05,
+        "peakApplicationForceN": 711769.0020780888,
+        "peakNetBarrierForceN": 1361202.7388985439,
+        "barrierImpulseNs": [
+          49825.00538739659,
+          -15575.172603504721,
+          132.1676102204952
+        ]
+      },
+      {
+        "id": "db3cc45f92c9443290532eb3fe8315e4",
+        "target": 5,
+        "records": 12001,
+        "bytes": 1550558348,
+        "maxFloat32ChannelReconstructionErrorN": 0.017485258109802875,
+        "maxNodeMomentumKickResidualKgMps": 7.902234882088399e-05,
+        "peakApplicationForceN": 1171817.6952223238,
+        "peakNetBarrierForceN": 2219684.9390852912,
+        "barrierImpulseNs": [
+          81863.34645960457,
+          -25996.915220993236,
+          422.6714006953391
+        ]
+      },
+      {
+        "id": "e206ced5160c4098a50179253f39deab",
+        "target": 5,
+        "records": 12001,
+        "bytes": 1550558348,
+        "maxFloat32ChannelReconstructionErrorN": 0.017485258109802875,
+        "maxNodeMomentumKickResidualKgMps": 7.902234882088399e-05,
+        "peakApplicationForceN": 1171817.6952223238,
+        "peakNetBarrierForceN": 2219684.9390852912,
+        "barrierImpulseNs": [
+          81863.34645960457,
+          -25996.915220993236,
+          422.6714006953391
+        ]
+      },
+      {
+        "id": "efe2ec7a24994118bceaeee206ab1c54",
+        "target": 3,
+        "records": 12001,
+        "bytes": 1551168620,
+        "maxFloat32ChannelReconstructionErrorN": 0.016128413639775345,
+        "maxNodeMomentumKickResidualKgMps": 3.95262293255344e-05,
+        "peakApplicationForceN": 711769.0020780888,
+        "peakNetBarrierForceN": 1361202.7388985439,
+        "barrierImpulseNs": [
+          49825.00538739659,
+          -15575.172603504721,
+          132.1676102204952
+        ]
+      }
+    ],
+    "scope": "Independent raw magic/schema/CRC/DONE, force/impulse reduction and disclosed float32 reconstruction error; cohort/finite/window/footer validation is performed by DetailReader; not vehicle scientific qualification"
+  },
+  "canonicalVisual": {
+    "executableSha256": "560F21EB692A33125292C0CA1C418674698DCF2406F05F4DF27EEA9231086CC9",
+    "archivePath": "D:\\Rigs of Rods\\trial-slice-04-2026-10-09-011428\\archive\\42bb2468b83746469e1e5a4f8e937a5a",
+    "id": "42bb2468b83746469e1e5a4f8e937a5a"
+  },
+  "scientificScope": "Approach and required capture qualified only. Vehicle scientific validation NotReady.",
+  "remaining": [
+    "Vehicle material/energy closure and fracture dissipation",
+    "Observer cost target and barrier off-mode equivalence",
+    "Long/multiple separated impact windows and larger/multi-actor workload",
+    "Driven journeys, atmosphere expansion and flight"
+  ]
+}

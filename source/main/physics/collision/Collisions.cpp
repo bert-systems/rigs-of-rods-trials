@@ -20,6 +20,7 @@
 */
 
 #include "Collisions.h"
+#include "trials/TrialDetail.h"
 
 #include "Application.h"
 #include "ApproxMath.h"
@@ -956,7 +957,19 @@ bool Collisions::permitEvent(Actor* b, CollisionEventFilter filter)
     }
 }
 
-bool Collisions::nodeCollision(node_t *node, float dt)
+namespace {
+void ApplyObservedCollision(node_t* node,Vector3 normal,float dt,ground_model_t* gm,float depth,Trials::ContactSink* trial,unsigned kind,unsigned feature)
+{
+    const Vector3 before=node->Forces;
+    const Vector3 raw=primitiveCollision(node,node->Velocity,node->mass,normal,dt,gm,depth);
+    node->Forces+=raw;
+    if(trial){auto v=[](Vector3 x){return Trials::Vec(x.x,x.y,x.z);};
+        std::uint32_t material=2166136261u;for(const char* c=gm->name;*c;++c)material=(material^static_cast<unsigned char>(*c))*16777619u;
+        trial->Observe(kind,feature,v(node->AbsPosition),v(normal),v(node->Velocity),v(before),v(node->Forces),v(raw),node->mass,depth,material);}
+}
+}
+
+bool Collisions::nodeCollision(node_t *node, float dt, Trials::ContactSink* trial)
 {
     // find the correct cell
     int refx = (int)(node->AbsPosition.x / CELL_SIZE);
@@ -1036,7 +1049,7 @@ bool Collisions::nodeCollision(node_t *node, float dt)
                             if (cbox->refined) normal = cbox->rot * normal;
 
                             // collision boxes are always out of concrete as it seems
-                            node->Forces += primitiveCollision(node, node->Velocity, node->mass, normal, dt, defaultgm);
+                            ApplyObservedCollision(node,normal,dt,defaultgm,0,trial,2,hashtable[hash][k].element_index);
                             node->nd_last_collision_gm = defaultgm;
                         }
                     }
@@ -1070,7 +1083,7 @@ bool Collisions::nodeCollision(node_t *node, float dt)
                         if (cbox->refined) normal = cbox->rot * normal;
 
                         // collision boxes are always out of concrete as it seems
-                        node->Forces += primitiveCollision(node, node->Velocity, node->mass, normal, dt, defaultgm);
+                        ApplyObservedCollision(node,normal,dt,defaultgm,0,trial,2,hashtable[hash][k].element_index);
                         node->nd_last_collision_gm = defaultgm;
                     }
                 }
@@ -1111,7 +1124,7 @@ bool Collisions::nodeCollision(node_t *node, float dt)
         // we need the normal
         // resume repere for the normal
         Vector3 normal = minctri->reverse * Vector3::UNIT_Z;
-        node->Forces += primitiveCollision(node, node->Velocity, node->mass, normal, dt, minctri->gm);
+        ApplyObservedCollision(node,normal,dt,minctri->gm,0,trial,3,static_cast<unsigned>(minctri-m_collision_tris.data()));
         node->nd_last_collision_gm = minctri->gm;
     }
 
@@ -1242,7 +1255,7 @@ bool Collisions::isInside(Ogre::Vector3 pos, collision_box_t *cbox, float border
     return false;
 }
 
-bool Collisions::groundCollision(node_t *node, float dt)
+bool Collisions::groundCollision(node_t *node, float dt, Trials::ContactSink* trial)
 {
     Real v = App::GetGameContext()->GetTerrain()->getHeightAt(node->AbsPosition.x, node->AbsPosition.z);
     if (v > node->AbsPosition.y)
@@ -1251,7 +1264,7 @@ bool Collisions::groundCollision(node_t *node, float dt)
         // when landuse fails or we don't have it, use the default value
         if (!ogm) ogm = defaultgroundgm;
         Ogre::Vector3 normal = App::GetGameContext()->GetTerrain()->GetNormalAt(node->AbsPosition.x, v, node->AbsPosition.z);
-        node->Forces += primitiveCollision(node, node->Velocity, node->mass, normal, dt, ogm, v - node->AbsPosition.y);
+        ApplyObservedCollision(node,normal,dt,ogm,v-node->AbsPosition.y,trial,1,0);
         node->nd_last_collision_gm = ogm;
         return true;
     }

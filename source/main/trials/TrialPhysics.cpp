@@ -35,6 +35,8 @@ void Runtime::PrepareActor(Actor& actor)
     if(actor.ar_num_nodes<=0 || actor.ar_num_nodes>65536 || actor.ar_num_beams>65536){m_scope_violation=true;return;}
     l.Prepare(actor.ar_num_nodes,actor.ar_num_beams);
     l.attribution_enabled=m_accounting;
+    if(m_scenario=="barrier-v1"&&!m_detail)PrepareBarrier(actor);
+    l.detail_transitions=m_detail!=nullptr;
     for(int i=0;i<actor.ar_num_nodes;++i)
         {l.nodes[i].force[Unattributed]=V(actor.ar_nodes[i].Forces);l.nodes[i].active=1u<<Unattributed;} // honest warm-up provenance
 }

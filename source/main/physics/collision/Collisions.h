@@ -30,6 +30,7 @@
 #include <string>
 
 namespace RoR {
+namespace Trials {struct ContactSink;}
 
 /// @addtogroup Physics
 /// @{
@@ -190,10 +191,10 @@ public:
     float getSurfaceHeight(float x, float z);
     float getSurfaceHeightBelow(float x, float z, float height);
     bool collisionCorrect(Ogre::Vector3* refpos, bool envokeScriptCallbacks = true);
-    bool groundCollision(node_t* node, float dt);
+    bool groundCollision(node_t* node, float dt, Trials::ContactSink* trial=nullptr);
     bool isInside(Ogre::Vector3 pos, const Ogre::String& inst, const Ogre::String& box, float border = 0);
     bool isInside(Ogre::Vector3 pos, collision_box_t* cbox, float border = 0);
-    bool nodeCollision(node_t* node, float dt);
+    bool nodeCollision(node_t* node, float dt, Trials::ContactSink* trial=nullptr);
     void envokeScriptCallback(collision_box_t* cbox, node_t* node = 0); // Only invoke on main thread! Oterwise use `MSG_SIM_SCRIPT_CALLBACK_QUEUED`
     void findPotentialEventBoxes(Actor* actor, CollisionBoxPtrVec& out_boxes);
 

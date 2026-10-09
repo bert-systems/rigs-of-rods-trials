@@ -10,3 +10,4 @@ select{width:100%;padding:10px;background:#132430;border:1px solid #304451;color
 @media(max-width:760px){.workspace{grid-template-columns:minmax(0,1fr)}}
 
 .probe-option{display:flex;align-items:center;gap:9px}.probe-option input{width:16px;min-height:16px;margin:0;accent-color:#38c7bb}
+.detail-query{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:12px;align-items:end}.detail-query label{min-width:0}.detail-query input{width:100%}.impact-panel .env-grid strong{overflow-wrap:anywhere}@media(max-width:650px){.detail-query{grid-template-columns:repeat(2,minmax(0,1fr))}}

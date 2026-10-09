@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #pragma once
 #include "TrialLedger.h"
+#include "TrialDetail.h"
+#include <memory>
 #include "SimConstants.h"
 #include <atomic>
 #include <chrono>
@@ -26,7 +28,7 @@ class Runtime
 public:
     static Runtime& Get();
     bool Enabled() const { return m_enabled; }
-    bool IsFixture() const { return m_scenario!="coast-v1"; }
+    bool IsFixture() const { return m_scenario!="coast-v1" && m_scenario!="barrier-v1"; }
     bool Accounting() const { return m_accounting; }
     bool Initializing(const Actor& actor) const {return m_initializing && Matches(actor);}
     void Probe(Actor& actor);
@@ -38,6 +40,10 @@ public:
     void Delta(Actor& actor,Channel channel);
     void Energy(Actor& actor,bool before);
     void InitializeFixture(Actor& actor);
+    void PrepareBarrier(Actor& actor);
+    ContactSink* ContactObserver(Actor& actor,int node);
+    void DetailBeamObserved(Actor& actor,int beam,Vec first,Vec second,Vec elastic,Vec damping);
+    void DetailNodeObserved(Actor& actor,int node,Vec beforeVelocity,Vec force);
     bool Released() const { return m_released; }
     std::uint64_t Tick() const { return m_tick; }
     void BeginStep(Actor& actor);
@@ -69,6 +75,9 @@ private:
     std::atomic<bool> m_scope_violation{false};
     std::atomic<bool> m_stop{false}, m_io_error{false};
     std::thread m_writer;
+    std::unique_ptr<Detail> m_detail;
+    std::string m_detail_fault="none";
+    double m_barrier_distance=0;
     std::chrono::steady_clock::time_point m_poll;
 };
 }}
