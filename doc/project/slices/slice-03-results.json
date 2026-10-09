@@ -1,0 +1,2319 @@
+{
+  "date": "2026-10-09",
+  "session": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749",
+  "nativeSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+  "performance": {
+    "5": {
+      "off": {
+        "steps": 30003,
+        "repeats": 3,
+        "medianUs": 22.1,
+        "p95Us": 33.1,
+        "meanUs": 24.17115288471153,
+        "repeatMedianUs": [
+          22.6,
+          21.7,
+          21.7
+        ]
+      },
+      "full": {
+        "steps": 30003,
+        "repeats": 3,
+        "medianUs": 67.6,
+        "p95Us": 89.4,
+        "meanUs": 71.68382161783822,
+        "repeatMedianUs": [
+          67.9,
+          67.1,
+          67.7
+        ]
+      },
+      "medianRatio": 3.058823529411764,
+      "additionalPercent": 205.8823529411764
+    },
+    "15": {
+      "off": {
+        "steps": 30003,
+        "repeats": 3,
+        "medianUs": 21.400000000000002,
+        "p95Us": 32.2,
+        "meanUs": 23.468226510682268,
+        "repeatMedianUs": [
+          21.5,
+          21.400000000000002,
+          21.400000000000002
+        ]
+      },
+      "full": {
+        "steps": 30003,
+        "repeats": 3,
+        "medianUs": 67.1,
+        "p95Us": 88.9,
+        "meanUs": 71.29248408492484,
+        "repeatMedianUs": [
+          67.1,
+          67.4,
+          66.9
+        ]
+      },
+      "medianRatio": 3.1355140186915884,
+      "additionalPercent": 213.55140186915884
+    }
+  },
+  "comparisons": {
+    "coast-5-pair-1": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "3297346e1c32427a8b9bdbab51c45d58",
+        "802ffcdfcc0742ec8673655e8f76d028"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "coast-5-pair-2": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "3655d6b1eccc495fa925ab397aa5ab8e",
+        "6379948dba3141b5879d643a2cbf03f8"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "coast-5-pair-3": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "08de1dbdcc8e435f82441a9b21c85f4b",
+        "e0ebfe6592034914afc4cf8592501fbc"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "coast-5-repeat-off": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "3297346e1c32427a8b9bdbab51c45d58",
+        "3655d6b1eccc495fa925ab397aa5ab8e"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "coast-5-repeat-full": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "802ffcdfcc0742ec8673655e8f76d028",
+        "6379948dba3141b5879d643a2cbf03f8"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "coast-15-pair-1": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "d998e143a3f148f98ce563fab862a5cc",
+        "d6b89a67d30c4ed48ba2016d6ac0251a"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "coast-15-pair-2": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "90a198845beb4e7f96a8e8cd65ffecfe",
+        "1b78d11ac4ee46fb898915f7a6905dfb"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "coast-15-pair-3": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "a2be07a51775434cb1e8ce6cdf3df79e",
+        "85dcf93a447a458da94003df761d8feb"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "coast-15-repeat-off": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "d998e143a3f148f98ce563fab862a5cc",
+        "90a198845beb4e7f96a8e8cd65ffecfe"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "coast-15-repeat-full": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "d6b89a67d30c4ed48ba2016d6ac0251a",
+        "1b78d11ac4ee46fb898915f7a6905dfb"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "basic-vs-full": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "c7394309c20e4ecc908aafe35f088dd9",
+        "802ffcdfcc0742ec8673655e8f76d028"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "freefall-v1": {
+      "records": 1000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 5,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "2fb2f704ab5f4b4483951208d7e96be4",
+        "077f2393276045f597e85ab50a418cf1"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "spring-v1": {
+      "records": 10000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 50,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "cd2bfce696af411f8948cbb75499497b",
+        "1b58c6b7252d41a98724da33c225d70e"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "damper-v1": {
+      "records": 10000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 50,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "d5aec52cd2144f1a83da575fc75dbefe",
+        "b224beebe1fd40f49fc3fd7e64e885f5"
+      ],
+      "sentinelByteMismatches": 0
+    },
+    "steady-wind": {
+      "records": 14000,
+      "sentinelMaxPositionDifferenceM": 0,
+      "sentinelMaxVelocityDifferenceMps": 0,
+      "fullNodeBeamFingerprints": 70,
+      "fingerprintMismatches": 0,
+      "bitwiseStateEquivalent": true,
+      "attemptIds": [
+        "5befc8cbced34280a98c7f007e86699c",
+        "3680b3df76c54204aa01c0134c97590e"
+      ],
+      "sentinelByteMismatches": 0
+    }
+  },
+  "fixtureAccountingRegression": {
+    "freefall-v1": {
+      "records": 1000,
+      "maxDifferenceSI": 0,
+      "oldAttempt": "c50576859c6943d29a9d9d64731afbec",
+      "newAttempt": "2fb2f704ab5f4b4483951208d7e96be4"
+    },
+    "spring-v1": {
+      "records": 10000,
+      "maxDifferenceSI": 0,
+      "oldAttempt": "318db3f930654003acb5ea5916d03e9a",
+      "newAttempt": "cd2bfce696af411f8948cbb75499497b"
+    },
+    "damper-v1": {
+      "records": 10000,
+      "maxDifferenceSI": 0,
+      "oldAttempt": "3e7cc3f9ca18472589a28471bdcef8a7",
+      "newAttempt": "d5aec52cd2144f1a83da575fc75dbefe"
+    }
+  },
+  "checks": {
+    "benchmark": {
+      "allProfilesCompletedNoLoss": true,
+      "mobileNoPageOverflow": true,
+      "browserNoErrors": true
+    },
+    "visual": {
+      "offHasNoAccountingTable": true,
+      "offNoticeVisible": true,
+      "pauseStopsProbeClock": true,
+      "cancellationPreservesProbe": true,
+      "nativeEvidenceAttempt": "d2d4f356e89c46b3a908221911f40184",
+      "mobileNoPageOverflow": true,
+      "browserNoErrors": true
+    }
+  },
+  "runs": [
+    {
+      "id": "3297346e1c32427a8b9bdbab51c45d58",
+      "definition": {
+        "name": "Performance 5 mps off",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 59384,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\3297346e1c32427a8b9bdbab51c45d58",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 22.6,
+          "p95Us": 33.8,
+          "meanUs": 24.672332766722814,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "802ffcdfcc0742ec8673655e8f76d028",
+      "definition": {
+        "name": "Performance 5 mps full",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 35012,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\802ffcdfcc0742ec8673655e8f76d028",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.0006857724006075997,
+        "maxKineticWorkResidualJ": 0.0032752168832230503,
+        "maxKineticJ": 154453.18080535711,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.03327847429930605,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3099.791817381492,
+          "nonconservativeWorkSumJ": -105346.31628916867,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": -6651.615099269022,
+          "injectionKineticSumJ": 154475.54527707346,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 5455.185740789212,
+          "work.genericDrag.J": -6651.615099269022,
+          "work.groundObject.J": 8064.900277656365,
+          "work.beamElastic.J": 27.234231061723406,
+          "work.beamDamping.J": -106736.56627007143,
+          "work.beamCorrection.J": 0.0003601714889711825,
+          "work.wheels.J": -23.035829834070018,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0.0002721778736805641,
+          "meanPhysicsStepElapsedUs": 71.45587857142854
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 67.9,
+          "p95Us": 89.8,
+          "meanUs": 72.0011698830121,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "6379948dba3141b5879d643a2cbf03f8",
+      "definition": {
+        "name": "Performance 5 mps full",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 5148,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\6379948dba3141b5879d643a2cbf03f8",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.0006857724006075997,
+        "maxKineticWorkResidualJ": 0.0032752168832230503,
+        "maxKineticJ": 154453.18080535711,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.03327847429930605,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3099.791817381492,
+          "nonconservativeWorkSumJ": -105346.31628916867,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": -6651.615099269022,
+          "injectionKineticSumJ": 154475.54527707346,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 5455.185740789212,
+          "work.genericDrag.J": -6651.615099269022,
+          "work.groundObject.J": 8064.900277656365,
+          "work.beamElastic.J": 27.234231061723406,
+          "work.beamDamping.J": -106736.56627007143,
+          "work.beamCorrection.J": 0.0003601714889711825,
+          "work.wheels.J": -23.035829834070018,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0.0002721778736805641,
+          "meanPhysicsStepElapsedUs": 71.05241428571439
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 67.1,
+          "p95Us": 89.10000000000001,
+          "meanUs": 71.24296570342996,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "3655d6b1eccc495fa925ab397aa5ab8e",
+      "definition": {
+        "name": "Performance 5 mps off",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 7980,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\3655d6b1eccc495fa925ab397aa5ab8e",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 21.7,
+          "p95Us": 33.6,
+          "meanUs": 24.044325567443547,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "08de1dbdcc8e435f82441a9b21c85f4b",
+      "definition": {
+        "name": "Performance 5 mps off",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 38424,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\08de1dbdcc8e435f82441a9b21c85f4b",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 21.7,
+          "p95Us": 31.8,
+          "meanUs": 23.79680031996809,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "e0ebfe6592034914afc4cf8592501fbc",
+      "definition": {
+        "name": "Performance 5 mps full",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 7020,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\e0ebfe6592034914afc4cf8592501fbc",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.0006857724006075997,
+        "maxKineticWorkResidualJ": 0.0032752168832230503,
+        "maxKineticJ": 154453.18080535711,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.03327847429930605,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3099.791817381492,
+          "nonconservativeWorkSumJ": -105346.31628916867,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": -6651.615099269022,
+          "injectionKineticSumJ": 154475.54527707346,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 5455.185740789212,
+          "work.genericDrag.J": -6651.615099269022,
+          "work.groundObject.J": 8064.900277656365,
+          "work.beamElastic.J": 27.234231061723406,
+          "work.beamDamping.J": -106736.56627007143,
+          "work.beamCorrection.J": 0.0003601714889711825,
+          "work.wheels.J": -23.035829834070018,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0.0002721778736805641,
+          "meanPhysicsStepElapsedUs": 71.7702285714284
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 67.7,
+          "p95Us": 89.4,
+          "meanUs": 71.80732926707273,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "d998e143a3f148f98ce563fab862a5cc",
+      "definition": {
+        "name": "Performance 15 mps off",
+        "launchSpeedMps": 15,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 38684,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\d998e143a3f148f98ce563fab862a5cc",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 21.5,
+          "p95Us": 32.7,
+          "meanUs": 23.654174582542318,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "d6b89a67d30c4ed48ba2016d6ac0251a",
+      "definition": {
+        "name": "Performance 15 mps full",
+        "launchSpeedMps": 15,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 33740,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\d6b89a67d30c4ed48ba2016d6ac0251a",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.0013248679091530375,
+        "maxKineticWorkResidualJ": 0.018410065689049668,
+        "maxKineticJ": 1390070.6579124434,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.03327847429930605,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3041.96453016465,
+          "nonconservativeWorkSumJ": -856455.9376986359,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": -187869.43967643255,
+          "injectionKineticSumJ": 1390323.6165859497,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 5418.24177346107,
+          "work.genericDrag.J": -187869.43967643255,
+          "work.groundObject.J": -55647.47362876731,
+          "work.beamElastic.J": -64.02300155965095,
+          "work.beamDamping.J": -612915.0685424428,
+          "work.beamCorrection.J": -0.002551142463965714,
+          "work.wheels.J": -23.954317051314906,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0.001017199635191928,
+          "meanPhysicsStepElapsedUs": 70.8410285714285
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 67.1,
+          "p95Us": 88.2,
+          "meanUs": 71.27419258074269,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "1b78d11ac4ee46fb898915f7a6905dfb",
+      "definition": {
+        "name": "Performance 15 mps full",
+        "launchSpeedMps": 15,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 57804,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\1b78d11ac4ee46fb898915f7a6905dfb",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.0013248679091530375,
+        "maxKineticWorkResidualJ": 0.018410065689049668,
+        "maxKineticJ": 1390070.6579124434,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.03327847429930605,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3041.96453016465,
+          "nonconservativeWorkSumJ": -856455.9376986359,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": -187869.43967643255,
+          "injectionKineticSumJ": 1390323.6165859497,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 5418.24177346107,
+          "work.genericDrag.J": -187869.43967643255,
+          "work.groundObject.J": -55647.47362876731,
+          "work.beamElastic.J": -64.02300155965095,
+          "work.beamDamping.J": -612915.0685424428,
+          "work.beamCorrection.J": -0.002551142463965714,
+          "work.wheels.J": -23.954317051314906,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0.001017199635191928,
+          "meanPhysicsStepElapsedUs": 71.35134285714318
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 67.4,
+          "p95Us": 90.8,
+          "meanUs": 71.78920107989207,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "90a198845beb4e7f96a8e8cd65ffecfe",
+      "definition": {
+        "name": "Performance 15 mps off",
+        "launchSpeedMps": 15,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 8336,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\90a198845beb4e7f96a8e8cd65ffecfe",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 21.400000000000002,
+          "p95Us": 32.7,
+          "meanUs": 23.52509749025054,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "a2be07a51775434cb1e8ce6cdf3df79e",
+      "definition": {
+        "name": "Performance 15 mps off",
+        "launchSpeedMps": 15,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 37812,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\a2be07a51775434cb1e8ce6cdf3df79e",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 21.400000000000002,
+          "p95Us": 30.900000000000002,
+          "meanUs": 23.2254074592541,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "85dcf93a447a458da94003df761d8feb",
+      "definition": {
+        "name": "Performance 15 mps full",
+        "launchSpeedMps": 15,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 16148,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\85dcf93a447a458da94003df761d8feb",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.0013248679091530375,
+        "maxKineticWorkResidualJ": 0.018410065689049668,
+        "maxKineticJ": 1390070.6579124434,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.03327847429930605,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3041.96453016465,
+          "nonconservativeWorkSumJ": -856455.9376986359,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": -187869.43967643255,
+          "injectionKineticSumJ": 1390323.6165859497,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 5418.24177346107,
+          "work.genericDrag.J": -187869.43967643255,
+          "work.groundObject.J": -55647.47362876731,
+          "work.beamElastic.J": -64.02300155965095,
+          "work.beamDamping.J": -612915.0685424428,
+          "work.beamCorrection.J": -0.002551142463965714,
+          "work.wheels.J": -23.954317051314906,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0.001017199635191928,
+          "meanPhysicsStepElapsedUs": 70.58073571428562
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 66.9,
+          "p95Us": 88.4,
+          "meanUs": 70.81405859414181,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "c7394309c20e4ecc908aafe35f088dd9",
+      "definition": {
+        "name": "Basic ledger reference",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": false,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 44504,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\c7394309c20e4ecc908aafe35f088dd9",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.0006857724006075997,
+        "maxKineticWorkResidualJ": 0.0032752168832230503,
+        "maxKineticJ": 154453.18080535711,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": -102246.52447178702,
+          "nonconservativeWorkSumJ": 0,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 154475.54527707346,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 0,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 0,
+          "work.beamDamping.J": 0,
+          "work.beamCorrection.J": 0,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 43.112507142857204
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 40.4,
+          "p95Us": 58.2,
+          "meanUs": 43.34070592940735,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "2fb2f704ab5f4b4483951208d7e96be4",
+      "definition": {
+        "name": "Qualified freefall-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 0.5,
+        "settleSeconds": 0,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-freefall-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "freefall-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "Passed",
+      "processId": 58816,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\2fb2f704ab5f4b4483951208d7e96be4",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 1000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 2.23308284752477e-05,
+        "maxKineticWorkResidualJ": 0.0001094786203346132,
+        "maxKineticJ": 1202.9660879401945,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": -1.1871671648259507,
+          "nonconservativeWorkSumJ": 0,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 0,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 0,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 1202.9502159222998,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 0,
+          "work.beamDamping.J": 0,
+          "work.beamCorrection.J": 0,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 1.5250000000000004
+        },
+        "performanceProbe": {
+          "records": 1000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 1.2,
+          "p95Us": 1.8,
+          "meanUs": 1.746800000000002,
+          "releasedRecords": 1000,
+          "fingerprints": 5
+        },
+        "qualification": {
+          "status": "Passed",
+          "scope": "Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight",
+          "checks": [
+            {
+              "name": "pinned initial kinetic energy / J",
+              "observed": 0,
+              "limit": 1e-06,
+              "passed": true
+            },
+            {
+              "name": "prepared four-node fixture",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "extraneous force-channel work / J",
+              "observed": 0,
+              "limit": 1e-08,
+              "passed": true
+            },
+            {
+              "name": "freefall elastic storage / J",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "one moving node mass error / kg",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift position / m",
+              "observed": 3.1830576077140904e-06,
+              "limit": 0.003,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift velocity / m/s",
+              "observed": 3.001757430354246e-05,
+              "limit": 0.04,
+              "passed": true
+            },
+            {
+              "name": "core closure after known freefall discretization / J",
+              "observed": 0.015784199448289016,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "unattributed node force L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "force reconstruction L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "unqualified active storage elements",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "uncommanded state-change energy / J",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "integration impulse discrepancy / kg m/s",
+              "observed": 2.23308284752477e-05,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "kinetic midpoint-work discrepancy / J",
+              "observed": 0.0001094786203346132,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "simulated duration error / s",
+              "observed": 2.3748725652694702e-08,
+              "limit": 0.001,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "077f2393276045f597e85ab50a418cf1",
+      "definition": {
+        "name": "Ledger off freefall-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 0.5,
+        "settleSeconds": 0,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-freefall-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "freefall-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 48504,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\077f2393276045f597e85ab50a418cf1",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 1000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 1000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 0.6,
+          "p95Us": 0.8,
+          "meanUs": 0.9226000000000089,
+          "releasedRecords": 1000,
+          "fingerprints": 5
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "cd2bfce696af411f8948cbb75499497b",
+      "definition": {
+        "name": "Qualified spring-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 5,
+        "settleSeconds": 0,
+        "repeats": 1,
+        "environment": {
+          "gravity": 0,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-spring-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "spring-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "Passed",
+      "processId": 53008,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\cd2bfce696af411f8948cbb75499497b",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 10000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 2.9802255096557373e-06,
+        "maxKineticWorkResidualJ": 1.4901400218437979e-06,
+        "maxKineticJ": 12.50067652187159,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 0.01647991878965449,
+          "nonconservativeWorkSumJ": 0,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 0,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 0,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 0,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 0.8606571515225506,
+          "work.beamDamping.J": 0,
+          "work.beamCorrection.J": 0,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 1.4904100000000124
+        },
+        "performanceProbe": {
+          "records": 10000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 1.2,
+          "p95Us": 1.8,
+          "meanUs": 1.7104599999998449,
+          "releasedRecords": 10000,
+          "fingerprints": 50
+        },
+        "qualification": {
+          "status": "Passed",
+          "scope": "Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight",
+          "checks": [
+            {
+              "name": "pinned initial kinetic energy / J",
+              "observed": 0,
+              "limit": 1e-06,
+              "passed": true
+            },
+            {
+              "name": "prepared four-node fixture",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "pinned initial extension error / m",
+              "observed": 4.768371582308806e-08,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "pinned initial spring stiffness response / N",
+              "observed": 1.1444091796875e-05,
+              "limit": 0.1,
+              "passed": true
+            },
+            {
+              "name": "extraneous force-channel work / J",
+              "observed": 0,
+              "limit": 1e-08,
+              "passed": true
+            },
+            {
+              "name": "one moving node mass error / kg",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift position / m",
+              "observed": 1.8628737794134514e-05,
+              "limit": 0.003,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift velocity / m/s",
+              "observed": 3.9646112910435294e-05,
+              "limit": 0.04,
+              "passed": true
+            },
+            {
+              "name": "core closure after known freefall discretization / J",
+              "observed": 0.03199321375806363,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "undamped energy envelope / J",
+              "observed": 0.03199321375806363,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "unattributed node force L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "force reconstruction L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "unqualified active storage elements",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "uncommanded state-change energy / J",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "integration impulse discrepancy / kg m/s",
+              "observed": 2.9802255096557373e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "kinetic midpoint-work discrepancy / J",
+              "observed": 1.4901400218437979e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "simulated duration error / s",
+              "observed": 2.3748725652694702e-07,
+              "limit": 0.001,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "1b58c6b7252d41a98724da33c225d70e",
+      "definition": {
+        "name": "Ledger off spring-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 5,
+        "settleSeconds": 0,
+        "repeats": 1,
+        "environment": {
+          "gravity": 0,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-spring-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "spring-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 59956,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\1b58c6b7252d41a98724da33c225d70e",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 10000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 10000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 0.6,
+          "p95Us": 0.9,
+          "meanUs": 0.952289999999975,
+          "releasedRecords": 10000,
+          "fingerprints": 50
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "d5aec52cd2144f1a83da575fc75dbefe",
+      "definition": {
+        "name": "Qualified damper-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 5,
+        "settleSeconds": 0,
+        "repeats": 1,
+        "environment": {
+          "gravity": 0,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-damper-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "damper-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "Passed",
+      "processId": 14348,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\d5aec52cd2144f1a83da575fc75dbefe",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 10000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 1.4818754397183387e-06,
+        "maxKineticWorkResidualJ": 6.392407892924544e-07,
+        "maxKineticJ": 9.30508848186844,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": -2.8418079878465938e-05,
+          "nonconservativeWorkSumJ": -12.49942917693208,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 0,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 0,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 0,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 12.499565644165314,
+          "work.beamDamping.J": -12.499429247446292,
+          "work.beamCorrection.J": 7.051424040944763e-08,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 1.6208800000001475
+        },
+        "performanceProbe": {
+          "records": 10000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 1.3,
+          "p95Us": 2,
+          "meanUs": 1.8431200000000605,
+          "releasedRecords": 10000,
+          "fingerprints": 50
+        },
+        "qualification": {
+          "status": "Passed",
+          "scope": "Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight",
+          "checks": [
+            {
+              "name": "pinned initial kinetic energy / J",
+              "observed": 0,
+              "limit": 1e-06,
+              "passed": true
+            },
+            {
+              "name": "prepared four-node fixture",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "pinned initial extension error / m",
+              "observed": 4.768371582308806e-08,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "pinned initial spring stiffness response / N",
+              "observed": 1.1444091796875e-05,
+              "limit": 0.1,
+              "passed": true
+            },
+            {
+              "name": "extraneous force-channel work / J",
+              "observed": 0,
+              "limit": 1e-08,
+              "passed": true
+            },
+            {
+              "name": "one moving node mass error / kg",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift position / m",
+              "observed": 1.7517785494147487e-05,
+              "limit": 0.003,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift velocity / m/s",
+              "observed": 2.082166460110448e-05,
+              "limit": 0.04,
+              "passed": true
+            },
+            {
+              "name": "core closure after known freefall discretization / J",
+              "observed": 0.02913387570641568,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "unattributed node force L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "force reconstruction L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "unqualified active storage elements",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "uncommanded state-change energy / J",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "integration impulse discrepancy / kg m/s",
+              "observed": 1.4818754397183387e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "kinetic midpoint-work discrepancy / J",
+              "observed": 6.392407892924544e-07,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "simulated duration error / s",
+              "observed": 2.3748725652694702e-07,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "damping work must be dissipative / J",
+              "observed": -12.499429247446292,
+              "limit": 0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "b224beebe1fd40f49fc3fd7e64e885f5",
+      "definition": {
+        "name": "Ledger off damper-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 5,
+        "settleSeconds": 0,
+        "repeats": 1,
+        "environment": {
+          "gravity": 0,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-damper-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "damper-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 40952,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\b224beebe1fd40f49fc3fd7e64e885f5",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 10000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 10000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 0.6,
+          "p95Us": 0.9,
+          "meanUs": 0.947019999999957,
+          "releasedRecords": 10000,
+          "fingerprints": 50
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "5befc8cbced34280a98c7f007e86699c",
+      "definition": {
+        "name": "Relative-wind ledger off",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -8,
+          "temperatureK": 290,
+          "density": 1,
+          "windX": 3,
+          "windY": 0,
+          "windZ": -1
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 55540,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\5befc8cbced34280a98c7f007e86699c",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 21.6,
+          "p95Us": 30.5,
+          "meanUs": 23.24145585441598,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "3680b3df76c54204aa01c0134c97590e",
+      "definition": {
+        "name": "Relative-wind ledger full",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -8,
+          "temperatureK": 290,
+          "density": 1,
+          "windX": 3,
+          "windY": 0,
+          "windZ": -1
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 33200,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\3680b3df76c54204aa01c0134c97590e",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 14000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.000537996815853225,
+        "maxKineticWorkResidualJ": 0.0028464757645385577,
+        "maxKineticJ": 154463.84971195305,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.04350494968537333,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3833.9879460033567,
+          "nonconservativeWorkSumJ": -96993.34203131332,
+          "windWorkSumJ": 6985.446696721633,
+          "relativeDragWorkSumJ": -19360.956921621728,
+          "injectionKineticSumJ": 154475.5866581387,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 3681.4004452454965,
+          "work.genericDrag.J": -12375.510224899983,
+          "work.groundObject.J": 4770.283571780395,
+          "work.beamElastic.J": 880.8425861990991,
+          "work.beamDamping.J": -89372.81831501021,
+          "work.beamCorrection.J": -8.338045434723859e-05,
+          "work.wheels.J": -15.297089316011924,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0.00010951332471359716,
+          "meanPhysicsStepElapsedUs": 71.22842857142847
+        },
+        "performanceProbe": {
+          "records": 14000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 67.4,
+          "p95Us": 88.7,
+          "meanUs": 71.4260273972614,
+          "releasedRecords": 10001,
+          "fingerprints": 70
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "98f342d4214542b0a5afbaaeae5cbda6",
+      "definition": {
+        "name": "UI ledger-off controls",
+        "launchSpeedMps": 5,
+        "durationSeconds": 12,
+        "settleSeconds": 3,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": false,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 3928,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\98f342d4214542b0a5afbaaeae5cbda6",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 30000,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 30000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 21.3,
+          "p95Us": 31.3,
+          "meanUs": 23.35121036623739,
+          "releasedRecords": 24001,
+          "fingerprints": 150
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "f3495179c91e40feb059d055578c1f42",
+      "definition": {
+        "name": "Probe-only cancellation",
+        "launchSpeedMps": 5,
+        "durationSeconds": 12,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "off",
+        "performanceProbe": true
+      },
+      "execution": "Cancelled",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 11556,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\f3495179c91e40feb059d055578c1f42",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": false,
+        "records": 6667,
+        "cleanClose": true,
+        "dropped": 0,
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Ledger disabled; control probe only, no force/energy qualification",
+          "checks": []
+        },
+        "performanceProbe": {
+          "records": 6667,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 21.6,
+          "p95Us": 31.900000000000002,
+          "meanUs": 23.615817091454144,
+          "releasedRecords": 2668,
+          "fingerprints": 33
+        },
+        "captureProblem": "",
+        "workerExitCode": 0
+      }
+    },
+    {
+      "id": "d2d4f356e89c46b3a908221911f40184",
+      "definition": {
+        "name": "Slice 03 native full-ledger evidence",
+        "launchSpeedMps": 5,
+        "durationSeconds": 12,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true,
+        "observation": "full",
+        "performanceProbe": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "processId": 26772,
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-03-2026-10-08-235749\\archive\\d2d4f356e89c46b3a908221911f40184",
+      "executableSha256": "713CFD3905237808D40CA35F432BAF89638AFE943370494A09526FAC69D2EDCC",
+      "metrics": {
+        "durationMet": true,
+        "records": 28000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.0006857724006075997,
+        "maxKineticWorkResidualJ": 0.0032752168832230503,
+        "maxKineticJ": 154453.18080535711,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.03327847429930605,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3124.268663818326,
+          "nonconservativeWorkSumJ": -152233.42080537224,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": -8031.8991916420755,
+          "injectionKineticSumJ": 154475.54527707346,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 5508.291503518449,
+          "work.genericDrag.J": -8031.8991916420755,
+          "work.groundObject.J": 22030.069111940327,
+          "work.beamElastic.J": 45.34750191486704,
+          "work.beamDamping.J": -166146.57641989787,
+          "work.beamCorrection.J": 0.00024270065901327612,
+          "work.wheels.J": -85.0148885291252,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0.000340055870842214,
+          "meanPhysicsStepElapsedUs": 72.15578571428628
+        },
+        "performanceProbe": {
+          "records": 28000,
+          "closed": true,
+          "complete": true,
+          "dropped": 0,
+          "problem": null,
+          "medianUs": 68.1,
+          "p95Us": 91.5,
+          "meanUs": 72.61479105037402,
+          "releasedRecords": 24001,
+          "fingerprints": 140
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Proposed <=10% overhead target not met",
+    "Ledger-off retains the common control probe; not unmodified upstream",
+    "10 Hz diagnostic fingerprints are not every-tick full-state equality",
+    "Vehicle/impact/environment closure NotReady",
+    "Two scheduled screenshots in benchmark profiles; continuous frames only visual phase",
+    "Codex in-app GPU video playback unverified; image fallback is primary"
+  ]
+}

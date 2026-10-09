@@ -7,6 +7,7 @@ set(SOURCE_FILES
         trials/TrialLedger.h
         trials/TrialRuntime.{h,cpp}
         trials/TrialPhysics.cpp
+        trials/TrialProbe.cpp
         Application.{h,cpp}
         ForwardDeclarations.h
         AppContext.{h,cpp}

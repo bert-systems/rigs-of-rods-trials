@@ -80,20 +80,29 @@ Runtime::Runtime()
     if(doc.HasMember("scenario")&&doc["scenario"].IsString())m_scenario=doc["scenario"].GetString();
     if(m_scenario!="coast-v1"&&m_scenario!="freefall-v1"&&m_scenario!="spring-v1"&&m_scenario!="damper-v1")return;
     m_accounting=!doc.HasMember("accounting")||!doc["accounting"].IsBool()||doc["accounting"].GetBool();
+    if(doc.HasMember("observation")&&doc["observation"].IsString()){
+        const std::string mode=doc["observation"].GetString();
+        if(mode!="full"&&mode!="off")return;
+        m_observe=mode!="off";
+    }
+    m_probe=doc.HasMember("performanceProbe")&&doc["performanceProbe"].IsBool()&&doc["performanceProbe"].GetBool();
+    if(!m_observe&&!m_probe)return; // off runs require the explicitly declared control probe
     m_speed=number("launchSpeedMps",0); m_duration=number("durationSeconds",12);
     m_settle=number("settleSeconds",3); m_gravity=number("gravity",-9.81); m_density=number("density",1.225);
     m_wind=Vec(number("windX",0),number("windY",0),number("windZ",0));
     if(!std::isfinite(m_speed) || m_speed<0 || m_speed>20 || !std::isfinite(m_duration) || m_duration<0.1 || m_duration>(IsFixture()?5:120) ||
        !std::isfinite(m_settle) || m_settle<(IsFixture()?0:2) || m_settle>30 || !std::isfinite(m_gravity) || m_gravity>0 || (m_gravity==0&&m_scenario=="coast-v1") || m_gravity < -30 ||
        !std::isfinite(m_density) || m_density<=0 || m_density>3 || !std::isfinite(m_wind.Norm()) || m_wind.Norm()>30) return;
-    m_queue.resize(32768); // bounded 65 MiB of records, one physics producer
+    if(m_observe)m_queue.resize(32768); // bounded 65 MiB of records, one physics producer
+    if(m_probe)m_probe_queue.resize(65536); // 8 MiB bounded probe, shared by both modes
     m_enabled=true;
     std::ofstream hello(m_root+"/handshake.json");
     hello<<"{\"schema\":1,\"observer\":\"accounting-v2\",\"capture\":\"crc32-binary-v2\","
           "\"coverage\":\"phase/node channels; linear storage subset; explicit unclosed terms\","
-          "\"cohort\":\"movable nodes\",\"dt\":"<<std::setprecision(17)<<static_cast<double>(PHYSICS_DT)<<"}\n";
+          "\"observation\":\""<<(m_observe?"full":"off")<<"\",\"performanceProbe\":"<<(m_probe?"true":"false")<<",\"cohort\":\"movable nodes\",\"dt\":"<<std::setprecision(17)<<static_cast<double>(PHYSICS_DT)<<"}\n";
     hello.close();
-    m_writer=std::thread(&Runtime::Writer,this);
+    if(m_observe)m_writer=std::thread(&Runtime::Writer,this);
+    if(m_probe)m_probe_writer=std::thread(&Runtime::ProbeWriter,this);
     Event("worker-ready");
 }
 Runtime::~Runtime() { Stop(); }
@@ -102,6 +111,14 @@ void Runtime::Stop()
     if(m_closed) return;
     m_closed=true; m_stop.store(true,std::memory_order_release);
     if(m_writer.joinable()) m_writer.join();
+    if(m_probe_writer.joinable())m_probe_writer.join();
+    if(!m_observe){
+        std::ofstream health(m_root+"/capture-health.json");
+        health<<std::setprecision(17)<<"{\"tick\":"<<m_tick<<",\"timeSeconds\":"<<m_tick*static_cast<double>(PHYSICS_DT)
+            <<",\"released\":"<<(m_released?"true":"false")<<",\"produced\":"<<m_probe_head.load()+m_probe_dropped.load()
+            <<",\"enqueued\":"<<m_probe_head.load()<<",\"durable\":"<<m_probe_written.load()<<",\"dropped\":"<<m_probe_dropped.load()
+            <<",\"ioError\":"<<(m_probe_error.load()?"true":"false")<<",\"closed\":true}\n";
+    }
 }
 void Runtime::Event(const std::string& name,std::uint64_t sequence)
 {
@@ -136,9 +153,9 @@ void Runtime::Poll(ActorManager& manager)
     std::ofstream health(m_root+"/worker-status.json");
     health<<std::setprecision(17)<<"{\"tick\":"<<m_tick<<",\"timeSeconds\":"<<m_tick*static_cast<double>(PHYSICS_DT)
         <<",\"paused\":"<<(manager.IsSimulationPaused()?"true":"false")<<",\"released\":"<<(m_released?"true":"false")
-        <<",\"produced\":"<<(m_head.load()+m_dropped.load())<<",\"enqueued\":"<<m_head.load()
-        <<",\"durable\":"<<m_written.load()<<",\"dropped\":"<<m_dropped.load()
-        <<",\"ioError\":"<<(m_io_error.load()?"true":"false")<<"}\n";
+        <<",\"produced\":"<<(m_observe?m_head.load()+m_dropped.load():m_probe_head.load()+m_probe_dropped.load())<<",\"enqueued\":"<<(m_observe?m_head.load():m_probe_head.load())
+        <<",\"durable\":"<<(m_observe?m_written.load():m_probe_written.load())<<",\"dropped\":"<<(m_observe?m_dropped.load():m_probe_dropped.load())
+        <<",\"ioError\":"<<((m_io_error.load()||m_probe_error.load())?"true":"false")<<"}\n";
     // Wall time is owned by the coordinator. This native completion uses physics ticks.
     if(m_released && m_tick*static_cast<double>(PHYSICS_DT)>=m_settle+m_duration)
         App::GetGameContext()->PushMessage(Message(MSG_APP_SHUTDOWN_REQUESTED));
@@ -146,8 +163,8 @@ void Runtime::Poll(ActorManager& manager)
 void Runtime::BeginStep(Actor& actor)
 {
     auto& ledger=actor.ar_trial_ledger;
-    ledger.enabled=m_enabled && !m_closed && Matches(actor) && ledger.nodes.size()==static_cast<std::size_t>(actor.ar_num_nodes);
-    if(!ledger.enabled) return;
+    ledger.enabled=m_enabled && m_observe && !m_closed && Matches(actor) && ledger.nodes.size()==static_cast<std::size_t>(actor.ar_num_nodes);
+    if(!m_enabled || m_closed || !Matches(actor) || m_ready_actor.load()!=actor.ar_instance_id || actor.ar_num_nodes<=0 || (m_observe&&!ledger.enabled)){ledger.enabled=false;return;}
     int expected=-1;
     m_pilot_actor.compare_exchange_strong(expected,actor.ar_instance_id);
     if(m_pilot_actor.load()!=actor.ar_instance_id)
@@ -159,6 +176,7 @@ void Runtime::BeginStep(Actor& actor)
     if(App::GetGameContext()->GetTerrain())
         App::GetGameContext()->GetTerrain()->setGravity(static_cast<float>(m_gravity));
     const bool was_released = m_released;
+    m_initializing=false;
     double injection=0;Vec injected_p;
     if(!m_released && m_tick*static_cast<double>(PHYSICS_DT)>=m_settle)
     {
@@ -202,6 +220,8 @@ void Runtime::BeginStep(Actor& actor)
         actor.ar_brake=0;
         m_released=true;
     }
+    m_initializing=!was_released&&m_released;
+    if(!m_observe)return;
     ledger.Begin(m_tick,static_cast<std::uint32_t>(actor.ar_instance_id),m_released?1:0,PHYSICS_DT);
     ledger.record.injection_kinetic=injection;ledger.record.injection_impulse=injected_p;
     Energy(actor,true);
@@ -214,15 +234,17 @@ void Runtime::BeginStep(Actor& actor)
 }
 void Runtime::FinishStep(Actor& actor)
 {
-    if(!actor.ar_trial_ledger.enabled) return;
+    if(!m_enabled || m_closed || !Matches(actor) || m_pilot_actor.load()!=actor.ar_instance_id)return;
+    if(actor.ar_trial_ledger.enabled){
     Energy(actor,false);
     actor.ar_trial_ledger.record.physics_cpu_us=std::chrono::duration<double,std::micro>(std::chrono::steady_clock::now()-m_step_started).count();
     Record record=actor.ar_trial_ledger.Finish();
     record.gravity=m_gravity; record.density=m_density; record.wind=m_wind;
     const auto head=m_head.load(std::memory_order_relaxed);
-    if(head-m_tail.load(std::memory_order_acquire)>=m_queue.size()) { ++m_dropped; return; }
-    m_queue[head % m_queue.size()]=record;
-    m_head.store(head+1,std::memory_order_release);
+    if(head-m_tail.load(std::memory_order_acquire)>=m_queue.size()) { ++m_dropped; }
+    else {m_queue[head % m_queue.size()]=record;m_head.store(head+1,std::memory_order_release);}
+    }
+    if(m_probe)Probe(actor);
 }
 void Runtime::Writer()
 {

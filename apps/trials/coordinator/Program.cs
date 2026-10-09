@@ -24,6 +24,7 @@ app.Use(async(context,next)=>{
 app.UseDefaultFiles();app.UseStaticFiles();
 app.MapGet("/api/session",()=>new{session});
 app.MapGet("/api/state",(TrialService s)=>s.Snapshot());
+app.MapGet("/api/attempts/{id}/status",(string id,TrialService s)=>s.AttemptSnapshot(id) is {} a?Results.Ok(a):Results.NotFound());
 app.MapPost("/api/experiments",(ExperimentDefinition definition,TrialService s)=>{
     try{return Results.Ok(new{attemptIds=s.Enqueue(definition)});}
     catch(ArgumentException e){return Results.BadRequest(new{error=e.Message});}

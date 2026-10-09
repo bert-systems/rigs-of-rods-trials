@@ -1280,13 +1280,13 @@ void ActorManager::UpdatePhysicsSimulation()
             {
                 if (actor->ar_update_physics)
                 {
-                    Trials::Runtime::Get().Snapshot(*actor.GetRef());
+                    if(!actor->ar_inter_beams.empty())Trials::Runtime::Get().Snapshot(*actor.GetRef());
                     actor->CalcBeamsInterActor();
-                    Trials::Runtime::Get().Delta(*actor.GetRef(),Trials::InterActor);
+                    if(!actor->ar_inter_beams.empty())Trials::Runtime::Get().Delta(*actor.GetRef(),Trials::InterActor);
                 }
             }
         }
-        for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Snapshot(*actor.GetRef());
+        if(m_actors.size()>1)for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Snapshot(*actor.GetRef());
         {
             std::vector<std::function<void()>> tasks;
             for (ActorPtr& actor: m_actors)
@@ -1316,11 +1316,11 @@ void ActorManager::UpdatePhysicsSimulation()
             App::GetThreadPool()->Parallelize(tasks);
         }
 
-        for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Delta(*actor.GetRef(),Trials::InterActor);
-        for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Snapshot(*actor.GetRef());
+        if(m_actors.size()>1)for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Delta(*actor.GetRef(),Trials::InterActor);
+        if(!m_free_forces.empty())for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Snapshot(*actor.GetRef());
         // Apply FreeForces - intentionally as a separate pass over all actors
         this->CalcFreeForces();
-        for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Delta(*actor.GetRef(),Trials::FreeForce);
+        if(!m_free_forces.empty())for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Delta(*actor.GetRef(),Trials::FreeForce);
         for (ActorPtr& actor: m_actors)
             if (actor->ar_update_physics) Trials::Runtime::Get().FinishStep(*actor.GetRef());
     }

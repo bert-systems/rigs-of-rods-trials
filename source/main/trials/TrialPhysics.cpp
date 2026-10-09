@@ -24,6 +24,11 @@ bool Runtime::Matches(const Actor& a) const
 void Runtime::PrepareActor(Actor& actor)
 {
     if(!m_enabled || !Matches(actor))return;
+    if(actor.ar_num_nodes<=0 || actor.ar_num_nodes>65536 || actor.ar_num_beams>65536){m_scope_violation=true;return;}
+    int expected=-1;
+    m_ready_actor.compare_exchange_strong(expected,actor.ar_instance_id);
+    if(m_ready_actor.load()!=actor.ar_instance_id){m_scope_violation=true;return;} // sticky unsupported second pilot
+    if(!m_observe)return;
     auto& l=actor.ar_trial_ledger;
     if(l.nodes.size()==static_cast<std::size_t>(actor.ar_num_nodes))return;
     // Poll is called on the render/main thread after joining the physics task.
@@ -31,7 +36,7 @@ void Runtime::PrepareActor(Actor& actor)
     l.Prepare(actor.ar_num_nodes,actor.ar_num_beams);
     l.attribution_enabled=m_accounting;
     for(int i=0;i<actor.ar_num_nodes;++i)
-        l.nodes[i].force[Unattributed]=V(actor.ar_nodes[i].Forces); // honest warm-up provenance
+        {l.nodes[i].force[Unattributed]=V(actor.ar_nodes[i].Forces);l.nodes[i].active=1u<<Unattributed;} // honest warm-up provenance
 }
 void Runtime::Snapshot(Actor& actor)
 {
@@ -43,8 +48,11 @@ void Runtime::Delta(Actor& actor,Channel channel)
 {
     auto& l=actor.ar_trial_ledger;
     if(!l.enabled || !l.attribution_enabled)return;
-    for(int i=0;i<actor.ar_num_nodes;++i)
-        l.Add(i,channel,V(actor.ar_nodes[i].Forces)-l.nodes[i].snapshot,!actor.ar_nodes[i].nd_immovable);
+    for(int i=0;i<actor.ar_num_nodes;++i){
+        const Vec actual=V(actor.ar_nodes[i].Forces);
+        l.Add(i,channel,actual-l.nodes[i].snapshot,!actor.ar_nodes[i].nd_immovable);
+        l.nodes[i].snapshot=actual; // next phase starts from this same boundary
+    }
 }
 void Runtime::InitializeFixture(Actor& actor)
 {
@@ -59,7 +67,7 @@ void Runtime::InitializeFixture(Actor& actor)
         n.RelPosition=offsets[i];
         n.AbsPosition=actor.ar_origin+n.RelPosition;
         n.Forces=Ogre::Vector3(0,n.mass*static_cast<float>(m_gravity),0);
-        actor.ar_trial_ledger.Reset(i,V(n.Forces),!n.nd_immovable);
+        if(actor.ar_trial_ledger.enabled)actor.ar_trial_ledger.Reset(i,V(n.Forces),!n.nd_immovable);
     }
     actor.ar_total_mass=103.f;actor.ar_initial_total_mass=103.f;
     actor.ar_disable_aerodyn_turbulent_drag=true;
@@ -85,10 +93,10 @@ void Runtime::Energy(Actor& actor,bool before)
     for(int i=0;i<actor.ar_num_beams;++i)
     {
         const beam_t& b=actor.ar_beams[i];
-        const double length=Length(b);
         const bool active=!b.bm_disabled&&!b.bm_broken;
         const bool eligible=Linear(b);
-        if(active && eligible)us+=LinearStorage(b.k,length,b.L);
+        double length=0;
+        if(active && eligible){length=Length(b);us+=LinearStorage(b.k,length,b.L);}
         if(before)
         {
             l.beam_rest[i]=b.L;l.beam_k[i]=b.k;l.beam_strength[i]=b.strength;l.beam_active[i]=active?1:0;
@@ -101,6 +109,7 @@ void Runtime::Energy(Actor& actor,bool before)
             const bool removed=l.beam_active[i]&&!active;
             if(changed||removed)
             {
+                if(!(active && eligible))length=Length(b);
                 BeamTransition event;
                 event.beam=i;event.kind=(changed?(eligible?1:8):0)|(removed?2:0);
                 event.length=length;event.oldRest=l.beam_rest[i];event.newRest=b.L;

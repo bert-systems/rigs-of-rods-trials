@@ -2,7 +2,7 @@
 
 This is Bert's development fork of **Rigs of Rods (RoR)**, the C++ soft-body vehicle simulation platform. Start here before a design, development, build, or recording session.
 
-The project foundation was established on **2026-10-08**. A fresh Windows source build, clean rebuild, incremental build, and recorded driving session have been verified. Platform research and an experiment/trial-system evaluation are now documented. Architecture options for force/energy instrumentation, environment and the trial workbench have also been evaluated. The policy Q&A is complete and a version 0.1 implementation review specification is established. Implementation Slice 01 establishes a source-built native aggregate observer/recorder, a .NET local coordinator and a React workbench with real coast trials. Full force attribution, impact fixtures, raw event windows and scientific qualification remain pending. See [Slice 01 delivery/evidence](doc/project/slices/slice-01.md) and the [workbench runbook](apps/trials/README.md).
+The project foundation was established on **2026-10-08**. A fresh Windows source build, clean rebuild, incremental build, and recorded driving session have been verified. Platform research and an experiment/trial-system evaluation are now documented. Architecture options for force/energy instrumentation, environment and the trial workbench have also been evaluated. The policy Q&A is complete and a version 0.1 implementation review specification is established. Implementation now includes source-native recording, a .NET coordinator, React workbench, 16-channel accounting, scoped analytical qualification and ledger-off performance/equivalence probes. Vehicle/impact scientific qualification and detailed event windows remain pending. See [Slice 01 delivery/evidence](doc/project/slices/slice-01.md) and the [workbench runbook](apps/trials/README.md).
 
 ## Repository and workspace
 
@@ -57,4 +57,4 @@ Keep engine and project documentation changes in the fork. Give each evidence se
 
 ## Latest delivery
 
-[Slice 02](doc/project/slices/slice-02.md) adds native force attribution, linear core energy/work, scoped analytical fixtures, live qualification and compatible image-frame evidence playback. [HTML report](doc/project/reports/trial-slice-02-2026-10-08.html). Vehicle closure, impact windows and performance optimization remain upcoming gates.
+[Slice 03](doc/project/slices/slice-03.md) adds ledger-off control trials, observer optimizations, native equivalence/performance probes and fixture accounting regression. [HTML report](doc/project/reports/trial-slice-03-2026-10-09.html). Twenty-three completed trials and one cancellation have retained evidence. Full accounting remains about 3.06-3.14x the same-build ledger-off baseline; the proposed overhead target is unmet. Barrier/detail capture, vehicle closure and broader performance qualification remain upcoming gates.

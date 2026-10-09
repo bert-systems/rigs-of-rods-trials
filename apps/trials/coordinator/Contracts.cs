@@ -6,7 +6,8 @@ public sealed record EnvironmentConfig(double Gravity = -9.81, double Temperatur
 public sealed record ExperimentDefinition(string Name, double LaunchSpeedMps = 5,
     double DurationSeconds = 12, double SettleSeconds = 3, int Repeats = 1,
     EnvironmentConfig? Environment = null, string Vehicle = "b6b0UID-semi.truck",
-    string Terrain = "simple2.terrn2", string Scenario = "coast-v1", bool Accounting = true);
+    string Terrain = "simple2.terrn2", string Scenario = "coast-v1", bool Accounting = true,
+    string Observation = "full", bool PerformanceProbe = false);
 public sealed record AttemptEvent(long Sequence, DateTimeOffset Time, string Kind, string Message);
 public sealed class Attempt
 {
@@ -39,6 +40,8 @@ public static class Contract
     public static List<string> Validate(ExperimentDefinition d)
     {
         var errors = new List<string>();
+        if(d.Observation is not ("full" or "off"))errors.Add("Observation must be full or off.");
+        if(d.Observation=="off"&&!d.PerformanceProbe)errors.Add("Ledger-off runs require the declared timing/state probe.");
         if (string.IsNullOrWhiteSpace(d.Name) || d.Name.Length > 120) errors.Add("Name must contain 1–120 characters.");
         bool fixture=d.Scenario is "freefall-v1" or "spring-v1" or "damper-v1";
         if ((!fixture && d.Scenario!="coast-v1") || d.Terrain!="simple2.terrn2" ||

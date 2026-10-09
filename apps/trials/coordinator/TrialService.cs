@@ -46,6 +46,16 @@ public sealed class TrialService : BackgroundService
             history=a.History.ToArray(),events=a.Events.ToArray(),metrics=new Dictionary<string,object>(a.Metrics),a.Archived
         }).ToArray() };
     }
+    // Compact polling endpoint keeps completed history out of worker supervision reads.
+    public object? AttemptSnapshot(string id)
+    {
+        lock(gate){
+            var a=attempts.Find(x=>x.Id==id);if(a==null)return null;
+            return new {a.Id,a.RevisionId,a.RetryOf,a.Definition,a.DefinitionSha256,a.Execution,a.Capture,a.Validation,a.Coverage,
+                a.BlockedReason,a.ProcessId,a.ProcessPath,a.ExecutableSha256,a.ArchivePath,a.Latest,a.WorkerStatus,
+                events=a.Events.ToArray(),metrics=new Dictionary<string,object>(a.Metrics),a.Archived};
+        }
+    }
     public Attempt? Find(string id) { lock(gate) return attempts.Find(a=>a.Id==id); }
     public string[] Enqueue(ExperimentDefinition definition,string? retryOf=null)
     {
@@ -58,6 +68,7 @@ public sealed class TrialService : BackgroundService
         lock(gate) for(int i=0;i<definition.Repeats;i++)
         {
             var a=new Attempt{RevisionId=revision,RetryOf=retryOf,Definition=immutable,DefinitionSha256=hash};
+            if(immutable.Observation=="off")a.Coverage="Ledger disabled: sentinel state and 10 Hz node/beam fingerprints only; no force/energy capture";
             a.ArchivePath=Path.Combine(archive,a.Id);
             Directory.CreateDirectory(a.ArchivePath);
             AddEvent(a,"queued",$"Repeat {i+1}/{definition.Repeats}; immutable revision {revision}.");
@@ -157,14 +168,16 @@ public sealed class TrialService : BackgroundService
         File.WriteAllText(Path.Combine(bin,"config","scripts","trial-evidence.as"),script);
         var e=a.Definition.Environment!;
         AtomicJson(Path.Combine(dir,"native-config.json"),new {
-            schema=1,a.Definition.Scenario,a.Definition.Accounting,a.Definition.LaunchSpeedMps,a.Definition.DurationSeconds,a.Definition.SettleSeconds,
+            schema=1,a.Definition.Scenario,a.Definition.Accounting,a.Definition.Observation,a.Definition.PerformanceProbe,a.Definition.LaunchSpeedMps,a.Definition.DurationSeconds,a.Definition.SettleSeconds,
             gravity=e.Gravity,density=e.Density,windX=e.WindX,windY=e.WindY,windZ=e.WindZ
         });
         string exe=Path.Combine(bin,"RoR.exe");
         a.ExecutableSha256=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(exe)));
         if(a.ExecutableSha256!=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(source)))) throw new IOException("Copied executable hash mismatch.");
         AtomicJson(Path.Combine(dir,"manifest.json"),new {
-            schema=2,renderer,evidenceFrames,visualCapture=evidenceFrames?"Native renderer screenshots requested every 0.5 render seconds; may be delayed":"Two native screenshots; optional external video",a.Id,a.RevisionId,a.RetryOf,a.Definition,a.DefinitionSha256,a.ExecutableSha256,sourceExecutable=source,
+            schema=3,observerMode=a.Definition.Observation,performanceProbe=a.Definition.PerformanceProbe,
+            probeDefinition="128-byte every-tick timer/sentinel; all-node world position/velocity/force/mass/cohort and beam L/k/d/strength/active FNV-1a diagnostic fingerprint every 200 ticks; shared probe cost excluded from timer; not an engine checkpoint",
+            randomDrawPolicy="Native frand_11 sequence/draw operations preserved; no observer draws",renderer,evidenceFrames,visualCapture=evidenceFrames?"Native renderer screenshots requested every 0.5 render seconds; may be delayed":"Two native screenshots; optional external video",a.Id,a.RevisionId,a.RetryOf,a.Definition,a.DefinitionSha256,a.ExecutableSha256,sourceExecutable=source,
             privateExecutable=exe,requestedEnvironment=e,pressurePa=e.Density*287.05*e.TemperatureK,
             temperatureAdoption="Recorded dry-air state; drag uses explicit density; thermal exchange unimplemented",
             beamLengthKernel=a.Definition.Scenario=="coast-v1"?"native fast inverse-square-root":"fixture precise square-root",
@@ -183,7 +196,7 @@ public sealed class TrialService : BackgroundService
         lock(gate) { AddEvent(a,"process-started",$"PID {process.Id}; expected SHA256 {a.ExecutableSha256}."); catalog.Save(a); }
         var timer=Stopwatch.StartNew(); double paused=0,lastTime=0; long lastSummaryTick=0,lastAck=0;
         bool handshake=false,modules=false; long savedTick=0;
-        using var summaries=new GrowingLines(Path.Combine(dir,"summaries.jsonl"));
+        using var summaries=new GrowingLines(Path.Combine(dir,a.Definition.Observation=="off"?"probe-summaries.jsonl":"summaries.jsonl"));
         try
         {
             while(!process.HasExited)
@@ -198,8 +211,11 @@ public sealed class TrialService : BackgroundService
                     if(hello is { } h)
                     {
                         if(h.GetProperty("schema").GetInt32()!=1 || h.GetProperty("observer").GetString()!="accounting-v2") throw new IOException("Native capability handshake mismatch.");
+                        if(h.GetProperty("observation").GetString()!=a.Definition.Observation ||
+                            h.GetProperty("performanceProbe").GetBoolean()!=a.Definition.PerformanceProbe)
+                            throw new IOException("Native observer/probe mode mismatch.");
                         handshake=true;
-                        lock(gate){ a.Execution="Running"; AddEvent(a,"handshake","Native accounting-v2 / CRC32 schema 2 archive accepted."); catalog.Save(a); }
+                        lock(gate){ a.Execution="Running"; AddEvent(a,"handshake",$"Native {a.Definition.Observation}; declared probe {a.Definition.PerformanceProbe}; archive mode accepted."); catalog.Save(a); }
                     }
                 }
                 if(handshake&&!modules)
@@ -271,20 +287,27 @@ public sealed class TrialService : BackgroundService
         }
         bool durationMet=finalHealth is { } fh && fh.GetProperty("released").GetBoolean() &&
             fh.GetProperty("timeSeconds").GetDouble()>=a.Definition.SettleSeconds+a.Definition.DurationSeconds;
-        var check=ArchiveReader.Inspect(Path.Combine(dir,"steps.rort"));
+        bool off=a.Definition.Observation=="off";
+        var probe=a.Definition.PerformanceProbe?ProbeReader.Inspect(Path.Combine(dir,"probe.rort")):null;
+        var check=off?new ArchiveReader.Check(probe!.Records,probe.Closed,probe.Complete,probe.Dropped,0,0,0,probe.Problem):
+            ArchiveReader.Inspect(Path.Combine(dir,"steps.rort"));
         lock(gate)
         {
             a.Execution=a.CancelRequested?"Cancelled":process.ExitCode==0&&handshake&&modules&&durationMet?"Completed":"Failed";
             a.WorkerStatus=finalHealth??finalStatus;
             if(finalHealth is not { } health || health.GetProperty("ioError").GetBoolean() ||
                health.GetProperty("dropped").GetInt64()>0) a.Capture="Incomplete";
-            a.Capture=check.Complete&&a.Capture!="Incomplete"?"Complete":"Incomplete";
+            a.Capture=check.Complete&&(probe==null||probe.Complete)&&a.Capture!="Incomplete"?"Complete":"Incomplete";
             var qualification=FixtureValidation.Evaluate(Path.Combine(dir,"steps.rort"),a.Definition,check,a.Execution=="Completed"&&a.Capture=="Complete");
             a.Validation=qualification.Status;
             a.Metrics=new() {["durationMet"]=durationMet,["records"]=check.Records,["cleanClose"]=check.Closed,["dropped"]=check.Dropped,
                 ["maxMomentumUpdateResidualKgMps"]=check.MaxMomentumResidual,["maxKineticWorkResidualJ"]=check.MaxWorkResidual,
                 ["maxKineticJ"]=check.MaxKinetic,["captureProblem"]=check.Problem??"",["workerExitCode"]=process.ExitCode};
-            a.Metrics["accounting"]=check.Accounting;
+            if(!off)a.Metrics["accounting"]=check.Accounting;
+            else {
+                a.Metrics.Remove("maxMomentumUpdateResidualKgMps");a.Metrics.Remove("maxKineticWorkResidualJ");a.Metrics.Remove("maxKineticJ");
+            }
+            if(probe!=null)a.Metrics["performanceProbe"]=probe;
             a.Metrics["qualification"]=qualification;
             AddEvent(a,"finished",$"{a.Execution}; capture {a.Capture}; validation {a.Validation} ({qualification.Scope}).");
             catalog.Save(a);
@@ -313,7 +336,7 @@ public sealed class TrialService : BackgroundService
     public string? Artifact(string id,string name)
     {
         var a=Find(id); if(a==null)return null;
-        if(new[]{"manifest.json","result.json","steps.rort","summaries.jsonl","capture-health.json","native-events.jsonl","process-provenance.json","beam-transitions.jsonl"}.Contains(name))
+        if(new[]{"manifest.json","result.json","steps.rort","summaries.jsonl","capture-health.json","native-events.jsonl","process-provenance.json","beam-transitions.jsonl","probe.rort","probe-health.json","probe-summaries.jsonl"}.Contains(name))
             return Path.Combine(a.ArchivePath!,name);
         return null;
     }

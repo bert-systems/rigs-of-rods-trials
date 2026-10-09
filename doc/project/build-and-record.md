@@ -325,3 +325,12 @@ Preserve historical records. Add dated corrections rather than replacing origina
 The user reported poster-then-blank video. Original/Slice 01 MP4 pixels are nonblank; WebM and decoded-image players provide compatible alternatives while preserving originals. Codex in-app rendering remains unverified. `media-evidence.py` packages alternatives and `verify-media.py` checks visible screenshot pixels and image progression.
 
 OpenGL/GDI capture produced genuinely black frames and was rejected. Use `start.ps1 -Renderer OpenGL -EvidenceFrames` and `native-frames-video.py` to encode actual RoR renderer PNGs. Requests occur nominally every 0.5render seconds, may be delayed and add overhead. Video does not replace native physics ticks. See the [runbook](../../apps/trials/README.md).
+
+
+## Slice 03 build/record continuation
+
+Use `tools/trials/build.ps1 -Parallel 6` for the demonstrated workstation build; concurrency is now configurable (default 8). Preserve C1060/repair transcripts rather than presenting retries as a single successful first pass. Read the [Slice 03 profile/runbook](../../apps/trials/README.md) before characterization.
+
+Run `verify-slice-03.py --phase benchmark` with continuous evidence frames disabled; it verifies exact native path/module/hash, raw CRC probes, repeated full/off coast, dry fixtures and nonzero steady wind. The common probe is part of both profiles; off bypasses the complete ledger but not trial control/probe overhead. Repeat medians/quantiles are wall-step duration, not process CPU.
+
+For native media, restart the owned coordinator after all workers are terminal with `-EvidenceFrames`, then run `--phase visual`. Encode genuine PNGs with `native-frames-video.py`, package image/WebM fallback with `media-evidence.py` and verify visible pixels with `verify-media.py`. Retain startup images and label the presentation clock separately from physics time. The final report and bundled evidence must pass local-reference, desktop/mobile, player-progression and extracted-file SHA checks. Codex in-app GPU rendering is still not verified.

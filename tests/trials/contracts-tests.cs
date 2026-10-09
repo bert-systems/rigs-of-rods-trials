@@ -61,3 +61,44 @@ WriteV2("events-lost.rort",v2);Check(!ArchiveReader.Inspect(Path.Combine(dir,"ev
 BitConverter.GetBytes((uint)0).CopyTo(v2,1372);BitConverter.GetBytes(double.NaN).CopyTo(v2,240);
 WriteV2("nonfinite-channel.rort",v2);Check(!ArchiveReader.Inspect(Path.Combine(dir,"nonfinite-channel.rort")).Complete,"finite base cannot hide a nonfinite channel");
 Console.WriteLine("PASS: config bounds/capabilities, CRC, SQLite recovery, corruption and committed-prefix recovery");
+
+
+Check(Contract.Validate(new("bad observation",Observation:"maybe")).Count>0,"unknown observation mode rejected");
+Check(Contract.Validate(new("off",Observation:"off")).Count>0,"ledger-off requires declared common probe");
+Check(Contract.Validate(new("off",Observation:"off",PerformanceProbe:true)).Count==0,"explicit ledger-off probe accepted");
+Check(FixtureValidation.Evaluate(file,new("spring off",0,5,0,1,new(Gravity:0),Vehicle:"ror-spring-v1.truck",Scenario:"spring-v1",Observation:"off",PerformanceProbe:true),clean,true).Status=="NotReady","off fixture cannot earn science Passed");
+byte[] probeRecord=new byte[128];
+BitConverter.GetBytes((ulong)1).CopyTo(probeRecord,0);
+BitConverter.GetBytes((uint)1).CopyTo(probeRecord,8);BitConverter.GetBytes((uint)4).CopyTo(probeRecord,12);
+BitConverter.GetBytes(.0005).CopyTo(probeRecord,24);BitConverter.GetBytes(10.0).CopyTo(probeRecord,32);
+string probePath=Path.Combine(dir,"probe.rort");
+void WriteProbe(byte[] data,ulong lost=0){
+ using var fs=File.Create(probePath);using var w=new BinaryWriter(fs);
+ w.Write(Encoding.ASCII.GetBytes("RORPROBE"));w.Write((uint)1);w.Write((uint)128);
+ w.Write(Encoding.ASCII.GetBytes("DATA"));w.Write((uint)1);w.Write((uint)128);w.Write(ArchiveReader.Crc(data));w.Write(data);w.Write(Encoding.ASCII.GetBytes("DONE"));
+ w.Write(Encoding.ASCII.GetBytes("END!"));w.Write((ulong)1);w.Write(lost);w.Write((uint)0);
+}
+WriteProbe(probeRecord);
+var probeClean=ProbeReader.Inspect(probePath);
+Check(probeClean.Complete&&probeClean.MedianUs==10&&probeClean.ReleasedRecords==1,"probe valid CRC/time/cohort");
+var damagedProbe=File.ReadAllBytes(probePath);damagedProbe[40]^=1;File.WriteAllBytes(probePath,damagedProbe);
+Check(!ProbeReader.Inspect(probePath).Complete,"probe corruption cannot pass completeness");
+WriteProbe(probeRecord,1);Check(!ProbeReader.Inspect(probePath).Complete&&ProbeReader.Inspect(probePath).Closed,"probe loss stays incomplete despite a closed footer");
+WriteProbe(probeRecord);damagedProbe=File.ReadAllBytes(probePath);File.WriteAllBytes(probePath,damagedProbe[..^24]);
+Check(!ProbeReader.Inspect(probePath).Complete&&!ProbeReader.Inspect(probePath).Closed&&ProbeReader.Inspect(probePath).Records==1,"probe interrupted close retains verified prefix");
+BitConverter.GetBytes(double.NaN).CopyTo(probeRecord,32);WriteProbe(probeRecord);
+Check(!ProbeReader.Inspect(probePath).Complete,"nonfinite probe time stays incomplete");
+Console.WriteLine("PASS: observer profiles, probe CRC/finite/loss/prefix checks and no off-mode scientific pass");
+
+
+if(args.Length>1){
+ var inspected=new List<object>();
+ foreach(var path in Directory.GetFiles(Path.GetFullPath(args[1]),"probe.rort",SearchOption.AllDirectories)){
+  var check=ProbeReader.Inspect(path);Check(check.Complete&&check.Closed,"retained native probe reinspection: "+path);
+  string aggregate=Path.Combine(Path.GetDirectoryName(path)!,"steps.rort");
+  if(File.Exists(aggregate))Check(ArchiveReader.Inspect(aggregate).Complete,"retained native aggregate reinspection: "+aggregate);
+  inspected.Add(new{path,check});
+ }
+ File.WriteAllText(Path.Combine(dir,"native-reinspection.json"),System.Text.Json.JsonSerializer.Serialize(inspected,Contract.Json));
+ Console.WriteLine($"PASS: {inspected.Count} retained native attempts reinspected by final coordinator reader");
+}

@@ -64,3 +64,22 @@ Use Python with Playwright/Pillow for checks and Matplotlib for the dated report
 Carried force plus current contact has explicit epoch semantics. Core storage is a linear diagnostic subset. Initialization/mutation ports do not qualify arbitrary mass/cohort flux. Rest/stiffness/removal snapshots are bookkeeping estimates, not fracture energy. Attribution added ~79.5% median step duration relative to channels-disabled accounting, so optimize and obtain a true instrumentation-off comparison before larger workloads.
 
 See [Slice 02](../../doc/project/slices/slice-02.md) and [HTML evidence](../../doc/project/reports/trial-slice-02-2026-10-08.html).
+
+
+## Slice 03 profiles and characterization
+
+[Delivery](../../doc/project/slices/slice-03.md) / [report](../../doc/project/reports/trial-slice-03-2026-10-09.html). Choose **Full force/core energy ledger**, **Channels disabled/base ledger**, or **Ledger off/control probe only**. The timing/equivalence checkbox enables a shared probe for full/base runs and is required for off runs. Off capture Complete concerns the probe; it cannot pass scientific validation and has no `steps.rort` or force table.
+
+Native probe: `probe.rort` (128-byte schema 1), `probe-summaries.jsonl` and `probe-health.json`. Its timer measures wall elapsed native steps/job barriers, including enabled ledger reduction/copy. It excludes common probe sampling/queueing. Node 0 is a sentinel, not a COM measurement; diagnostic fingerprints cover specified node/beam fields every 200 ticks, not full engine state.
+
+Use a unique session. This machine completed the fresh build at `-Parallel 6` after 16 jobs exhausted MSVC heap. Characterization and visual phases are deliberately separate:
+
+```powershell
+.\tools\trials\build.ps1 -Session 'D:\Rigs of Rods\YOUR-NEW-SESSION' -Repo 'D:\Rigs of Rods\rigs-of-rods-trials' -Parallel 6
+.\tools\trials\start.ps1 -Session 'D:\Rigs of Rods\YOUR-NEW-SESSION' -Port 54323 -Renderer OpenGL
+& 'D:\Rigs of Rods\source-build-2026-10-08\tools\Scripts\python.exe' .\tools\trials\verify-slice-03.py --session 'D:\Rigs of Rods\YOUR-NEW-SESSION' --phase benchmark
+```
+
+After every attempt is terminal, stop the explicitly owned coordinator, restart the same archive with `-EvidenceFrames`, then run `--phase visual`. Preserve failure outputs. These scripts require the current source-built capability handshake. The report generator/template are dated Slice 03 evidence tooling; inspect before reuse and do not overwrite historical sessions.
+
+The benchmark uses three interleaved fresh-process repeats/profile at 5 and 15 m/s, plus base-ledger, analytical and steady-wind comparisons. UI disconnects during coast cost characterization; compact status polling remains. Two scheduled native screenshots are still common to benchmark runs. Continuous native screenshot requests supply only the visual phase. Neither off mode nor the common timer constitutes an uninstrumented upstream/process-CPU benchmark. Proposed ≤10% overhead remains unmet.

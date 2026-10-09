@@ -51,3 +51,12 @@ The configurable experiment/trial platform has completed research, architecture 
 Read [Slice 02](doc/project/slices/slice-02.md) and [results](doc/project/slices/slice-02-results.json) before changing accounting/fixture contracts. Schema2 captures 16 channels and a linear storage subset. Pinned dry analytical fixtures can earn scoped Passed; vehicle scientific validation stays NotReady. Fixture precision explicitly differs from the preserved vehicle kernel. Do not silently loosen acceptance limits or label removed storage as fracture energy. Optimize measured observer cost before claiming the proposed overhead target.
 
 For media, inspect visible pixels and image progression. OpenGL/GDI may be black despite encoder success. Use native renderer PNGs and ordinary-image playback; preserve failures and distinguish Chrome checks from unverified Codex in-app GPU rendering.
+
+
+## Slice 03 continuation
+
+Read [Slice 03](doc/project/slices/slice-03.md) and [results](doc/project/slices/slice-03-results.json). Observation `off` disables node/channel/energy/aggregate capture but retains native trial controls and a declared common timing/state probe. It is not an unmodified-upstream baseline and cannot earn scientific Passed. Do not display absent force/energy terms as zero.
+
+Keep probe schema 1 / 128 bytes distinct from aggregate schemas 1/2. Probe loss/corruption stays incomplete; preserve later samples. Timing ends before common probe sampling/queueing; full ledger reduction and queue copying are included. Fingerprints sample specified node/beam state at 10 Hz and are diagnostic, not every-tick full-state proof or checkpoints. Preserve the unchanged fixture acceptance profile. The measured total observer overhead remains about 3.06-3.14x, so do not claim the proposed ≤10% target or compare directly with the earlier channels-disabled baseline.
+
+Build wrapper `-Parallel` controls concurrency; this session used 6 after MSVC C1060 at 16. Update precise native source hashes and executable identity after repairs. The planned barrier/detail grouping follows this prerequisite as Slice 04.
