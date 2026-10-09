@@ -8,3 +8,5 @@ select{width:100%;padding:10px;background:#132430;border:1px solid #304451;color
 
 .author,.monitor{min-width:0}.accounting{max-width:100%}
 @media(max-width:760px){.workspace{grid-template-columns:minmax(0,1fr)}}
+
+.probe-option{display:flex;align-items:center;gap:9px}.probe-option input{width:16px;min-height:16px;margin:0;accent-color:#38c7bb}

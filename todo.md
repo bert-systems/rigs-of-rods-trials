@@ -1,6 +1,6 @@
 # Project TODO
 
-Updated: 2026-10-08. This is a planning record, not authorization to implement every item. Research, architecture evaluation and policy Q&A are complete. The [implementation specification](doc/project/design/trial-platform-implementation-spec.md) establishes review baseline 0.1; its proposed defaults/contracts need feasibility and qualification work before acceptance claims.
+Updated: 2026-10-09. This is a planning record, not authorization to implement every item. Research, architecture evaluation and policy Q&A are complete. The [implementation specification](doc/project/design/trial-platform-implementation-spec.md) establishes review baseline 0.1; its proposed defaults/contracts need feasibility and qualification work before acceptance claims.
 
 ## Completed foundation
 
@@ -72,10 +72,11 @@ Implementation is underway in [Slice 01](doc/project/slices/slice-01.md). D003 c
 - [x] Slice 01: native source build, accounting/archive checks, real simulation screenshot/video evidence and reproduction scripts.
 - [x] Slice 02: force channels, linear core energy/work, initialization/state ports and visible unqualified mass/cohort exchange; scoped native fixture balances.
 - [x] Slice 02: native analytical fixtures, repeatability/cost characterization and scoped acceptance profiles; [delivery](doc/project/slices/slice-02.md).
-- [ ] Optimize attribution overhead (measured~79.5% added step duration); characterize a true instrumentation-off baseline and larger workloads before claiming the proposed ≤10% target.
+- [x] Slice 03: sparse observer/CRC optimizations, ledger-off with a declared common timing/state probe, native equivalence and fixture accounting regression; [delivery](doc/project/slices/slice-03.md).
+- [ ] Meet/resolve the proposed ≤10% total observer overhead gate and characterize larger/multi-actor workloads. Same-build full/off medians are 67.6/22.1 microseconds at 5 m/s (3.059x), with similar 15 m/s results; ledger-off is trial-aware and retains the common probe.
 - [ ] Extend nonlinear/shock/hydro/rope storage, strength-only transitions, external state mutation gateways and fracture dissipation; current vehicle validation stays NotReady.
-- [ ] Slice 03: controlled barrier asset, verified impact approach/trigger/outcome and deformation/breakage records.
-- [ ] Slice 03: required node/contact/beam detail windows at the selected 2 kHz profile with loss/overflow qualification.
+- [ ] Slice 04: controlled barrier asset, verified impact approach/trigger/outcome and deformation/breakage records.
+- [ ] Slice 04: required node/contact/beam detail windows at the selected 2 kHz profile with loss/overflow qualification.
 - [ ] Later: generalized asset/configuration selection, driven journeys, flight, gusts/particulates, live 3D inspector and comparison/export.
 - [ ] Broader operational qualification: hard-crash restart/orphan ownership, storage holds/failed writes, workload stress and alternate renderers.
 

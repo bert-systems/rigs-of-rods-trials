@@ -9,6 +9,7 @@ public static class FixtureValidation
     public static Result Evaluate(string path,ExperimentDefinition d,ArchiveReader.Check capture,bool executionComplete)
     {
         const string scope="Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight";
+        if(d.Observation=="off")return new("NotReady","Ledger disabled; control probe only, no force/energy qualification",[]);
         if(d.Scenario=="coast-v1")return new("NotReady","Vehicle constitutive/storage and environment qualification pending",[]);
         if(!executionComplete||!capture.Complete||!d.Accounting)return new("NotReady",scope,[]);
         var checks=new List<Item>();

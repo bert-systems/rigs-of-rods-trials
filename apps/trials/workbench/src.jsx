@@ -3,7 +3,7 @@ import {createRoot} from 'react-dom/client';
 import './style.css';
 
 const initial={name:'Daf steady-wind coast',launchSpeedMps:5,durationSeconds:12,settleSeconds:3,repeats:1,
- scenario:'coast-v1',vehicle:'b6b0UID-semi.truck',terrain:'simple2.terrn2',accounting:true,
+ scenario:'coast-v1',vehicle:'b6b0UID-semi.truck',terrain:'simple2.terrn2',accounting:true,observation:'full',performanceProbe:false,
  environment:{gravity:-9.81,temperatureK:288.15,density:1.225,windX:0,windY:0,windZ:0}};
 const norm=v=>v?Math.hypot(...v):0;
 const fmt=(n,d=2)=>Number.isFinite(n)?n.toLocaleString(undefined,{maximumFractionDigits:d}):'—';
@@ -56,6 +56,7 @@ function App(){
  const attempts=data?.attempts??[];
  const current=attempts.find(a=>a.id===selected)??attempts.at(-1);
  const sample=current?.latest,history=current?.history??[];
+ const off=current?.definition.observation==='off';
  const fixture=form.scenario!=='coast-v1';
  const scenario=value=>setForm(f=>({...f,scenario:value,vehicle:value==='coast-v1'?'b6b0UID-semi.truck':'ror-'+value+'.truck',
    launchSpeedMps:value==='coast-v1'?5:0,durationSeconds:value==='coast-v1'?12:value==='freefall-v1'?.5:5,
@@ -87,6 +88,9 @@ function App(){
  <label>Study scenario<select value={form.scenario} onChange={e=>scenario(e.target.value)}>
  <option value="coast-v1">Daf rolling coast · study</option><option value="freefall-v1">Free fall · dry fixture</option>
  <option value="spring-v1">Linear spring · dry fixture</option><option value="damper-v1">Spring + damper · dry fixture</option></select></label>
+ <label>Observation profile<select value={form.observation==='off'?'off':form.accounting?'full':'basic'} onChange={e=>setForm(f=>({...f,observation:e.target.value==='off'?'off':'full',accounting:e.target.value==='full',performanceProbe:e.target.value==='off'?true:f.performanceProbe}))}>
+ <option value="full">Full force / core energy ledger</option><option value="basic">Channels disabled · base ledger</option><option value="off">Ledger off · control probe only</option></select></label>
+ <label className="probe-option"><input type="checkbox" checked={form.performanceProbe} disabled={form.observation==='off'} onChange={e=>setForm({...form,performanceProbe:e.target.checked})}/> Timing / equivalence probe</label>
  <div className="asset"><span>Vehicle / fixture</span><strong>{fixture?'100 kg movable node + fixed anchors':'Daf Semi'}</strong><small>{form.vehicle}</small></div>
  <div className="asset"><span>Terrain</span><strong>Simple Test Terrain</strong><small>simple2.terrn2</small></div>
  <div className="form-pair"><Field label="Release speed · m/s" k="launchSpeedMps" min="0" max="20"/><Field label="Observe · s" k="durationSeconds" min={fixture?".1":"1"} max={fixture?"5":"120"}/></div>
@@ -105,6 +109,8 @@ function App(){
  </div></div>
  {current?.blockedReason&&<div className="warning">{current.blockedReason}</div>}
  <div className="quality"><div><span>Execution</span><strong>{current?.execution??'—'}</strong></div><div><span>Capture</span><strong className={current?.capture==='Incomplete'?'bad':''}>{current?.capture??'—'}</strong></div><div><span>Scientific validation</span><strong className="amber">{current?.validation??'Not evaluated'}</strong></div><div><span>Simulation clock</span><strong>{fmt(current?.workerStatus?.timeSeconds??sample?.timeSeconds,3)} <small>s</small></strong></div></div>
+ {off?<><div className="warning">Force/energy ledger disabled. Complete capture refers only to the declared control probe; scientific qualification is NotReady.</div>
+ <div className="chart-pair"><Spark points={history} field="sentinelSpeedMps" title="Node 0 speed · control probe" unit="m/s"/><Spark points={history} field="physicsStepElapsedUs" title="Native step elapsed · control probe" unit="µs"/></div></>:<>
  <div className="metrics">{[
  ['COM speed',sample?norm(sample.momentumKgMps)/sample.massKg:null,'m/s'],
  ['Momentum',sample?norm(sample.momentumKgMps):null,'kg·m/s'],
@@ -128,10 +134,12 @@ function App(){
  {current?.metrics?.qualification&&<section className="accounting"><div className="section-title"><h3>Scientific qualification</h3><span>{current.metrics.qualification.status}</span></div>
  <p>{current.metrics.qualification.scope}</p><table><thead><tr><th>Check</th><th>Observed</th><th>Maximum</th><th>Result</th></tr></thead><tbody>
  {current.metrics.qualification.checks.map(c=><tr key={c.name}><td>{c.name}</td><td>{scienceFmt(c.observed)}</td><td>{scienceFmt(c.limit)}</td><td>{c.passed?'Passed':'Failed'}</td></tr>)}</tbody></table></section>}
- <div className="bottom-pair"><section className="environment"><div className="section-title"><h3>Effective dry environment</h3><span>{sample?'NATIVE SAMPLE':'REQUESTED'}</span></div>
+ </>}
+ {current?.metrics?.performanceProbe&&<section className="accounting"><div className="section-title"><h3>Performance probe</h3><span>RELEASED STEPS · WALL ELAPSED</span></div><p>Median {fmt(current.metrics.performanceProbe.medianUs,3)} µs · p95 {fmt(current.metrics.performanceProbe.p95Us,3)} µs · {current.metrics.performanceProbe.releasedRecords} released records · {current.metrics.performanceProbe.fingerprints} state fingerprints. Timing includes native work, job barriers and enabled ledger reduction; probe sampling/queueing is excluded. Fingerprints are diagnostic samples, not a checkpoint.</p></section>}
+ <div className="bottom-pair"><section className="environment"><div className="section-title"><h3>Effective dry environment</h3><span>{sample&&!off?'NATIVE SAMPLE':'REQUESTED'}</span></div>
  <div className="env-grid"><div>Gravity<strong>{fmt(sample?.gravityMps2??env.gravity)} m/s²</strong></div><div>Air density<strong>{fmt(sample?.densityKgM3??env.density,3)} kg/m³</strong></div><div>Temperature<strong>{fmt(env.temperatureK)} K</strong></div><div>Steady wind<strong>{(sample?.windMps??[env.windX,env.windY,env.windZ]).map(v=>fmt(v)).join(' / ')} m/s</strong></div></div><p>Density and relative wind feed generic dry drag. Temperature is recorded; thermal exchange is outside this model.</p></section>
  <section className="events"><div className="section-title"><h3>Attempt timeline</h3><span>DURABLE EVENTS</span></div>{current?.events?.slice(-5).reverse().map(e=><div className="event" key={e.sequence}><i/><div><strong>{e.kind}</strong><p>{e.message}</p></div></div>)??<p>No attempt events yet.</p>}</section></div>
- {current&&<section className="archive"><div><h3>Retained evidence</h3><p>Every-step binary records and checksums, manifests, requested inputs and scoped outcomes.</p><div className="links">{['manifest.json','result.json','steps.rort','process-provenance.json','beam-transitions.jsonl'].map(name=><a key={name} href={'/api/attempts/'+current.id+'/artifacts/'+name}>{name}</a>)}</div></div><div className="controls"><button disabled={!terminal.includes(current.execution)} onClick={()=>command('retry')}>New retry</button><button disabled={!terminal.includes(current.execution)||current.archived} onClick={()=>command('archive')}>{current.archived?'Archived · retained':'Mark archived'}</button></div></section>}
+ {current&&<section className="archive"><div><h3>Retained evidence</h3><p>Every-step binary records and checksums, manifests, requested inputs and scoped outcomes.</p><div className="links">{['manifest.json','result.json','process-provenance.json',...(off?['probe.rort']:['steps.rort','beam-transitions.jsonl']),...(!off&&current.definition.performanceProbe?['probe.rort']:[])].map(name=><a key={name} href={'/api/attempts/'+current.id+'/artifacts/'+name}>{name}</a>)}</div></div><div className="controls"><button disabled={!terminal.includes(current.execution)} onClick={()=>command('retry')}>New retry</button><button disabled={!terminal.includes(current.execution)||current.archived} onClick={()=>command('archive')}>{current.archived?'Archived · retained':'Mark archived'}</button></div></section>}
  <footer>Captured sample: {fmt(sample?.timeSeconds,3)} s; native clock and recorder publication are independent. Coverage: {current?.coverage??'Awaiting native worker'}. Complete capture alone does not establish physical validation.</footer>
  </section></div></main></div>;
 }

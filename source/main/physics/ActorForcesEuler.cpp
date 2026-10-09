@@ -46,43 +46,44 @@ using namespace RoR;
 
 void Actor::CalcForcesEulerCompute(bool doUpdate, int num_steps)
 {
-    if(ar_trial_ledger.enabled && (ar_trial_ledger.record.flags&2) && Trials::Runtime::Get().IsFixture()){
+    if(Trials::Runtime::Get().Initializing(*this) && Trials::Runtime::Get().IsFixture()){
         this->CalcBeams(false); // prime the native force kernel before the first fixture integration
-        for(auto& channel:ar_trial_ledger.record.channels)channel.generated=Trials::Vec();
+        if(ar_trial_ledger.enabled)for(auto& channel:ar_trial_ledger.record.channels)channel.generated=Trials::Vec();
         ar_trial_ledger.record.consumed_from_tick=0;
     }
     this->CalcNodes(); // must be done directly after the inter truck collisions are handled
     this->UpdateBoundingBoxes();
     this->CalcEventBoxes();
     this->CalcReplay();
-    Trials::Runtime::Get().Snapshot(*this);
+    auto& observer=Trials::Runtime::Get();
+    const bool aero=!ar_airbrakes.empty() || ar_num_aeroengines || ar_num_screwprops || ar_num_wings ||
+        (m_fusealge_airfoil && m_fusealge_width>0.f);
+    if(aero)observer.Snapshot(*this);
     this->CalcAircraftForces(doUpdate);
     this->CalcFuseDrag();
-    Trials::Runtime::Get().Delta(*this,Trials::Aero);
-    Trials::Runtime::Get().Snapshot(*this);
+    if(aero)observer.Delta(*this,Trials::Aero);
+    const bool buoy=ar_num_buoycabs && App::GetGameContext()->GetTerrain()->getWater();
+    if(buoy)observer.Snapshot(*this);
     this->CalcBuoyance(doUpdate);
-    Trials::Runtime::Get().Delta(*this,Trials::Buoyancy);
-    Trials::Runtime::Get().Snapshot(*this);
+    if(buoy)observer.Delta(*this,Trials::Buoyancy);
+    observer.Snapshot(*this);
     this->CalcDifferentials();
     this->CalcWheels(doUpdate, num_steps);
-    Trials::Runtime::Get().Delta(*this,Trials::Wheels);
-    Trials::Runtime::Get().Snapshot(*this);
+    observer.Delta(*this,Trials::Wheels);
     this->CalcShocks(doUpdate, num_steps);
     this->CalcHydros();
     this->CalcCommands(doUpdate);
     this->CalcTies();
     this->CalcTruckEngine(doUpdate); // must be done after the commands / engine triggers are updated
-    Trials::Runtime::Get().Delta(*this,Trials::Commands);
-    Trials::Runtime::Get().Snapshot(*this);
+    observer.Delta(*this,Trials::Commands);
     this->CalcMouse();
-    Trials::Runtime::Get().Delta(*this,Trials::Mouse);
+    if(m_mouse_grab_node!=NODENUM_INVALID)observer.Delta(*this,Trials::Mouse);
     this->CalcBeams(doUpdate);
-    Trials::Runtime::Get().Snapshot(*this);
+    observer.Snapshot(*this);
     this->CalcCabCollisions();
-    Trials::Runtime::Get().Delta(*this,Trials::CabContact);
-    Trials::Runtime::Get().Snapshot(*this);
+    observer.Delta(*this,Trials::CabContact);
     this->updateSlideNodeForces(PHYSICS_DT); // must be done after the contacters are updated
-    Trials::Runtime::Get().Delta(*this,Trials::Slide);
+    if(!m_slidenodes.empty())observer.Delta(*this,Trials::Slide);
     this->CalcForceFeedback(doUpdate);
 }
 
@@ -1239,7 +1240,7 @@ void Actor::CalcBeams(bool trigger_hooks)
             Real dislen = dis.squaredLength();
             // The analytical fixture profile explicitly selects precise length normalization.
             // Vehicle studies preserve the legacy inverse-square-root approximation.
-            const bool fixture_precision=ar_trial_ledger.enabled && Trials::Runtime::Get().IsFixture();
+            const bool fixture_precision=Trials::Runtime::Get().Enabled() && Trials::Runtime::Get().IsFixture() && Trials::Runtime::Get().Matches(*this);
             Real inverted_dislen = fixture_precision ? 1.f/std::sqrt(dislen) : fast_invSqrt(dislen);
 
             dislen *= inverted_dislen;

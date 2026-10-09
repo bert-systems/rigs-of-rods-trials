@@ -11,6 +11,16 @@ namespace RoR {
 class Actor;
 class ActorManager;
 namespace Trials {
+struct ProbeRecord
+{
+    std::uint64_t tick=0;
+    std::uint32_t phase=0,nodes=0,beams=0,flags=0;
+    double dt=0,elapsed=0;
+    Vec position,velocity;
+    std::uint64_t fingerprint=0;
+    std::uint32_t sampled=0,initialized=0;
+    Vec origin;
+};
 class Runtime
 {
 public:
@@ -18,6 +28,9 @@ public:
     bool Enabled() const { return m_enabled; }
     bool IsFixture() const { return m_scenario!="coast-v1"; }
     bool Accounting() const { return m_accounting; }
+    bool Initializing(const Actor& actor) const {return m_initializing && Matches(actor);}
+    void Probe(Actor& actor);
+    void ProbeWriter();
     bool Matches(const Actor& actor) const;
     bool ReachedTarget() const { return m_released && m_tick*static_cast<double>(PHYSICS_DT)>=m_settle+m_duration; }
     void PrepareActor(Actor& actor);
@@ -41,14 +54,18 @@ private:
     void Event(const std::string& name, std::uint64_t sequence=0);
     bool m_enabled = false, m_released = false, m_closed = false;
     std::string m_root,m_scenario="coast-v1";
-    bool m_accounting=true;
+    bool m_accounting=true,m_observe=true,m_probe=false,m_initializing=false;
+    std::vector<ProbeRecord> m_probe_queue;
+    std::atomic<std::uint64_t> m_probe_head{0},m_probe_tail{0},m_probe_dropped{0},m_probe_written{0};
+    std::atomic<bool> m_probe_error{false};
+    std::thread m_probe_writer;
     std::chrono::steady_clock::time_point m_step_started;
     double m_speed = 0, m_gravity = -9.81, m_density = 1.225, m_duration = 12, m_settle = 3;
     Vec m_wind;
     std::uint64_t m_tick = 0, m_last_command = 0;
     std::vector<Record> m_queue;
     std::atomic<std::uint64_t> m_head{0}, m_tail{0}, m_dropped{0}, m_written{0};
-    std::atomic<int> m_pilot_actor{-1};
+    std::atomic<int> m_pilot_actor{-1},m_ready_actor{-1};
     std::atomic<bool> m_scope_violation{false};
     std::atomic<bool> m_stop{false}, m_io_error{false};
     std::thread m_writer;

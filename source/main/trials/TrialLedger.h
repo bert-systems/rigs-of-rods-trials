@@ -67,6 +67,7 @@ struct NodeChannels
 {
     std::array<Vec,ChannelCount> force;
     Vec snapshot,last_velocity;
+    std::uint32_t active=0; // sparse cache; iteration remains in channel order
     double last_mass=0;
     bool has_previous=false,last_fixed=false;
 };
@@ -106,14 +107,18 @@ public:
     void Add(std::size_t node,Channel channel,Vec delta,bool moving)
     {
         if(!attribution_enabled)return;
+        if(delta.x==0 && delta.y==0 && delta.z==0)return;
+        nodes[node].active|=1u<<channel;
         nodes[node].force[channel]+=delta;
         if(moving)record.channels[channel].generated+=delta;
     }
     void Reset(std::size_t node,Vec gravity,bool moving)
     {
         if(!attribution_enabled)return;
-        nodes[node].force.fill(Vec());
-        nodes[node].force[Gravity]=gravity;
+        auto& slot=nodes[node];
+        for(int c=0;c<ChannelCount;++c)if(slot.active&(1u<<c))slot.force[c]=Vec();
+        slot.active=1u<<Gravity;
+        slot.force[Gravity]=gravity;
         if(moving)record.channels[Gravity].generated+=gravity;
     }
     void Consume(std::size_t node,double mass,Vec before,Vec after,Vec actual,Vec wind,bool fixed)
@@ -121,8 +126,9 @@ public:
         if(!attribution_enabled)return;
         auto& slot=nodes[node];
         Vec expected;
-        for(int c=0;c<ChannelCount;++c)expected+=slot.force[c];
+        for(int c=0;c<ChannelCount;++c)if(slot.active&(1u<<c))expected+=slot.force[c];
         Vec correction=actual-expected;
+        if(correction.x!=0 || correction.y!=0 || correction.z!=0)slot.active|=1u<<Unattributed;
         slot.force[Unattributed]+=correction;
         if(slot.has_previous && slot.last_fixed!=fixed)record.flags|=4; // unsupported cohort exchange
         if(fixed) {
@@ -134,6 +140,7 @@ public:
         const Vec mid=(before+after)*0.5;
         for(int c=0;c<ChannelCount;++c)
         {
+            if(!(slot.active&(1u<<c)))continue;
             auto& out=record.channels[c];
             out.force+=slot.force[c];
             out.work+=mid.Dot(slot.force[c]*record.dt);
@@ -170,8 +177,19 @@ public:
 };
 inline std::uint32_t Crc32(const unsigned char* bytes,std::size_t size)
 {
+    // Recorder threads use a byte table rather than eight bit iterations per byte.
+    // Same IEEE CRC-32 polynomial and archive bytes as schemas 1/2.
+    static const auto table=[](){
+        std::array<std::uint32_t,256> t{};
+        for(unsigned i=0;i<256;++i){
+            std::uint32_t v=i;
+            for(int b=0;b<8;++b)v=(v>>1)^(0xedb88320u&(0u-(v&1u)));
+            t[i]=v;
+        }
+        return t;
+    }();
     std::uint32_t crc=0xffffffffu;
-    for(std::size_t i=0;i<size;++i){crc^=bytes[i];for(int b=0;b<8;++b)crc=(crc>>1)^(0xedb88320u&(0u-(crc&1u)));}
+    for(std::size_t i=0;i<size;++i)crc=(crc>>8)^table[(crc^bytes[i])&255];
     return ~crc;
 }
 }} // namespace

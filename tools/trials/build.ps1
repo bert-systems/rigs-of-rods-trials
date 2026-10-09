@@ -4,6 +4,7 @@ param(
     [string]$Tools='D:\Rigs of Rods\source-build-2026-10-08\tools\Scripts',
     [string]$ConanHome='D:\Rigs of Rods\source-build-2026-10-08\conan-cache',
     [string]$VsShell='C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\Launch-VsDevShell.ps1',
+    [ValidateRange(1,32)][int]$Parallel=8,
     [switch]$Clean
 )
 $ErrorActionPreference='Stop'
@@ -29,7 +30,7 @@ $env:CONAN_HOME=$ConanHome
 $nativeLog="$Session\logs\native-$stamp.log"
 cmake -S $Repo -B "$Session\build" -G Ninja -DCMAKE_BUILD_TYPE=Release '-DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=cmake/conan_provider.cmake' "-DCMAKE_INSTALL_PREFIX=$Session\redist" -DROR_CREATE_CONTENT_FOLDER=ON 2>&1 | Tee-Object $nativeLog
 if($LASTEXITCODE -ne 0){throw "CMake configure failed: $LASTEXITCODE"}
-$buildArgs=@('--build',"$Session\build",'--parallel','16')
+$buildArgs=@('--build',"$Session\build",'--parallel',"$Parallel")
 if($Clean){$buildArgs+='--clean-first'}
 cmake @buildArgs 2>&1 | Tee-Object -Append $nativeLog
 if($LASTEXITCODE -ne 0){throw "Native build failed: $LASTEXITCODE"}
