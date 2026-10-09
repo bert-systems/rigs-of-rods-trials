@@ -1,0 +1,1530 @@
+{
+  "inspected_utc": "2026-10-08T20:25:27.931038+00:00",
+  "repository_commit": "e85535569102b6251849af574026984e3213b3f4",
+  "content_commit": "34fefdd126784bf87b068fc283f812525d159dd7",
+  "terrain_root": "D:\\Rigs of Rods\\content\\Terrains",
+  "scope": "Read-only local ZIP directory and bounded terrain-definition inspection. No extraction, terrain loading, simulation, package licensing conclusion or collision/material calibration.",
+  "archive_sha256_policy": "Compute complete archive hashes when selecting additional packages for trial provenance.",
+  "archives": [
+    {
+      "archive": "airport.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\airport.zip",
+      "bytes": 4379655,
+      "modified_utc": "2019-04-19T04:06:14+00:00",
+      "definitions": [
+        {
+          "member": "24a159b6dc749abb4a38edbaef41f90d0229c2ee-airport.terrn",
+          "bytes": 112564,
+          "zip_crc32": "a8749e40",
+          "format": ".terrn",
+          "sha256": "9925439b57ceb2d3fe192bd3737079b992989fb834e50964cb39f5a849debf91",
+          "general": {},
+          "legacy_first_nonempty_line": "Sweden Airport"
+        },
+        {
+          "member": "24a159b6dc749abb4a38edbaef41f90d0229c2ee-airport.terrn2",
+          "bytes": 585,
+          "zip_crc32": "0d65cd47",
+          "format": ".terrn2",
+          "sha256": "b73db446f3747082926fd6b759aa8df26cf94e379710ee5fbc0a2dbde861d37f",
+          "general": {
+            "Name": "Sweden Airport",
+            "GeometryConfig": "24a159b6dc749abb4a38edbaef41f90d0229c2ee-airport.otc",
+            "Water": "1",
+            "WaterLine": "66.0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "1629.5, 70.3510665894, 931.0",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "sweden_airport2008"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 50,
+      "uncompressed_bytes": 19344937,
+      "object_definition_count": 11,
+      "license_candidates": []
+    },
+    {
+      "archive": "auriga-0.4.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\auriga-0.4.zip",
+      "bytes": 19830069,
+      "modified_utc": "2019-04-19T02:05:44+00:00",
+      "definitions": [
+        {
+          "member": "31.terrn2",
+          "bytes": 546,
+          "zip_crc32": "b2a1f6ff",
+          "format": ".terrn2",
+          "sha256": "bab4d83eb8d2c76440a7a30146b5a6051e157d021acb845701703fc69be1a4ff",
+          "general": {
+            "Name": "Auriga Proving Grounds",
+            "GeometryConfig": "31.otc",
+            "Water": "1",
+            "WaterLine": "6",
+            "AmbientColor": "0.80, 0.88, 0.95",
+            "CaelumConfigFile": "31.os",
+            "StartPosition": "910 10 575",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "97eda07a-6e35-491c-b6dd-8b66b473d254",
+            "TractionMap": "31-landuse.cfg"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 117,
+      "uncompressed_bytes": 27669382,
+      "object_definition_count": 24,
+      "license_candidates": []
+    },
+    {
+      "archive": "BakerRanchV2.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\BakerRanchV2.zip",
+      "bytes": 76120318,
+      "modified_utc": "2019-04-19T04:02:56+00:00",
+      "definitions": [
+        {
+          "member": "BakerRanchV2.terrn2",
+          "bytes": 687,
+          "zip_crc32": "1036b8d4",
+          "format": ".terrn2",
+          "sha256": "ac9d3098fa3aa67eba532130bfc1cc24ee68dfa4ca2f2e0edd9f89e7e095e4fb",
+          "general": {
+            "Name": "Baker Ranch V2",
+            "GeometryConfig": "BakerRanchV2.otc",
+            "Water": "1",
+            "WaterLine": "12",
+            "AmbientColor": "0.93 0.86 0.76",
+            "StartPosition": "2066.71 15.0319 1589.69",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "BakerRanchV2-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "f0213c25-7ef7-46df-8536-61dd18b928c6"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 280,
+      "uncompressed_bytes": 125869478,
+      "object_definition_count": 68,
+      "license_candidates": [
+        "README.md"
+      ]
+    },
+    {
+      "archive": "Belgium.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\Belgium.zip",
+      "bytes": 68273625,
+      "modified_utc": "2020-04-07T20:02:54+00:00",
+      "definitions": [
+        {
+          "member": "Belgium.terrn2",
+          "bytes": 465,
+          "zip_crc32": "703432ce",
+          "format": ".terrn2",
+          "sha256": "97c1a06eecadfa9a79351efc449661eb7236fe8489172d4136a17f86d1de2fc0",
+          "general": {
+            "Name": "Belgium",
+            "GeometryConfig": "Belgium.otc",
+            "Water": "1",
+            "WaterLine": "1.5",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "757.0, 6.72602415085, 579.0",
+            "CaelumConfigFile": "Belgium.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "8fc56f80-5b86-45cd-9b04-2981a39d7279",
+            "TractionMap": "dega1-landuse.cfg"
+          }
+        },
+        {
+          "member": "dega1.terrn",
+          "bytes": 79811,
+          "zip_crc32": "8bc42f3c",
+          "format": ".terrn",
+          "sha256": "81538c680cd007cc85983ff29371de95ddf1e79264a86c18816132c86b514334",
+          "general": {},
+          "legacy_first_nonempty_line": "Belgium"
+        },
+        {
+          "member": "dega1FPS.terrn",
+          "bytes": 79782,
+          "zip_crc32": "b1a3bece",
+          "format": ".terrn",
+          "sha256": "62d7e0e2c6f37cd703136cf94bdd717b80e2fc0497779c0cb629fb9c106d6cb5",
+          "general": {},
+          "legacy_first_nonempty_line": "Belgium FPS version"
+        }
+      ],
+      "errors": [],
+      "file_count": 193,
+      "uncompressed_bytes": 107176526,
+      "object_definition_count": 18,
+      "license_candidates": []
+    },
+    {
+      "archive": "Box5MonsterJam.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\Box5MonsterJam.zip",
+      "bytes": 2537219,
+      "modified_utc": "2025-10-21T03:29:20+00:00",
+      "definitions": [
+        {
+          "member": "Box5MonsterJam.terrn",
+          "bytes": 7524,
+          "zip_crc32": "fe12fe92",
+          "format": ".terrn",
+          "sha256": "390cabe290b5eb8113aad26ddd9095ab80d3d90ca60d4883aac63b4562a8f9e0",
+          "general": {},
+          "legacy_first_nonempty_line": "Monster Jam Madness"
+        },
+        {
+          "member": "Box5MonsterJam.terrn2",
+          "bytes": 452,
+          "zip_crc32": "6465bff2",
+          "format": ".terrn2",
+          "sha256": "1e3baa4291f926eac4b71576ba81286624635a2b4ded1646444aaddfa7c5ccbb",
+          "general": {
+            "Name": "Monster Jam Madness",
+            "GeometryConfig": "Box5MonsterJam.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "CaelumConfigFile": "Box5MonsterJam.os",
+            "StartPosition": "529.607, 0, 377.767",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "TractionMap": "",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "5494a8dc-bfa3-4cb4-8aa0-66ade1ddba05"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 71,
+      "uncompressed_bytes": 12747444,
+      "object_definition_count": 11,
+      "license_candidates": []
+    },
+    {
+      "archive": "Brutal_Valley_V2.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\Brutal_Valley_V2.zip",
+      "bytes": 106992709,
+      "modified_utc": "2019-04-19T02:08:26+00:00",
+      "definitions": [
+        {
+          "member": "bigmap.terrn",
+          "bytes": 45027,
+          "zip_crc32": "5d7e7418",
+          "format": ".terrn",
+          "sha256": "04e64b4a5f7a3df2961023e46ba39da75b338433cf23184b118f49eb17c32177",
+          "general": {},
+          "legacy_first_nonempty_line": "Brutal Valley"
+        },
+        {
+          "member": "bigmap.terrn2",
+          "bytes": 504,
+          "zip_crc32": "6592adb3",
+          "format": ".terrn2",
+          "sha256": "8974f826d5418bcb6d268bbe4707ba3b7f80821d2cb75f457a79e2d5ee69f599",
+          "general": {
+            "Name": "Brutal Valley",
+            "GeometryConfig": "bigmap.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.80, 0.88, 0.95",
+            "StartPosition": "55.6665 9.33852 262.47",
+            "CaelumConfigFile": "bigmapdry.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "mudmap-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "d4948aa6-db1a-46cd-a0be-6f00e2c091ed"
+          }
+        },
+        {
+          "member": "bigmapdry.terrn",
+          "bytes": 45039,
+          "zip_crc32": "bc5b9075",
+          "format": ".terrn",
+          "sha256": "15dab9ddd4909f7e315c4e560f2f45da03ea59eadec251ae2b70bd0572af8377",
+          "general": {},
+          "legacy_first_nonempty_line": "Brutal Valley Dry"
+        },
+        {
+          "member": "bigmapdry.terrn2",
+          "bytes": 511,
+          "zip_crc32": "ee7d2cd1",
+          "format": ".terrn2",
+          "sha256": "03b1affcefe335c8f4b8a7d90b77d0a41ae91c2bd508e98f16e8026014675263",
+          "general": {
+            "Name": "Brutal Valley Dry",
+            "GeometryConfig": "bigmap.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.80, 0.88, 0.95",
+            "StartPosition": "55.6665 9.33852 262.47",
+            "CaelumConfigFile": "bigmapdry.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "mudmapdry-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "5f5ca1f6-919a-4af4-9d92-39bf319383d6"
+          }
+        },
+        {
+          "member": "bigmapdryFPS.terrn",
+          "bytes": 43663,
+          "zip_crc32": "6cd595e7",
+          "format": ".terrn",
+          "sha256": "b68435581d9f542d3e5b19d68b49369558d9bfd9b90c6c7e0da4fa824143d16f",
+          "general": {},
+          "legacy_first_nonempty_line": "Brutal Valley Dry FPS"
+        },
+        {
+          "member": "bigmapdryFPS.terrn2",
+          "bytes": 521,
+          "zip_crc32": "3f43a5f1",
+          "format": ".terrn2",
+          "sha256": "4db0ca78890e428b45328baa6dac17981ebd58bbc314a391a6bcc5152cf33260",
+          "general": {
+            "Name": "Brutal Valley Dry FPS",
+            "GeometryConfig": "bigmapFPS.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.80, 0.88, 0.95",
+            "StartPosition": "55.6665 9.33852 262.47",
+            "CaelumConfigFile": "bigmapdry.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "mudmapdry-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "b47d0330-4694-44c0-97d9-f425ea5de7a4"
+          }
+        },
+        {
+          "member": "bigmapFPS.terrn",
+          "bytes": 43649,
+          "zip_crc32": "41ad1d82",
+          "format": ".terrn",
+          "sha256": "e1a4daf4eb79869c86cc5317673d86f74db73e2df96f7683345f8e40e4bb618a",
+          "general": {},
+          "legacy_first_nonempty_line": "Brutal Valley FPS"
+        },
+        {
+          "member": "bigmapFPS.terrn2",
+          "bytes": 514,
+          "zip_crc32": "f4f78b8f",
+          "format": ".terrn2",
+          "sha256": "3599330ab98bd60465a7abe36d16d38450cfebcb384dd7f29aaa97da818de975",
+          "general": {
+            "Name": "Brutal Valley FPS",
+            "GeometryConfig": "bigmapFPS.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.80, 0.88, 0.95",
+            "StartPosition": "55.6665 9.33852 262.47",
+            "CaelumConfigFile": "bigmapdry.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "mudmap-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "a15123fe-cd1c-4eb2-b977-43fbd91d6589"
+          }
+        },
+        {
+          "member": "bigmapwet.terrn",
+          "bytes": 45071,
+          "zip_crc32": "435cca1e",
+          "format": ".terrn",
+          "sha256": "637d39c5ee91a4de524a4d9ed94acf093db5da015a86fd0164ec85dd2f407d11",
+          "general": {},
+          "legacy_first_nonempty_line": "Brutal Valley Wet"
+        },
+        {
+          "member": "bigmapwet.terrn2",
+          "bytes": 511,
+          "zip_crc32": "054f1a62",
+          "format": ".terrn2",
+          "sha256": "3007690217187c2c0a091da3aaee6d6bb74456110ebb50c55119b9672b21a63b",
+          "general": {
+            "Name": "Brutal Valley Wet",
+            "GeometryConfig": "bigmap.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.80, 0.88, 0.95",
+            "StartPosition": "55.6665 9.33852 262.47",
+            "CaelumConfigFile": "bigmapwet.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "mudmapwet-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "0d089ecb-f197-4935-9faf-967494426d87"
+          }
+        },
+        {
+          "member": "bigmapwetFPS.terrn",
+          "bytes": 43693,
+          "zip_crc32": "fdb83703",
+          "format": ".terrn",
+          "sha256": "25a45004ec7cd0f2dacb354af3678d0f7554eba0505ba018d0be34d9e310e905",
+          "general": {},
+          "legacy_first_nonempty_line": "Brutal Valley Wet FPS"
+        },
+        {
+          "member": "bigmapwetFPS.terrn2",
+          "bytes": 521,
+          "zip_crc32": "b8ab4d2e",
+          "format": ".terrn2",
+          "sha256": "8d416b37d42a67309c6bb39a935ef10ed8e8810e03360b28a073b73d0a8659d3",
+          "general": {
+            "Name": "Brutal Valley Wet FPS",
+            "GeometryConfig": "bigmapFPS.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.80, 0.88, 0.95",
+            "StartPosition": "55.6665 9.33852 262.47",
+            "CaelumConfigFile": "bigmapwet.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "mudmapwet-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "49ea7f83-debc-4d97-938d-0682ce27c24d"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 368,
+      "uncompressed_bytes": 312601472,
+      "object_definition_count": 50,
+      "license_candidates": []
+    },
+    {
+      "archive": "castlegreen_04.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\castlegreen_04.zip",
+      "bytes": 41072453,
+      "modified_utc": "2019-08-16T14:32:22+00:00",
+      "definitions": [
+        {
+          "member": "castlegreen.terrn2",
+          "bytes": 522,
+          "zip_crc32": "739ac7fb",
+          "format": ".terrn2",
+          "sha256": "8d2fe4f3002252aaff40ab96728bba7a633629a60ee2ece46b74f4ac674f648e",
+          "general": {
+            "Name": "Castlegreen",
+            "GeometryConfig": "castlegreen.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "1551.5, 59.248134613, 668.25",
+            "CaelumConfigFile": "castlegreen.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "Castlegreen",
+            "TractionMap": "castlegreen-landuse.cfg"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 324,
+      "uncompressed_bytes": 78037276,
+      "object_definition_count": 38,
+      "license_candidates": []
+    },
+    {
+      "archive": "CM 0.5.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\CM 0.5.zip",
+      "bytes": 9838096,
+      "modified_utc": "2019-04-19T02:05:54+00:00",
+      "definitions": [
+        {
+          "member": "CM.terrn2",
+          "bytes": 442,
+          "zip_crc32": "877d8c0a",
+          "format": ".terrn2",
+          "sha256": "193e820c037874ed90f43a9b5db759328eecf3abac2a906beaf890cfb7cf7fcb",
+          "general": {
+            "Name": "N-Labs Testing Facility 0.5",
+            "GeometryConfig": "CM.otc",
+            "AmbientColor": "1,1,1",
+            "CaelumConfigFile": "CM.os",
+            "StartPosition": "256 10 256",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "N-Labs"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 62,
+      "uncompressed_bytes": 29940571,
+      "object_definition_count": 16,
+      "license_candidates": []
+    },
+    {
+      "archive": "f1track_08.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\f1track_08.zip",
+      "bytes": 8231308,
+      "modified_utc": "2023-01-05T04:35:46+00:00",
+      "definitions": [
+        {
+          "member": "2af11UID-f1_testtrack.terrn",
+          "bytes": 24673,
+          "zip_crc32": "e9778964",
+          "format": ".terrn",
+          "sha256": "7065f56f93485d11d7c8abaeabdb24845eec974067f5b366bb4eea4633eff020",
+          "general": {},
+          "legacy_first_nonempty_line": "f1_testtrack 0.7"
+        },
+        {
+          "member": "2af11UID-f1_testtrack.terrn2",
+          "bytes": 562,
+          "zip_crc32": "a3d41937",
+          "format": ".terrn2",
+          "sha256": "8bdf5a5af7dc231a20dc4565b6d6c4bcf1cbfbbed422730ad28838fac316bfd8",
+          "general": {
+            "Name": "f1_testtrack 0.8",
+            "GeometryConfig": "2af11UID-f1_testtrack.otc",
+            "Water": "0",
+            "WaterLine": "33",
+            "AmbientColor": "0.97, 0.92, 0.91",
+            "StartPosition": "1400.0, 1.4, 1320.0",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "CaelumConfigFile": "f1_testtrack.os",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "c06d7e86-6c1b-49c1-adc5-b7d4c0e5f62b"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 154,
+      "uncompressed_bytes": 17355895,
+      "object_definition_count": 25,
+      "license_candidates": []
+    },
+    {
+      "archive": "fall_run_04.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\fall_run_04.zip",
+      "bytes": 45857056,
+      "modified_utc": "2019-11-01T13:02:58+00:00",
+      "definitions": [
+        {
+          "member": "fall_run.terrn",
+          "bytes": 103758,
+          "zip_crc32": "9f18f00a",
+          "format": ".terrn",
+          "sha256": "eb95981c9c95f67633abe2ddab7cb93488b883bcc65523f7c699f1b2a668ee67",
+          "general": {},
+          "legacy_first_nonempty_line": "fall_run"
+        },
+        {
+          "member": "fall_run_detailed.terrn",
+          "bytes": 106866,
+          "zip_crc32": "3c938143",
+          "format": ".terrn",
+          "sha256": "edeffaeecda394855418867edeb91bf8bbb1d658b345df718c3d7b376e6d4298",
+          "general": {},
+          "legacy_first_nonempty_line": "fall_run_detailed"
+        },
+        {
+          "member": "fall_run_detailed.terrn2",
+          "bytes": 528,
+          "zip_crc32": "01d67dad",
+          "format": ".terrn2",
+          "sha256": "36d17682d30e48323459bdd25a438a977fec57be96f34549ecf13ea709d11af6",
+          "general": {
+            "Name": "Fall Run",
+            "GeometryConfig": "fall_run.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "1003.3515625, 5.82591152191, 1431.75292969",
+            "CaelumConfigFile": "fall_run.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "fall_run",
+            "TractionMap": "fall_run-landuse.cfg"
+          }
+        },
+        {
+          "member": "fall_run_offroadrace.terrn",
+          "bytes": 58314,
+          "zip_crc32": "02af0fdb",
+          "format": ".terrn",
+          "sha256": "89b6ff1c0528b8e1f14e726872b45ea4a9f2dd26b17901b5af7330a69c2d95c1",
+          "general": {},
+          "legacy_first_nonempty_line": "fall_run_offroadrace"
+        },
+        {
+          "member": "fall_run_offroadrace.terrn2",
+          "bytes": 586,
+          "zip_crc32": "bdd651d1",
+          "format": ".terrn2",
+          "sha256": "4b1aa11a2fdcf891daf586341ceb7c5de25c4b2c9d63ae4743d934fd742a876d",
+          "general": {
+            "Name": "Fall Run Off-Road Race",
+            "GeometryConfig": "fall_run.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "506.3515625, 20.081079483, 1677.85253906",
+            "CaelumConfigFile": "fall_run.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "fall_run_ORR",
+            "TractionMap": "fall_run-landuse.cfg"
+          }
+        },
+        {
+          "member": "fall_run_roadrace.terrn",
+          "bytes": 58309,
+          "zip_crc32": "810f4de7",
+          "format": ".terrn",
+          "sha256": "f65f421773e8fe29f6de83ba8108d266f1a07001dc2a3550372f372b2dd4c7d9",
+          "general": {},
+          "legacy_first_nonempty_line": "fall_run_roadrace"
+        },
+        {
+          "member": "fall_run_roadrace.terrn2",
+          "bytes": 576,
+          "zip_crc32": "2868eb61",
+          "format": ".terrn2",
+          "sha256": "8b4d529764b588426cec331d3b3a5f729f517f67e211b0e5f8197bf6d1621c1f",
+          "general": {
+            "Name": "Fall Run Road Race",
+            "GeometryConfig": "fall_run.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "419.3515625, 4.68045282364, 1455.25292969",
+            "CaelumConfigFile": "fall_run.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "fall_run_RR",
+            "TractionMap": "fall_run-landuse.cfg"
+          }
+        },
+        {
+          "member": "slinky.terrn",
+          "bytes": 449,
+          "zip_crc32": "86728d8a",
+          "format": ".terrn",
+          "sha256": "6b0c70a453753ef77d27a4adf67e02bc7b1b592eb688bf3d1c722da7d922e8bc",
+          "general": {},
+          "legacy_first_nonempty_line": "slinky"
+        }
+      ],
+      "errors": [],
+      "file_count": 407,
+      "uncompressed_bytes": 93239881,
+      "object_definition_count": 43,
+      "license_candidates": []
+    },
+    {
+      "archive": "grenoble.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\grenoble.zip",
+      "bytes": 10023995,
+      "modified_utc": "2019-04-19T04:05:38+00:00",
+      "definitions": [
+        {
+          "member": "d9baUID-grenoble.terrn",
+          "bytes": 5463,
+          "zip_crc32": "5681614a",
+          "format": ".terrn",
+          "sha256": "dc3533f16271a76b0b98bb79ee29e606f12f3c80318d1c6c61d183876e4ea0b6",
+          "general": {},
+          "legacy_first_nonempty_line": "Grenoble"
+        },
+        {
+          "member": "d9baUID-grenoble.terrn2",
+          "bytes": 472,
+          "zip_crc32": "3cc1207e",
+          "format": ".terrn2",
+          "sha256": "95e9583540e08a694c49e18179f595769e4a7a6b1802a9e7adc0bd1d3956360e",
+          "general": {
+            "Name": "Grenoble",
+            "GeometryConfig": "d9baUID-grenoble.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "38004.8 42.1277 50743.1",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "4fd73875-35ca-41e6-a96e-021f1e2e3fde"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 11,
+      "uncompressed_bytes": 13326381,
+      "object_definition_count": 0,
+      "license_candidates": []
+    },
+    {
+      "archive": "lapaz2.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\lapaz2.zip",
+      "bytes": 12018703,
+      "modified_utc": "2019-04-19T04:05:50+00:00",
+      "definitions": [
+        {
+          "member": "lapaz.terrn",
+          "bytes": 6793,
+          "zip_crc32": "37392aa6",
+          "format": ".terrn",
+          "sha256": "1a156d7dcce5a882c84b7734e6fd89e3680cc3a32dff0c0d79ddac1b0c928e10",
+          "general": {},
+          "legacy_first_nonempty_line": "La Paz"
+        },
+        {
+          "member": "lapaz.terrn2",
+          "bytes": 405,
+          "zip_crc32": "d3126a4c",
+          "format": ".terrn2",
+          "sha256": "407d999cec43d4346183dbb2cc99ca8d9eeabe070bc4aa3fb16b216b926e6897",
+          "general": {
+            "Name": "La Paz",
+            "GeometryConfig": "lapaz.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.95, 0.90, 0.90",
+            "StartPosition": "3495 6.7 197.8",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "lapaz-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "8a01f87e-5d9e-4f8b-910d-9972810bbff5"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 38,
+      "uncompressed_bytes": 15047032,
+      "object_definition_count": 4,
+      "license_candidates": []
+    },
+    {
+      "archive": "NarvalskWoods.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\NarvalskWoods.zip",
+      "bytes": 29628508,
+      "modified_utc": "2019-04-19T04:05:14+00:00",
+      "definitions": [
+        {
+          "member": "nw.terrn",
+          "bytes": 11141,
+          "zip_crc32": "196f9042",
+          "format": ".terrn",
+          "sha256": "c8141bd7e427690d1c423304696a666b17fa7e335b8cec8967217a3194785e22",
+          "general": {},
+          "legacy_first_nonempty_line": "Narvalsk Woods"
+        },
+        {
+          "member": "nw.terrn2",
+          "bytes": 446,
+          "zip_crc32": "6ba14978",
+          "format": ".terrn2",
+          "sha256": "7f1d1e14b75f5c81558a356c7764f6c3cbd4e4bf21517ec2c7ad440b2f3b69c8",
+          "general": {
+            "Name": "Narvalsk Woods",
+            "GeometryConfig": "nw.otc",
+            "Water": "1",
+            "WaterLine": "15.0",
+            "AmbientColor": "0.1, 0.1, 0.1",
+            "StartPosition": "1385.33557129, 43.6301307678, 1389.88122559",
+            "CaelumConfigFile": "nw.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "nw-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "7f39b0ed-4966-4d3b-b454-2372ffa29050"
+          }
+        },
+        {
+          "member": "nw2.terrn",
+          "bytes": 89832,
+          "zip_crc32": "5f0b52aa",
+          "format": ".terrn",
+          "sha256": "59eb5e19bde69841cda971e215f75996431afbdedb2c6263674c472ac860a70b",
+          "general": {},
+          "legacy_first_nonempty_line": "Narvalsk Woods FPS"
+        },
+        {
+          "member": "nw2.terrn2",
+          "bytes": 451,
+          "zip_crc32": "dba35f0c",
+          "format": ".terrn2",
+          "sha256": "7f8031eefe43a8a3d89ca47b46f0a9e3e02c23f6f9b4db7a85facc5b11f2a900",
+          "general": {
+            "Name": "Narvalsk Woods FPS",
+            "GeometryConfig": "nw.otc",
+            "Water": "1",
+            "WaterLine": "15.0",
+            "AmbientColor": "0.1, 0.1, 0.1",
+            "StartPosition": "1385.33557129, 43.6301307678, 1389.88122559",
+            "CaelumConfigFile": "nw.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "nw-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "7f39b0ed-4966-4d3b-b454-2372ffa29051"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 104,
+      "uncompressed_bytes": 57131756,
+      "object_definition_count": 13,
+      "license_candidates": [
+        "readme.txt"
+      ]
+    },
+    {
+      "archive": "NeoQ2.0.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\NeoQ2.0.zip",
+      "bytes": 69727101,
+      "modified_utc": "2019-12-24T23:44:06+00:00",
+      "definitions": [
+        {
+          "member": "NeoQ2-0_Dev.terrn2",
+          "bytes": 473,
+          "zip_crc32": "b83e6b7e",
+          "format": ".terrn2",
+          "sha256": "b9325a300c19f38336438e1ed2d2e63b3758d76322c2f41a3b30da5e6287b4e9",
+          "general": {
+            "Name": "NeoQ2-0 (Dev Build Only)",
+            "GeometryConfig": "NeoQ2-0.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "1.0, 1.0, 1.0",
+            "StartPosition": "5750.0 50.5 4200.0",
+            "CaelumConfigFile": "NeoQ2-0-2.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-10.2",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "C7D50078-735C-4EAE-8EBC-2A1DF46A3CEF"
+          }
+        },
+        {
+          "member": "NeoQ2-0.terrn2",
+          "bytes": 437,
+          "zip_crc32": "8d14b5b0",
+          "format": ".terrn2",
+          "sha256": "b7a47c996350d3b5c71d3da2659492ae634b63c178868023728ff2cafbd0a2d2",
+          "general": {
+            "Name": "NeoQ2-0",
+            "GeometryConfig": "NeoQ2-0.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "1.0, 1.0, 1.0",
+            "StartPosition": "5750.0 50.5 4200.0",
+            "CaelumConfigFile": "NeoQ2-0-2.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-10.2",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "C7D50078-735C-4EAE-8EBC-2A1DF46A3CEF"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 362,
+      "uncompressed_bytes": 158557696,
+      "object_definition_count": 56,
+      "license_candidates": []
+    },
+    {
+      "archive": "NeoQueretaro.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\NeoQueretaro.zip",
+      "bytes": 37047544,
+      "modified_utc": "2019-04-19T02:07:54+00:00",
+      "definitions": [
+        {
+          "member": "NeoQueretaro.terrn2",
+          "bytes": 450,
+          "zip_crc32": "ee5b98da",
+          "format": ".terrn2",
+          "sha256": "37d32f76a734b5a20cdd59c09f4162574fad85f80d13219ece575aa795963990",
+          "general": {
+            "Name": "NeoQueretaro",
+            "GeometryConfig": "NeoQueretaro.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "2440.0, 0.30000000149, 1054.5",
+            "SandStormCubeMap": "Sky/ClubTropicana",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "1e5aa93d-e35f-4279-b2f2-9419310b5210"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 532,
+      "uncompressed_bytes": 86113294,
+      "object_definition_count": 114,
+      "license_candidates": []
+    },
+    {
+      "archive": "Penguinville_1.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\Penguinville_1.zip",
+      "bytes": 21521147,
+      "modified_utc": "2019-07-05T17:47:56+00:00",
+      "definitions": [
+        {
+          "member": "Penguinville.terrn",
+          "bytes": 87516,
+          "zip_crc32": "54f2cd25",
+          "format": ".terrn",
+          "sha256": "37c45964fa487e4d8a7b7aba46507c3a328d97309b11ab9eeb36d3a637ea737e",
+          "general": {},
+          "legacy_first_nonempty_line": "Penguinville"
+        },
+        {
+          "member": "Penguinville.terrn2",
+          "bytes": 466,
+          "zip_crc32": "8d000864",
+          "format": ".terrn2",
+          "sha256": "2507bb74351ee05e471a52a33c07e46d2a4d965ee45c3d64fce803b908844310",
+          "general": {
+            "Name": "Penguinville",
+            "GeometryConfig": "Penguinville.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "CaelumConfigFile": "renguinville.os",
+            "StartPosition": "436.5, 0.1, 446.0",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "TractionMap": "",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "8454a8dc-bfa3-4cb4-8aa0-66ade1ddba05"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 638,
+      "uncompressed_bytes": 69170676,
+      "object_definition_count": 112,
+      "license_candidates": []
+    },
+    {
+      "archive": "Pines Proving Grounds.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\Pines Proving Grounds.zip",
+      "bytes": 33201514,
+      "modified_utc": "2019-11-02T17:08:04+00:00",
+      "definitions": [
+        {
+          "member": "4x4hill.terrn",
+          "bytes": 51202,
+          "zip_crc32": "ea27fea3",
+          "format": ".terrn",
+          "sha256": "da2721318de5451dc6680b2f9f39389f0625572da84a72966490034eeae7de6a",
+          "general": {},
+          "legacy_first_nonempty_line": "Pines Proving Grounds"
+        },
+        {
+          "member": "4x4hill.terrn2",
+          "bytes": 445,
+          "zip_crc32": "58093c50",
+          "format": ".terrn2",
+          "sha256": "cd3b0b660ef2b4b027c1abdc8d8d7c31011b99db950646c96d6802e88124a941",
+          "general": {
+            "Name": "Pines Proving Grounds",
+            "GeometryConfig": "4x4hill.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.80 0.88 0.95",
+            "StartPosition": "25.3732 15.9533 180.681",
+            "CaelumConfigFile": "4x4hill.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "4x4hill-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "dcea64c0-de5a-4a85-8640-86f4c291556b"
+          }
+        },
+        {
+          "member": "4x4hilldry.terrn",
+          "bytes": 51209,
+          "zip_crc32": "3cac9ca5",
+          "format": ".terrn",
+          "sha256": "ababbebdd3f6af8b9631ba9bbb57241ea3a175323ea2ecff64f309126c206527",
+          "general": {},
+          "legacy_first_nonempty_line": "Pines Proving Grounds-Dry"
+        },
+        {
+          "member": "4x4hilldry.terrn2",
+          "bytes": 452,
+          "zip_crc32": "4f0cd6a1",
+          "format": ".terrn2",
+          "sha256": "5f3c6dfdb953b58477c0b7af068cf466d6a7a211b422934a238461d78cc651fc",
+          "general": {
+            "Name": "Pines Proving Grounds-Dry",
+            "GeometryConfig": "4x4hill.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.80 0.88 0.95",
+            "StartPosition": "25.3732 15.9533 180.681",
+            "CaelumConfigFile": "4x4hill.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "4x4hilldry-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "dcea64c0-de5a-4a85-8640-86f4c291556c"
+          }
+        },
+        {
+          "member": "4x4hillmod.terrn",
+          "bytes": 96158,
+          "zip_crc32": "f89423d7",
+          "format": ".terrn",
+          "sha256": "c4536c0ebe3319c8632022a731ad05465aad48ddcd5df79d3b510b514db5287a",
+          "general": {},
+          "legacy_first_nonempty_line": "Pines Proving Grounds Rock"
+        },
+        {
+          "member": "4x4hillmod.terrn2",
+          "bytes": 472,
+          "zip_crc32": "784923e0",
+          "format": ".terrn2",
+          "sha256": "2bdafb96bc3262e89ab9367bd77e3e16ecec94a3bf42bc653107aef081a5d7d7",
+          "general": {
+            "Name": "Pines Proving Grounds Rock",
+            "GeometryConfig": "4x4hill.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.80 0.88 0.95",
+            "StartPosition": "25.3732 15.9533 180.681",
+            "CaelumConfigFile": "4x4hill.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "4x4hill-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "dcea64c0-de5a-4a85-8640-86f4c291556e"
+          }
+        },
+        {
+          "member": "4x4hillwet.terrn",
+          "bytes": 51207,
+          "zip_crc32": "7fad4247",
+          "format": ".terrn",
+          "sha256": "e9b6f1be6edda500cd1d8fb5a5371e7d2900ee776b4d95a3d476698abb6ffa27",
+          "general": {},
+          "legacy_first_nonempty_line": "Pines Proving Grounds-Wet"
+        },
+        {
+          "member": "4x4hillwet.terrn2",
+          "bytes": 452,
+          "zip_crc32": "d12fa08f",
+          "format": ".terrn2",
+          "sha256": "e74cf1b6c00d540a872fe26ef86f8d8a2bd5ed86b8f1e2d53220167f038174ae",
+          "general": {
+            "Name": "Pines Proving Grounds-Wet",
+            "GeometryConfig": "4x4hill.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.80 0.88 0.95",
+            "StartPosition": "25.3732 15.9533 180.681",
+            "CaelumConfigFile": "4x4hill.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "TractionMap": "4x4hillwet-landuse.cfg",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "dcea64c0-de5a-4a85-8640-86f4c291556d"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 125,
+      "uncompressed_bytes": 54154824,
+      "object_definition_count": 14,
+      "license_candidates": []
+    },
+    {
+      "archive": "RockCrawlHeaven.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\RockCrawlHeaven.zip",
+      "bytes": 11921324,
+      "modified_utc": "2019-10-26T21:22:54+00:00",
+      "definitions": [
+        {
+          "member": "RockCrawlHeaven.terrn",
+          "bytes": 128310,
+          "zip_crc32": "9d941ecf",
+          "format": ".terrn",
+          "sha256": "6412beb4b0f1955178c7ca4fe79d9f3bda8f53526c41fd9f5b4ad30ee423c3fc",
+          "general": {},
+          "legacy_first_nonempty_line": "Wild West"
+        },
+        {
+          "member": "RockCrawlHeaven.terrn2",
+          "bytes": 623,
+          "zip_crc32": "2f44eb3f",
+          "format": ".terrn2",
+          "sha256": "44a4665812033c1210d8280598b42583fe8c4d48034b273209864bfa1bfa3580",
+          "general": {
+            "Name": "Wild West",
+            "GeometryConfig": "RockCrawlHeaven.otc",
+            "Water": "0",
+            "WaterLine": "100",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "1940.45056152 114.134498596 2161.10400391",
+            "CaelumConfigFile": "RockCrawlHeaven.os",
+            "SandStormCubeMap": "Sky/ClubTropicana",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "e3c6e22f-80e7-4167-92da-a7988dc029ac"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 231,
+      "uncompressed_bytes": 17590052,
+      "object_definition_count": 70,
+      "license_candidates": []
+    },
+    {
+      "archive": "RoRCompound-0.4.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\RoRCompound-0.4.zip",
+      "bytes": 23130088,
+      "modified_utc": "2019-04-19T04:02:32+00:00",
+      "definitions": [
+        {
+          "member": "RORC.terrn2",
+          "bytes": 496,
+          "zip_crc32": "ba781412",
+          "format": ".terrn2",
+          "sha256": "46c636aa4edb94f518a24e02bede3fa750dfc514ccf1ff13526184be965290e8",
+          "general": {
+            "Name": "RoR Compound",
+            "GeometryConfig": "RORC.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "123.316, 0, 138.138",
+            "CaelumConfigFile": "31.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "f34c0793-3ec4-44f0-b832-bc4d3f2a8d58",
+            "TractionMap": "RORC-landuse.cfg"
+          }
+        },
+        {
+          "member": "RORC2.terrn2",
+          "bytes": 500,
+          "zip_crc32": "6b306d07",
+          "format": ".terrn2",
+          "sha256": "50083c8aadf24603f8b31d07d54477f02c1f9c684bbf133297926ac069119c05",
+          "general": {
+            "Name": "RoR Compound 2",
+            "GeometryConfig": "RORC.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "78.0549, 0, 153.237",
+            "CaelumConfigFile": "31.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "f34c0793-3ec4-44f0-b832-bc4d3f2a8d58",
+            "TractionMap": "RORC-landuse.cfg"
+          }
+        },
+        {
+          "member": "RORC2d.terrn2",
+          "bytes": 510,
+          "zip_crc32": "1a36569c",
+          "format": ".terrn2",
+          "sha256": "612ebee1a5fc3d3cf51378a656fa01ced03578ce7c1692f657025c54067c181a",
+          "general": {
+            "Name": "RoR Compound 2 - Dirt",
+            "GeometryConfig": "RORCd.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "78.0549, 0, 153.237",
+            "CaelumConfigFile": "31.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "f34c0793-3ec4-44f0-b832-bc4d3f2a8d58",
+            "TractionMap": "RORCd-landuse.cfg"
+          }
+        },
+        {
+          "member": "RORC3.terrn2",
+          "bytes": 524,
+          "zip_crc32": "deba75e4",
+          "format": ".terrn2",
+          "sha256": "6d010b45a674775a76c2d389474f46d03bff1fd6152952a274300ece61ea182d",
+          "general": {
+            "Name": "RoR Compound 3",
+            "GeometryConfig": "RORC.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "132.581695557, 0.10000000149, 108.005996704",
+            "CaelumConfigFile": "31.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "f34c0793-3ec4-44f0-b832-bc4d3f2a8d58",
+            "TractionMap": "RORC-landuse.cfg"
+          }
+        },
+        {
+          "member": "RORC3d.terrn2",
+          "bytes": 534,
+          "zip_crc32": "4cd70d87",
+          "format": ".terrn2",
+          "sha256": "84537e0ec64518109f21a081aad9eece501718572aaa06aec7195ae0d235df38",
+          "general": {
+            "Name": "RoR Compound 3 - Dirt",
+            "GeometryConfig": "RORCd.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "132.581695557, 0.10000000149, 108.005996704",
+            "CaelumConfigFile": "31.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "f34c0793-3ec4-44f0-b832-bc4d3f2a8d58",
+            "TractionMap": "RORCd-landuse.cfg"
+          }
+        },
+        {
+          "member": "RORCd.terrn2",
+          "bytes": 506,
+          "zip_crc32": "417d380d",
+          "format": ".terrn2",
+          "sha256": "2521f58d6522851c25a0b207fbf7a932de741c09e1227e8acde9eb77e8f457ac",
+          "general": {
+            "Name": "RoR Compound - Dirt",
+            "GeometryConfig": "RORCd.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "123.316, 0, 138.138",
+            "CaelumConfigFile": "31.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "f34c0793-3ec4-44f0-b832-bc4d3f2a8d58",
+            "TractionMap": "RORCd-landuse.cfg"
+          }
+        },
+        {
+          "member": "RORCfree.terrn2",
+          "bytes": 502,
+          "zip_crc32": "fb49ff56",
+          "format": ".terrn2",
+          "sha256": "1894a879415d8ae794c5a503b7a0745de92d36a7076e22de265bdb5935e80a4c",
+          "general": {
+            "Name": "RoR Compound Freestyle",
+            "GeometryConfig": "RORC.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "123.316, 0, 138.138",
+            "CaelumConfigFile": "31.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "f34c0793-3ec4-44f0-b832-bc4d3f2a8d58",
+            "TractionMap": "RORC-landuse.cfg"
+          }
+        },
+        {
+          "member": "RORCfreed.terrn2",
+          "bytes": 511,
+          "zip_crc32": "e4719337",
+          "format": ".terrn2",
+          "sha256": "94c0312d59fab58c7317e3906024d9567c4137b056699465533defd7c0efc07a",
+          "general": {
+            "Name": "RoR Compound Freestyle - Dirt",
+            "GeometryConfig": "RORCd.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "123.316, 0, 138.138",
+            "CaelumConfigFile": "31.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "f34c0793-3ec4-44f0-b832-bc4d3f2a8d58",
+            "TractionMap": "RORCd-landuse.cfg"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 152,
+      "uncompressed_bytes": 35315554,
+      "object_definition_count": 17,
+      "license_candidates": []
+    },
+    {
+      "archive": "squishymonsterstadium.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\squishymonsterstadium.zip",
+      "bytes": 31793925,
+      "modified_utc": "2025-10-25T02:56:46+00:00",
+      "definitions": [
+        {
+          "member": "squishstadium.terrn2",
+          "bytes": 482,
+          "zip_crc32": "0603242e",
+          "format": ".terrn2",
+          "sha256": "8c4d7d8acb9ccf37f896776c6b744c9c409cabc3ab5c38b14471dca88f7a48f4",
+          "general": {
+            "Name": "Squishy Stadium",
+            "GeometryConfig": "squishstadium.otc",
+            "Water": "0",
+            "WaterLine": "8.5",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "89.7405700684, 5.91867780685, 19.488035202",
+            "CaelumConfigFile": "squishstadium.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "58745d7e-f64b-474e-8be3-aad8ed696f97"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 58,
+      "uncompressed_bytes": 37186668,
+      "object_definition_count": 2,
+      "license_candidates": []
+    },
+    {
+      "archive": "sunset_mesa_04.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\sunset_mesa_04.zip",
+      "bytes": 49999688,
+      "modified_utc": "2019-04-19T04:04:46+00:00",
+      "definitions": [
+        {
+          "member": "sunset_mesa.terrn",
+          "bytes": 83340,
+          "zip_crc32": "c4bce7c2",
+          "format": ".terrn",
+          "sha256": "cb81c2e7f434e92316a53553890425c6809f16636e005669d1f0033f4f9d345b",
+          "general": {},
+          "legacy_first_nonempty_line": "sunset_mesa"
+        },
+        {
+          "member": "sunset_mesa_detailed.terrn",
+          "bytes": 124854,
+          "zip_crc32": "7d12fa6a",
+          "format": ".terrn",
+          "sha256": "649cecad077e1b0c51ffa77b34b8fb3b631fac83a31637c65b14a292996d8408",
+          "general": {},
+          "legacy_first_nonempty_line": "sunset_mesa_detailed"
+        },
+        {
+          "member": "sunset_mesa_detailed.terrn2",
+          "bytes": 633,
+          "zip_crc32": "6477a7a1",
+          "format": ".terrn2",
+          "sha256": "82600e4ed9ea5ee84ff16ab8f187e41d9cb18fe0083907820dbd27f6017e996c",
+          "general": {
+            "Name": "Sunset Mesa",
+            "GeometryConfig": "sunset_mesa_detailed.otc",
+            "Water": "0",
+            "AmbientColor": "0.400000, 0.400000, 0.405000",
+            "StartPosition": "1426.90856934, 4.0518155098, 1134.74902344",
+            "CaelumConfigFile": "sunset_mesa.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "sunset_mesa_detailed",
+            "TractionMap": "sunset_mesa-landuse.cfg"
+          }
+        },
+        {
+          "member": "sunset_mesa_fps.terrn",
+          "bytes": 1218,
+          "zip_crc32": "8a5d0708",
+          "format": ".terrn",
+          "sha256": "8a12ebfb621d9f88882c8b1079a317786e3724fc28f8b8bb1863150d49aa6b0e",
+          "general": {},
+          "legacy_first_nonempty_line": "sunset_mesa_fps"
+        },
+        {
+          "member": "sunset_mesa_low_fps.terrn",
+          "bytes": 723,
+          "zip_crc32": "1f4cb470",
+          "format": ".terrn",
+          "sha256": "73728d71baa19a72195f201ba5338e8c08805f3d8751ada7e513202c3a0fa214",
+          "general": {},
+          "legacy_first_nonempty_line": "sunset_mesa_low_fps"
+        },
+        {
+          "member": "sunset_mesa_storm.terrn",
+          "bytes": 85081,
+          "zip_crc32": "6ffc2a14",
+          "format": ".terrn",
+          "sha256": "cb9d69504e68c9d1902f4f67b58e98ef893c134f4b86d84ef189ce883da3ccd5",
+          "general": {},
+          "legacy_first_nonempty_line": "sunset_mesa_storm"
+        },
+        {
+          "member": "sunset_mesa_storm.terrn2",
+          "bytes": 639,
+          "zip_crc32": "77f6437d",
+          "format": ".terrn2",
+          "sha256": "9adf4d098f6d6bff4979b99a36548465fbed0021ae837f865f9760e1686c806f",
+          "general": {
+            "Name": "Sunset Mesa Storm",
+            "GeometryConfig": "sunset_mesa_detailed.otc",
+            "Water": "0",
+            "AmbientColor": "0.400000, 0.400000, 0.405000",
+            "StartPosition": "1426.90856934, 4.0518155098, 1134.74902344",
+            "CaelumConfigFile": "sunset_mesa_storm.terrn.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "sunset_mesa_detailed",
+            "TractionMap": "sunset_mesa-landuse.cfg"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 353,
+      "uncompressed_bytes": 77182627,
+      "object_definition_count": 41,
+      "license_candidates": []
+    },
+    {
+      "archive": "TGTT-0.4.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\TGTT-0.4.zip",
+      "bytes": 39284877,
+      "modified_utc": "2019-04-19T04:03:32+00:00",
+      "definitions": [
+        {
+          "member": "TGTT.terrn2",
+          "bytes": 406,
+          "zip_crc32": "cafdb221",
+          "format": ".terrn2",
+          "sha256": "9f207f37fa459885256590477e77269aaeeabfb0252db5f3ad395bd992d22bf3",
+          "general": {
+            "Name": "Top Gear Test Track",
+            "GeometryConfig": "TGTT.otc",
+            "Water": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "1014.55, 0.00997734, 506.242",
+            "CaelumConfigFile": "31.os",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "1",
+            "GUID": "TGTT"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 89,
+      "uncompressed_bytes": 50274848,
+      "object_definition_count": 12,
+      "license_candidates": []
+    },
+    {
+      "archive": "TrainValley.zip",
+      "path": "D:\\Rigs of Rods\\content\\Terrains\\TrainValley.zip",
+      "bytes": 19763789,
+      "modified_utc": "2019-04-19T04:03:46+00:00",
+      "definitions": [
+        {
+          "member": "a474UID_trainvalley.terrn2",
+          "bytes": 496,
+          "zip_crc32": "9be07350",
+          "format": ".terrn2",
+          "sha256": "93354a5b75a3453c21d0b6a16c60d42d6d33bf8ac1636197deb8341117495efa",
+          "general": {
+            "Name": "Train Valley",
+            "GeometryConfig": "a474UID_trainvalley.otc",
+            "Water": "1",
+            "WaterLine": "40",
+            "WaterBottomLine": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "2446, 41, 2175",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "98frh07a-6e35-491c-s8af-8b66b473d254",
+            "TractionMap": "a474UID_landuse.cfg"
+          }
+        },
+        {
+          "member": "a474UID_trainvalleyfps.terrn2",
+          "bytes": 465,
+          "zip_crc32": "265ddee5",
+          "format": ".terrn2",
+          "sha256": "50f15ca70cfd8a49fe8469c77e011e90a76d1fc42ac37619a3cbd4320641833f",
+          "general": {
+            "Name": "Train Valley FPS",
+            "GeometryConfig": "a474UID_trainvalley.otc",
+            "Water": "1",
+            "WaterLine": "40",
+            "WaterBottomLine": "0",
+            "AmbientColor": "0.93, 0.86, 0.76",
+            "StartPosition": "2446, 41, 2175",
+            "SandStormCubeMap": "tracks/skyboxcol",
+            "Gravity": "-9.81",
+            "CategoryID": "129",
+            "Version": "2",
+            "GUID": "98frh07a-6e35-491c-s8af-8b66b473d255",
+            "TractionMap": "a474UID_landuse.cfg"
+          }
+        }
+      ],
+      "errors": [],
+      "file_count": 64,
+      "uncompressed_bytes": 72235094,
+      "object_definition_count": 4,
+      "license_candidates": []
+    }
+  ],
+  "definition_counts": {
+    ".terrn2": 44,
+    ".terrn": 31
+  }
+}

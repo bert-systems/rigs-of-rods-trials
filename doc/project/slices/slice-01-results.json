@@ -1,0 +1,264 @@
+{
+  "schema": 1,
+  "slice": "01",
+  "sourceHeadAtBuild": "e85535569102b6251849af574026984e3213b3f4",
+  "content": "34fefdd126784bf87b068fc283f812525d159dd7",
+  "exeSha256": "42BFCDF0171C6986474D2616B742FF3B4D997C7E16E28076A77823B67548A2EC",
+  "evidenceRoot": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938",
+  "featureCheck": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\report\\verification-20261008-201743\\checks.json",
+  "allFeatureBooleansPass": true,
+  "primaryRecords": 30068,
+  "primaryDropped": 0,
+  "primaryCoastDisplacementM": 33.39405341073371,
+  "nativePauseTick": 8752,
+  "scientificValidation": "NotReady",
+  "attempts": [
+    {
+      "id": "4ba7a4d8240648b6bba796b75cbb70ba",
+      "definition": {
+        "name": "Verified coast / pause / resume",
+        "launchSpeedMps": 5,
+        "durationSeconds": 12,
+        "settleSeconds": 3,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1"
+      },
+      "revisionId": "2923f6ad775e499bae9874184b3454e5",
+      "processId": 28864,
+      "processPath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\4ba7a4d8240648b6bba796b75cbb70ba\\worker\\RoR.exe",
+      "executableSha256": "42BFCDF0171C6986474D2616B742FF3B4D997C7E16E28076A77823B67548A2EC",
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "metrics": {
+        "durationMet": true,
+        "records": 30068,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.000681712125504007,
+        "maxKineticWorkResidualJ": 0.00322018115403597,
+        "maxKineticJ": 154445.86168728513,
+        "captureProblem": "",
+        "workerExitCode": 0
+      },
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\4ba7a4d8240648b6bba796b75cbb70ba"
+    },
+    {
+      "id": "c4c108259690467da996497edfcf6c36",
+      "definition": {
+        "name": "Steady wind / lower density / repeats",
+        "launchSpeedMps": 5,
+        "durationSeconds": 4,
+        "settleSeconds": 3,
+        "repeats": 2,
+        "environment": {
+          "gravity": -8,
+          "temperatureK": 300,
+          "density": 1,
+          "windX": 3,
+          "windY": 0,
+          "windZ": -1
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1"
+      },
+      "revisionId": "674d986dd1ec43089e526966c7ef6567",
+      "processId": 37232,
+      "processPath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\c4c108259690467da996497edfcf6c36\\worker\\RoR.exe",
+      "executableSha256": "42BFCDF0171C6986474D2616B742FF3B4D997C7E16E28076A77823B67548A2EC",
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "metrics": {
+        "durationMet": true,
+        "records": 14055,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.0006453172137227366,
+        "maxKineticWorkResidualJ": 0.0030567398806265775,
+        "maxKineticJ": 154456.98843537318,
+        "captureProblem": "",
+        "workerExitCode": 0
+      },
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\c4c108259690467da996497edfcf6c36"
+    },
+    {
+      "id": "25c9fe34b69343c2a6c1d5e2b824eba3",
+      "definition": {
+        "name": "Steady wind / lower density / repeats",
+        "launchSpeedMps": 5,
+        "durationSeconds": 4,
+        "settleSeconds": 3,
+        "repeats": 2,
+        "environment": {
+          "gravity": -8,
+          "temperatureK": 300,
+          "density": 1,
+          "windX": 3,
+          "windY": 0,
+          "windZ": -1
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1"
+      },
+      "revisionId": "674d986dd1ec43089e526966c7ef6567",
+      "processId": 53080,
+      "processPath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\25c9fe34b69343c2a6c1d5e2b824eba3\\worker\\RoR.exe",
+      "executableSha256": "42BFCDF0171C6986474D2616B742FF3B4D997C7E16E28076A77823B67548A2EC",
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "metrics": {
+        "durationMet": true,
+        "records": 14145,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.0006453172137227366,
+        "maxKineticWorkResidualJ": 0.0030567398806265775,
+        "maxKineticJ": 154456.98843537318,
+        "captureProblem": "",
+        "workerExitCode": 0
+      },
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\25c9fe34b69343c2a6c1d5e2b824eba3"
+    },
+    {
+      "id": "53a2336a32774076b518b7f4561b78c6",
+      "definition": {
+        "name": "Cancel active / independent next",
+        "launchSpeedMps": 5,
+        "durationSeconds": 6,
+        "settleSeconds": 3,
+        "repeats": 2,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1"
+      },
+      "revisionId": "d129a333d19d44b683fa422ab2ec14b5",
+      "processId": 20368,
+      "processPath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\53a2336a32774076b518b7f4561b78c6\\worker\\RoR.exe",
+      "executableSha256": "42BFCDF0171C6986474D2616B742FF3B4D997C7E16E28076A77823B67548A2EC",
+      "execution": "Cancelled",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "metrics": {
+        "durationMet": false,
+        "records": 2787,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 3.726226473286165e-05,
+        "maxKineticWorkResidualJ": 2.0768020232351562e-05,
+        "maxKineticJ": 1321.8644314538042,
+        "captureProblem": "",
+        "workerExitCode": 0
+      },
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\53a2336a32774076b518b7f4561b78c6"
+    },
+    {
+      "id": "c76a2a3068f54fe7817edb86119bdb13",
+      "definition": {
+        "name": "Cancel active / independent next",
+        "launchSpeedMps": 5,
+        "durationSeconds": 6,
+        "settleSeconds": 3,
+        "repeats": 2,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1"
+      },
+      "revisionId": "d129a333d19d44b683fa422ab2ec14b5",
+      "processId": 60296,
+      "processPath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\c76a2a3068f54fe7817edb86119bdb13\\worker\\RoR.exe",
+      "executableSha256": "42BFCDF0171C6986474D2616B742FF3B4D997C7E16E28076A77823B67548A2EC",
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "metrics": {
+        "durationMet": true,
+        "records": 18172,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.000681712125504007,
+        "maxKineticWorkResidualJ": 0.00322018115403597,
+        "maxKineticJ": 154445.86168728513,
+        "captureProblem": "",
+        "workerExitCode": 0
+      },
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\c76a2a3068f54fe7817edb86119bdb13"
+    },
+    {
+      "id": "89c6f00f63ab450d87600e0442a7bd4f",
+      "definition": {
+        "name": "Cancel active / independent next",
+        "launchSpeedMps": 5,
+        "durationSeconds": 6,
+        "settleSeconds": 3,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1"
+      },
+      "revisionId": "07c4e01539ac48f4968e725e87f41934",
+      "processId": 34688,
+      "processPath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\89c6f00f63ab450d87600e0442a7bd4f\\worker\\RoR.exe",
+      "executableSha256": "42BFCDF0171C6986474D2616B742FF3B4D997C7E16E28076A77823B67548A2EC",
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "metrics": {
+        "durationMet": true,
+        "records": 18253,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.000681712125504007,
+        "maxKineticWorkResidualJ": 0.00322018115403597,
+        "maxKineticJ": 154445.86168728513,
+        "captureProblem": "",
+        "workerExitCode": 0
+      },
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-01-2026-10-08-1938\\archive\\89c6f00f63ab450d87600e0442a7bd4f"
+    }
+  ],
+  "unqualified": [
+    "full force/energy attribution",
+    "analytical engine fixtures",
+    "barrier outcomes",
+    "raw node/beam/contact event windows",
+    "operational fault/performance stress"
+  ]
+}

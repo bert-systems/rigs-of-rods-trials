@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(RoRTrialLedgerTests LANGUAGES CXX)
+enable_testing()
+add_executable(trial-ledger-tests ledger-tests.cpp)
+target_compile_features(trial-ledger-tests PRIVATE cxx_std_11)
+add_test(NAME trial-ledger-identities COMMAND trial-ledger-tests)

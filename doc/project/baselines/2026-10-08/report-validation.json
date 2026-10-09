@@ -1,0 +1,16 @@
+{
+  "engine": "Playwright Chromium using installed Chrome in a fresh headless context",
+  "images": 4,
+  "video": {
+    "duration": 35.3,
+    "width": 1280,
+    "height": 720,
+    "readyState": 4,
+    "error": null
+  },
+  "videoPlayback": true,
+  "desktopNoHorizontalOverflow": true,
+  "mobileNoHorizontalOverflow": true,
+  "missingLocalLinks": [],
+  "pageErrors": []
+}

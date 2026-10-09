@@ -1,0 +1,333 @@
+{
+  "evaluationDate": "2026-10-08",
+  "sourceDocument": "D:\\Rigs of Rods\\rigs-of-rods-trials\\doc\\project\\design\\trial-platform-implementation-spec.md",
+  "report": "D:\\Rigs of Rods\\rigs-of-rods-trials\\doc\\project\\reports\\trial-implementation-spec-2026-10-08.html",
+  "captureDirectory": "D:\\Rigs of Rods\\trial-implementation-review-2026-10-08-192445-773386",
+  "sourceChecks": [
+    {
+      "id": "A01",
+      "file": "source/main/physics/ActorManager.cpp",
+      "start": 1247,
+      "end": 1320,
+      "lines": 1918,
+      "valid": true
+    },
+    {
+      "id": "A03",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 1602,
+      "end": 1699,
+      "lines": 1853,
+      "valid": true
+    },
+    {
+      "id": "A04",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 1210,
+      "end": 1465,
+      "lines": 1853,
+      "valid": true
+    },
+    {
+      "id": "A05",
+      "file": "source/main/physics/collision/Collisions.cpp",
+      "start": 1243,
+      "end": 1344,
+      "lines": 1620,
+      "valid": true
+    },
+    {
+      "id": "A06",
+      "file": "source/main/physics/collision/DynamicCollisions.cpp",
+      "start": 92,
+      "end": 115,
+      "lines": 294,
+      "valid": true
+    },
+    {
+      "id": "A13",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 1827,
+      "end": 1853,
+      "lines": 1853,
+      "valid": true
+    },
+    {
+      "id": "A14",
+      "file": "source/main/physics/SimConstants.h",
+      "start": 17,
+      "end": 21,
+      "lines": 85,
+      "valid": true
+    }
+  ],
+  "localHtmlLinks": [
+    {
+      "href": "../design/trial-platform-implementation-spec.md",
+      "exists": true
+    },
+    {
+      "href": "../design/implementation-decisions.md",
+      "exists": true
+    },
+    {
+      "href": "trial-architecture-options-2026-10-08.html",
+      "exists": true
+    },
+    {
+      "href": "../../../PROJECT.md",
+      "exists": true
+    },
+    {
+      "href": "../design/implementation-decisions.md",
+      "exists": true
+    },
+    {
+      "href": "trial-implementation-spec-2026-10-08.html",
+      "exists": true
+    },
+    {
+      "href": "../design/trial-platform-architecture-options.md",
+      "exists": true
+    },
+    {
+      "href": "../../../platform.md",
+      "exists": true
+    },
+    {
+      "href": "../research/2026-10-08/terrain-inventory.md",
+      "exists": true
+    },
+    {
+      "href": "../design/implementation-decisions.md",
+      "exists": true
+    },
+    {
+      "href": "../design/trial-platform-architecture-options.md",
+      "exists": true
+    },
+    {
+      "href": "../../../platform.md",
+      "exists": true
+    },
+    {
+      "href": "../research/2026-10-08/terrain-inventory.md",
+      "exists": true
+    },
+    {
+      "href": "../../../PROJECT.md",
+      "exists": true
+    },
+    {
+      "href": "../../../architecture.md",
+      "exists": true
+    },
+    {
+      "href": "../../../project-memory.md",
+      "exists": true
+    },
+    {
+      "href": "../../../todo.md",
+      "exists": true
+    },
+    {
+      "href": "../build-and-record.md",
+      "exists": true
+    },
+    {
+      "href": "../baselines/2026-10-08/README.md",
+      "exists": true
+    },
+    {
+      "href": "../design/2026-10-08/references.json",
+      "exists": true
+    },
+    {
+      "href": "../research/2026-10-08/source-inspection.json",
+      "exists": true
+    },
+    {
+      "href": "../design/2026-10-08/implementation-review.md",
+      "exists": true
+    }
+  ],
+  "markdownLinks": [
+    {
+      "href": "implementation-decisions.md",
+      "exists": true
+    },
+    {
+      "href": "../reports/trial-implementation-spec-2026-10-08.html",
+      "exists": true
+    },
+    {
+      "href": "trial-platform-architecture-options.md",
+      "exists": true
+    },
+    {
+      "href": "../../../platform.md",
+      "exists": true
+    },
+    {
+      "href": "../research/2026-10-08/terrain-inventory.md",
+      "exists": true
+    },
+    {
+      "href": "implementation-decisions.md",
+      "exists": true
+    },
+    {
+      "href": "trial-platform-architecture-options.md",
+      "exists": true
+    },
+    {
+      "href": "../../../platform.md",
+      "exists": true
+    },
+    {
+      "href": "../research/2026-10-08/terrain-inventory.md",
+      "exists": true
+    },
+    {
+      "href": "../../../PROJECT.md",
+      "exists": true
+    },
+    {
+      "href": "../../../architecture.md",
+      "exists": true
+    },
+    {
+      "href": "../../../project-memory.md",
+      "exists": true
+    },
+    {
+      "href": "../../../todo.md",
+      "exists": true
+    },
+    {
+      "href": "../build-and-record.md",
+      "exists": true
+    },
+    {
+      "href": "../baselines/2026-10-08/README.md",
+      "exists": true
+    },
+    {
+      "href": "2026-10-08/references.json",
+      "exists": true
+    },
+    {
+      "href": "../research/2026-10-08/source-inspection.json",
+      "exists": true
+    },
+    {
+      "href": "2026-10-08/implementation-review.md",
+      "exists": true
+    }
+  ],
+  "exampleJsonParsed": true,
+  "calculatedPayloadBytesPerSimulatedSecond": 46464000,
+  "browserChecks": {
+    "sections": 12,
+    "navLinks": 12,
+    "tables": 10,
+    "diagrams": 2,
+    "desktopOverflow": {
+      "width": 1440,
+      "documentWidth": 1440
+    },
+    "policyCases": {
+      "complete": {
+        "values": [
+          "Completed",
+          "Complete",
+          "Pending automated checks",
+          "Continue eligible independent trials"
+        ],
+        "matchesPolicy": true
+      },
+      "gap": {
+        "values": [
+          "Running; may complete normally",
+          "Incomplete — required gap retained",
+          "Cannot pass",
+          "Continue eligible independent trials after finish"
+        ],
+        "matchesPolicy": true
+      },
+      "crash": {
+        "values": [
+          "Failed — process exit",
+          "Partial / tail uncertainty assessed",
+          "No completed-trial pass",
+          "Continue eligible trials; manual retry is a new attempt"
+        ],
+        "matchesPolicy": true
+      },
+      "pause": {
+        "values": [
+          "Paused — acknowledged boundary",
+          "Quality retained; no advancing physics ticks",
+          "Pending completion and checks",
+          "Active attempt retains its slot"
+        ],
+        "matchesPolicy": true
+      },
+      "storage": {
+        "values": [
+          "Queued — preflight blocked",
+          "No attempt launched",
+          "Not evaluated",
+          "Hold new launches"
+        ],
+        "matchesPolicy": true
+      },
+      "failedcheck": {
+        "values": [
+          "Completed",
+          "Complete",
+          "Failed scoped check",
+          "Continue eligible independent trials"
+        ],
+        "matchesPolicy": true
+      },
+      "disconnect": {
+        "values": [
+          "Running under coordinator ownership",
+          "Native archive determines quality",
+          "Pending automated checks",
+          "Coordinator continues eligible queue"
+        ],
+        "matchesPolicy": true
+      }
+    },
+    "accessibleDiagrams": true,
+    "mobileOverflow": {
+      "width": 390,
+      "documentWidth": 390
+    },
+    "mobilePolicyOverflow": {
+      "width": 390,
+      "documentWidth": 390
+    },
+    "mobileStorageOutcome": "Hold new launches",
+    "pageErrors": [],
+    "externalRequests": [],
+    "browserVersion": "154.0.8037.98"
+  },
+  "screenshots": [
+    "D:\\Rigs of Rods\\trial-implementation-review-2026-10-08-192445-773386\\desktop-overview.png",
+    "D:\\Rigs of Rods\\trial-implementation-review-2026-10-08-192445-773386\\selected-architecture.png",
+    "D:\\Rigs of Rods\\trial-implementation-review-2026-10-08-192445-773386\\capture-quality-policy.png",
+    "D:\\Rigs of Rods\\trial-implementation-review-2026-10-08-192445-773386\\required-gap-explorer.png",
+    "D:\\Rigs of Rods\\trial-implementation-review-2026-10-08-192445-773386\\delivery-epics.png",
+    "D:\\Rigs of Rods\\trial-implementation-review-2026-10-08-192445-773386\\mobile-navigation.png",
+    "D:\\Rigs of Rods\\trial-implementation-review-2026-10-08-192445-773386\\mobile-overview.png",
+    "D:\\Rigs of Rods\\trial-implementation-review-2026-10-08-192445-773386\\mobile-policy.png"
+  ],
+  "reportSha256": "1558d0acadfdbddfc0d3b4c9edbf90eaa139ba623e03cf2eebcb04b65b8bcb1b",
+  "specificationSha256": "e97524e9a0f1c8bb5768a186a04a5ad776eb4172b08672518e3bc0c63be576c5",
+  "problems": [],
+  "allChecksPassed": true,
+  "scope": "Documentation links/source ranges, report presentation, illustrative policy outputs and calculated sizing arithmetic. No new build, simulation, implementation or physical validation."
+}

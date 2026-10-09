@@ -1,0 +1,508 @@
+[
+  {
+    "id": "S01",
+    "key": "model",
+    "title": "Source: node and beam data",
+    "type": "source",
+    "file": "source/main/physics/SimData.h",
+    "start": 250,
+    "end": 338,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimData.h#L250-L338"
+  },
+  {
+    "id": "S02",
+    "key": "solver",
+    "title": "Source: node integration and force reset",
+    "type": "source",
+    "file": "source/main/physics/ActorForcesEuler.cpp",
+    "start": 1602,
+    "end": 1675,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1602-L1675"
+  },
+  {
+    "id": "S03",
+    "key": "node",
+    "title": "Source: node mass, velocity and force getters",
+    "type": "source",
+    "file": "source/main/physics/Actor.cpp",
+    "start": 4854,
+    "end": 4900,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L4854-L4900"
+  },
+  {
+    "id": "S04",
+    "key": "position",
+    "title": "Source: actor reference position and camera-dependent averaging",
+    "type": "source",
+    "file": "source/main/physics/Actor.cpp",
+    "start": 1166,
+    "end": 1193,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L1166-L1193"
+  },
+  {
+    "id": "S05",
+    "key": "gforce",
+    "title": "Source: local camera g-force calculation",
+    "type": "source",
+    "file": "source/main/physics/Actor.cpp",
+    "start": 4529,
+    "end": 4548,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L4529-L4548"
+  },
+  {
+    "id": "S06",
+    "key": "step",
+    "title": "Source: frame batching and fixed-step accumulation",
+    "type": "source",
+    "file": "source/main/physics/ActorManager.cpp",
+    "start": 1120,
+    "end": 1234,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1120-L1234"
+  },
+  {
+    "id": "S07",
+    "key": "loop",
+    "title": "Source: synchronized scripting before new physics tasks",
+    "type": "source",
+    "file": "source/main/main.cpp",
+    "start": 2196,
+    "end": 2237,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/main.cpp#L2196-L2237"
+  },
+  {
+    "id": "S08",
+    "key": "actorapi",
+    "title": "Source: actor telemetry and control bindings",
+    "type": "source",
+    "file": "source/main/scripting/bindings/ActorAngelscript.cpp",
+    "start": 135,
+    "end": 225,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/ActorAngelscript.cpp#L135-L225"
+  },
+  {
+    "id": "S09",
+    "key": "simattrs",
+    "title": "Source: supported simulation attributes",
+    "type": "source",
+    "file": "source/main/physics/SimData.h",
+    "start": 924,
+    "end": 978,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimData.h#L924-L978"
+  },
+  {
+    "id": "S10",
+    "key": "gameapi",
+    "title": "Source: game, terrain, AI and resource bindings",
+    "type": "source",
+    "file": "source/main/scripting/bindings/GameScriptAngelscript.cpp",
+    "start": 86,
+    "end": 206,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/GameScriptAngelscript.cpp#L86-L206"
+  },
+  {
+    "id": "S11",
+    "key": "spawn",
+    "title": "Source: actor spawn validation and fallback",
+    "type": "source",
+    "file": "source/main/scripting/GameScript.cpp",
+    "start": 1583,
+    "end": 1639,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/GameScript.cpp#L1583-L1639"
+  },
+  {
+    "id": "S12",
+    "key": "messages",
+    "title": "Source: bound message types",
+    "type": "source",
+    "file": "source/main/scripting/bindings/MsgQueueAngelscript.cpp",
+    "start": 35,
+    "end": 116,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/MsgQueueAngelscript.cpp#L35-L116"
+  },
+  {
+    "id": "S13",
+    "key": "events",
+    "title": "Source: event definitions and payloads",
+    "type": "source",
+    "file": "source/main/gameplay/ScriptEvents.h",
+    "start": 29,
+    "end": 132,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gameplay/ScriptEvents.h#L29-L132"
+  },
+  {
+    "id": "S14",
+    "key": "freeforces",
+    "title": "Source: persistent force and half-beam calculation",
+    "type": "source",
+    "file": "source/main/physics/ActorManager.cpp",
+    "start": 1624,
+    "end": 1768,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1624-L1768"
+  },
+  {
+    "id": "S15",
+    "key": "beams",
+    "title": "Source: beam force, yield and break processing",
+    "type": "source",
+    "file": "source/main/physics/ActorForcesEuler.cpp",
+    "start": 1317,
+    "end": 1445,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1317-L1445"
+  },
+  {
+    "id": "S16",
+    "key": "air",
+    "title": "Source: wing-relative flow and air-density model",
+    "type": "source",
+    "file": "source/main/physics/flex/FlexAirfoil.cpp",
+    "start": 590,
+    "end": 678,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/flex/FlexAirfoil.cpp#L590-L678"
+  },
+  {
+    "id": "S17",
+    "key": "fuselage",
+    "title": "Source: fuselage-relative flow and drag",
+    "type": "source",
+    "file": "source/main/physics/ActorForcesEuler.cpp",
+    "start": 123,
+    "end": 151,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L123-L151"
+  },
+  {
+    "id": "S18",
+    "key": "outgauge",
+    "title": "Source: OutGauge interval, data fields and sender",
+    "type": "source",
+    "file": "source/main/network/OutGauge.cpp",
+    "start": 103,
+    "end": 202,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/network/OutGauge.cpp#L103-L202"
+  },
+  {
+    "id": "S19",
+    "key": "packet",
+    "title": "Source: OutGauge packet field definitions",
+    "type": "source",
+    "file": "source/main/network/OutGauge.h",
+    "start": 87,
+    "end": 118,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/network/OutGauge.h#L87-L118"
+  },
+  {
+    "id": "S20",
+    "key": "replay",
+    "title": "Source: replay samples and beam flags",
+    "type": "source",
+    "file": "source/main/gameplay/Replay.cpp",
+    "start": 183,
+    "end": 211,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gameplay/Replay.cpp#L183-L211"
+  },
+  {
+    "id": "S21",
+    "key": "savegame",
+    "title": "Source: saved node and beam state",
+    "type": "source",
+    "file": "source/main/physics/Savegame.cpp",
+    "start": 719,
+    "end": 763,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Savegame.cpp#L719-L763"
+  },
+  {
+    "id": "S22",
+    "key": "config",
+    "title": "Source: runtime configuration variables",
+    "type": "source",
+    "file": "source/main/system/CVar.cpp",
+    "start": 32,
+    "end": 198,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/system/CVar.cpp#L32-L198"
+  },
+  {
+    "id": "S23",
+    "key": "cli",
+    "title": "Source: supported launch arguments",
+    "type": "source",
+    "file": "source/main/system/AppCommandLine.cpp",
+    "start": 52,
+    "end": 135,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/system/AppCommandLine.cpp#L52-L135"
+  },
+  {
+    "id": "S24",
+    "key": "ground",
+    "title": "Source: friction and fluid ground parameters",
+    "type": "source",
+    "file": "resources/skeleton/config/ground_models.cfg",
+    "start": 7,
+    "end": 78,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/skeleton/config/ground_models.cfg#L7-L78"
+  },
+  {
+    "id": "S25",
+    "key": "contact",
+    "title": "Source: collision reaction and friction calculation",
+    "type": "source",
+    "file": "source/main/physics/collision/Collisions.cpp",
+    "start": 1265,
+    "end": 1344,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/Collisions.cpp#L1265-L1344"
+  },
+  {
+    "id": "S26",
+    "key": "aiapi",
+    "title": "Source: waypoint and per-waypoint control bindings",
+    "type": "source",
+    "file": "source/main/scripting/bindings/VehicleAiAngelscript.cpp",
+    "start": 34,
+    "end": 56,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/VehicleAiAngelscript.cpp#L34-L56"
+  },
+  {
+    "id": "S27",
+    "key": "ai",
+    "title": "Source: waypoint speed and power setters",
+    "type": "source",
+    "file": "source/main/gameplay/VehicleAI.cpp",
+    "start": 134,
+    "end": 150,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gameplay/VehicleAI.cpp#L134-L150"
+  },
+  {
+    "id": "S28",
+    "key": "autopilot",
+    "title": "Source: flight autopilot bindings",
+    "type": "source",
+    "file": "source/main/scripting/bindings/AutopilotAngelscript.cpp",
+    "start": 31,
+    "end": 52,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/AutopilotAngelscript.cpp#L31-L52"
+  },
+  {
+    "id": "S29",
+    "key": "engine",
+    "title": "Source: drivetrain bindings",
+    "type": "source",
+    "file": "source/main/scripting/bindings/EngineAngelscript.cpp",
+    "start": 55,
+    "end": 138,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/EngineAngelscript.cpp#L55-L138"
+  },
+  {
+    "id": "S30",
+    "key": "fileio",
+    "title": "Source: script text-resource creation and path restrictions",
+    "type": "source",
+    "file": "source/main/scripting/GameScript.cpp",
+    "start": 2044,
+    "end": 2191,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/GameScript.cpp#L2044-L2191"
+  },
+  {
+    "id": "S31",
+    "key": "simtime",
+    "title": "Source: script simulation clock",
+    "type": "source",
+    "file": "source/main/scripting/GameScript.cpp",
+    "start": 110,
+    "end": 113,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/GameScript.cpp#L110-L113"
+  },
+  {
+    "id": "S32",
+    "key": "attrguard",
+    "title": "Source: multiplayer guard and attribute-change events",
+    "type": "source",
+    "file": "source/main/physics/Actor.cpp",
+    "start": 5110,
+    "end": 5127,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L5110-L5127"
+  },
+  {
+    "id": "S33",
+    "key": "timestep",
+    "title": "Source: fixed step and compile-time limits",
+    "type": "source",
+    "file": "source/main/physics/SimConstants.h",
+    "start": 20,
+    "end": 37,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimConstants.h#L20-L37"
+  },
+  {
+    "id": "S34",
+    "key": "race",
+    "title": "Source: bundled race management",
+    "type": "source",
+    "file": "resources/scripts/races.as",
+    "start": 1,
+    "end": 70,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/scripts/races.as#L1-L70"
+  },
+  {
+    "id": "S35",
+    "key": "tools",
+    "title": "Source: engine diagnostics gadget",
+    "type": "source",
+    "file": "resources/gadgets/engine_tool.gadget",
+    "start": 7,
+    "end": 17,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/gadgets/engine_tool.gadget#L7-L17"
+  },
+  {
+    "id": "S36",
+    "key": "shock",
+    "title": "Source: shock diagnostic samples",
+    "type": "source",
+    "file": "resources/gadgets/shock_tool.as",
+    "start": 178,
+    "end": 191,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/gadgets/shock_tool.as#L178-L191"
+  },
+  {
+    "id": "S37",
+    "key": "batcher",
+    "title": "Source: terrain mesh batcher role",
+    "type": "source",
+    "file": "resources/gadgets/terrn_batcher.as",
+    "start": 1,
+    "end": 15,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/gadgets/terrn_batcher.as#L1-L15"
+  },
+  {
+    "id": "D01",
+    "key": "portal",
+    "title": "Official developer portal",
+    "type": "web",
+    "url": "https://developer.rigsofrods.org/",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D02",
+    "key": "concepts",
+    "title": "Official node/beam concepts",
+    "type": "web",
+    "url": "https://docs.rigsofrods.org/vehicle-creation/vehicle-concepts/",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D03",
+    "key": "truck",
+    "title": "Official vehicle file format",
+    "type": "web",
+    "url": "https://docs.rigsofrods.org/vehicle-creation/fileformat-truck/",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D04",
+    "key": "terrain",
+    "title": "Official terrn2 format",
+    "type": "web",
+    "url": "https://docs.rigsofrods.org/terrain-creation/terrn2-subsystem/",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D05",
+    "key": "ai-doc",
+    "title": "Official vehicle AI guide",
+    "type": "web",
+    "url": "https://docs.rigsofrods.org/gameplay/vehicle-ai/",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D06",
+    "key": "waypoints",
+    "title": "Community-maintained waypoint presets",
+    "type": "web",
+    "url": "https://github.com/RigsOfRods-Community/ai-waypoints",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D07",
+    "key": "freeforce-doc",
+    "title": "Official FreeForces description",
+    "type": "web",
+    "url": "https://developer.rigsofrods.org/d0/dde/_free_forces_page.html",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D08",
+    "key": "freebeam-doc",
+    "title": "Official FreeBeams description",
+    "type": "web",
+    "url": "https://developer.rigsofrods.org/d5/d34/_free_beams_page.html",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D09",
+    "key": "simattr-doc",
+    "title": "Official ActorSimAttributes description",
+    "type": "web",
+    "url": "https://developer.rigsofrods.org/d3/d52/_actor_sim_attributes_page.html",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D10",
+    "key": "script-doc",
+    "title": "Official scripting features overview",
+    "type": "web",
+    "url": "https://developer.rigsofrods.org/d7/d61/_scripting_features_overview_page.html",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D11",
+    "key": "tuning-doc",
+    "title": "Official tuning guide",
+    "type": "web",
+    "url": "https://docs.rigsofrods.org/gameplay/tuning/",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D12",
+    "key": "air-doc",
+    "title": "Official aircraft creation guide",
+    "type": "web",
+    "url": "https://docs.rigsofrods.org/vehicle-creation/aircraft-and-aerodynamics/",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D13",
+    "key": "boat-doc",
+    "title": "Official boat creation guide",
+    "type": "web",
+    "url": "https://docs.rigsofrods.org/vehicle-creation/boats/",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D14",
+    "key": "race-doc",
+    "title": "Official race script generator",
+    "type": "web",
+    "url": "https://docs.rigsofrods.org/terrain-creation/race-generator/",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D15",
+    "key": "controls",
+    "title": "Official controls and replay bindings",
+    "type": "web",
+    "url": "https://docs.rigsofrods.org/gameplay/controls-config/",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D16",
+    "key": "server",
+    "title": "Official dedicated-server repository",
+    "type": "web",
+    "url": "https://github.com/RigsOfRods/ror-server",
+    "accessed": "2026-10-08"
+  },
+  {
+    "id": "D17",
+    "key": "content",
+    "title": "Starter content repository at the inspected revision",
+    "type": "web",
+    "url": "https://github.com/RigsOfRods/content/tree/34fefdd126784bf87b068fc283f812525d159dd7",
+    "accessed": "2026-10-08"
+  }
+]

@@ -1,0 +1,1501 @@
+{
+  "checkedAtLocal": "2026-10-08T19:27:15.660288-04:00",
+  "allChecksPassed": true,
+  "problems": [],
+  "documents": 16,
+  "localLinkCount": 225,
+  "localLinks": [
+    {
+      "document": "README.md",
+      "href": "PROJECT.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "AGENTS.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "architecture.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "AUTHORS.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "COPYING",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "DEPENDENCIES.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "PROJECT.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "doc/project/design/trial-platform-implementation-spec.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "doc/project/design/trial-platform-architecture-options.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "architecture.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "CONTRIBUTING.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "AGENTS.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/design/trial-platform-implementation-spec.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/reports/trial-implementation-spec-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/design/trial-platform-architecture-options.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/reports/trial-architecture-options-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "architecture.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "BUILDING.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "CONTRIBUTING.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "doc/project/design/trial-platform-architecture-options.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "doc/project/reports/trial-architecture-options-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "doc/project/design/trial-platform-implementation-spec.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "doc/project/reports/trial-implementation-spec-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/main.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/AppContext.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/Application.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/GameContext.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/GameContext.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/utils/InputEngine.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/system/CVar.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/system/AppConfig.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/system/AppCommandLine.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/ActorSpawner.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/ActorSpawnerFlow.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/resources/rig_def_fileformat",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/ActorManager.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/Actor.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/ActorForcesEuler.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/SimData.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/collision/Collisions.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/collision/DynamicCollisions.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/collision/PointColDetector.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/gfx",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/gfx/SimBuffers.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/flex/FlexBody.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/terrain/Terrain.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/terrain/TerrainGeometryManager.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/terrain/TerrainObjectManager.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/terrain/ProceduralRoad.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/resources/ContentManager.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/resources/CacheSystem.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/scripting/ScriptEngine.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/scripting/GameScript.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/scripting/bindings",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/gui",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/audio",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/network",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "CMakeLists.txt",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "conanfile.py",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "cmake/DependenciesConfig.cmake",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "cmake/conan_provider.cmake",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/CMakeLists.txt",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/version_info",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "external/angelscript_addons",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": ".github/workflows/build-game.yml",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/SimConstants.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "doc/doxygen/CodebaseOverview.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "todo.md",
+      "href": "doc/project/design/trial-platform-implementation-spec.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "todo.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "todo.md",
+      "href": "doc/project/reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "todo.md",
+      "href": "doc/project/design/trial-platform-architecture-options.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "todo.md",
+      "href": "doc/project/reports/trial-architecture-options-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "todo.md",
+      "href": "doc/project/research/2026-10-08/terrain-inventory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "todo.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/trial-platform-architecture-options.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/trial-platform-implementation-spec.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/reports/trial-implementation-spec-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/research/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/trial-platform-architecture-options.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/reports/trial-architecture-options-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/research/2026-10-08/terrain-inventory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/trial-platform-implementation-spec.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/reports/trial-implementation-spec-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/design/2026-10-08/implementation-review.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "PROJECT.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/research/2026-10-08/source-inspection.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/research/2026-10-08/binding-inventory.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/research/2026-10-08/source-inspection.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/research/2026-10-08/binding-inventory.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/research/2026-10-08/references.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "provenance.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "verification.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "report-validation.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "conan.lock",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "build-proof.as",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "../../build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../PROJECT.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "baselines/2026-10-08/conan.lock",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "baselines/2026-10-08/build-proof.as",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../BUILDING.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../cmake/conan_provider.cmake",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\implementation-review.md",
+      "href": "../trial-platform-implementation-spec.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\implementation-review.md",
+      "href": "../../reports/trial-implementation-spec-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\implementation-review.md",
+      "href": "../implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\implementation-review.md",
+      "href": "render-implementation.mjs",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\implementation-review.md",
+      "href": "implementation-client.js",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\implementation-review.md",
+      "href": "verify-implementation.py",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\implementation-review.md",
+      "href": "implementation-report-validation.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\implementation-review.md",
+      "href": "verify-implementation-docs.py",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\implementation-review.md",
+      "href": "implementation-documentation-validation.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\implementation-review.md",
+      "href": "../../research/2026-10-08/report-style.css",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "../trial-platform-architecture-options.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "../../reports/trial-architecture-options-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "references.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "render-architecture.mjs",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "architecture-client.js",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "report-validation.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "verify-architecture.py",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "../../research/2026-10-08/report-style.css",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "../trial-platform-implementation-spec.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "../../reports/trial-implementation-spec-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\2026-10-08\\README.md",
+      "href": "implementation-review.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\implementation-decisions.md",
+      "href": "trial-platform-architecture-options.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\implementation-decisions.md",
+      "href": "../research/2026-10-08/terrain-inventory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\implementation-decisions.md",
+      "href": "trial-platform-implementation-spec.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\implementation-decisions.md",
+      "href": "../reports/trial-implementation-spec-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\implementation-decisions.md",
+      "href": "trial-platform-implementation-spec.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\implementation-decisions.md",
+      "href": "../reports/trial-implementation-spec-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\implementation-decisions.md",
+      "href": "../../../project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\implementation-decisions.md",
+      "href": "../../../todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\implementation-decisions.md",
+      "href": "../../../platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-architecture-options.md",
+      "href": "../reports/trial-architecture-options-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-architecture-options.md",
+      "href": "../../../platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-architecture-options.md",
+      "href": "../../../architecture.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-architecture-options.md",
+      "href": "../../../platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-architecture-options.md",
+      "href": "../../../architecture.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-architecture-options.md",
+      "href": "../baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-architecture-options.md",
+      "href": "../build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-architecture-options.md",
+      "href": "2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../reports/trial-implementation-spec-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "trial-platform-architecture-options.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../../../platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../research/2026-10-08/terrain-inventory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "trial-platform-architecture-options.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../../../platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../research/2026-10-08/terrain-inventory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../../../PROJECT.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../../../architecture.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../../../project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../../../todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "2026-10-08/references.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "../research/2026-10-08/source-inspection.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\design\\trial-platform-implementation-spec.md",
+      "href": "2026-10-08/implementation-review.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "../../../../platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "../../reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "../../baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "source-inspection.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "binding-inventory.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "references.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "render-report.mjs",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "report-style.css",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "report-client.js",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "verify-report.py",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "report-validation.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "terrain-inventory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "terrain-inventory.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\terrain-inventory.md",
+      "href": "terrain-inventory.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\terrain-inventory.md",
+      "href": "../../design/implementation-decisions.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\terrain-inventory.md",
+      "href": "../../../../platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\terrain-inventory.md",
+      "href": "../../../../project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    }
+  ],
+  "markdownTrailingWhitespace": [],
+  "preservedUpstreamWhitespace": [
+    {
+      "file": "README.md",
+      "line": 81
+    },
+    {
+      "file": "README.md",
+      "line": 82
+    }
+  ],
+  "syntaxChecks": [
+    {
+      "file": "verify-implementation.py",
+      "valid": true
+    },
+    {
+      "file": "verify-implementation-docs.py",
+      "valid": true
+    },
+    {
+      "file": "render-implementation.mjs",
+      "valid": true,
+      "errors": ""
+    },
+    {
+      "file": "implementation-client.js",
+      "valid": true,
+      "errors": ""
+    }
+  ],
+  "protectedEvidence": [
+    {
+      "file": "doc\\project\\baselines\\2026-10-08\\provenance.json",
+      "original": "D:\\Rigs of Rods\\source-build-2026-10-08\\report\\provenance.json",
+      "sha256": "57937dbf15f18c185d9a1c6bbcf22ccd4f82c179a3ea40ec206b7009cd74d18b",
+      "matchesOriginal": true
+    },
+    {
+      "file": "doc\\project\\baselines\\2026-10-08\\verification.json",
+      "original": "D:\\Rigs of Rods\\source-build-2026-10-08\\report\\verification.json",
+      "sha256": "7c7434285af8a6345fa0df983192722cd6ee5686389143b0695bd916e4eaef56",
+      "matchesOriginal": true
+    },
+    {
+      "file": "doc\\project\\baselines\\2026-10-08\\report-validation.json",
+      "original": "D:\\Rigs of Rods\\source-build-2026-10-08\\report\\report-validation.json",
+      "sha256": "b6e937e85fe862b5944952dce3136981c02275bf08fff587e4a0f3265334c7aa",
+      "matchesOriginal": true
+    },
+    {
+      "file": "doc\\project\\baselines\\2026-10-08\\conan.lock",
+      "original": "D:\\Rigs of Rods\\source-build-2026-10-08\\report\\conan.lock",
+      "sha256": "d68d886a373d41f9bf575b9a76035612f4ea75b511f0ddfd8b3af3473491df17",
+      "matchesOriginal": true
+    },
+    {
+      "file": "doc\\project\\baselines\\2026-10-08\\build-proof.as",
+      "original": "D:\\Rigs of Rods\\source-build-2026-10-08\\scripts\\build-proof.as",
+      "sha256": "4320a2a790efe3aca7922a288f1ebc91e42717aace1c72cdb7b6e5f3f5d3ba17",
+      "matchesOriginal": true
+    },
+    {
+      "file": "D:\\Rigs of Rods\\source-build-2026-10-08\\build\\bin\\RoR.exe",
+      "sha256": "2f74316a16ae2d44b7e1d458ecf25e409e1cd0d853dbe0f1065ac91fe7bbc70a",
+      "recordedSha256": "2F74316A16AE2D44B7E1D458ECF25E409E1CD0D853DBE0F1065AC91FE7BBC70A",
+      "matchesOriginal": true
+    },
+    {
+      "file": "doc/project/reports/platform-evaluation-2026-10-08.html",
+      "sha256": "a07eb3d3ff82eec5cff066eb271b2857622262ea87cf3c9d6273adcd8f8fc9b5",
+      "recordedSha256": "a07eb3d3ff82eec5cff066eb271b2857622262ea87cf3c9d6273adcd8f8fc9b5",
+      "matchesOriginal": true
+    },
+    {
+      "file": "doc/project/reports/trial-architecture-options-2026-10-08.html",
+      "sha256": "1380efda5d184262dad972d8a7978a4b8e110ce7264b223bcd7a74972e62f15d",
+      "recordedSha256": "1380efda5d184262dad972d8a7978a4b8e110ce7264b223bcd7a74972e62f15d",
+      "matchesOriginal": true
+    }
+  ],
+  "identity": {
+    "branch": {
+      "exitCode": 0,
+      "output": "master",
+      "errors": ""
+    },
+    "head": {
+      "exitCode": 0,
+      "output": "e85535569102b6251849af574026984e3213b3f4",
+      "errors": ""
+    },
+    "origin": {
+      "exitCode": 0,
+      "output": "https://github.com/bert-systems/rigs-of-rods-trials.git",
+      "errors": ""
+    },
+    "content": {
+      "exitCode": 0,
+      "output": "34fefdd126784bf87b068fc283f812525d159dd7 content (heads/master)",
+      "errors": ""
+    },
+    "trackedChangedFiles": {
+      "exitCode": 0,
+      "output": "README.md",
+      "errors": ""
+    },
+    "status": {
+      "exitCode": 0,
+      "output": "M README.md\n?? AGENTS.md\n?? PROJECT.md\n?? architecture.md\n?? doc/project/\n?? platform.md\n?? project-memory.md\n?? todo.md",
+      "errors": ""
+    }
+  },
+  "gitWhitespace": {
+    "exitCode": 0,
+    "output": "",
+    "errors": ""
+  },
+  "readOnlyInstalledSdks": {
+    "exitCode": 0,
+    "output": "5.0.301 [C:\\Program Files\\dotnet\\sdk]\n6.0.100 [C:\\Program Files\\dotnet\\sdk]\n6.0.402 [C:\\Program Files\\dotnet\\sdk]\n8.0.402 [C:\\Program Files\\dotnet\\sdk]\n9.0.101 [C:\\Program Files\\dotnet\\sdk]\n9.0.304 [C:\\Program Files\\dotnet\\sdk]\n10.0.103 [C:\\Program Files\\dotnet\\sdk]\n10.0.203 [C:\\Program Files\\dotnet\\sdk]",
+    "errors": ""
+  },
+  "archiveVolumeSnapshot": {
+    "volume": "D:",
+    "freeBytes": 114904903680,
+    "qualification": "Dated observation, not a reserved capacity or performance promise."
+  },
+  "reportValidation": "D:\\Rigs of Rods\\rigs-of-rods-trials\\doc\\project\\design\\2026-10-08\\implementation-report-validation.json",
+  "manualVisualReview": {
+    "reviewedDirectory": "D:\\Rigs of Rods\\trial-implementation-review-2026-10-08-192235-052329",
+    "views": [
+      "desktop-overview.png",
+      "selected-architecture.png",
+      "capture-quality-policy.png",
+      "required-gap-explorer.png",
+      "mobile-overview.png",
+      "mobile-policy.png"
+    ],
+    "finding": "Readable diagrams, controls and labels; no clipping seen. Final rerender changes one grammar word and passed browser QA again."
+  },
+  "scope": "Repository documentation/reference/syntax and protected-evidence integrity checks only. No engine implementation, game build/run, framework installation, calibrated physical result, Git commit or push."
+}

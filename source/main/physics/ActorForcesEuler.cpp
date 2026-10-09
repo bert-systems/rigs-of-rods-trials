@@ -25,6 +25,7 @@
 #include "ApproxMath.h"
 #include "Actor.h"
 #include "ActorManager.h"
+#include "../trials/TrialRuntime.h"
 #include "Buoyance.h"
 #include "CmdKeyInertia.h"
 #include "Collisions.h"
@@ -1607,6 +1608,7 @@ void Actor::CalcNodes()
 
     for (NodeNum_t i = 0; i < ar_num_nodes; i++)
     {
+        const Vector3 trial_force_before_contact = ar_trial_ledger.enabled ? ar_nodes[i].Forces : Vector3::ZERO;
         // COLLISION
         if (!ar_nodes[i].nd_no_ground_contact)
         {
@@ -1630,6 +1632,7 @@ void Actor::CalcNodes()
             m_camera_gforces_accu += ar_nodes[i].Forces / ar_nodes[i].mass;
         }
 
+        const Vector3 trial_velocity_before = ar_trial_ledger.enabled ? ar_nodes[i].Velocity : Vector3::ZERO;
         // integration
         if (!ar_nodes[i].nd_immovable)
         {
@@ -1637,6 +1640,14 @@ void Actor::CalcNodes()
             ar_nodes[i].RelPosition += ar_nodes[i].Velocity * PHYSICS_DT;
             ar_nodes[i].AbsPosition = ar_origin;
             ar_nodes[i].AbsPosition += ar_nodes[i].RelPosition;
+        }
+
+        if (ar_trial_ledger.enabled && !ar_nodes[i].nd_immovable)
+        {
+            auto vec = [](Vector3 v) { return Trials::Vec(v.x, v.y, v.z); };
+            ar_trial_ledger.Observe(ar_nodes[i].mass, vec(ar_nodes[i].AbsPosition),
+                vec(trial_velocity_before), vec(ar_nodes[i].Velocity), vec(ar_nodes[i].Forces),
+                vec(ar_nodes[i].Forces - trial_force_before_contact));
         }
 
         // prepare next loop (optimisation)
@@ -1664,10 +1675,16 @@ void Actor::CalcNodes()
         else if (!ar_disable_aerodyn_turbulent_drag)
         {
             // add viscous drag (turbulent model)
-            Real defdragxspeed = DEFAULT_DRAG * approx_speed;
-            Vector3 drag = -defdragxspeed * ar_nodes[i].Velocity;
+            const bool trial_environment = Trials::Runtime::Get().HasEnvironment();
+            const Trials::Vec wind = trial_environment ? Trials::Runtime::Get().Wind() : Trials::Vec();
+            const Vector3 airflow = trial_environment ? ar_nodes[i].Velocity - Vector3(wind.x, wind.y, wind.z) : ar_nodes[i].Velocity;
+            const Real flow_speed = trial_environment ? approx_sqrt(airflow.squaredLength()) : approx_speed;
+            const Real density_scale = trial_environment ? Trials::Runtime::Get().Density() / 1.225 : 1.0;
+            Real defdragxspeed = DEFAULT_DRAG * flow_speed;
+            if (trial_environment) defdragxspeed *= density_scale;
+            Vector3 drag = -defdragxspeed * airflow;
             // plus: turbulences
-            Real maxtur = defdragxspeed * approx_speed * 0.005f;
+            Real maxtur = defdragxspeed * flow_speed * 0.005f;
             drag += maxtur * Vector3(frand_11(), frand_11(), frand_11());
             ar_nodes[i].Forces += drag;
         }
