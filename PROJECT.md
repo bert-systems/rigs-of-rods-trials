@@ -12,6 +12,7 @@ The project foundation was established on **2026-10-08**. A fresh Windows source
 | Local source checkout | `D:\Rigs of Rods\rigs-of-rods-trials` |
 | Upstream project | [RigsOfRods/rigs-of-rods](https://github.com/RigsOfRods/rigs-of-rods) |
 | Baseline branch | `master` |
+| Current development/integration branch | `dev`; periodic user-managed pull requests into `master` |
 | Verified source baseline | `e85535569102b6251849af574026984e3213b3f4` |
 | Starter content submodule | [RigsOfRods/content](https://github.com/RigsOfRods/content), commit `34fefdd126784bf87b068fc283f812525d159dd7` |
 | Workspace parent | `D:\Rigs of Rods` |
@@ -54,6 +55,8 @@ This is a successful ground-vehicle smoke test. Runtime asset warnings remain, a
 ## Working convention
 
 Keep engine and project documentation changes in the fork. Give each evidence session a new directory outside the source checkout, preserve previous evidence, and record source identity and executable identity together. Close each session by updating the TODO list and project memory with the actual outcome and evidence location.
+
+From 2026-10-09, work from `dev` and commit/push completed slices to `origin/dev`. It starts from the Slice 04 merge on `master`, `b43b4bab6d760aeb55cbbfa239555f96c358769e`. Any temporary feature branches should start from and integrate into `dev`. The user will periodically manage pull requests into `master`; automatic major-slice merges/pushes to `master` are no longer the workflow. See [AGENTS.md](AGENTS.md) for the standing branch instructions.
 
 ## Latest delivery
 

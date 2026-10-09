@@ -2,6 +2,8 @@
 
 Updated: 2026-10-09. This is a planning record, not authorization to implement every item. Research, architecture evaluation and policy Q&A are complete. The [implementation specification](doc/project/design/trial-platform-implementation-spec.md) establishes review baseline 0.1; its proposed defaults/contracts need feasibility and qualification work before acceptance claims.
 
+Current publication workflow: develop, integrate, commit and push on `dev`. The user manages periodic pull requests into `master`; follow [AGENTS.md](AGENTS.md) rather than the historical automatic master-merge workflow.
+
 ## Completed foundation
 
 - [x] Identify the personal fork, upstream relationship, source revision, and starter-content revision.

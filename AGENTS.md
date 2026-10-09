@@ -9,6 +9,12 @@ These instructions apply to this source fork and its subdirectories. The project
 3. Check `git status --short`, the current branch, HEAD, origin, and content submodule status. Preserve existing user changes. Historical baseline values are evidence, not assumptions about the current tree.
 4. State the intended work briefly. Use the user's current scope; the backlog does not authorize starting unrelated features.
 
+## Branch and publication workflow
+
+Effective 2026-10-09, the user selected `dev` as the ongoing development and integration branch, created from `master` after Slice 04 (`b43b4bab6d760aeb55cbbfa239555f96c358769e`). Work from `dev`; commit and push completed, verified slices to `origin/dev`. If an isolated feature branch is needed, base it on `dev` and integrate it into `dev`.
+
+The user will periodically open and merge pull requests from `dev` into `master`. Do not automatically merge or push new changes into `master`, or create/merge those periodic pull requests, unless the user explicitly requests that action. This replaces the earlier major-slice workflow that automatically merged into `master`; historical delivery records retain their original publication facts.
+
 ## Source and evidence boundaries
 
 - Canonical source: `D:\Rigs of Rods\rigs-of-rods-trials`; origin: `https://github.com/bert-systems/rigs-of-rods-trials.git`.
@@ -35,7 +41,7 @@ Proceed with routine reversible work within the user's authorized scope. Ask onl
 
 Keep updates concise and distinguish observations, workarounds, hypotheses, and verified fixes. Record failures and warnings; do not silently discard an unsuccessful run or claim broader validation than the evidence supports.
 
-The configurable experiment/trial platform has completed research, architecture evaluation and policy Q&A. The implementation specification consolidates the selected React/.NET direction, ground-impact pilot and native instrumentation scope. Confirmed decisions govern policy; proposed defaults/contracts require qualification and must not be described as measured or accepted results. Slice 01 implements the native aggregate observer, recorder, local .NET coordinator and React workbench. Read [its delivery record](doc/project/slices/slice-01.md) and [runbook](apps/trials/README.md) before changing these modules. Scientific validation remains NotReady until model attribution and analytical fixtures are qualified. Keep new work grouped into major slices with real evidence; the user authorized committing, merging and pushing each major slice. Do not automatically implement the unrelated maintenance backlog.
+The configurable experiment/trial platform has completed research, architecture evaluation and policy Q&A. The implementation specification consolidates the selected React/.NET direction, ground-impact pilot and native instrumentation scope. Confirmed decisions govern policy; proposed defaults/contracts require qualification and must not be described as measured or accepted results. Slice 01 implements the native aggregate observer, recorder, local .NET coordinator and React workbench. Read [its delivery record](doc/project/slices/slice-01.md) and [runbook](apps/trials/README.md) before changing these modules. Scientific validation remains NotReady until model attribution and analytical fixtures are qualified. Keep new work grouped into major slices with real evidence; commit and push completed slices to `dev` under the branch workflow above. Do not automatically implement the unrelated maintenance backlog.
 
 ## End of a session
 

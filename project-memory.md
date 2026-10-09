@@ -1,5 +1,9 @@
 # Project memory
 
+### 2026-10-09 — Development branch workflow
+
+The user requested a durable `dev` branch from `master` and ongoing development on `dev`, with periodic manual pull requests into `master`. Created `dev` at the completed Slice 04 master merge, `b43b4bab6d760aeb55cbbfa239555f96c358769e`. Commit/push verified future slices to `origin/dev`; isolated feature branches, when needed, start from and integrate into `dev`. The user controls periodic promotion to `master`. This supersedes the earlier standing authorization to automatically merge each major slice into `master`; dated delivery/publication records remain historical facts. Updated AGENTS.md, PROJECT.md and TODO to carry this workflow into future sessions. This is a branch/documentation change; no simulation code/build/evidence was changed.
+
 ### 2026-10-09 — Slice 04: controlled barriers and detailed impact
 
 Continued the user's authorized implementation through the controlled 3/5/10 m/s barrier matrix and whole-pilot detailed capture. [Delivery](doc/project/slices/slice-04.md), [results](doc/project/slices/slice-04-results.json) and [HTML evidence](doc/project/reports/trial-slice-04-2026-10-09.html) retain the exact scopes and operational outcomes. Session: `D:\Rigs of Rods\trial-slice-04-2026-10-09-011428`; branch `codex/trials-slice-04`; base `5bfcb126270544e79f5410cc726648e884967ebd`. Native SHA-256 `560F21EB692A33125292C0CA1C418674698DCF2406F05F4DF27EEA9231086CC9`; final source inventory has 474 native files. Content stays `34fefdd126784bf87b068fc283f812525d159dd7`. The final publication record contains feature/merge/remote identities and clean-tree/source checks after push.
@@ -16,6 +20,7 @@ Durable, repository-backed context for future sessions. Established and last upd
 
 ## User intent and standing preferences
 
+- Work and integrate on `dev`; commit/push completed slices there. The user handles periodic pull requests into `master`; do not automatically promote changes into `master`.
 - Develop the personal fork `bert-systems/rigs-of-rods-trials`, based on Rigs of Rods.
 - Build the source and actually run the simulation. The installed game in the parent workspace must not supply proof binaries.
 - Show build/run outcomes with an HTML report, images, and useful video evidence.
