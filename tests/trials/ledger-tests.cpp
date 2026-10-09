@@ -50,6 +50,11 @@ int main()
     Check(Near(ledger.record.rest_storage_port,-5)&&Near(ledger.record.removed_storage_port,-4),"rest change plus break does not remove storage twice");
     for(int j=0;j<8;j++)ledger.Transition(transition);
     Check(ledger.record.event_count==8&&ledger.record.event_dropped==1&&(ledger.record.flags&1),"required event overflow sticky");
+    ledger.detail_transitions=true;
+    ledger.Begin(241,3,1,.5);
+    for(int j=0;j<9;j++)ledger.Transition(transition);
+    Check(ledger.record.event_dropped==1&&(ledger.record.flags&16)&&!(ledger.record.flags&1),"dense detail distinguishes projection truncation from required capture loss");
+    ledger.detail_transitions=false;
     ledger.Begin(25,3,1,.5);
     ledger.Consume(1,2,Vec(),Vec(),Vec(),Vec(),true);
     ledger.Begin(26,3,1,.5);

@@ -81,7 +81,7 @@ public static class ArchiveReader
                         var consumed=b.ReadUInt64();var generated=b.ReadUInt64();
                         if(generated!=(ulong)tick || consumed>generated)problem="Invalid force epochs.";
                         uint events=b.ReadUInt32(),overflow=b.ReadUInt32();
-                        if(events>8||overflow!=0)problem="Required beam-event overflow.";
+                        if(events>8||(overflow!=0&&(flags&16)==0))problem="Required beam-event overflow.";
                         for(int j=0;j<8;j++){
                             _=b.ReadUInt32();_=b.ReadUInt32();
                             for(int k2=0;k2<10;k2++)if(!double.IsFinite(b.ReadDouble()))problem="Nonfinite beam transition.";
@@ -113,7 +113,10 @@ public static class ArchiveReader
     public static uint Crc(byte[] bytes)
     {
         uint crc=0xffffffff;
-        foreach(byte value in bytes) { crc^=value; for(int i=0;i<8;i++) crc=(crc>>1)^(0xedb88320u&(0u-(crc&1))); }
+        foreach(byte value in bytes) crc=(crc>>8)^CrcTable[(crc^value)&255];
         return ~crc;
     }
+    static readonly uint[] CrcTable=Enumerable.Range(0,256).Select(i=>{
+        uint value=(uint)i;for(int bit=0;bit<8;++bit)value=(value>>1)^(0xedb88320u&(0u-(value&1)));return value;
+    }).ToArray();
 }

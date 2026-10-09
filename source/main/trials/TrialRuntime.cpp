@@ -78,7 +78,7 @@ Runtime::Runtime()
     auto number=[&](const char* key,double fallback) { return doc.HasMember(key)&&doc[key].IsNumber()?doc[key].GetDouble():fallback; };
     if(number("schema",0)!=1) return;
     if(doc.HasMember("scenario")&&doc["scenario"].IsString())m_scenario=doc["scenario"].GetString();
-    if(m_scenario!="coast-v1"&&m_scenario!="freefall-v1"&&m_scenario!="spring-v1"&&m_scenario!="damper-v1")return;
+    if(m_scenario!="barrier-v1"&&m_scenario!="coast-v1"&&m_scenario!="freefall-v1"&&m_scenario!="spring-v1"&&m_scenario!="damper-v1")return;
     m_accounting=!doc.HasMember("accounting")||!doc["accounting"].IsBool()||doc["accounting"].GetBool();
     if(doc.HasMember("observation")&&doc["observation"].IsString()){
         const std::string mode=doc["observation"].GetString();
@@ -86,6 +86,9 @@ Runtime::Runtime()
         m_observe=mode!="off";
     }
     m_probe=doc.HasMember("performanceProbe")&&doc["performanceProbe"].IsBool()&&doc["performanceProbe"].GetBool();
+    if(doc.HasMember("detailFault")&&doc["detailFault"].IsString())m_detail_fault=doc["detailFault"].GetString();
+    m_barrier_distance=number("barrierDistanceM",0);
+    if(m_scenario=="barrier-v1"&&(!m_observe||!m_accounting||m_barrier_distance<1||m_barrier_distance>100))return;
     if(!m_observe&&!m_probe)return; // off runs require the explicitly declared control probe
     m_speed=number("launchSpeedMps",0); m_duration=number("durationSeconds",12);
     m_settle=number("settleSeconds",3); m_gravity=number("gravity",-9.81); m_density=number("density",1.225);
@@ -112,6 +115,7 @@ void Runtime::Stop()
     m_closed=true; m_stop.store(true,std::memory_order_release);
     if(m_writer.joinable()) m_writer.join();
     if(m_probe_writer.joinable())m_probe_writer.join();
+    if(m_detail)m_detail->Stop();
     if(!m_observe){
         std::ofstream health(m_root+"/capture-health.json");
         health<<std::setprecision(17)<<"{\"tick\":"<<m_tick<<",\"timeSeconds\":"<<m_tick*static_cast<double>(PHYSICS_DT)
@@ -155,6 +159,8 @@ void Runtime::Poll(ActorManager& manager)
         <<",\"paused\":"<<(manager.IsSimulationPaused()?"true":"false")<<",\"released\":"<<(m_released?"true":"false")
         <<",\"produced\":"<<(m_observe?m_head.load()+m_dropped.load():m_probe_head.load()+m_probe_dropped.load())<<",\"enqueued\":"<<(m_observe?m_head.load():m_probe_head.load())
         <<",\"durable\":"<<(m_observe?m_written.load():m_probe_written.load())<<",\"dropped\":"<<(m_observe?m_dropped.load():m_probe_dropped.load())
+        <<",\"detailTriggerTick\":"<<(m_detail?m_detail->Trigger():0)<<",\"detailDurable\":"<<(m_detail?m_detail->Durable():0)
+        <<",\"detailDropped\":"<<(m_detail?m_detail->Dropped():0)<<",\"detailIoError\":"<<(m_detail&&m_detail->Error()?"true":"false")
         <<",\"ioError\":"<<((m_io_error.load()||m_probe_error.load())?"true":"false")<<"}\n";
     // Wall time is owned by the coordinator. This native completion uses physics ticks.
     if(m_released && m_tick*static_cast<double>(PHYSICS_DT)>=m_settle+m_duration)
@@ -225,6 +231,7 @@ void Runtime::BeginStep(Actor& actor)
     ledger.Begin(m_tick,static_cast<std::uint32_t>(actor.ar_instance_id),m_released?1:0,PHYSICS_DT);
     ledger.record.injection_kinetic=injection;ledger.record.injection_impulse=injected_p;
     Energy(actor,true);
+    if(m_detail)m_detail->Begin(actor,m_tick,m_released);
     if(!m_accounting)ledger.record.flags|=4;
     if(m_scope_violation.load()) ledger.record.flags |= 1; // unsupported additional pilot actor
     if(!was_released && m_released) {
@@ -237,6 +244,7 @@ void Runtime::FinishStep(Actor& actor)
     if(!m_enabled || m_closed || !Matches(actor) || m_pilot_actor.load()!=actor.ar_instance_id)return;
     if(actor.ar_trial_ledger.enabled){
     Energy(actor,false);
+    if(m_detail)m_detail->Finish(actor);
     actor.ar_trial_ledger.record.physics_cpu_us=std::chrono::duration<double,std::micro>(std::chrono::steady_clock::now()-m_step_started).count();
     Record record=actor.ar_trial_ledger.Finish();
     record.gravity=m_gravity; record.density=m_density; record.wind=m_wind;

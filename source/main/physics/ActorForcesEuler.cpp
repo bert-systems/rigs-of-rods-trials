@@ -1491,6 +1491,7 @@ void Actor::CalcBeams(bool trigger_hooks)
             if(ar_trial_ledger.enabled && ar_trial_ledger.attribution_enabled){
                 const auto elastic=dis*(trial_elastic*inverted_dislen),damping=dis*(trial_damping*inverted_dislen);
                 auto vec=[](Vector3 q){return Trials::Vec(q.x,q.y,q.z);};
+                Trials::Runtime::Get().DetailBeamObserved(*this,i,vec(ar_beams[i].p1->Forces-before1),vec(ar_beams[i].p2->Forces-before2),vec(elastic),vec(damping));
                 for(int side=0;side<2;++side){
                     node_t* node=side?ar_beams[i].p2:ar_beams[i].p1;
                     const auto sign=side?-1.0:1.0;
@@ -1650,9 +1651,10 @@ void Actor::CalcNodes()
         // COLLISION
         if (!ar_nodes[i].nd_no_ground_contact)
         {
+            auto* trial_contact=Trials::Runtime::Get().ContactObserver(*this,i);
             Vector3 oripos = ar_nodes[i].AbsPosition;
-            bool contacted = App::GetGameContext()->GetTerrain()->GetCollisions()->groundCollision(&ar_nodes[i], PHYSICS_DT);
-            contacted = contacted | App::GetGameContext()->GetTerrain()->GetCollisions()->nodeCollision(&ar_nodes[i], PHYSICS_DT);
+            bool contacted = App::GetGameContext()->GetTerrain()->GetCollisions()->groundCollision(&ar_nodes[i], PHYSICS_DT,trial_contact);
+            contacted = contacted | App::GetGameContext()->GetTerrain()->GetCollisions()->nodeCollision(&ar_nodes[i], PHYSICS_DT,trial_contact);
             ar_nodes[i].nd_has_ground_contact = contacted;
             if (ar_nodes[i].nd_has_ground_contact || ar_nodes[i].nd_has_mesh_contact)
             {
@@ -1693,6 +1695,7 @@ void Actor::CalcNodes()
             ar_trial_ledger.Add(i,Trials::GroundObject,vec(ar_nodes[i].Forces-trial_force_before_contact),!ar_nodes[i].nd_immovable);
             ar_trial_ledger.Consume(i,ar_nodes[i].mass,vec(trial_velocity_before),vec(ar_nodes[i].Velocity),
                 vec(ar_nodes[i].Forces),Trials::Runtime::Get().Wind(),ar_nodes[i].nd_immovable);
+            Trials::Runtime::Get().DetailNodeObserved(*this,i,vec(trial_velocity_before),vec(ar_nodes[i].Forces));
         }
         // prepare next loop (optimisation)
         // we start forces from zero

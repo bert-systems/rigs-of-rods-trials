@@ -90,6 +90,47 @@ BitConverter.GetBytes(double.NaN).CopyTo(probeRecord,32);WriteProbe(probeRecord)
 Check(!ProbeReader.Inspect(probePath).Complete,"nonfinite probe time stays incomplete");
 Console.WriteLine("PASS: observer profiles, probe CRC/finite/loss/prefix checks and no off-mode scientific pass");
 
+Check(Contract.Validate(new("barrier",DurationSeconds:8,Scenario:"barrier-v1")).Count==0,"pinned barrier definition");
+Check(Contract.Validate(new("barrier",Scenario:"barrier-v1",Observation:"off",PerformanceProbe:true)).Count>0,"required detail cannot disable ledger");
+Check(Contract.Validate(new("barrier",Scenario:"barrier-v1",BarrierDistanceM:double.NaN)).Count>0,"finite barrier geometry");
+Check(Contract.Validate(new("barrier",DetailFault:"queue-overflow")).Count>0,"fault profiles scoped to barrier qualification");
+string detailPath=Path.Combine(dir,"synthetic-detail.rort");
+void WriteDetail(bool gap=false,bool loss=false){
+ using var s=File.Create(detailPath);using var w=new BinaryWriter(s);
+ w.Write(Encoding.ASCII.GetBytes("RORDTAIL"));foreach(uint value in new uint[]{1,1,1,36,4000,8000})w.Write(value);
+ long count=0;
+ for(long tick=1001;tick<=13001;++tick){
+  if(gap&&tick==7000)continue;
+  bool contact=tick==5001;byte[] frame=new byte[128+256+112+(contact?104:0)];
+  BitConverter.GetBytes((ulong)tick).CopyTo(frame,0);BitConverter.GetBytes(.0005).CopyTo(frame,8);
+  BitConverter.GetBytes(1).CopyTo(frame,20);BitConverter.GetBytes(1).CopyTo(frame,24);BitConverter.GetBytes(contact?1:0).CopyTo(frame,28);
+  BitConverter.GetBytes(100f).CopyTo(frame,136);
+  if(contact){int at=496;BitConverter.GetBytes(2).CopyTo(frame,at+4);BitConverter.GetBytes(1).CopyTo(frame,at+12);BitConverter.GetBytes(100f).CopyTo(frame,at+64);}
+  w.Write(Encoding.ASCII.GetBytes("DATA"));w.Write((uint)1);w.Write((uint)frame.Length);w.Write(ArchiveReader.Crc(frame));w.Write(frame);w.Write(Encoding.ASCII.GetBytes("DONE"));++count;
+ }
+ w.Write(Encoding.ASCII.GetBytes("END!"));w.Write((ulong)count);w.Write(loss?1ul:0ul);w.Write(0ul);w.Write(0u);
+}
+WriteDetail();var detailGood=DetailReader.Inspect(detailPath,5001,13001);
+Check(detailGood.Complete&&detailGood.Records==12001&&detailGood.BarrierApplications==1&&detailGood.BarrierImpulseNs[0]==.05,"complete synthetic 2 kHz pre/post window and applied impulse");
+WriteDetail(gap:true);var detailGap=DetailReader.Inspect(detailPath,5001,13001);
+Check(!detailGap.Complete&&detailGap.Records==12000&&detailGap.LastTick==13001,"required gap remains incomplete while later detail is recovered");
+WriteDetail(loss:true);Check(!DetailReader.Inspect(detailPath,5001,13001).Complete,"sticky detail loss footer");
+WriteDetail();using(var f=new FileStream(detailPath,FileMode.Open,FileAccess.Write)){f.SetLength(f.Length-32);}
+var detailPrefix=DetailReader.Inspect(detailPath,5001,13001);
+Check(!detailPrefix.Complete&&!detailPrefix.Closed&&detailPrefix.Records==12001,"abrupt detail close retains committed prefix");
+WriteDetail();using(var f=new FileStream(detailPath,FileMode.Open,FileAccess.ReadWrite)){f.Position=52;int value=f.ReadByte();f.Position=52;f.WriteByte((byte)(value^1));}
+Check(!DetailReader.Inspect(detailPath,5001,13001).Complete,"detail CRC corruption rejects frame");
+Console.WriteLine("PASS: barrier geometry/profiles, required detail CRC/gap/loss/prefix and actual impulse decoding");
+var projected=new Attempt();var envelopes=new ImpactProjection();
+for(int tick=10;tick<=100;tick+=10){
+ var sample=System.Text.Json.JsonSerializer.SerializeToElement(new{tick,timeSeconds=tick*.0005,peakNetBarrierForceN=tick==40?999:1,detailDropped=0,detailIoError=false});
+ envelopes.Add(projected,sample);
+}
+Check(projected.ImpactHistory.Count==1&&projected.ImpactHistory[0].GetProperty("peakNetBarrierForceN").GetDouble()==999,"20 Hz display preserves transient 200 Hz envelope peak");
+envelopes.Add(projected,System.Text.Json.JsonSerializer.SerializeToElement(new{tick=120,timeSeconds=.06,peakNetBarrierForceN=1,detailDropped=1,detailIoError=false}));envelopes.Flush(projected);
+Check(projected.ImpactHistory[^1].GetProperty("gap").GetBoolean(),"gap/loss breaks scientific chart path");
+Console.WriteLine("PASS: peak-preserving projection and visible gap semantics");
+
 
 if(args.Length>1){
  var inspected=new List<object>();

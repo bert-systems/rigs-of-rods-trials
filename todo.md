@@ -75,10 +75,12 @@ Implementation is underway in [Slice 01](doc/project/slices/slice-01.md). D003 c
 - [x] Slice 03: sparse observer/CRC optimizations, ledger-off with a declared common timing/state probe, native equivalence and fixture accounting regression; [delivery](doc/project/slices/slice-03.md).
 - [ ] Meet/resolve the proposed ≤10% total observer overhead gate and characterize larger/multi-actor workloads. Same-build full/off medians are 67.6/22.1 microseconds at 5 m/s (3.059x), with similar 15 m/s results; ledger-off is trial-aware and retains the common probe.
 - [ ] Extend nonlinear/shock/hydro/rope storage, strength-only transitions, external state mutation gateways and fracture dissipation; current vehicle validation stays NotReady.
-- [ ] Slice 04: controlled barrier asset, verified impact approach/trigger/outcome and deformation/breakage records.
-- [ ] Slice 04: required node/contact/beam detail windows at the selected 2 kHz profile with loss/overflow qualification.
+- [x] Slice 04: controlled barrier asset and frozen approach/trigger profile; five-repeat 3/5/10 m/s target matrix, dense beam state/parameter records and scoped approach/capture gates; [delivery](doc/project/slices/slice-04.md).
+- [x] Slice 04: whole-pilot 2 kHz node/channel/contact/beam windows (2 s pre/4 s post), independent CRC/force/impulse analysis and required-loss recovery checks.
+- [ ] Qualify actual strength degradation/fracture examples and their energy interpretation; the controlled matrix produced 179 parameter changes at 10 m/s but no strength changes/removals.
+- [ ] Optimize detail memory/drain cost and qualify longer/separated/retriggered windows, larger scenes and barrier observation-off equivalence. Current pilot needs ~782 MiB history, ~3 GiB queue and ~1.55 GB per window; proposed overhead targets remain unmet/unqualified.
 - [ ] Later: generalized asset/configuration selection, driven journeys, flight, gusts/particulates, live 3D inspector and comparison/export.
-- [ ] Broader operational qualification: hard-crash restart/orphan ownership, storage holds/failed writes, workload stress and alternate renderers.
+- [ ] Broader operational qualification: coordinator hard-crash/orphan ownership, physical storage exhaustion/holds, workload stress and alternate renderers. Slice 04 qualifies owned-worker abrupt exit/verified-prefix recovery/fresh retry and injected partial-write recovery, not physical disk-full or coordinator orphan recovery.
 
 These slice groupings are implementation sequencing; they do not replace the confirmed decisions or the 14-epic specification. Completed capture is not scientific acceptance.
 

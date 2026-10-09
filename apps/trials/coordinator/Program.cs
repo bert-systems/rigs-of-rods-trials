@@ -23,8 +23,15 @@ app.Use(async(context,next)=>{
 });
 app.UseDefaultFiles();app.UseStaticFiles();
 app.MapGet("/api/session",()=>new{session});
-app.MapGet("/api/state",(TrialService s)=>s.Snapshot());
+app.MapGet("/api/state",(string? selected,bool? compact,TrialService s)=>s.Snapshot(selected,compact??false));
 app.MapGet("/api/attempts/{id}/status",(string id,TrialService s)=>s.AttemptSnapshot(id) is {} a?Results.Ok(a):Results.NotFound());
+app.MapGet("/api/attempts/{id}/detail",(string id,long tick,int node,int beam,TrialService s)=>{
+    var attempt=s.Find(id);if(attempt==null||attempt.Execution is not ("Completed" or "Failed" or "Cancelled"))return Results.NotFound();
+    try{return DetailReader.Sample(attempt.ArchivePath!,tick,node,beam) is {} frame?Results.Ok(frame):Results.NotFound();}
+    catch(ArgumentException e){return Results.BadRequest(new{error=e.Message});}
+    catch(InvalidDataException e){return Results.Conflict(new{error=e.Message});}
+    catch(IOException e){return Results.Conflict(new{error=e.Message});}
+});
 app.MapPost("/api/experiments",(ExperimentDefinition definition,TrialService s)=>{
     try{return Results.Ok(new{attemptIds=s.Enqueue(definition)});}
     catch(ArgumentException e){return Results.BadRequest(new{error=e.Message});}

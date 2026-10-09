@@ -74,7 +74,7 @@ struct NodeChannels
 class Ledger
 {
 public:
-    bool enabled=false,attribution_enabled=true;
+    bool enabled=false,attribution_enabled=true,detail_transitions=false;
     Record record;
     std::vector<NodeChannels> nodes; // allocated only by render/main-thread preparation
     std::vector<double> beam_rest,beam_k,beam_strength;
@@ -162,7 +162,7 @@ public:
         if(value.kind&9){if(value.kind&1)++record.plastic_events;record.rest_storage_port+=value.newStorage-value.oldStorage;}
         if(value.kind&2){++record.break_events;record.removed_storage_port-=value.newStorage;}
         if(record.event_count<record.events.size())record.events[record.event_count++]=value;
-        else {++record.event_dropped;record.flags|=1;}
+        else {++record.event_dropped;record.flags|=detail_transitions?16:1;} // flag16: dense detail carries all transitions; projection omitted
     }
     Record Finish()
     {
