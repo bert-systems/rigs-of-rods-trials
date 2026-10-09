@@ -241,3 +241,15 @@ Scientific validation remains NotReady for every attempt. Next: explicit force g
 ## How to maintain this file
 
 Append a dated session entry with objective, outcome, checks, unresolved issues, and evidence location. Promote only durable decisions/findings into the relevant sections. Distinguish facts from hypotheses; resolve or retire stale items explicitly. Link detailed session records instead of pasting logs. Never rewrite the dated baseline as if it described a later build.
+
+## 2026-10-08 — Slice 02 and video playback recovery
+
+Implemented [native force channels, core energy/work, analytical fixtures and live qualification](doc/project/slices/slice-02.md). Final native SHA-256 B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301 at `D:\Rigs of Rods\trial-slice-02-2026-10-08-221217\build\bin\RoR.exe`. Newly compiled native outputs reuse the established Conan cache. Content revision and protected baseline executable hash remain unchanged.
+
+Thirteen final attempts completed with complete capture and zero loss: seven scoped fixture Passed, six vehicle NotReady. Fixture repeat pairs matched compared positions/momentum/energy on this workstation. Ledger/contract checks, zero-warning .NET build, locked npm production build, provenance, native pause/resume and responsive browser checks passed. Results: `doc/project/slices/slice-02-results.json`.
+
+Initial legacy-precision spring/damper cases failed budgets. Analytical fixtures explicitly use precise beam lengths/local relative coordinates; vehicles retain the approximate kernel. Do not generalize fixture Passed to vehicle/impact/environment qualification. Two-run-per-mode step-time characterization measured 61.4µs median disabled vs 110.2µs enabled (1.795×). These are elapsed wall durations, not CPU time or an instrumentation-off baseline. Optimization remains required.
+
+Old user-reported poster-then-blank MP4s decoded visible images. WebM/image players recover baseline/Slice 01 playback without overwriting originals. New OpenGL/GDI capture really was black and was rejected/preserved. Final recording uses41 actual native renderer screenshots;82 decoded samples were nonblank. Chrome visible-pixel/image-progression checks passed. Codex in-app GPU playback remains unverified due automation-helper initialization failure; use Play frames if video remains blank.
+
+Report: `doc/project/reports/trial-slice-02-2026-10-08.html`. Session: `D:\Rigs of Rods\trial-slice-02-2026-10-08-221217`; report/index.html and report/slice-02-evidence.zip. Slice 01 HTML gained a dated recovery link; the protected baseline remains untouched. User authorization to commit/merge/push major slices persists; final identity is in session report/publication.json after Git publication. Next gates: observer optimization, barrier/detail windows, broader storage/environment qualification; driven journeys/flight remain later.

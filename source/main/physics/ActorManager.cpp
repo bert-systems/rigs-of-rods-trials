@@ -1260,6 +1260,7 @@ void ActorManager::UpdatePhysicsSimulation()
     }
     for (int i = 0; i < m_physics_steps; i++)
     {
+        if(Trials::Runtime::Get().Enabled() && Trials::Runtime::Get().ReachedTarget()) break;
         {
             std::vector<std::function<void()>> tasks;
             for (ActorPtr& actor: m_actors)
@@ -1279,10 +1280,13 @@ void ActorManager::UpdatePhysicsSimulation()
             {
                 if (actor->ar_update_physics)
                 {
+                    Trials::Runtime::Get().Snapshot(*actor.GetRef());
                     actor->CalcBeamsInterActor();
+                    Trials::Runtime::Get().Delta(*actor.GetRef(),Trials::InterActor);
                 }
             }
         }
+        for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Snapshot(*actor.GetRef());
         {
             std::vector<std::function<void()>> tasks;
             for (ActorPtr& actor: m_actors)
@@ -1312,8 +1316,11 @@ void ActorManager::UpdatePhysicsSimulation()
             App::GetThreadPool()->Parallelize(tasks);
         }
 
+        for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Delta(*actor.GetRef(),Trials::InterActor);
+        for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Snapshot(*actor.GetRef());
         // Apply FreeForces - intentionally as a separate pass over all actors
         this->CalcFreeForces();
+        for(ActorPtr& actor:m_actors)Trials::Runtime::Get().Delta(*actor.GetRef(),Trials::FreeForce);
         for (ActorPtr& actor: m_actors)
             if (actor->ar_update_physics) Trials::Runtime::Get().FinishStep(*actor.GetRef());
     }

@@ -46,24 +46,43 @@ using namespace RoR;
 
 void Actor::CalcForcesEulerCompute(bool doUpdate, int num_steps)
 {
+    if(ar_trial_ledger.enabled && (ar_trial_ledger.record.flags&2) && Trials::Runtime::Get().IsFixture()){
+        this->CalcBeams(false); // prime the native force kernel before the first fixture integration
+        for(auto& channel:ar_trial_ledger.record.channels)channel.generated=Trials::Vec();
+        ar_trial_ledger.record.consumed_from_tick=0;
+    }
     this->CalcNodes(); // must be done directly after the inter truck collisions are handled
     this->UpdateBoundingBoxes();
     this->CalcEventBoxes();
     this->CalcReplay();
+    Trials::Runtime::Get().Snapshot(*this);
     this->CalcAircraftForces(doUpdate);
     this->CalcFuseDrag();
+    Trials::Runtime::Get().Delta(*this,Trials::Aero);
+    Trials::Runtime::Get().Snapshot(*this);
     this->CalcBuoyance(doUpdate);
+    Trials::Runtime::Get().Delta(*this,Trials::Buoyancy);
+    Trials::Runtime::Get().Snapshot(*this);
     this->CalcDifferentials();
     this->CalcWheels(doUpdate, num_steps);
+    Trials::Runtime::Get().Delta(*this,Trials::Wheels);
+    Trials::Runtime::Get().Snapshot(*this);
     this->CalcShocks(doUpdate, num_steps);
     this->CalcHydros();
     this->CalcCommands(doUpdate);
     this->CalcTies();
     this->CalcTruckEngine(doUpdate); // must be done after the commands / engine triggers are updated
+    Trials::Runtime::Get().Delta(*this,Trials::Commands);
+    Trials::Runtime::Get().Snapshot(*this);
     this->CalcMouse();
+    Trials::Runtime::Get().Delta(*this,Trials::Mouse);
     this->CalcBeams(doUpdate);
+    Trials::Runtime::Get().Snapshot(*this);
     this->CalcCabCollisions();
+    Trials::Runtime::Get().Delta(*this,Trials::CabContact);
+    Trials::Runtime::Get().Snapshot(*this);
     this->updateSlideNodeForces(PHYSICS_DT); // must be done after the contacters are updated
+    Trials::Runtime::Get().Delta(*this,Trials::Slide);
     this->CalcForceFeedback(doUpdate);
 }
 
@@ -1218,7 +1237,10 @@ void Actor::CalcBeams(bool trigger_hooks)
             Vector3 dis = ar_beams[i].p1->RelPosition - ar_beams[i].p2->RelPosition;
 
             Real dislen = dis.squaredLength();
-            Real inverted_dislen = fast_invSqrt(dislen);
+            // The analytical fixture profile explicitly selects precise length normalization.
+            // Vehicle studies preserve the legacy inverse-square-root approximation.
+            const bool fixture_precision=ar_trial_ledger.enabled && Trials::Runtime::Get().IsFixture();
+            Real inverted_dislen = fixture_precision ? 1.f/std::sqrt(dislen) : fast_invSqrt(dislen);
 
             dislen *= inverted_dislen;
 
@@ -1315,6 +1337,7 @@ void Actor::CalcBeams(bool trigger_hooks)
                 ar_beams[i].debug_v = std::abs(v);
             }
 
+            const float trial_elastic=-k*difftoBeamL,trial_damping=-d*v;
             float slen = -k * difftoBeamL - d * v;
             ar_beams[i].stress = slen;
 
@@ -1461,8 +1484,22 @@ void Actor::CalcBeams(bool trigger_hooks)
             // At last update the beam forces
             Vector3 f = dis;
             f *= (slen * inverted_dislen);
+            const Vector3 before1=ar_beams[i].p1->Forces,before2=ar_beams[i].p2->Forces;
             ar_beams[i].p1->Forces += f;
             ar_beams[i].p2->Forces -= f;
+            if(ar_trial_ledger.enabled && ar_trial_ledger.attribution_enabled){
+                const auto elastic=dis*(trial_elastic*inverted_dislen),damping=dis*(trial_damping*inverted_dislen);
+                auto vec=[](Vector3 q){return Trials::Vec(q.x,q.y,q.z);};
+                for(int side=0;side<2;++side){
+                    node_t* node=side?ar_beams[i].p2:ar_beams[i].p1;
+                    const auto sign=side?-1.0:1.0;
+                    const auto e=vec(elastic)*sign,damp=vec(damping)*sign;
+                    const auto actual=vec(node->Forces-(side?before2:before1));
+                    ar_trial_ledger.Add(node->pos,Trials::BeamElastic,e,!node->nd_immovable);
+                    ar_trial_ledger.Add(node->pos,Trials::BeamDamping,damp,!node->nd_immovable);
+                    ar_trial_ledger.Add(node->pos,Trials::BeamCorrection,actual-e-damp,!node->nd_immovable);
+                }
+            }
         }
     }
 }
@@ -1650,10 +1687,17 @@ void Actor::CalcNodes()
                 vec(ar_nodes[i].Forces - trial_force_before_contact));
         }
 
+        if(ar_trial_ledger.enabled){
+            auto vec=[](Vector3 v){return Trials::Vec(v.x,v.y,v.z);};
+            ar_trial_ledger.Add(i,Trials::GroundObject,vec(ar_nodes[i].Forces-trial_force_before_contact),!ar_nodes[i].nd_immovable);
+            ar_trial_ledger.Consume(i,ar_nodes[i].mass,vec(trial_velocity_before),vec(ar_nodes[i].Velocity),
+                vec(ar_nodes[i].Forces),Trials::Runtime::Get().Wind(),ar_nodes[i].nd_immovable);
+        }
         // prepare next loop (optimisation)
         // we start forces from zero
         // start with gravity
         ar_nodes[i].Forces = Vector3(0, ar_nodes[i].mass * gravity, 0);
+        if(ar_trial_ledger.enabled)ar_trial_ledger.Reset(i,Trials::Vec(0,ar_nodes[i].Forces.y,0),!ar_nodes[i].nd_immovable);
 
         Real approx_speed = approx_sqrt(ar_nodes[i].Velocity.squaredLength());
 
@@ -1670,7 +1714,9 @@ void Actor::CalcNodes()
         if (m_fusealge_airfoil)
         {
             // aerodynamics on steroids!
+            const auto previous=ar_nodes[i].Forces;
             ar_nodes[i].Forces += ar_fusedrag;
+            if(ar_trial_ledger.enabled){const auto f=ar_nodes[i].Forces-previous;ar_trial_ledger.Add(i,Trials::Aero,Trials::Vec(f.x,f.y,f.z),!ar_nodes[i].nd_immovable);}
         }
         else if (!ar_disable_aerodyn_turbulent_drag)
         {
@@ -1686,9 +1732,12 @@ void Actor::CalcNodes()
             // plus: turbulences
             Real maxtur = defdragxspeed * flow_speed * 0.005f;
             drag += maxtur * Vector3(frand_11(), frand_11(), frand_11());
+            const auto previous=ar_nodes[i].Forces;
             ar_nodes[i].Forces += drag;
+            if(ar_trial_ledger.enabled){const auto f=ar_nodes[i].Forces-previous;ar_trial_ledger.Add(i,Trials::GenericDrag,Trials::Vec(f.x,f.y,f.z),!ar_nodes[i].nd_immovable);}
         }
 
+        const auto before_water=ar_nodes[i].Forces;
         if (water)
         {
             const bool is_under_water = water->IsUnderWater(ar_nodes[i].AbsPosition);
@@ -1710,6 +1759,7 @@ void Actor::CalcNodes()
             }
             ar_nodes[i].nd_under_water = is_under_water;
         }
+        if(ar_trial_ledger.enabled){const auto f=ar_nodes[i].Forces-before_water;ar_trial_ledger.Add(i,Trials::Buoyancy,Trials::Vec(f.x,f.y,f.z),!ar_nodes[i].nd_immovable);}
     }
 }
 

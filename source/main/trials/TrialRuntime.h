@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #pragma once
 #include "TrialLedger.h"
+#include "SimConstants.h"
 #include <atomic>
 #include <chrono>
 #include <string>
@@ -15,6 +16,15 @@ class Runtime
 public:
     static Runtime& Get();
     bool Enabled() const { return m_enabled; }
+    bool IsFixture() const { return m_scenario!="coast-v1"; }
+    bool Accounting() const { return m_accounting; }
+    bool Matches(const Actor& actor) const;
+    bool ReachedTarget() const { return m_released && m_tick*static_cast<double>(PHYSICS_DT)>=m_settle+m_duration; }
+    void PrepareActor(Actor& actor);
+    void Snapshot(Actor& actor);
+    void Delta(Actor& actor,Channel channel);
+    void Energy(Actor& actor,bool before);
+    void InitializeFixture(Actor& actor);
     bool Released() const { return m_released; }
     std::uint64_t Tick() const { return m_tick; }
     void BeginStep(Actor& actor);
@@ -30,7 +40,9 @@ private:
     void Writer();
     void Event(const std::string& name, std::uint64_t sequence=0);
     bool m_enabled = false, m_released = false, m_closed = false;
-    std::string m_root;
+    std::string m_root,m_scenario="coast-v1";
+    bool m_accounting=true;
+    std::chrono::steady_clock::time_point m_step_started;
     double m_speed = 0, m_gravity = -9.81, m_density = 1.225, m_duration = 12, m_settle = 3;
     Vec m_wind;
     std::uint64_t m_tick = 0, m_last_command = 0;

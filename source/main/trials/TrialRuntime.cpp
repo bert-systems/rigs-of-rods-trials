@@ -2,6 +2,7 @@
 #include "TrialRuntime.h"
 #include "Actor.h"
 #include "ActorManager.h"
+#include <cassert>
 #include "GameContext.h"
 #include "Terrain.h"
 #include "Application.h"
@@ -29,12 +30,25 @@ void Double(std::vector<unsigned char>& out, double n) { std::uint64_t bits; std
 void Vector(std::vector<unsigned char>& out, Vec v) { Double(out,v.x); Double(out,v.y); Double(out,v.z); }
 void Encode(std::vector<unsigned char>& out, const Record& r)
 {
+    const auto initial=out.size();
     U64(out,r.tick); U32(out,r.actor); U32(out,r.nodes); U32(out,r.phase); U32(out,r.flags);
     Double(out,r.dt); Double(out,r.mass); Vector(out,r.center); Vector(out,r.momentum);
     Vector(out,r.force); Vector(out,r.contact_force);
     Double(out,r.kinetic_before); Double(out,r.kinetic); Double(out,r.work);
     Vector(out,r.momentum_residual); Double(out,r.work_residual);
     Double(out,r.peak_node_force); Double(out,r.gravity); Double(out,r.density); Vector(out,r.wind);
+    for(const auto& c:r.channels){Vector(out,c.force);Double(out,c.work);Vector(out,c.generated);}
+    for(double v:{r.gravity_before,r.gravity_after,r.elastic_before,r.elastic_after,r.mechanical_residual,r.nonconservative_work,
+        r.injection_kinetic,r.mutation_kinetic,r.wind_work,r.relative_drag_work,r.unattributed_l1,r.attribution_residual_l1,
+        r.rest_storage_port,r.removed_storage_port,r.peak_beam_stress,r.physics_cpu_us})Double(out,v);
+    Vector(out,r.injection_impulse);Vector(out,r.fixed_force);Vector(out,r.mutation_impulse);
+    U32(out,r.plastic_events);U32(out,r.break_events);U32(out,r.unclosed_beams);U32(out,r.prepared_nodes);
+    U64(out,r.consumed_from_tick);U64(out,r.generated_tick);U32(out,r.event_count);U32(out,r.event_dropped);
+    for(const auto& e:r.events){
+        U32(out,e.beam);U32(out,e.kind);
+        for(double v:{e.length,e.oldRest,e.newRest,e.oldK,e.newK,e.oldStrength,e.newStrength,e.oldStorage,e.newStorage,e.stress})Double(out,v);
+    }
+    assert(out.size()-initial==RecordBytes);
 }
 std::string JsonVector(Vec v)
 {
@@ -63,17 +77,20 @@ Runtime::Runtime()
     if(doc.HasParseError() || !doc.IsObject()) return;
     auto number=[&](const char* key,double fallback) { return doc.HasMember(key)&&doc[key].IsNumber()?doc[key].GetDouble():fallback; };
     if(number("schema",0)!=1) return;
+    if(doc.HasMember("scenario")&&doc["scenario"].IsString())m_scenario=doc["scenario"].GetString();
+    if(m_scenario!="coast-v1"&&m_scenario!="freefall-v1"&&m_scenario!="spring-v1"&&m_scenario!="damper-v1")return;
+    m_accounting=!doc.HasMember("accounting")||!doc["accounting"].IsBool()||doc["accounting"].GetBool();
     m_speed=number("launchSpeedMps",0); m_duration=number("durationSeconds",12);
     m_settle=number("settleSeconds",3); m_gravity=number("gravity",-9.81); m_density=number("density",1.225);
     m_wind=Vec(number("windX",0),number("windY",0),number("windZ",0));
-    if(!std::isfinite(m_speed) || m_speed<0 || m_speed>20 || !std::isfinite(m_duration) || m_duration<1 || m_duration>120 ||
-       !std::isfinite(m_settle) || m_settle<2 || m_settle>30 || !std::isfinite(m_gravity) || m_gravity>=0 || m_gravity < -30 ||
+    if(!std::isfinite(m_speed) || m_speed<0 || m_speed>20 || !std::isfinite(m_duration) || m_duration<0.1 || m_duration>(IsFixture()?5:120) ||
+       !std::isfinite(m_settle) || m_settle<(IsFixture()?0:2) || m_settle>30 || !std::isfinite(m_gravity) || m_gravity>0 || (m_gravity==0&&m_scenario=="coast-v1") || m_gravity < -30 ||
        !std::isfinite(m_density) || m_density<=0 || m_density>3 || !std::isfinite(m_wind.Norm()) || m_wind.Norm()>30) return;
-    m_queue.resize(32768); // bounded 7.5 MiB of records, one physics producer
+    m_queue.resize(32768); // bounded 65 MiB of records, one physics producer
     m_enabled=true;
     std::ofstream hello(m_root+"/handshake.json");
-    hello<<"{\"schema\":1,\"observer\":\"integration-v1\",\"capture\":\"crc32-binary-v1\","
-          "\"coverage\":\"total-consumed-and-ground-contact; other channels unattributed\","
+    hello<<"{\"schema\":1,\"observer\":\"accounting-v2\",\"capture\":\"crc32-binary-v2\","
+          "\"coverage\":\"phase/node channels; linear storage subset; explicit unclosed terms\","
           "\"cohort\":\"movable nodes\",\"dt\":"<<std::setprecision(17)<<static_cast<double>(PHYSICS_DT)<<"}\n";
     hello.close();
     m_writer=std::thread(&Runtime::Writer,this);
@@ -94,6 +111,7 @@ void Runtime::Event(const std::string& name,std::uint64_t sequence)
 void Runtime::Poll(ActorManager& manager)
 {
     if(!m_enabled || m_closed) return;
+    for(ActorPtr& actor:manager.GetActors())PrepareActor(*actor.GetRef());
     const auto now=std::chrono::steady_clock::now();
     if(now-m_poll<std::chrono::milliseconds(100)) return;
     m_poll=now;
@@ -128,7 +146,7 @@ void Runtime::Poll(ActorManager& manager)
 void Runtime::BeginStep(Actor& actor)
 {
     auto& ledger=actor.ar_trial_ledger;
-    ledger.enabled=m_enabled && !m_closed && actor.ar_filename=="b6b0UID-semi.truck";
+    ledger.enabled=m_enabled && !m_closed && Matches(actor) && ledger.nodes.size()==static_cast<std::size_t>(actor.ar_num_nodes);
     if(!ledger.enabled) return;
     int expected=-1;
     m_pilot_actor.compare_exchange_strong(expected,actor.ar_instance_id);
@@ -136,12 +154,22 @@ void Runtime::BeginStep(Actor& actor)
     {
         ledger.enabled=false; m_scope_violation=true; return;
     }
-    ++m_tick; // first slice explicitly supports exactly one pilot actor
+    m_step_started=std::chrono::steady_clock::now();
+    ++m_tick; // supported measurement cohort: exactly one pilot actor
     if(App::GetGameContext()->GetTerrain())
         App::GetGameContext()->GetTerrain()->setGravity(static_cast<float>(m_gravity));
     const bool was_released = m_released;
+    double injection=0;Vec injected_p;
     if(!m_released && m_tick*static_cast<double>(PHYSICS_DT)>=m_settle)
     {
+        for(int n=0;n<actor.ar_num_nodes;++n)if(!actor.ar_nodes[n].nd_immovable)
+        {
+            const auto& v=actor.ar_nodes[n].Velocity;const double mass=actor.ar_nodes[n].mass;
+            injection-=0.5*mass*v.squaredLength();injected_p+=Vec(v.x,v.y,v.z)*(-mass);
+        }
+        if(IsFixture())InitializeFixture(actor);
+        else
+        {
         Ogre::Vector3 direction=actor.getDirection(); direction.y=0;
         if(direction.squaredLength()>1e-8f) direction.normalise(); else direction=Ogre::Vector3::UNIT_X;
         const Ogre::Vector3 velocity=direction*static_cast<float>(m_speed);
@@ -163,18 +191,32 @@ void Runtime::BeginStep(Actor& actor)
                 wheel.wh_rim_nodes[n]->Velocity=velocity+omega.crossProduct(wheel.wh_rim_nodes[n]->AbsPosition-center);
             wheel.wh_speed=static_cast<float>(m_speed); wheel.wh_avg_speed=static_cast<float>(m_speed);
         }
+        }
+        for(int n=0;n<actor.ar_num_nodes;++n)if(!actor.ar_nodes[n].nd_immovable)
+        {
+            const auto& v=actor.ar_nodes[n].Velocity;const double mass=actor.ar_nodes[n].mass;
+            injection+=0.5*mass*v.squaredLength();injected_p+=Vec(v.x,v.y,v.z)*mass;
+        }
         if(actor.ar_engine) { actor.ar_engine->stopEngine(); actor.ar_engine->setGear(0); }
         if(actor.getParkingBrake()) actor.parkingbrakeToggle();
         actor.ar_brake=0;
         m_released=true;
     }
     ledger.Begin(m_tick,static_cast<std::uint32_t>(actor.ar_instance_id),m_released?1:0,PHYSICS_DT);
+    ledger.record.injection_kinetic=injection;ledger.record.injection_impulse=injected_p;
+    Energy(actor,true);
+    if(!m_accounting)ledger.record.flags|=4;
     if(m_scope_violation.load()) ledger.record.flags |= 1; // unsupported additional pilot actor
-    if(!was_released && m_released) ledger.record.flags |= 2; // initialization port boundary
+    if(!was_released && m_released) {
+        ledger.record.flags |= 2; // initialization port boundary
+
+    }
 }
 void Runtime::FinishStep(Actor& actor)
 {
     if(!actor.ar_trial_ledger.enabled) return;
+    Energy(actor,false);
+    actor.ar_trial_ledger.record.physics_cpu_us=std::chrono::duration<double,std::micro>(std::chrono::steady_clock::now()-m_step_started).count();
     Record record=actor.ar_trial_ledger.Finish();
     record.gravity=m_gravity; record.density=m_density; record.wind=m_wind;
     const auto head=m_head.load(std::memory_order_relaxed);
@@ -190,11 +232,12 @@ void Runtime::Writer()
     FILE* file=std::fopen((m_root+"/steps.rort").c_str(),"wb");
 #endif
     if(!file) { m_io_error=true; return; }
-    std::vector<unsigned char> header; U32(header,1); U32(header,240);
+    std::vector<unsigned char> header; U32(header,2); U32(header,RecordBytes);
     std::fwrite("RORTRIAL",1,8,file); std::fwrite(header.data(),1,header.size(),file);
     if(!Sync(file)) m_io_error=true;
     std::ofstream summaries(m_root+"/summaries.jsonl");
-    std::vector<unsigned char> bytes; bytes.reserve(128*240);
+    std::ofstream transitions(m_root+"/beam-transitions.jsonl");
+    std::vector<unsigned char> bytes; bytes.reserve(128*RecordBytes);
     std::uint64_t pending_durable=0;
     auto last_sync=std::chrono::steady_clock::now();
     double window_peak=0;
@@ -210,6 +253,14 @@ void Runtime::Writer()
             const Record& r=m_queue[(tail+i)%m_queue.size()];
             Encode(bytes,r);
             window_peak=std::max(window_peak,r.peak_node_force);
+            for(unsigned j=0;j<r.event_count;++j){
+                const auto& e=r.events[j];
+                transitions<<std::setprecision(17)<<"{\"tick\":"<<r.tick<<",\"beam\":"<<e.beam<<",\"kind\":"<<e.kind
+                    <<",\"lengthM\":"<<e.length<<",\"oldRestM\":"<<e.oldRest<<",\"newRestM\":"<<e.newRest
+                    <<",\"oldK\":"<<e.oldK<<",\"newK\":"<<e.newK<<",\"oldStrengthN\":"<<e.oldStrength
+                    <<",\"newStrengthN\":"<<e.newStrength<<",\"oldStorageJ\":"<<e.oldStorage<<",\"newStorageJ\":"<<e.newStorage
+                    <<",\"stressN\":"<<e.stress<<"}\n";
+            }
             if(r.tick%10==0)
             {
                 summaries<<std::setprecision(17)<<"{\"tick\":"<<r.tick<<",\"timeSeconds\":"<<r.tick*r.dt
@@ -219,7 +270,23 @@ void Runtime::Writer()
                     <<",\"kineticJ\":"<<r.kinetic<<",\"workJ\":"<<r.work<<",\"workResidualJ\":"<<r.work_residual
                     <<",\"momentumResidualKgMps\":"<<JsonVector(r.momentum_residual)<<",\"peakNodeForceN\":"<<window_peak
                     <<",\"gravityMps2\":"<<r.gravity<<",\"densityKgM3\":"<<r.density<<",\"windMps\":"<<JsonVector(r.wind)
-                    <<",\"flags\":"<<r.flags<<",\"dropped\":"<<m_dropped.load()<<"}\n";
+                    <<",\"flags\":"<<r.flags<<",\"dropped\":"<<m_dropped.load()
+                    <<",\"scenario\":\""<<m_scenario<<"\",\"gravityPotentialJ\":"<<r.gravity_after<<",\"linearElasticJ\":"<<r.elastic_after
+                    <<",\"mechanicalResidualJ\":"<<r.mechanical_residual<<",\"nonconservativeWorkJ\":"<<r.nonconservative_work
+                    <<",\"injectionKineticJ\":"<<r.injection_kinetic<<",\"mutationKineticJ\":"<<r.mutation_kinetic
+                    <<",\"windWorkJ\":"<<r.wind_work<<",\"relativeDragWorkJ\":"<<r.relative_drag_work
+                    <<",\"unattributedNodeForceL1N\":"<<r.unattributed_l1<<",\"attributionResidualL1N\":"<<r.attribution_residual_l1
+                    <<",\"restStoragePortJ\":"<<r.rest_storage_port<<",\"removedStoragePortJ\":"<<r.removed_storage_port
+                    <<",\"peakBeamStressN\":"<<r.peak_beam_stress<<",\"physicsStepElapsedUs\":"<<r.physics_cpu_us
+                    <<",\"unclosedBeams\":"<<r.unclosed_beams<<",\"linearBeamParameterEvents\":"<<r.plastic_events<<",\"breakEvents\":"<<r.break_events
+                    <<",\"consumedFromTick\":"<<r.consumed_from_tick<<",\"generatedTick\":"<<r.generated_tick<<",\"channels\":{";
+                for(int c=0;c<ChannelCount;++c){
+                    if(c)summaries<<",";
+                    const auto& v=r.channels[c];
+                    summaries<<"\""<<ChannelName(c)<<"\":{\"forceN\":"<<JsonVector(v.force)<<",\"workJ\":"<<v.work
+                        <<",\"generatedN\":"<<JsonVector(v.generated)<<"}";
+                }
+                summaries<<"}}\n";
                 window_peak=0;
             }
         }
@@ -237,7 +304,7 @@ void Runtime::Writer()
                 else m_io_error=true;
                 last_sync=now;
             }
-            summaries.flush(); if(!summaries) m_io_error=true;
+            summaries.flush(); transitions.flush(); if(!summaries||!transitions) m_io_error=true;
             m_tail.store(tail+count,std::memory_order_release);
         }
         else std::this_thread::sleep_for(std::chrono::milliseconds(5));
