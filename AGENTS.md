@@ -45,3 +45,9 @@ The configurable experiment/trial platform has completed research, architecture 
 - Update the architecture or runbook when behavior or procedures change. Preserve dated baseline facts.
 - Review `git diff --check` and the final status. For files with existing CRLF endings, use `git -c core.whitespace=trailing-space,space-before-tab,cr-at-eol diff --check` to check whitespace without flagging carriage returns. Report what changed, how it was verified, and what remains.
 - A local documentation update does not imply that it was committed or pushed. Make repository publication status explicit.
+
+## Slice 02 continuation
+
+Read [Slice 02](doc/project/slices/slice-02.md) and [results](doc/project/slices/slice-02-results.json) before changing accounting/fixture contracts. Schema2 captures 16 channels and a linear storage subset. Pinned dry analytical fixtures can earn scoped Passed; vehicle scientific validation stays NotReady. Fixture precision explicitly differs from the preserved vehicle kernel. Do not silently loosen acceptance limits or label removed storage as fracture energy. Optimize measured observer cost before claiming the proposed overhead target.
+
+For media, inspect visible pixels and image progression. OpenGL/GDI may be black despite encoder success. Use native renderer PNGs and ordinary-image playback; preserve failures and distinguish Chrome checks from unverified Codex in-app GPU rendering.

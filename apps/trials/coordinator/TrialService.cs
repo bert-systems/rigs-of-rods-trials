@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading.Channels;
@@ -10,9 +11,13 @@ public sealed class TrialService : BackgroundService
     readonly Catalog catalog;
     readonly List<Attempt> attempts;
     readonly Channel<string> queue=Channel.CreateUnbounded<string>(new(){SingleReader=true});
-    readonly string gameBin, archive;
+    readonly string gameBin, archive, renderer;
+    readonly bool evidenceFrames;
     public TrialService(IConfiguration config)
     {
+        evidenceFrames=string.Equals(config["evidence-frames"],"true",StringComparison.OrdinalIgnoreCase);
+        renderer=config["renderer"]??"Direct3D9";
+        if(renderer is not ("Direct3D9" or "OpenGL"))throw new ArgumentException("Renderer must be Direct3D9 or OpenGL.");
         gameBin=Path.GetFullPath(config["game-bin"] ?? throw new ArgumentException("--game-bin is required"));
         archive=Path.GetFullPath(config["archive"] ?? throw new ArgumentException("--archive is required"));
         if(archive.Contains("source-build-2026-10-08",StringComparison.OrdinalIgnoreCase) ||
@@ -30,9 +35,9 @@ public sealed class TrialService : BackgroundService
             }
         }
     }
-    public object Configuration => new { gameBin, archive, scenario="coast-v1", nativeCoverage="integration-v1",
+    public object Configuration => new { gameBin, archive, renderer, evidenceFrames, scenarios=new[]{"coast-v1","freefall-v1","spring-v1","damper-v1"}, nativeCoverage="accounting-v2",
         retention="Manual; no automatic deletion", captureProfile="Every-step aggregate binary; ~200 Hz summary; live ~10 Hz",
-        unavailable=new[]{"Barrier outcome qualification","Full model force/energy attribution","Raw node/beam/contact event windows","Driven journeys","Flight/gust/particles"} };
+        unavailable=new[]{"Barrier outcome qualification","Nonlinear storage and full model energy closure","Raw node/beam/contact event windows","Driven journeys","Flight/gust/particles"} };
     public object Snapshot()
     {
         lock(gate) return new { configuration=Configuration, attempts=attempts.Select(a=>new {
@@ -132,26 +137,39 @@ public sealed class TrialService : BackgroundService
         string dir=a.ArchivePath!, bin=Path.Combine(dir,"worker"), source=Path.Combine(gameBin,"RoR.exe");
         lock(gate) { a.Execution="Starting"; a.Capture="Recording"; AddEvent(a,"starting","Creating private source-built worker/profile."); catalog.Save(a); }
         CopyTree(gameBin,bin);
+        using(var zip=ZipFile.Open(Path.Combine(bin,"content","trial-fixtures.zip"),ZipArchiveMode.Create))
+            foreach(string fixture in Directory.GetFiles(Path.Combine(AppContext.BaseDirectory,"fixtures"),"*.truck").Order())
+                zip.CreateEntryFromFile(fixture,Path.GetFileName(fixture));
         Directory.CreateDirectory(Path.Combine(bin,"config","config"));
         Directory.CreateDirectory(Path.Combine(bin,"config","scripts"));
         File.WriteAllLines(Path.Combine(bin,"config","config","RoR.cfg"),[
             "app_config_long_names = false","app_disable_online_api = true","diag_preset_veh_enter = true",
             "gfx_fps_limit = 60","gfx_shadow_type = None","gfx_sky_mode = 0","gfx_water_mode = 1"]);
-        File.WriteAllText(Path.Combine(bin,"config","config","ogre.cfg"),RendererConfig);
-        File.WriteAllText(Path.Combine(bin,"config","scripts","trial-evidence.as"),EvidenceScript);
+        File.WriteAllText(Path.Combine(bin,"config","config","ogre.cfg"),renderer=="OpenGL"?OpenGlConfig:RendererConfig);
+        if(renderer=="OpenGL"){
+            var plugins=Path.Combine(bin,"plugins.cfg");
+            File.WriteAllText(plugins,File.ReadAllText(plugins).Replace("Plugin=RenderSystem_Direct3D9","# Plugin=RenderSystem_Direct3D9").Replace("# Plugin=RenderSystem_GL\n","Plugin=RenderSystem_GL\n").Replace("# Plugin=RenderSystem_GL\r\n","Plugin=RenderSystem_GL\r\n"));
+        }
+        var script=EvidenceScript;
+        if(evidenceFrames)script=script.Replace("bool initialized=false","float nextShot=.5;\n        bool initialized=false")
+            .Replace("elapsed+=dt;","elapsed+=dt; if(elapsed>=nextShot){nextShot+=.5;game.pushMessage(MSG_APP_SCREENSHOT_REQUESTED,null);}")
+            .Replace("if(!s1","if(false&&!s1").Replace("if(!s2","if(false&&!s2");
+        File.WriteAllText(Path.Combine(bin,"config","scripts","trial-evidence.as"),script);
         var e=a.Definition.Environment!;
         AtomicJson(Path.Combine(dir,"native-config.json"),new {
-            schema=1,a.Definition.LaunchSpeedMps,a.Definition.DurationSeconds,a.Definition.SettleSeconds,
+            schema=1,a.Definition.Scenario,a.Definition.Accounting,a.Definition.LaunchSpeedMps,a.Definition.DurationSeconds,a.Definition.SettleSeconds,
             gravity=e.Gravity,density=e.Density,windX=e.WindX,windY=e.WindY,windZ=e.WindZ
         });
         string exe=Path.Combine(bin,"RoR.exe");
         a.ExecutableSha256=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(exe)));
         if(a.ExecutableSha256!=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(source)))) throw new IOException("Copied executable hash mismatch.");
         AtomicJson(Path.Combine(dir,"manifest.json"),new {
-            schema=1,a.Id,a.RevisionId,a.RetryOf,a.Definition,a.DefinitionSha256,a.ExecutableSha256,sourceExecutable=source,
+            schema=2,renderer,evidenceFrames,visualCapture=evidenceFrames?"Native renderer screenshots requested every 0.5 render seconds; may be delayed":"Two native screenshots; optional external video",a.Id,a.RevisionId,a.RetryOf,a.Definition,a.DefinitionSha256,a.ExecutableSha256,sourceExecutable=source,
             privateExecutable=exe,requestedEnvironment=e,pressurePa=e.Density*287.05*e.TemperatureK,
             temperatureAdoption="Recorded dry-air state; drag uses explicit density; thermal exchange unimplemented",
-            coverage=a.Coverage,scope="Controlled coast observation; impact fixtures/attribution qualification pending",
+            beamLengthKernel=a.Definition.Scenario=="coast-v1"?"native fast inverse-square-root":"fixture precise square-root",
+            fixtureGeometry=a.Definition.Scenario=="coast-v1"?null:new {movingMassKg=100,fixedNodes=3,restLengthM=1,extensionM=.05,springNpm=a.Definition.Scenario=="freefall-v1"?0:10000,damperNspm=a.Definition.Scenario=="damper-v1"?200:0,drag=false,groundContact=false},
+            coverage=a.Coverage,scope=a.Definition.Scenario=="coast-v1"?"Vehicle study: partial model coverage":"Pinned analytical dry fixture; no vehicle/impact generalization",
             units="SI; native world axes Y-up; movable node cohort",retention="manual",
             assetHashes=Directory.GetFiles(Path.Combine(bin,"content"),"*.zip").ToDictionary(f=>Path.GetFileName(f),
                 f=>Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(f))))
@@ -179,9 +197,9 @@ public sealed class TrialService : BackgroundService
                     var hello=ReadJson(Path.Combine(dir,"handshake.json"));
                     if(hello is { } h)
                     {
-                        if(h.GetProperty("schema").GetInt32()!=1 || h.GetProperty("observer").GetString()!="integration-v1") throw new IOException("Native capability handshake mismatch.");
+                        if(h.GetProperty("schema").GetInt32()!=1 || h.GetProperty("observer").GetString()!="accounting-v2") throw new IOException("Native capability handshake mismatch.");
                         handshake=true;
-                        lock(gate){ a.Execution="Running"; AddEvent(a,"handshake","Native integration-v1 / CRC32 archive accepted."); catalog.Save(a); }
+                        lock(gate){ a.Execution="Running"; AddEvent(a,"handshake","Native accounting-v2 / CRC32 schema 2 archive accepted."); catalog.Save(a); }
                     }
                 }
                 if(handshake&&!modules)
@@ -257,15 +275,18 @@ public sealed class TrialService : BackgroundService
         lock(gate)
         {
             a.Execution=a.CancelRequested?"Cancelled":process.ExitCode==0&&handshake&&modules&&durationMet?"Completed":"Failed";
-            if(finalStatus is { } fs) a.WorkerStatus=fs;
+            a.WorkerStatus=finalHealth??finalStatus;
             if(finalHealth is not { } health || health.GetProperty("ioError").GetBoolean() ||
                health.GetProperty("dropped").GetInt64()>0) a.Capture="Incomplete";
             a.Capture=check.Complete&&a.Capture!="Incomplete"?"Complete":"Incomplete";
-            a.Validation="NotReady"; // complete capture is not complete model/fixture qualification
+            var qualification=FixtureValidation.Evaluate(Path.Combine(dir,"steps.rort"),a.Definition,check,a.Execution=="Completed"&&a.Capture=="Complete");
+            a.Validation=qualification.Status;
             a.Metrics=new() {["durationMet"]=durationMet,["records"]=check.Records,["cleanClose"]=check.Closed,["dropped"]=check.Dropped,
                 ["maxMomentumUpdateResidualKgMps"]=check.MaxMomentumResidual,["maxKineticWorkResidualJ"]=check.MaxWorkResidual,
                 ["maxKineticJ"]=check.MaxKinetic,["captureProblem"]=check.Problem??"",["workerExitCode"]=process.ExitCode};
-            AddEvent(a,"finished",$"{a.Execution}; capture {a.Capture}; validation NotReady (model coverage/fixtures pending).");
+            a.Metrics["accounting"]=check.Accounting;
+            a.Metrics["qualification"]=qualification;
+            AddEvent(a,"finished",$"{a.Execution}; capture {a.Capture}; validation {a.Validation} ({qualification.Scope}).");
             catalog.Save(a);
         }
         AtomicJson(Path.Combine(dir,"result.json"),a);
@@ -292,15 +313,16 @@ public sealed class TrialService : BackgroundService
     public string? Artifact(string id,string name)
     {
         var a=Find(id); if(a==null)return null;
-        if(new[]{"manifest.json","result.json","steps.rort","summaries.jsonl","capture-health.json","native-events.jsonl","process-provenance.json"}.Contains(name))
+        if(new[]{"manifest.json","result.json","steps.rort","summaries.jsonl","capture-health.json","native-events.jsonl","process-provenance.json","beam-transitions.jsonl"}.Contains(name))
             return Path.Combine(a.ArchivePath!,name);
         return null;
     }
+    const string OpenGlConfig="Render System=OpenGL Rendering Subsystem\n\n[OpenGL Rendering Subsystem]\nFull Screen=No\nVideo Mode=1280 x 720\nFSAA=0\nVSync=Yes\nRTT Preferred Mode=FBO\n";
     const string RendererConfig="Render System=Direct3D9 Rendering Subsystem\n\n[Direct3D9 Rendering Subsystem]\nAllow NVPerfHUD=No\nFSAA=0\nFloating-point mode=Fastest\nFull Screen=No\nMulti device memory hint=Use minimum system memory\nRendering Device=Monitor-1-NVIDIA GeForce RTX 3090\nResource Creation Policy=Create on all devices\nUse Multihead=Auto\nVSync=Yes\nVSync Interval=1\nVideo Mode=1280 x 720 @ 32-bit colour\nsRGB Gamma Conversion=No\n";
     const string EvidenceScript="""
         float elapsed=0;
         bool initialized=false,open=true,s1=false,s2=false;
-        void main(){game.log("TRIAL observer integration-v1; source-built native coast");}
+        void main(){game.log("TRIAL observer accounting-v2; source-built physics");}
         void frameStep(float dt) {
             BeamClass@ truck=game.getCurrentTruck();
             if(truck is null)return;
@@ -316,10 +338,10 @@ public sealed class TrialService : BackgroundService
             ImGui::SetNextWindowPos(vector2(20,20),ImGuiCond_Always);
             ImGui::SetNextWindowSize(vector2(470,130));
             if(ImGui::Begin("RoR Trials / source-built worker",open,ImGuiWindowFlags_NoResize)){
-                ImGui::Text("Native force / momentum / kinetic-work observer");
-                ImGui::Text("Daf / Simple2 | controlled rolling coast");
+                ImGui::Text("Native force channels / core energy accounting");
+                ImGui::Text("Pinned scenario | Simple2 | fresh native process");
                 ImGui::Text("Wheel speed: "+truck.getWheelSpeed()+" m/s");
-                ImGui::Text("Coverage incomplete: scientific validation NotReady");
+                ImGui::Text("Fixture qualification is evaluated after capture closes");
                 ImGui::End();
             }
             if(!s1&&elapsed>4){s1=true;game.pushMessage(MSG_APP_SCREENSHOT_REQUESTED,null);}

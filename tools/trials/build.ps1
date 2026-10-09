@@ -1,12 +1,13 @@
 param(
     [Parameter(Mandatory=$true)][string]$Session,
-    [string]$Repo=(Resolve-Path "$PSScriptRoot\..\..").Path,
+    [string]$Repo="",
     [string]$Tools='D:\Rigs of Rods\source-build-2026-10-08\tools\Scripts',
     [string]$ConanHome='D:\Rigs of Rods\source-build-2026-10-08\conan-cache',
     [string]$VsShell='C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\Launch-VsDevShell.ps1',
     [switch]$Clean
 )
 $ErrorActionPreference='Stop'
+if(!$Repo){$Repo=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))}
 $Session=[IO.Path]::GetFullPath($Session)
 $Repo=[IO.Path]::GetFullPath($Repo)
 if($Session.Contains('source-build-2026-10-08') -or $Session.StartsWith($Repo+'\',[StringComparison]::OrdinalIgnoreCase) -or $Session -eq $Repo){

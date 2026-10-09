@@ -319,3 +319,9 @@ Preserve historical records. Add dated corrections rather than replacing origina
 - [Upstream Windows guide](https://github.com/RigsOfRods/rigs-of-rods/wiki/Compile-(Windows))
 - [Developer portal](https://developer.rigsofrods.org/)
 - [Conan provider implementation](../../cmake/conan_provider.cmake)
+
+## Slice 02 recording correction
+
+The user reported poster-then-blank video. Original/Slice 01 MP4 pixels are nonblank; WebM and decoded-image players provide compatible alternatives while preserving originals. Codex in-app rendering remains unverified. `media-evidence.py` packages alternatives and `verify-media.py` checks visible screenshot pixels and image progression.
+
+OpenGL/GDI capture produced genuinely black frames and was rejected. Use `start.ps1 -Renderer OpenGL -EvidenceFrames` and `native-frames-video.py` to encode actual RoR renderer PNGs. Requests occur nominally every 0.5render seconds, may be delayed and add overhead. Video does not replace native physics ticks. See the [runbook](../../apps/trials/README.md).

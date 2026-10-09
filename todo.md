@@ -70,8 +70,10 @@ Implementation is underway in [Slice 01](doc/project/slices/slice-01.md). D003 c
 - [x] Slice 01: physical gravity/density/steady-wind adoption in the pilot generic-drag path; dry-air state metadata.
 - [x] Slice 01: React live form/charts/queue, native clock, pause/resume, cancel, retained results and separate retries.
 - [x] Slice 01: native source build, accounting/archive checks, real simulation screenshot/video evidence and reproduction scripts.
-- [ ] Slice 02: explicit force generation/consumption channels and closed core energy terms, initialization ports and mass/state mutation handling.
-- [ ] Slice 02: native free-fall/spring-damper fixtures, repeatability/performance characterization and scoped acceptance profiles.
+- [x] Slice 02: force channels, linear core energy/work, initialization/state ports and visible unqualified mass/cohort exchange; scoped native fixture balances.
+- [x] Slice 02: native analytical fixtures, repeatability/cost characterization and scoped acceptance profiles; [delivery](doc/project/slices/slice-02.md).
+- [ ] Optimize attribution overhead (measured~79.5% added step duration); characterize a true instrumentation-off baseline and larger workloads before claiming the proposed ≤10% target.
+- [ ] Extend nonlinear/shock/hydro/rope storage, strength-only transitions, external state mutation gateways and fracture dissipation; current vehicle validation stays NotReady.
 - [ ] Slice 03: controlled barrier asset, verified impact approach/trigger/outcome and deformation/breakage records.
 - [ ] Slice 03: required node/contact/beam detail windows at the selected 2 kHz profile with loss/overflow qualification.
 - [ ] Later: generalized asset/configuration selection, driven journeys, flight, gusts/particulates, live 3D inspector and comparison/export.

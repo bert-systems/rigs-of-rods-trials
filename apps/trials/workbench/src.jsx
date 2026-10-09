@@ -3,9 +3,11 @@ import {createRoot} from 'react-dom/client';
 import './style.css';
 
 const initial={name:'Daf steady-wind coast',launchSpeedMps:5,durationSeconds:12,settleSeconds:3,repeats:1,
+ scenario:'coast-v1',vehicle:'b6b0UID-semi.truck',terrain:'simple2.terrn2',accounting:true,
  environment:{gravity:-9.81,temperatureK:288.15,density:1.225,windX:0,windY:0,windZ:0}};
 const norm=v=>v?Math.hypot(...v):0;
 const fmt=(n,d=2)=>Number.isFinite(n)?n.toLocaleString(undefined,{maximumFractionDigits:d}):'—';
+const scienceFmt=n=>Number.isFinite(n)&&n!==0&&Math.abs(n)<.001?n.toExponential(3):fmt(n,7);
 const axisFmt=n=>Math.abs(n)>0&&Math.abs(n)<.01?n.toExponential(2):fmt(n);
 const terminal=['Completed','Failed','Cancelled','Interrupted'];
 function Spark({points,field,vector=false,title,unit}){
@@ -54,6 +56,10 @@ function App(){
  const attempts=data?.attempts??[];
  const current=attempts.find(a=>a.id===selected)??attempts.at(-1);
  const sample=current?.latest,history=current?.history??[];
+ const fixture=form.scenario!=='coast-v1';
+ const scenario=value=>setForm(f=>({...f,scenario:value,vehicle:value==='coast-v1'?'b6b0UID-semi.truck':'ror-'+value+'.truck',
+   launchSpeedMps:value==='coast-v1'?5:0,durationSeconds:value==='coast-v1'?12:value==='freefall-v1'?.5:5,
+   settleSeconds:value==='coast-v1'?3:0,environment:{...f.environment,gravity:['spring-v1','damper-v1'].includes(value)?0:-9.81,windX:0,windY:0,windZ:0}}));
  const num=(key,value,env=false)=>setForm(f=>env?{...f,environment:{...f.environment,[key]:value}}:{...f,[key]:value});
  async function post(url,body){
   const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','X-Trials-Session':token.current??''},body:JSON.stringify(body??{})});
@@ -78,17 +84,20 @@ function App(){
  {!live&&data&&<div className="warning">Live view disconnected. Showing last-known observations; refresh does not repeat trial commands.</div>}
  <div className="workspace"><aside className="author"><div className="section-title"><h2>New experiment</h2><span>PINNED PILOT</span></div>
  <FormContext.Provider value={{form,num}}><form onSubmit={enqueue}><label>Experiment name<input value={form.name} maxLength={120} onChange={e=>setForm({...form,name:e.target.value})} required/></label>
- <div className="asset"><span>Vehicle</span><strong>Daf Semi</strong><small>b6b0UID-semi.truck</small></div>
+ <label>Study scenario<select value={form.scenario} onChange={e=>scenario(e.target.value)}>
+ <option value="coast-v1">Daf rolling coast · study</option><option value="freefall-v1">Free fall · dry fixture</option>
+ <option value="spring-v1">Linear spring · dry fixture</option><option value="damper-v1">Spring + damper · dry fixture</option></select></label>
+ <div className="asset"><span>Vehicle / fixture</span><strong>{fixture?'100 kg movable node + fixed anchors':'Daf Semi'}</strong><small>{form.vehicle}</small></div>
  <div className="asset"><span>Terrain</span><strong>Simple Test Terrain</strong><small>simple2.terrn2</small></div>
- <div className="form-pair"><Field label="Release speed · m/s" k="launchSpeedMps" min="0" max="20"/><Field label="Observe · s" k="durationSeconds" min="1" max="120"/></div>
- <div className="form-pair"><Field label="Settling · s" k="settleSeconds" min="2" max="30"/><Field label="Repeats" k="repeats" min="1" max="20" step="1"/></div>
+ <div className="form-pair"><Field label="Release speed · m/s" k="launchSpeedMps" min="0" max="20"/><Field label="Observe · s" k="durationSeconds" min={fixture?".1":"1"} max={fixture?"5":"120"}/></div>
+ <div className="form-pair"><Field label="Settling · s" k="settleSeconds" min={fixture?"0":"2"} max={fixture?"0":"30"}/><Field label="Repeats" k="repeats" min="1" max="20" step="1"/></div>
  <details open={tab==='Environment'}><summary>Gravity, air and steady wind</summary>
- <Field label="Gravity Y · m/s²" k="gravity" env min="-30" max="-.001"/>
+ <Field label="Gravity Y · m/s²" k="gravity" env min="-30" max="0"/>
  <div className="form-pair"><Field label="Temperature · K" k="temperatureK" env min="180" max="350"/><Field label="Density · kg/m³" k="density" env min=".001" max="3"/></div>
  <div className="wind-fields">{['X','Y','Z'].map(axis=><Field key={axis} label={'Wind '+axis+' · m/s'} k={'wind'+axis} env min="-30" max="30"/>)}</div></details>
- <div className="setup-note">Settle, initialize rolling motion, then coast with propulsion off. Each attempt gets a fresh process and private profile.</div>
+ <div className="setup-note">{fixture?"Pinned dry/contactless state: 100 kg, 1 m rest length, 0.05 m extension, k=10,000 N/m; damper c=200 Ns/m. Free fall disables beam stiffness.":"Settle, initialize rolling motion, then coast with propulsion off."} Each attempt gets a fresh process and private profile.</div>
  <button className="primary" disabled={sending||!live}>{sending?'Saving revision…':'Queue experiment'} <span>→</span></button></form></FormContext.Provider>
- <div className="scope-note"><strong>Current study scope</strong><p>Consumed force, contact response, momentum and kinetic-work updates. Barrier fixtures and complete force/model energy attribution are pending qualification.</p></div></aside>
+ <div className="scope-note"><strong>Current study scope</strong><p>16 force channels, linear beam storage, state/work ports and required transition capture. Analytical dry fixtures have scoped qualification. Vehicle impact and nonlinear storage remain pending.</p></div></aside>
  <section className="monitor"><div className="attempts"><div className="section-title"><h2>Trial queue</h2><span>{attempts.length} ATTEMPTS · SERIAL</span></div>
  {attempts.length===0?<div className="empty">Define an experiment to launch the source-built worker.</div>:<div className="queue-list">{attempts.slice().reverse().map(a=><button key={a.id} className={'queue-item '+(a.id===current?.id?'selected':'')} onClick={()=>setSelected(a.id)}><div><strong>{a.definition.name}</strong><small>{a.id.slice(0,8)} · {a.definition.launchSpeedMps} m/s · {a.retryOf?'retry':'new attempt'}</small></div><span className={'pill '+a.execution.toLowerCase()}>{a.execution}</span></button>)}</div>}</div>
  <div className="run-header"><div><div className="eyebrow">SELECTED ATTEMPT</div><h2>{current?.definition.name??'No active attempt'}</h2><p>{current?current.id:'Ready for a controlled study'}</p></div><div className="controls">
@@ -106,10 +115,23 @@ function App(){
  ].map(([title,value,unit])=><div className="metric" key={title}><span>{title}</span><strong>{fmt(value)}<small>{unit}</small></strong></div>)}</div>
  <Spark points={history} field="forceN" vector title="Consumed force components" unit="N · WORLD AXES"/>
  <div className="chart-pair"><Spark points={history} field="kineticJ" title="Node kinetic energy" unit="J"/><Spark points={history} field="workResidualJ" title="Kinetic / work residual" unit="J / TICK"/></div>
+ <div className="chart-pair"><Spark points={history.map(p=>({...p,mechanicalJ:p.kineticJ+(p.gravityPotentialJ??0)+(p.linearElasticJ??0)}))} field="mechanicalJ" title="K + gravity + linear beam storage" unit="J"/>
+ <Spark points={history} field="mechanicalResidualJ" title="Core energy closure discrepancy" unit="J / TICK"/></div>
+ <section className="accounting"><div className="section-title"><h3>Force and work attribution</h3><span>CONSUMED / GENERATED EPOCHS</span></div>
+ <p>Carried base from tick {sample?.consumedFromTick??'—'}; ground/object contact is added at consumption; force increments generated in tick {sample?.generatedTick??'—'}. Internal forces can cancel in the vector sum; node-level unaccounted force remains visible.</p>
+ <table><thead><tr><th>Channel</th><th>Consumed F · X / Y / Z N</th><th>Work · J / tick</th><th>Generated |F| · N</th></tr></thead>
+ <tbody>{Object.entries(sample?.channels??{}).map(([name,c])=><tr key={name}><td>{name}</td><td>{c.forceN.map(v=>fmt(v,4)).join(' / ')}</td><td>{fmt(c.workJ,6)}</td><td>{fmt(norm(c.generatedN),4)}</td></tr>)}</tbody></table>
+ <div className="env-grid"><div>Unattributed node force L1<strong>{fmt(sample?.unattributedNodeForceL1N,8)} N</strong></div>
+ <div>Unsupported active storage<strong>{sample?.unclosedBeams??'—'} beams</strong></div><div>Linear elastic storage<strong>{fmt(sample?.linearElasticJ,5)} J</strong></div>
+ <div>Gravity storage<strong>{fmt(sample?.gravityPotentialJ,5)} J</strong></div></div>
+ <p>Wind port: {fmt(sample?.windWorkJ,7)} J/tick · relative-flow drag work: {fmt(sample?.relativeDragWorkJ,7)} J/tick. Beam removal storage is a model bookkeeping port; fracture dissipation is not inferred.</p></section>
+ {current?.metrics?.qualification&&<section className="accounting"><div className="section-title"><h3>Scientific qualification</h3><span>{current.metrics.qualification.status}</span></div>
+ <p>{current.metrics.qualification.scope}</p><table><thead><tr><th>Check</th><th>Observed</th><th>Maximum</th><th>Result</th></tr></thead><tbody>
+ {current.metrics.qualification.checks.map(c=><tr key={c.name}><td>{c.name}</td><td>{scienceFmt(c.observed)}</td><td>{scienceFmt(c.limit)}</td><td>{c.passed?'Passed':'Failed'}</td></tr>)}</tbody></table></section>}
  <div className="bottom-pair"><section className="environment"><div className="section-title"><h3>Effective dry environment</h3><span>{sample?'NATIVE SAMPLE':'REQUESTED'}</span></div>
  <div className="env-grid"><div>Gravity<strong>{fmt(sample?.gravityMps2??env.gravity)} m/s²</strong></div><div>Air density<strong>{fmt(sample?.densityKgM3??env.density,3)} kg/m³</strong></div><div>Temperature<strong>{fmt(env.temperatureK)} K</strong></div><div>Steady wind<strong>{(sample?.windMps??[env.windX,env.windY,env.windZ]).map(v=>fmt(v)).join(' / ')} m/s</strong></div></div><p>Density and relative wind feed generic dry drag. Temperature is recorded; thermal exchange is outside this model.</p></section>
  <section className="events"><div className="section-title"><h3>Attempt timeline</h3><span>DURABLE EVENTS</span></div>{current?.events?.slice(-5).reverse().map(e=><div className="event" key={e.sequence}><i/><div><strong>{e.kind}</strong><p>{e.message}</p></div></div>)??<p>No attempt events yet.</p>}</section></div>
- {current&&<section className="archive"><div><h3>Retained evidence</h3><p>Every-step binary records and checksums, manifests, requested inputs and scoped outcomes.</p><div className="links">{['manifest.json','result.json','steps.rort','process-provenance.json'].map(name=><a key={name} href={'/api/attempts/'+current.id+'/artifacts/'+name}>{name}</a>)}</div></div><div className="controls"><button disabled={!terminal.includes(current.execution)} onClick={()=>command('retry')}>New retry</button><button disabled={!terminal.includes(current.execution)||current.archived} onClick={()=>command('archive')}>{current.archived?'Archived · retained':'Mark archived'}</button></div></section>}
+ {current&&<section className="archive"><div><h3>Retained evidence</h3><p>Every-step binary records and checksums, manifests, requested inputs and scoped outcomes.</p><div className="links">{['manifest.json','result.json','steps.rort','process-provenance.json','beam-transitions.jsonl'].map(name=><a key={name} href={'/api/attempts/'+current.id+'/artifacts/'+name}>{name}</a>)}</div></div><div className="controls"><button disabled={!terminal.includes(current.execution)} onClick={()=>command('retry')}>New retry</button><button disabled={!terminal.includes(current.execution)||current.archived} onClick={()=>command('archive')}>{current.archived?'Archived · retained':'Mark archived'}</button></div></section>}
  <footer>Captured sample: {fmt(sample?.timeSeconds,3)} s; native clock and recorder publication are independent. Coverage: {current?.coverage??'Awaiting native worker'}. Complete capture alone does not establish physical validation.</footer>
  </section></div></main></div>;
 }

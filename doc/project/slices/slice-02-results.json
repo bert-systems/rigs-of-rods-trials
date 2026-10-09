@@ -1,0 +1,1810 @@
+{
+  "checks": {
+    "fixtureDefaults": true,
+    "pauseStopsClock": true,
+    "nativeVideoExit": 0,
+    "videoRequiresPixelValidation": true,
+    "noPageErrors": true,
+    "mobileNoPageOverflow": true,
+    "processProvenance": true,
+    "allNewExecutableHashes": true,
+    "nonzeroWindPortVerified": true,
+    "channelReconstructionVerified": true
+  },
+  "runs": [
+    {
+      "id": "318db3f930654003acb5ea5916d03e9a",
+      "definition": {
+        "name": "UI-qualified spring",
+        "launchSpeedMps": 0,
+        "durationSeconds": 5,
+        "settleSeconds": 0,
+        "repeats": 1,
+        "environment": {
+          "gravity": 0,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-spring-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "spring-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "Passed",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\318db3f930654003acb5ea5916d03e9a",
+      "processId": 44728,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 10000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 2.9802255096557373e-06,
+        "maxKineticWorkResidualJ": 1.4901400218437979e-06,
+        "maxKineticJ": 12.50067652187159,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 0.01647991878965449,
+          "nonconservativeWorkSumJ": 0,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 0,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 0,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 0,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 0.8606571515225506,
+          "work.beamDamping.J": 0,
+          "work.beamCorrection.J": 0,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 1.8758499999999703
+        },
+        "qualification": {
+          "status": "Passed",
+          "scope": "Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight",
+          "checks": [
+            {
+              "name": "pinned initial kinetic energy / J",
+              "observed": 0,
+              "limit": 1e-06,
+              "passed": true
+            },
+            {
+              "name": "prepared four-node fixture",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "pinned initial extension error / m",
+              "observed": 4.768371582308806e-08,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "pinned initial spring stiffness response / N",
+              "observed": 1.1444091796875e-05,
+              "limit": 0.1,
+              "passed": true
+            },
+            {
+              "name": "extraneous force-channel work / J",
+              "observed": 0,
+              "limit": 1e-08,
+              "passed": true
+            },
+            {
+              "name": "one moving node mass error / kg",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift position / m",
+              "observed": 1.8628737794134514e-05,
+              "limit": 0.003,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift velocity / m/s",
+              "observed": 3.9646112910435294e-05,
+              "limit": 0.04,
+              "passed": true
+            },
+            {
+              "name": "core closure after known freefall discretization / J",
+              "observed": 0.03199321375806363,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "undamped energy envelope / J",
+              "observed": 0.03199321375806363,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "unattributed node force L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "force reconstruction L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "unqualified active storage elements",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "uncommanded state-change energy / J",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "integration impulse discrepancy / kg m/s",
+              "observed": 2.9802255096557373e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "kinetic midpoint-work discrepancy / J",
+              "observed": 1.4901400218437979e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "simulated duration error / s",
+              "observed": 2.3748725652694702e-07,
+              "limit": 0.001,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "1311e33f80f7448cb5075df5bc9db1c0",
+      "definition": {
+        "name": "Slice 02 coast / pause / force channels",
+        "launchSpeedMps": 5,
+        "durationSeconds": 12,
+        "settleSeconds": 3,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\1311e33f80f7448cb5075df5bc9db1c0",
+      "processId": 27632,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 30000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.000681712125504007,
+        "maxKineticWorkResidualJ": 0.00322018115403597,
+        "maxKineticJ": 154445.86168728513,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.03327847429930605,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3092.1068537855967,
+          "nonconservativeWorkSumJ": -152232.69179459446,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": -8038.1100265113255,
+          "injectionKineticSumJ": 154472.158441358,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 5540.067561368369,
+          "work.genericDrag.J": -8038.1100265113255,
+          "work.groundObject.J": 21841.94960253827,
+          "work.beamElastic.J": -37.67828765036352,
+          "work.beamDamping.J": -165951.94740803153,
+          "work.beamCorrection.J": -0.00017799785171502953,
+          "work.wheels.J": -84.58352468644517,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": -0.0002599060923062692,
+          "meanPhysicsStepElapsedUs": 109.86481666666756
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "c50576859c6943d29a9d9d64731afbec",
+      "definition": {
+        "name": "Repeated freefall-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 0.5,
+        "settleSeconds": 0,
+        "repeats": 2,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-freefall-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "freefall-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "Passed",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\c50576859c6943d29a9d9d64731afbec",
+      "processId": 32392,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 1000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 2.23308284752477e-05,
+        "maxKineticWorkResidualJ": 0.0001094786203346132,
+        "maxKineticJ": 1202.9660879401945,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": -1.1871671648259507,
+          "nonconservativeWorkSumJ": 0,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 0,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 0,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 1202.9502159222998,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 0,
+          "work.beamDamping.J": 0,
+          "work.beamCorrection.J": 0,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 1.840599999999997
+        },
+        "qualification": {
+          "status": "Passed",
+          "scope": "Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight",
+          "checks": [
+            {
+              "name": "pinned initial kinetic energy / J",
+              "observed": 0,
+              "limit": 1e-06,
+              "passed": true
+            },
+            {
+              "name": "prepared four-node fixture",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "extraneous force-channel work / J",
+              "observed": 0,
+              "limit": 1e-08,
+              "passed": true
+            },
+            {
+              "name": "freefall elastic storage / J",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "one moving node mass error / kg",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift position / m",
+              "observed": 3.1830576077140904e-06,
+              "limit": 0.003,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift velocity / m/s",
+              "observed": 3.001757430354246e-05,
+              "limit": 0.04,
+              "passed": true
+            },
+            {
+              "name": "core closure after known freefall discretization / J",
+              "observed": 0.015784199448289016,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "unattributed node force L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "force reconstruction L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "unqualified active storage elements",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "uncommanded state-change energy / J",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "integration impulse discrepancy / kg m/s",
+              "observed": 2.23308284752477e-05,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "kinetic midpoint-work discrepancy / J",
+              "observed": 0.0001094786203346132,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "simulated duration error / s",
+              "observed": 2.3748725652694702e-08,
+              "limit": 0.001,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "a82560c8049747bb8d87d2e47ef534fd",
+      "definition": {
+        "name": "Repeated freefall-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 0.5,
+        "settleSeconds": 0,
+        "repeats": 2,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-freefall-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "freefall-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "Passed",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\a82560c8049747bb8d87d2e47ef534fd",
+      "processId": 47204,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 1000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 2.23308284752477e-05,
+        "maxKineticWorkResidualJ": 0.0001094786203346132,
+        "maxKineticJ": 1202.9660879401945,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": -1.1871671648259507,
+          "nonconservativeWorkSumJ": 0,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 0,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 0,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 1202.9502159222998,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 0,
+          "work.beamDamping.J": 0,
+          "work.beamCorrection.J": 0,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 1.8840999999999986
+        },
+        "qualification": {
+          "status": "Passed",
+          "scope": "Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight",
+          "checks": [
+            {
+              "name": "pinned initial kinetic energy / J",
+              "observed": 0,
+              "limit": 1e-06,
+              "passed": true
+            },
+            {
+              "name": "prepared four-node fixture",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "extraneous force-channel work / J",
+              "observed": 0,
+              "limit": 1e-08,
+              "passed": true
+            },
+            {
+              "name": "freefall elastic storage / J",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "one moving node mass error / kg",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift position / m",
+              "observed": 3.1830576077140904e-06,
+              "limit": 0.003,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift velocity / m/s",
+              "observed": 3.001757430354246e-05,
+              "limit": 0.04,
+              "passed": true
+            },
+            {
+              "name": "core closure after known freefall discretization / J",
+              "observed": 0.015784199448289016,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "unattributed node force L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "force reconstruction L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "unqualified active storage elements",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "uncommanded state-change energy / J",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "integration impulse discrepancy / kg m/s",
+              "observed": 2.23308284752477e-05,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "kinetic midpoint-work discrepancy / J",
+              "observed": 0.0001094786203346132,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "simulated duration error / s",
+              "observed": 2.3748725652694702e-08,
+              "limit": 0.001,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "614f33d1054841bf80ec30f075b689c9",
+      "definition": {
+        "name": "Repeated spring-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 5,
+        "settleSeconds": 0,
+        "repeats": 2,
+        "environment": {
+          "gravity": 0,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-spring-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "spring-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "Passed",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\614f33d1054841bf80ec30f075b689c9",
+      "processId": 21904,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 10000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 2.9802255096557373e-06,
+        "maxKineticWorkResidualJ": 1.4901400218437979e-06,
+        "maxKineticJ": 12.50067652187159,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 0.01647991878965449,
+          "nonconservativeWorkSumJ": 0,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 0,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 0,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 0,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 0.8606571515225506,
+          "work.beamDamping.J": 0,
+          "work.beamCorrection.J": 0,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 1.895419999999999
+        },
+        "qualification": {
+          "status": "Passed",
+          "scope": "Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight",
+          "checks": [
+            {
+              "name": "pinned initial kinetic energy / J",
+              "observed": 0,
+              "limit": 1e-06,
+              "passed": true
+            },
+            {
+              "name": "prepared four-node fixture",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "pinned initial extension error / m",
+              "observed": 4.768371582308806e-08,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "pinned initial spring stiffness response / N",
+              "observed": 1.1444091796875e-05,
+              "limit": 0.1,
+              "passed": true
+            },
+            {
+              "name": "extraneous force-channel work / J",
+              "observed": 0,
+              "limit": 1e-08,
+              "passed": true
+            },
+            {
+              "name": "one moving node mass error / kg",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift position / m",
+              "observed": 1.8628737794134514e-05,
+              "limit": 0.003,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift velocity / m/s",
+              "observed": 3.9646112910435294e-05,
+              "limit": 0.04,
+              "passed": true
+            },
+            {
+              "name": "core closure after known freefall discretization / J",
+              "observed": 0.03199321375806363,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "undamped energy envelope / J",
+              "observed": 0.03199321375806363,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "unattributed node force L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "force reconstruction L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "unqualified active storage elements",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "uncommanded state-change energy / J",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "integration impulse discrepancy / kg m/s",
+              "observed": 2.9802255096557373e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "kinetic midpoint-work discrepancy / J",
+              "observed": 1.4901400218437979e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "simulated duration error / s",
+              "observed": 2.3748725652694702e-07,
+              "limit": 0.001,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "955fc9a213ef4c0cb63687cf6d87a457",
+      "definition": {
+        "name": "Repeated spring-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 5,
+        "settleSeconds": 0,
+        "repeats": 2,
+        "environment": {
+          "gravity": 0,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-spring-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "spring-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "Passed",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\955fc9a213ef4c0cb63687cf6d87a457",
+      "processId": 9908,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 10000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 2.9802255096557373e-06,
+        "maxKineticWorkResidualJ": 1.4901400218437979e-06,
+        "maxKineticJ": 12.50067652187159,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 0.01647991878965449,
+          "nonconservativeWorkSumJ": 0,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 0,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 0,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 0,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 0.8606571515225506,
+          "work.beamDamping.J": 0,
+          "work.beamCorrection.J": 0,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 1.883249999999992
+        },
+        "qualification": {
+          "status": "Passed",
+          "scope": "Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight",
+          "checks": [
+            {
+              "name": "pinned initial kinetic energy / J",
+              "observed": 0,
+              "limit": 1e-06,
+              "passed": true
+            },
+            {
+              "name": "prepared four-node fixture",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "pinned initial extension error / m",
+              "observed": 4.768371582308806e-08,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "pinned initial spring stiffness response / N",
+              "observed": 1.1444091796875e-05,
+              "limit": 0.1,
+              "passed": true
+            },
+            {
+              "name": "extraneous force-channel work / J",
+              "observed": 0,
+              "limit": 1e-08,
+              "passed": true
+            },
+            {
+              "name": "one moving node mass error / kg",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift position / m",
+              "observed": 1.8628737794134514e-05,
+              "limit": 0.003,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift velocity / m/s",
+              "observed": 3.9646112910435294e-05,
+              "limit": 0.04,
+              "passed": true
+            },
+            {
+              "name": "core closure after known freefall discretization / J",
+              "observed": 0.03199321375806363,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "undamped energy envelope / J",
+              "observed": 0.03199321375806363,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "unattributed node force L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "force reconstruction L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "unqualified active storage elements",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "uncommanded state-change energy / J",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "integration impulse discrepancy / kg m/s",
+              "observed": 2.9802255096557373e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "kinetic midpoint-work discrepancy / J",
+              "observed": 1.4901400218437979e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "simulated duration error / s",
+              "observed": 2.3748725652694702e-07,
+              "limit": 0.001,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "3e7cc3f9ca18472589a28471bdcef8a7",
+      "definition": {
+        "name": "Repeated damper-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 5,
+        "settleSeconds": 0,
+        "repeats": 2,
+        "environment": {
+          "gravity": 0,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-damper-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "damper-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "Passed",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\3e7cc3f9ca18472589a28471bdcef8a7",
+      "processId": 59536,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 10000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 1.4818754397183387e-06,
+        "maxKineticWorkResidualJ": 6.392407892924544e-07,
+        "maxKineticJ": 9.30508848186844,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": -2.8418079878465938e-05,
+          "nonconservativeWorkSumJ": -12.49942917693208,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 0,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 0,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 0,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 12.499565644165314,
+          "work.beamDamping.J": -12.499429247446292,
+          "work.beamCorrection.J": 7.051424040944763e-08,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 1.9063799999999738
+        },
+        "qualification": {
+          "status": "Passed",
+          "scope": "Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight",
+          "checks": [
+            {
+              "name": "pinned initial kinetic energy / J",
+              "observed": 0,
+              "limit": 1e-06,
+              "passed": true
+            },
+            {
+              "name": "prepared four-node fixture",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "pinned initial extension error / m",
+              "observed": 4.768371582308806e-08,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "pinned initial spring stiffness response / N",
+              "observed": 1.1444091796875e-05,
+              "limit": 0.1,
+              "passed": true
+            },
+            {
+              "name": "extraneous force-channel work / J",
+              "observed": 0,
+              "limit": 1e-08,
+              "passed": true
+            },
+            {
+              "name": "one moving node mass error / kg",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift position / m",
+              "observed": 1.7517785494147487e-05,
+              "limit": 0.003,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift velocity / m/s",
+              "observed": 2.082166460110448e-05,
+              "limit": 0.04,
+              "passed": true
+            },
+            {
+              "name": "core closure after known freefall discretization / J",
+              "observed": 0.02913387570641568,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "unattributed node force L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "force reconstruction L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "unqualified active storage elements",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "uncommanded state-change energy / J",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "integration impulse discrepancy / kg m/s",
+              "observed": 1.4818754397183387e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "kinetic midpoint-work discrepancy / J",
+              "observed": 6.392407892924544e-07,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "simulated duration error / s",
+              "observed": 2.3748725652694702e-07,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "damping work must be dissipative / J",
+              "observed": -12.499429247446292,
+              "limit": 0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ae6b0720f522495894fbe39e32bc45d9",
+      "definition": {
+        "name": "Repeated damper-v1",
+        "launchSpeedMps": 0,
+        "durationSeconds": 5,
+        "settleSeconds": 0,
+        "repeats": 2,
+        "environment": {
+          "gravity": 0,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "ror-damper-v1.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "damper-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "Passed",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\ae6b0720f522495894fbe39e32bc45d9",
+      "processId": 656,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 10000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 1.4818754397183387e-06,
+        "maxKineticWorkResidualJ": 6.392407892924544e-07,
+        "maxKineticJ": 9.30508848186844,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": -2.8418079878465938e-05,
+          "nonconservativeWorkSumJ": -12.49942917693208,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 0,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 0,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 0,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 12.499565644165314,
+          "work.beamDamping.J": -12.499429247446292,
+          "work.beamCorrection.J": 7.051424040944763e-08,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 1.9696899999999944
+        },
+        "qualification": {
+          "status": "Passed",
+          "scope": "Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight",
+          "checks": [
+            {
+              "name": "pinned initial kinetic energy / J",
+              "observed": 0,
+              "limit": 1e-06,
+              "passed": true
+            },
+            {
+              "name": "prepared four-node fixture",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "pinned initial extension error / m",
+              "observed": 4.768371582308806e-08,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "pinned initial spring stiffness response / N",
+              "observed": 1.1444091796875e-05,
+              "limit": 0.1,
+              "passed": true
+            },
+            {
+              "name": "extraneous force-channel work / J",
+              "observed": 0,
+              "limit": 1e-08,
+              "passed": true
+            },
+            {
+              "name": "one moving node mass error / kg",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift position / m",
+              "observed": 1.7517785494147487e-05,
+              "limit": 0.003,
+              "passed": true
+            },
+            {
+              "name": "native versus independent kick-drift velocity / m/s",
+              "observed": 2.082166460110448e-05,
+              "limit": 0.04,
+              "passed": true
+            },
+            {
+              "name": "core closure after known freefall discretization / J",
+              "observed": 0.02913387570641568,
+              "limit": 0.3,
+              "passed": true
+            },
+            {
+              "name": "unattributed node force L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "force reconstruction L1 / N",
+              "observed": 0,
+              "limit": 1e-05,
+              "passed": true
+            },
+            {
+              "name": "unqualified active storage elements",
+              "observed": 0,
+              "limit": 0,
+              "passed": true
+            },
+            {
+              "name": "uncommanded state-change energy / J",
+              "observed": 0,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "integration impulse discrepancy / kg m/s",
+              "observed": 1.4818754397183387e-06,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "kinetic midpoint-work discrepancy / J",
+              "observed": 6.392407892924544e-07,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "simulated duration error / s",
+              "observed": 2.3748725652694702e-07,
+              "limit": 0.001,
+              "passed": true
+            },
+            {
+              "name": "damping work must be dissipative / J",
+              "observed": -12.499429247446292,
+              "limit": 0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "3f0bc46271da45588392d36193b617b1",
+      "definition": {
+        "name": "Observer cost False",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 3,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": false
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\3f0bc46271da45588392d36193b617b1",
+      "processId": 32392,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 16000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.000681712125504007,
+        "maxKineticWorkResidualJ": 0.00322018115403597,
+        "maxKineticJ": 154445.86168728513,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": -102244.92570256528,
+          "nonconservativeWorkSumJ": 0,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 154472.158441358,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 0,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 0,
+          "work.beamDamping.J": 0,
+          "work.beamCorrection.J": 0,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 60.97161249999997
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "dd19d9e8da1f412d800f26f4ed10e3af",
+      "definition": {
+        "name": "Observer cost True",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 3,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\dd19d9e8da1f412d800f26f4ed10e3af",
+      "processId": 48004,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 16000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.000681712125504007,
+        "maxKineticWorkResidualJ": 0.00322018115403597,
+        "maxKineticJ": 154445.86168728513,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.03327847429930605,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3048.1401801401116,
+          "nonconservativeWorkSumJ": -105293.06588270553,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": -6657.899541512077,
+          "injectionKineticSumJ": 154472.158441358,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 5481.379227824097,
+          "work.genericDrag.J": -6657.899541512077,
+          "work.groundObject.J": 8232.870169666865,
+          "work.beamElastic.J": -53.14322838940604,
+          "work.beamDamping.J": -106844.89666445786,
+          "work.beamCorrection.J": -0.00018445311561390084,
+          "work.wheels.J": -23.139554269049935,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": -0.00010768004190116857,
+          "meanPhysicsStepElapsedUs": 110.54561874999987
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "c234b35120f542c781970592ce1dae29",
+      "definition": {
+        "name": "Observer cost False",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 3,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": false
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\c234b35120f542c781970592ce1dae29",
+      "processId": 25376,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 16000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.000681712125504007,
+        "maxKineticWorkResidualJ": 0.00322018115403597,
+        "maxKineticJ": 154445.86168728513,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": -102244.92570256528,
+          "nonconservativeWorkSumJ": 0,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": 0,
+          "injectionKineticSumJ": 154472.158441358,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 0,
+          "work.genericDrag.J": 0,
+          "work.groundObject.J": 0,
+          "work.beamElastic.J": 0,
+          "work.beamDamping.J": 0,
+          "work.beamCorrection.J": 0,
+          "work.wheels.J": 0,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 0,
+          "meanPhysicsStepElapsedUs": 61.83163750000016
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "dfcceccf22444a4daebe65440972ed84",
+      "definition": {
+        "name": "Observer cost True",
+        "launchSpeedMps": 5,
+        "durationSeconds": 5,
+        "settleSeconds": 3,
+        "repeats": 1,
+        "environment": {
+          "gravity": -9.81,
+          "temperatureK": 288.15,
+          "density": 1.225,
+          "windX": 0,
+          "windY": 0,
+          "windZ": 0
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\dfcceccf22444a4daebe65440972ed84",
+      "processId": 45080,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 16000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.000681712125504007,
+        "maxKineticWorkResidualJ": 0.00322018115403597,
+        "maxKineticJ": 154445.86168728513,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.03327847429930605,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3048.1401801401116,
+          "nonconservativeWorkSumJ": -105293.06588270553,
+          "windWorkSumJ": 0,
+          "relativeDragWorkSumJ": -6657.899541512077,
+          "injectionKineticSumJ": 154472.158441358,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 5481.379227824097,
+          "work.genericDrag.J": -6657.899541512077,
+          "work.groundObject.J": 8232.870169666865,
+          "work.beamElastic.J": -53.14322838940604,
+          "work.beamDamping.J": -106844.89666445786,
+          "work.beamCorrection.J": -0.00018445311561390084,
+          "work.wheels.J": -23.139554269049935,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": -0.00010768004190116857,
+          "meanPhysicsStepElapsedUs": 110.91472499999986
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    },
+    {
+      "id": "3949022c23164302829d84687d7bf6c3",
+      "definition": {
+        "name": "Slice 02 nonzero wind work port",
+        "launchSpeedMps": 5,
+        "durationSeconds": 3,
+        "settleSeconds": 2,
+        "repeats": 1,
+        "environment": {
+          "gravity": -8,
+          "temperatureK": 288.15,
+          "density": 1,
+          "windX": 3,
+          "windY": 0,
+          "windZ": -1
+        },
+        "vehicle": "b6b0UID-semi.truck",
+        "terrain": "simple2.terrn2",
+        "scenario": "coast-v1",
+        "accounting": true
+      },
+      "execution": "Completed",
+      "capture": "Complete",
+      "validation": "NotReady",
+      "archivePath": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\archive\\3949022c23164302829d84687d7bf6c3",
+      "processId": 42624,
+      "executableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+      "metrics": {
+        "durationMet": true,
+        "records": 10000,
+        "cleanClose": true,
+        "dropped": 0,
+        "maxMomentumUpdateResidualKgMps": 0.000537996815853225,
+        "maxKineticWorkResidualJ": 0.0028464757645385577,
+        "maxKineticJ": 154463.84971195305,
+        "captureProblem": "",
+        "workerExitCode": 0,
+        "accounting": {
+          "maxUnattributedNodeForceL1N": 0.04350494968537333,
+          "maxAttributionResidualL1N": 0,
+          "mechanicalResidualSumJ": 3801.126280065833,
+          "nonconservativeWorkSumJ": -68641.44203622473,
+          "windWorkSumJ": 4798.8123284641615,
+          "relativeDragWorkSumJ": -13736.21293169865,
+          "injectionKineticSumJ": 154475.5866581387,
+          "mutationKineticSumJ": 0,
+          "maxUnclosedBeams": 132,
+          "linearBeamParameterEvents": 0,
+          "breakEvents": 0,
+          "work.gravity.J": 3680.70709235559,
+          "work.genericDrag.J": -8937.400603234462,
+          "work.groundObject.J": 2711.748845989136,
+          "work.beamElastic.J": 831.7337028506141,
+          "work.beamDamping.J": -62403.81262576543,
+          "work.beamCorrection.J": 0.0001352165194745276,
+          "work.wheels.J": -11.977830785957057,
+          "work.aero.J": 0,
+          "work.buoyancy.J": 0,
+          "work.commands.J": 0,
+          "work.mouse.J": 0,
+          "work.cabContact.J": 0,
+          "work.slide.J": 0,
+          "work.interActor.J": 0,
+          "work.freeForce.J": 0,
+          "work.unattributed.J": 4.235547590431993e-05,
+          "meanPhysicsStepElapsedUs": 85.74444000000055
+        },
+        "qualification": {
+          "status": "NotReady",
+          "scope": "Vehicle constitutive/storage and environment qualification pending",
+          "checks": []
+        }
+      }
+    }
+  ],
+  "repeatability": {
+    "freefall-v1": {
+      "records": 1000,
+      "maxDifferenceAcrossPositionMomentumAndEnergySI": 0,
+      "distinctPids": true
+    },
+    "spring-v1": {
+      "records": 10000,
+      "maxDifferenceAcrossPositionMomentumAndEnergySI": 0,
+      "distinctPids": true
+    },
+    "damper-v1": {
+      "records": 10000,
+      "maxDifferenceAcrossPositionMomentumAndEnergySI": 0,
+      "distinctPids": true
+    }
+  },
+  "performance": {
+    "False": {
+      "steps": 20002,
+      "medianStepElapsedUs": 61.4,
+      "p95StepElapsedUs": 78.8,
+      "meanStepElapsedUs": 61.3986701329867
+    },
+    "True": {
+      "steps": 20002,
+      "medianStepElapsedUs": 110.2,
+      "p95StepElapsedUs": 139.0,
+      "meanStepElapsedUs": 110.77131786821319
+    },
+    "medianRatio": 1.7947882736156353,
+    "nativeRendererScreenshotRequestsEnabled": true,
+    "baselineScope": "Same accounting-v2 native build with channel attribution disabled; storage scans and aggregate recorder remain enabled. Not instrumentation-off or upstream baseline."
+  },
+  "evidence": "D:\\Rigs of Rods\\trial-slice-02-2026-10-08-221217\\report\\verification-20261008-230307",
+  "channelChecks": {
+    "records": 124000,
+    "maxChannelVectorReconstructionN": 3.000169631583184e-11,
+    "maxChannelWorkReconstructionJ": 5.115907697472721e-13,
+    "maxDragRelativePlusWindWorkIdentityJ": 6.439293542825908e-15,
+    "nonzeroWindPortPeakAbsJ": 0.8481453274780978
+  },
+  "nativeExecutableSha256": "B6176E71C8C20C732E895EC628C28DD1AD6F96ED8D38FF8A12B112BD68FD1301",
+  "mediaChecks": {
+    "baseline-recovered": {
+      "imageFallbackAdvances": true,
+      "webmVisiblePixels": true,
+      "webmDecodedPixels": [
+        {
+          "time": 1,
+          "width": 960,
+          "height": 540,
+          "mean": 108.3650752893988,
+          "variance": 2291.182262914074
+        },
+        {
+          "time": 3,
+          "width": 960,
+          "height": 540,
+          "mean": 113.27487973731867,
+          "variance": 2079.6353524893425
+        },
+        {
+          "time": 5,
+          "width": 960,
+          "height": 540,
+          "mean": 113.09381364487835,
+          "variance": 2086.969022682974
+        }
+      ],
+      "mobileNoHorizontalOverflow": true,
+      "browserErrors": [],
+      "viewer": "Headless system Chrome; does not prove Codex in-app GPU video rendering"
+    },
+    "slice-01-recovered": {
+      "imageFallbackAdvances": true,
+      "webmVisiblePixels": true,
+      "webmDecodedPixels": [
+        {
+          "time": 1,
+          "width": 960,
+          "height": 540,
+          "mean": 112.96895831996001,
+          "variance": 2080.3796819974473
+        },
+        {
+          "time": 3,
+          "width": 960,
+          "height": 540,
+          "mean": 113.54506762526675,
+          "variance": 2094.9223637458995
+        },
+        {
+          "time": 5,
+          "width": 960,
+          "height": 540,
+          "mean": 113.97824281293099,
+          "variance": 2103.8334375451045
+        }
+      ],
+      "mobileNoHorizontalOverflow": true,
+      "browserErrors": [],
+      "viewer": "Headless system Chrome; does not prove Codex in-app GPU video rendering"
+    },
+    "slice-02-native": {
+      "imageFallbackAdvances": true,
+      "webmVisiblePixels": true,
+      "webmDecodedPixels": [
+        {
+          "time": 1,
+          "width": 960,
+          "height": 540,
+          "mean": 111.78793891258805,
+          "variance": 2124.3990778401608
+        },
+        {
+          "time": 3,
+          "width": 960,
+          "height": 540,
+          "mean": 112.73068940229496,
+          "variance": 2088.8283941870795
+        },
+        {
+          "time": 5,
+          "width": 960,
+          "height": 540,
+          "mean": 113.05590925978879,
+          "variance": 2081.520253897324
+        }
+      ],
+      "mobileNoHorizontalOverflow": true,
+      "browserErrors": [],
+      "viewer": "Headless system Chrome; does not prove Codex in-app GPU video rendering"
+    }
+  }
+}

@@ -90,3 +90,9 @@ The baseline validates a Release x64 build and one ground-vehicle scenario using
 A startup vehicle-entry mismatch is documented in [project memory](project-memory.md). The successful proof used a config workaround; no engine fix has been applied.
 
 For upstream orientation, see [CodebaseOverview.md](doc/doxygen/CodebaseOverview.md). Treat its statements about future messaging/scripting work as historical and verify them against current source.
+
+## Native accounting boundary — Slice 02
+
+[Slice 02](doc/project/slices/slice-02.md) implements preallocated actor-owned node/channel caches, force generation/consumption epochs, linear storage/work diagnostics and native analytical qualification. TrialPhysics prepares buffers on the main thread after joining physics; ActorForcesEuler observes actual integration and phase writes; a bounded SPSC writer persists schema 2 / 2,080bytes per tick. Ground/object contact is added in the consuming tick, distinct from carried force. The coordinator reads verified archives, retains schema 1 support and separates execution/capture/scientific states.
+
+Fixture mode explicitly uses precise beam lengths/local coordinates; the existing vehicle kernel is preserved. Unsupported storage, unknown per-node force, mass/cohort exchange and lost transitions prevent broad acceptance. Passed is restricted to the pinned dry one-node profile. The explicit OpenGL renderer and native PNG capture support evidence after Direct3D9/GDI failures. Measured attribution cost was 1.795× the channels-disabled observer, so optimization remains a gate before larger workloads.

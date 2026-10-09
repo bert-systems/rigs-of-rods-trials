@@ -54,3 +54,7 @@ This is a successful ground-vehicle smoke test. Runtime asset warnings remain, a
 ## Working convention
 
 Keep engine and project documentation changes in the fork. Give each evidence session a new directory outside the source checkout, preserve previous evidence, and record source identity and executable identity together. Close each session by updating the TODO list and project memory with the actual outcome and evidence location.
+
+## Latest delivery
+
+[Slice 02](doc/project/slices/slice-02.md) adds native force attribution, linear core energy/work, scoped analytical fixtures, live qualification and compatible image-frame evidence playback. [HTML report](doc/project/reports/trial-slice-02-2026-10-08.html). Vehicle closure, impact windows and performance optimization remain upcoming gates.
