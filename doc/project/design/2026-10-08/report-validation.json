@@ -1,0 +1,233 @@
+{
+  "evaluationDate": "2026-10-08",
+  "report": "D:\\Rigs of Rods\\rigs-of-rods-trials\\doc\\project\\reports\\trial-architecture-options-2026-10-08.html",
+  "captureDirectory": "D:\\Rigs of Rods\\trial-architecture-evaluation-2026-10-08-134648",
+  "sourceChecks": [
+    {
+      "id": "A01",
+      "file": "source/main/physics/ActorManager.cpp",
+      "start": 1247,
+      "end": 1320,
+      "lines": 1918,
+      "valid": true
+    },
+    {
+      "id": "A02",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 46,
+      "end": 67,
+      "lines": 1853,
+      "valid": true
+    },
+    {
+      "id": "A03",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 1602,
+      "end": 1699,
+      "lines": 1853,
+      "valid": true
+    },
+    {
+      "id": "A04",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 1210,
+      "end": 1465,
+      "lines": 1853,
+      "valid": true
+    },
+    {
+      "id": "A05",
+      "file": "source/main/physics/collision/Collisions.cpp",
+      "start": 1243,
+      "end": 1344,
+      "lines": 1620,
+      "valid": true
+    },
+    {
+      "id": "A06",
+      "file": "source/main/physics/collision/DynamicCollisions.cpp",
+      "start": 92,
+      "end": 115,
+      "lines": 294,
+      "valid": true
+    },
+    {
+      "id": "A07",
+      "file": "source/main/physics/flex/FlexAirfoil.cpp",
+      "start": 590,
+      "end": 678,
+      "lines": 697,
+      "valid": true
+    },
+    {
+      "id": "A08",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 125,
+      "end": 149,
+      "lines": 1853,
+      "valid": true
+    },
+    {
+      "id": "A09",
+      "file": "source/main/physics/air/TurboProp.cpp",
+      "start": 222,
+      "end": 244,
+      "lines": 506,
+      "valid": true
+    },
+    {
+      "id": "A10",
+      "file": "source/main/physics/air/TurboProp.cpp",
+      "start": 350,
+      "end": 432,
+      "lines": 506,
+      "valid": true
+    },
+    {
+      "id": "A11",
+      "file": "source/main/physics/air/TurboJet.cpp",
+      "start": 227,
+      "end": 283,
+      "lines": 364,
+      "valid": true
+    },
+    {
+      "id": "A12",
+      "file": "source/main/physics/water/Buoyance.cpp",
+      "start": 69,
+      "end": 110,
+      "lines": 220,
+      "valid": true
+    },
+    {
+      "id": "A13",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 1827,
+      "end": 1853,
+      "lines": 1853,
+      "valid": true
+    },
+    {
+      "id": "A14",
+      "file": "source/main/physics/SimConstants.h",
+      "start": 17,
+      "end": 21,
+      "lines": 85,
+      "valid": true
+    },
+    {
+      "id": "A15",
+      "file": "source/main/physics/ActorManager.cpp",
+      "start": 1120,
+      "end": 1234,
+      "lines": 1918,
+      "valid": true
+    },
+    {
+      "id": "A16",
+      "file": "source/main/gfx/DustPool.cpp",
+      "start": 39,
+      "end": 65,
+      "lines": 299,
+      "valid": true
+    }
+  ],
+  "localLinks": [
+    {
+      "href": "../design/trial-platform-architecture-options.md",
+      "exists": true
+    },
+    {
+      "href": "platform-evaluation-2026-10-08.html",
+      "exists": true
+    },
+    {
+      "href": "../../../PROJECT.md",
+      "exists": true
+    },
+    {
+      "href": "../design/../reports/trial-architecture-options-2026-10-08.html",
+      "exists": true
+    },
+    {
+      "href": "../design/../../../platform.md",
+      "exists": true
+    },
+    {
+      "href": "../design/../../../architecture.md",
+      "exists": true
+    },
+    {
+      "href": "../design/../../../platform.md",
+      "exists": true
+    },
+    {
+      "href": "../design/../../../architecture.md",
+      "exists": true
+    },
+    {
+      "href": "../design/../baselines/2026-10-08/README.md",
+      "exists": true
+    },
+    {
+      "href": "../design/../build-and-record.md",
+      "exists": true
+    },
+    {
+      "href": "../design/2026-10-08/README.md",
+      "exists": true
+    }
+  ],
+  "browserChecks": {
+    "sections": 14,
+    "navLinks": 14,
+    "tables": 14,
+    "diagrams": 4,
+    "desktopOverflow": {
+      "width": 1440,
+      "documentWidth": 1440
+    },
+    "calculatorDefault": {
+      "rate": "72",
+      "total": "43.2",
+      "lag": "7.46"
+    },
+    "calculatorEightChannels": {
+      "rate": "264",
+      "total": "158.4",
+      "lag": "2.03"
+    },
+    "invalidRate": true,
+    "mediumRate": {
+      "rate": "7.2",
+      "total": "4.32",
+      "lag": "74.57"
+    },
+    "accessibleDiagrams": true,
+    "mobileOverflow": {
+      "width": 390,
+      "documentWidth": 390
+    },
+    "mobileCalculatorOverflow": {
+      "width": 390,
+      "documentWidth": 390
+    },
+    "pageErrors": [],
+    "externalRequests": [],
+    "browserVersion": "154.0.8037.98"
+  },
+  "screenshots": [
+    "D:\\Rigs of Rods\\trial-architecture-evaluation-2026-10-08-134648\\desktop-overview.png",
+    "D:\\Rigs of Rods\\trial-architecture-evaluation-2026-10-08-134648\\shared-architecture.png",
+    "D:\\Rigs of Rods\\trial-architecture-evaluation-2026-10-08-134648\\solver-epochs.png",
+    "D:\\Rigs of Rods\\trial-architecture-evaluation-2026-10-08-134648\\environment-pipeline.png",
+    "D:\\Rigs of Rods\\trial-architecture-evaluation-2026-10-08-134648\\delivery-epics.png",
+    "D:\\Rigs of Rods\\trial-architecture-evaluation-2026-10-08-134648\\capture-sizing.png",
+    "D:\\Rigs of Rods\\trial-architecture-evaluation-2026-10-08-134648\\mobile-overview.png",
+    "D:\\Rigs of Rods\\trial-architecture-evaluation-2026-10-08-134648\\mobile-sizing.png"
+  ],
+  "reportSha256": "1380efda5d184262dad972d8a7978a4b8e110ce7264b223bcd7a74972e62f15d",
+  "problems": [],
+  "allChecksPassed": true,
+  "scope": "Static local source/link references, report presentation and illustrative payload calculation only. No engine or physical accuracy tests."
+}

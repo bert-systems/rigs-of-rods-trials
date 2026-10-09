@@ -1,0 +1,130 @@
+{
+  "inspectedAt": "2026-10-08",
+  "origin": "https://github.com/bert-systems/rigs-of-rods-trials.git",
+  "sourceCommit": "e85535569102b6251849af574026984e3213b3f4",
+  "sourceStatusAtResearchStart": "README changed and project-foundation documents untracked; no engine modifications",
+  "contentCommit": "34fefdd126784bf87b068fc283f812525d159dd7",
+  "assetScope": "Source checkout only; no installed-game assets or binaries used; definition-file counts are not validated runtime asset counts",
+  "definitionCounts": {
+    "content": {
+      ".terrn2": 3,
+      ".trailer": 2,
+      ".truck": 3
+    },
+    "resources": {
+      ".fixed": 6
+    }
+  },
+  "starterAssets": [
+    {
+      "path": "content/agora/95bbUID-agoral.truck",
+      "name": "Bus RVI Agora L",
+      "sha256": "149a328a6091d2e2773c2546f16c1fc403f68ce6b91249ea3279e110bc03534a"
+    },
+    {
+      "path": "content/agora/95bbUID-agoras.truck",
+      "name": "Bus RVI Agora S",
+      "sha256": "f0c98d2eef5f9132fc92142713d38e3496d9d0b75f5c2157383daa66792e6dbe"
+    },
+    {
+      "path": "content/dafsemi/b6b0UID-semi.trailer",
+      "name": "Semi trailer (37tons)",
+      "sha256": "f4f8bce7dd11f0e9d217bc57d8500f896373948cd80ce9b320d10f3434d4ee97"
+    },
+    {
+      "path": "content/dafsemi/b6b0UID-semi.truck",
+      "name": "Daf Semi truck",
+      "sha256": "eea03685c64abb55983e4575d297a4877d18ef28d3de69a2436f3204aab94e7a"
+    },
+    {
+      "path": "content/dafsemi/b6b0UID-semiflat.trailer",
+      "name": "Flatbed semi trailer",
+      "sha256": "298aaaee02e8aa95a817d5fde2e32f9aceff62c06f545efecfad52b66c05d6e4"
+    },
+    {
+      "path": "content/simple2-terrain/simple2.terrn2",
+      "name": "Simple Test Terrain",
+      "sha256": "e159d7b56bcfa428e02545fb6683d5f6397cda5c5a26e12e0500638df4dd503c"
+    },
+    {
+      "path": "content/simple2-terrain/simple2_a.terrn2",
+      "name": "Simple Test Terrain Asphalt",
+      "sha256": "6059fab4068c19618d588ac8ec190e064fe48e6bad56dcce394bf75605649847"
+    },
+    {
+      "path": "content/simple2-terrain/simple2_w.terrn2",
+      "name": "Simple Test Terrain Water",
+      "sha256": "688ea3daf1f21c277fe5693f441589f242690cc0fdcff1f29023f48180ed2584"
+    }
+  ],
+  "registeredMethodCounts": {
+    "BeamClass": 102,
+    "AircraftEngineClass": 13,
+    "AutopilotClass": 22,
+    "CacheEntryClass": 12,
+    "CacheSystemClass": 3,
+    "CVarClass": 5,
+    "ConsoleClass": 5,
+    "DashBoardManagerClass": 12,
+    "EngineClass": 74,
+    "GameScriptClass": 134,
+    "GenericDocumentClass": 2,
+    "GenericDocContextClass": 36,
+    "ImDrawList": 9,
+    "InputEngineClass": 10,
+    "LocalStorageClass": 33,
+    "Ogre::Node": 2,
+    "Ogre::SceneNode": 2,
+    "Ogre::MovableObject": 6,
+    "Ogre::Entity": 2,
+    "Ogre::ManualObject": 2,
+    "Ogre::Light": 2,
+    "vector3": 41,
+    "vector2": 37,
+    "radian": 23,
+    "degree": 23,
+    "quaternion": 21,
+    "box": 1,
+    "TexturePtr": 7,
+    "TextureManager": 1,
+    "Entity": 12,
+    "SubEntity": 3,
+    "SceneNode": 30,
+    "SceneManager": 14,
+    "Root": 1,
+    "AnimationState": 19,
+    "AnimationStateSet": 6,
+    "OverlayElement": 24,
+    "Overlay": 19,
+    "OverlayManager": 18,
+    "ManualObject": 13,
+    "HardwarePixelBufferPtr": 8,
+    "PixelBox": 6,
+    "Image": 12,
+    "SubMesh": 7,
+    "MeshPtr": 6,
+    "MeshManager": 2,
+    "MaterialManager": 2,
+    "MaterialPtr": 6,
+    "Technique": 4,
+    "Pass": 15,
+    "TextureUnitState": 3,
+    "Timer": 6,
+    "GpuProgramParametersPtr": 19,
+    "Light": 27,
+    "ProceduralPointClass": 14,
+    "ProceduralRoadClass": 6,
+    "ProceduralObjectClass": 12,
+    "ProceduralManagerClass": 6,
+    "ScrewpropClass": 10,
+    "SoundScriptTemplateClass": 11,
+    "SoundClass": 19,
+    "SoundScriptInstanceClass": 17,
+    "TerrainClass": 14,
+    "TerrainEditorObjectClass": 11,
+    "TurbojetClass": 4,
+    "TurbopropClass": 5,
+    "VehicleAIClass": 7
+  },
+  "researchScope": "Static source inspection and official web documentation; no new simulation runs or runtime API validation in this research session"
+}

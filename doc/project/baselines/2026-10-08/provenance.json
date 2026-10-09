@@ -1,0 +1,28 @@
+{
+  "capturedAt": "2026-10-08T09:05:17.8342265-04:00",
+  "sourcePath": "D:\\Rigs of Rods\\rigs-of-rods-trials",
+  "origin": "https://github.com/bert-systems/rigs-of-rods-trials.git",
+  "commit": "e85535569102b6251849af574026984e3213b3f4",
+  "branch": "master",
+  "status": [],
+  "submodule": [
+    " 34fefdd126784bf87b068fc283f812525d159dd7 content (heads/master)"
+  ],
+  "sourceCppAndHeaders": 452,
+  "buildDirectoryInitiallyAbsent": true,
+  "installedGameExe": "D:\\Rigs of Rods\\RoR.exe",
+  "installedGameSHA256": "63F67CEE7474BC1AECCEC74F344668F9D229F0754FDF2931334024AEF53F1454",
+  "cpu": {
+    "Name": "AMD Ryzen 9 3950X 16-Core Processor            ",
+    "NumberOfCores": 16,
+    "NumberOfLogicalProcessors": 32
+  },
+  "gpu": {
+    "Name": "NVIDIA GeForce RTX 3090",
+    "DriverVersion": "32.0.15.9186"
+  },
+  "memoryGB": 63.93,
+  "cmake": "cmake version 3.31.10",
+  "conan": "Conan version 2.33.0",
+  "python": "Python 3.13.3"
+}

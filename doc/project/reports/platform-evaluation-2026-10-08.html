@@ -1,0 +1,1010 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Rigs of Rods — Platform &amp; Trial Evaluation</title><style>
+:root{--paper:#f3f5f6;--ink:#172e3d;--muted:#526675;--teal:#087c79;--line:#d7e0e5;--amber:#a05a13;--nav:#112b39}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:22px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 "Segoe UI",Arial,sans-serif}a{color:#006c75;text-underline-offset:3px}a:hover{color:#004b53}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid #e5a442;outline-offset:3px}
+.sidebar{position:fixed;inset:0 auto 0 0;width:258px;background:var(--nav);padding:30px 24px;overflow:auto;color:#cfdee4}.brand{color:white;font-size:19px;font-weight:700;line-height:1.3;margin-bottom:8px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700}.sidebar .eyebrow{color:#77d0c9;margin-bottom:24px}.sidebar a{display:block;color:#d4e3e9;text-decoration:none;font-size:13px;line-height:1.45;padding:9px 0;border-bottom:1px solid #29414d}.sidebar a:hover{color:#81e0d4}.sidebar small{display:block;margin-top:23px;line-height:1.65;color:#9cb5c1}.page{margin-left:258px;max-width:1400px;padding:42px 54px 64px}.hero{padding:38px 42px 32px;color:white;background:linear-gradient(130deg,#183b4c,#0b6567);border-radius:16px;position:relative}.hero .eyebrow{color:#a5e7dd}.hero h1{font-size:42px;line-height:1.15;letter-spacing:-.025em;margin:16px 0;max-width:770px}.hero p{color:#dbeded;max-width:810px;font-size:18px;line-height:1.6}.hero .meta{font-size:12px;color:#c6e2e3;border-top:1px solid #54818b;padding-top:16px;overflow-wrap:anywhere}.hero a{color:white}.hero .actions{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin-top:20px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 40px}.summary-card{border:1px solid var(--line);background:white;padding:20px 23px;border-radius:10px;line-height:1.55}.summary-card .eyebrow{color:var(--teal)}.summary-card h2{font-size:18px;margin:6px 0}.summary-card p{font-size:14px;margin:0;color:var(--muted)}article{min-width:0}article>p:first-child{font-size:14px;color:var(--muted)}h2{font-size:29px;letter-spacing:-.015em;line-height:1.25;margin:55px 0 22px;padding-top:18px;border-top:2px solid var(--line);scroll-margin-top:20px}h3{font-size:21px;line-height:1.35;margin:33px 0 14px}h4{font-size:18px}p{margin:14px 0}strong{color:#102f40}li{margin:6px 0}blockquote{border-left:4px solid var(--teal);background:#e5f2f1;margin:20px 0;padding:8px 22px}code{font:13px/1.5 Consolas,monospace;background:#e6ecef;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}pre{border:1px solid var(--line);padding:18px 22px;border-radius:8px;background:#eaf0f3;overflow:auto;max-width:100%}pre code{padding:0;background:none;overflow-wrap:normal}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55;background:white}th{background:#e4ecef;font-weight:650;color:#183a4a;text-align:left}th,td{padding:13px 15px;border:1px solid #dce4e8;vertical-align:top}td:first-child{font-weight:600}tr:nth-child(even)td{background:#f8fafb}td a{overflow-wrap:anywhere}.table-scroll{max-width:100%;overflow:auto;margin:18px 0 25px;border-radius:8px}.table-scroll table{min-width:680px}.figure{background:white;border:1px solid var(--line);border-radius:12px;margin:26px 0;padding:24px 22px 18px}.figure-head{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--teal);margin-bottom:16px}.svg-scroll{overflow:auto;max-width:100%}.svg-scroll svg{display:block;width:100%;min-width:740px;height:auto}.figure figcaption{font-size:13px;line-height:1.55;color:var(--muted);margin-top:16px}.calculator{background:#e8f3f2;border:1px solid #add2ce;border-radius:12px;padding:26px;margin:26px 0}.calculator h4{margin:7px 0 10px}.calculator .eyebrow{color:var(--teal)}.calc-inputs,.calc-results{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}.calc-inputs label{font-size:13px;font-weight:600;display:block}.calc-inputs input{width:100%;font:inherit;background:white;border:1px solid #9ebdbe;border-radius:5px;padding:8px 11px;color:var(--ink)}.calc-results div{padding:16px;background:white;border-radius:7px}.calc-results span{display:block;font-size:12px;color:var(--muted)}.calc-results output{font-size:23px;font-weight:650;color:#005b5b}.calculator p{font-size:13px;line-height:1.6}.filters{display:flex;gap:14px;align-items:end;flex-wrap:wrap;background:#eaf0f3;padding:18px;border-radius:8px}.filters label{font-size:13px;font-weight:600;display:block}.filters input,.filters select{padding:9px;border:1px solid #a9b9c2;border-radius:4px;font:14px "Segoe UI",sans-serif;max-width:100%;background:white;color:var(--ink)}.filters input{width:260px}.filters output{font-size:13px;margin-left:auto;padding:8px;color:var(--muted)}.empty{padding:14px;font-size:14px;background:#fff2dd}.footnote{font-size:13px;color:var(--muted);margin-top:45px;border-top:1px solid var(--line);padding-top:18px}[hidden]{display:none!important}
+@media(min-width:1600px){.page{padding-right:80px;max-width:1570px}}
+@media(max-width:1150px){.sidebar{width:225px;padding:25px 19px}.page{margin-left:225px;padding:30px}.hero{padding:30px}.hero h1{font-size:36px}.summary-grid{gap:12px}.summary-card{padding:17px}}
+@media(max-width:780px){.sidebar{position:static;width:auto;padding:22px}.sidebar nav{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.sidebar .eyebrow{margin-bottom:14px}.sidebar small{margin-top:16px}.page{margin-left:0;padding:20px 16px 40px}.hero{padding:26px 23px}.hero h1{font-size:31px}.hero p{font-size:16px}.summary-grid{grid-template-columns:1fr;margin-bottom:24px}.summary-card{padding:17px 20px}.summary-card h2{font-size:18px;margin:6px 0;border:0;padding:0}h2{font-size:25px;margin-top:38px}h3{font-size:20px}.figure{padding:18px 14px}.calc-inputs,.calc-results{grid-template-columns:1fr}.calculator{padding:20px}.calc-results{gap:10px}.filters{gap:10px}.filters input{width:240px}.filters output{margin-left:0}body{font-size:15px}}
+@media print{body{background:white;font-size:10pt}.sidebar,.actions,.filters{display:none}.page{margin:0;max-width:none;padding:0}.hero{background:#183b4c!important;print-color-adjust:exact}.hero h1{font-size:26pt}.summary-grid{margin-bottom:20px}h2{page-break-after:avoid;font-size:19pt}h3{page-break-after:avoid;font-size:14pt}table{font-size:8pt}.table-scroll,.svg-scroll{overflow:visible}.table-scroll table,.svg-scroll svg{min-width:0}figure,.calculator{break-inside:avoid}a{color:inherit}pre{white-space:pre-wrap}.calculator input{border:0}tr[hidden]{display:table-row!important}}
+
+body{overflow-wrap:anywhere}
+</style></head><body><aside class="sidebar"><div class="brand">rigs-of-rods-trials</div><div class="eyebrow">Platform evaluation</div><nav aria-label="Report sections"><a href="#section-01">1. Evaluation outcome</a><a href="#section-02">2. Research scope and provenance</a><a href="#section-03">3. Platform capabilities</a><a href="#section-04">4. Assets and terrains available to this fork</a><a href="#section-05">5. Existing control and automation surfaces</a><a href="#section-06">6. Telemetry, event streams and logging</a><a href="#section-07">7. Physics measurements: what is defensible</a><a href="#section-08">8. The requested experiment use case</a><a href="#section-09">9. Repeatability, accuracy and throughput</a><a href="#section-10">10. Findings and proposed next evaluation stages</a><a href="#section-11">11. Decisions needed for the architecture/design specification</a><a href="#section-12">12. Evidence, limits and references</a></nav><small>54 primary-source / documentation references.<br>Source-supported does not mean every feature was runtime-tested.<br>Design specification follows this research.</small></aside><main class="page"><header class="hero"><div class="eyebrow">Platform research / 08 October 2026</div><h1>From vehicle sandbox<br>to measurable trials</h1><p>Rigs of Rods capabilities, physics, content and observability — evaluated against repeatable vehicle, impact and flight experiments.</p><div class="meta">Personal fork: bert-systems/rigs-of-rods-trials · source e85535569102 · content 34fefdd12678<br>Evidence boundary: source inspection + official documentation + the preserved driving baseline. No new physics experiments.</div><div class="actions"><a href="../../../platform.md">Canonical platform.md</a><a href="../../../PROJECT.md">Project introduction</a><a href="../research/2026-10-08/references.json">Reference catalog</a></div></header><div class="summary-grid"><div class="summary-card"><div class="eyebrow">Reuse</div><h2>Simulation and control</h2><p>Deformable vehicles, terrain, AI, scripts and node state provide a practical starting point.</p></div><div class="summary-card"><div class="eyebrow">Instrument</div><h2>The measurement gap</h2><p>Contact-force peaks, work and energy channels need observation at the physics step.</p></div><div class="summary-card"><div class="eyebrow">Validate</div><h2>The physical interpretation</h2><p>Repeatability, asset calibration, gravity behavior and wind need explicit validation.</p></div></div><article><p>Research date: <strong>2026-10-08</strong>. Project: <strong>bert-systems/rigs-of-rods-trials</strong>, forked from <strong>RigsOfRods/rigs-of-rods</strong>. Source inspected: <strong>e85535569102b6251849af574026984e3213b3f4</strong>; starter content: <strong>34fefdd126784bf87b068fc283f812525d159dd7</strong>.</p>
+<p><a href="../../../doc/project/reports/platform-evaluation-2026-10-08.html">Open the comprehensive HTML report</a>. <a href="../../../PROJECT.md">Project introduction</a>. <a href="../../../doc/project/build-and-record.md">Build and recording guide</a>.</p>
+<h2 id="section-01">1. Evaluation outcome</h2>
+<p><strong>RoR is a promising base for an exploratory vehicle-trial platform.</strong> Existing source and scripting provide configurable deformable vehicles, terrains, controls, gravity, waypoint AI, node state, event callbacks, diagnostic tools, and recording hooks. The locally built fork already demonstrated scripted driving and evidence collection.</p>
+<p><strong>The complete requested experiment system is not present as a ready-to-use subsystem in the inspected fork.</strong> Reuse RoR&#39;s simulation and scripting, then add experiment management, controlled setup, consistent records, outcome analysis, and validation. This is an evaluation recommendation, not a finalized architecture or authorization to implement it.</p>
+<p><strong>Impact-force peaks and energy dispersal are the major measurement gap.</strong> Node momentum and kinetic energy can be derived from exposed masses and velocities. Reliable contact-force histories, impulses, beam work, deformation/break energy, and energy attribution need carefully placed solver instrumentation. Frame-level script samples and diagnostic getters do not establish those quantities.</p>
+<p><strong>Physical ambient wind is a separate capability gap.</strong> Scalar vertical gravity is exposed. The inspected wing/fuselage code derives airflow from node motion and propeller wash; a shared configurable ambient wind/gust field was not found. Visual cloud/water settings and an arbitrary node force are different physical models.</p>
+<p>Use three evidence labels throughout:</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 1"><table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Source-supported</td>
+<td>Binding, configuration, data structure, or implementation exists at the inspected commit. This session did not run every feature.</td>
+</tr>
+<tr>
+<td>Runtime-demonstrated</td>
+<td>The earlier source-built Daf/Simple2 driving scenario actually exercised it.</td>
+</tr>
+<tr>
+<td>Proposed / needs validation</td>
+<td>A composition, instrumentation change, analytical derivation, or scientific claim that remains to be designed/tested.</td>
+</tr>
+</tbody></table></div>
+<p>No engine changes, trial-run implementation, or new physics experiments were performed during this research. The HTML diagrams and calculator explain concepts; they are not measured simulation results.</p>
+<h2 id="section-02">2. Research scope and provenance</h2>
+<p>The authority order is the local fork&#39;s implementation, its versioned content, official developer/game documentation, then explicitly marked evaluation inferences. The public developer portal advertises an older version label and a January 2026 generation date; exact names and semantics were checked in source instead of assuming the portal matches this commit. <a href="https://developer.rigsofrods.org/">D01 · Official developer portal</a></p>
+<p>The tree already contained the locally saved foundation docs and README edit when research began. Engine source remained at the baseline commit. A <a href="../../../doc/project/research/2026-10-08/source-inspection.json">source inspection record</a> records identity, asset hashes, and scope; a <a href="../../../doc/project/research/2026-10-08/binding-inventory.json">binding inventory</a> provides a mechanical index of registrations. Conditional/dynamic registrations and overloaded methods require direct review; the index is not a runtime conformance test.</p>
+<p>The earlier proof remains at <code>D:\Rigs of Rods\source-build-2026-10-08\report\index.html</code>: one 36-second ground-vehicle session, three screenshots, 35.3-second video, and position/wheel-speed telemetry. It validates that source build and scenario, not wind, flight, force accuracy, or deterministic repeated trials. <a href="../../../doc/project/baselines/2026-10-08/README.md">Baseline records</a>.</p>
+<p>The community resource catalog at <code>https://forum.rigsofrods.org/resources/</code> returned an anti-bot denial during research. We could verify supported categories and bundled assets, but not exhaustively inspect current downloadable assets, licenses, or compatibility. No catalog counts or third-party asset certification are claimed.</p>
+<h2 id="section-03">3. Platform capabilities</h2><figure class="figure"><div class="figure-head">Platform map · existing surfaces and proposed additions</div><div class="svg-scroll" tabindex="0" aria-label="Scrollable diagram"><svg viewBox="0 0 960 430" role="img" aria-labelledby="platform-title platform-desc" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,Arial,sans-serif"><title id="platform-title">Platform map · existing surfaces and proposed additions</title><desc id="platform-desc">Versioned content and controls feed the existing RoR engine. The engine exposes frame state and events. A proposed native observer adds tick-level force and energy data. A proposed experiment layer coordinates setup, execution, acceptance and archiving.</desc><defs><marker id="platform-arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#64818c"/></marker></defs><rect x="12" y="12" width="240" height="122" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="28" y="39" fill="#125b59" font-size="16" font-weight="700">Versioned content</text><text x="28" y="65" fill="#125b59" font-size="13">Vehicles · configurations</text><text x="28" y="86" fill="#125b59" font-size="13">Terrains · surfaces · fixtures</text><text x="28" y="107" fill="#125b59" font-size="13">Assets and physical parameters</text><rect x="12" y="160" width="240" height="122" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="28" y="187" fill="#125b59" font-size="16" font-weight="700">Existing controls</text><text x="28" y="213" fill="#125b59" font-size="13">AngelScript · commands</text><text x="28" y="234" fill="#125b59" font-size="13">Waypoint AI · autopilot</text><text x="28" y="255" fill="#125b59" font-size="13">Gravity · persistent forces</text><rect x="316" y="69" width="276" height="180" rx="10" fill="#173d4e" stroke="#173d4e"/><text x="332" y="96" fill="#fff" font-size="16" font-weight="700">RoR simulation core</text><text x="332" y="122" fill="#fff" font-size="13">Mass-bearing nodes</text><text x="332" y="143" fill="#fff" font-size="13">Axial spring/damper beams</text><text x="332" y="164" fill="#fff" font-size="13">Contact · drivetrain · aero</text><text x="332" y="185" fill="#fff" font-size="13">Fixed 0.5 ms physics step</text><rect x="654" y="12" width="294" height="122" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="670" y="39" fill="#125b59" font-size="16" font-weight="700">Exposed observations</text><text x="670" y="65" fill="#125b59" font-size="13">Frame-level node state</text><text x="670" y="86" fill="#125b59" font-size="13">Script events · logs · OutGauge</text><text x="670" y="107" fill="#125b59" font-size="13">Screenshots · native video</text><rect x="654" y="160" width="294" height="122" rx="10" fill="#fff4e4" stroke="#c6873c"/><text x="670" y="187" fill="#824b13" font-size="16" font-weight="700">Native observer · proposed</text><text x="670" y="213" fill="#824b13" font-size="13">Tick and solver-phase identity</text><text x="670" y="234" fill="#824b13" font-size="13">Contact impulse · force channels</text><text x="670" y="255" fill="#824b13" font-size="13">Work and energy ledger</text><line x1="252" y1="73" x2="310" y2="127" stroke="#64818c" stroke-width="2" marker-end="url(#platform-arrowhead)"/><line x1="252" y1="220" x2="310" y2="183" stroke="#64818c" stroke-width="2" marker-end="url(#platform-arrowhead)"/><line x1="592" y1="127" x2="648" y2="73" stroke="#64818c" stroke-width="2" marker-end="url(#platform-arrowhead)"/><line x1="592" y1="183" x2="648" y2="220" stroke="#64818c" stroke-width="2" marker-end="url(#platform-arrowhead)"/><rect x="12" y="328" width="936" height="88" rx="10" fill="#f8fafb" stroke="#899da6" stroke-dasharray="6 4"/><text x="30" y="356" font-size="16" font-weight="700" fill="#25485a">Experiment coordination · proposed evaluation direction</text><text x="30" y="384" font-size="14" fill="#526675">Resolve → verify setup → execute → accept/reject → reduce outcomes → archive evidence</text><line x1="454" y1="255" x2="454" y2="322" stroke="#64818c" stroke-width="2" marker-end="url(#platform-arrowhead)"/></svg></div><figcaption>Teal shows source-supported surfaces; amber identifies missing measurement work. The dashed layer is a concept to evaluate in the next design session, not an implemented architecture.</figcaption></figure>
+<h3>3.1 Simulation domains</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 2"><table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Existing landscape</th>
+<th>Relevance to experiments</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cars, trucks, buses, trailers</td>
+<td>Node/beam chassis, wheels, suspension, drivetrain, braking, differentials, loads and articulated combinations</td>
+<td>Acceleration, braking, handling, mass distribution, rollover and impact scenarios</td>
+<td>Asset parameters govern results; representative appearance is not calibration</td>
+</tr>
+<tr>
+<td>Aircraft</td>
+<td>Wings/control surfaces, airfoils, propeller/piston/turboprop/jet propulsion, airbrakes, flaps, autopilot</td>
+<td>Takeoff, climb, flight path, maneuver, landing, structural failure</td>
+<td>Simplified aerodynamic models; wind/atmosphere configuration and validation are incomplete for this use case</td>
+</tr>
+<tr>
+<td>Boats</td>
+<td>Deformable hulls, submesh-based buoyancy, screw propulsion, water/wave systems</td>
+<td>Buoyancy, water contact, propulsion and coupled land/water trials</td>
+<td>Not a general fluid/CFD solver</td>
+</tr>
+<tr>
+<td>Rail and tracked vehicles</td>
+<td>Node/beam mechanisms, wheels and slide-node/rail constraints; tracked constructions are content-driven</td>
+<td>Mechanical linkage and constrained-motion studies</td>
+<td>Detailed mechanisms require suitable content and validation</td>
+</tr>
+<tr>
+<td>Machinery and non-drivable structures</td>
+<td>Commands/hydraulics, ropes, hooks, ties, slide nodes, loads, fixed actors</td>
+<td>Lifting, towing, payload transfer, structural response and coupled actors</td>
+<td>Constraints and external support forces must be part of the measurement boundary</td>
+</tr>
+<tr>
+<td>Sandbox interaction</td>
+<td>Multiple actors, terrain objects, player control, scripting and multiplayer</td>
+<td>Scenario assembly and visual inspection</td>
+<td>Multiplayer/AI restrictions make single-player the simpler trial baseline</td>
+</tr>
+</tbody></table></div>
+<p>Vehicle construction is a lumped node/beam network: nodes carry mass/state, while beams act as axial spring/damper connections. Elastic deformation, plastic changes and breakage follow parameters and solver logic. This provides useful deformable dynamics, but is not automatically a continuum finite-element/material model. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimData.h#L250-L338">S01 · Source: node and beam data</a> <a href="https://docs.rigsofrods.org/vehicle-creation/vehicle-concepts/">D02 · Official node/beam concepts</a></p>
+<p>Aircraft and boat support are documented separately; using those subsystems does not establish flight-test or hydrodynamic accuracy. <a href="https://docs.rigsofrods.org/vehicle-creation/aircraft-and-aerodynamics/">D12 · Official aircraft creation guide</a> <a href="https://docs.rigsofrods.org/vehicle-creation/boats/">D13 · Official boat creation guide</a></p>
+<h3>3.2 Content and configuration layers</h3>
+<p>A vehicle setup includes more than its filename:</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 3"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Data to identify and preserve</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Base definition</td>
+<td>Exact .truck/.trailer/.airplane/.boat/.load/.machine/.fixed file, resource bundle, hash and dependencies</td>
+</tr>
+<tr>
+<td>Section/module configuration</td>
+<td>Selected configuration name; engine can fall back to the first section if the requested one is invalid</td>
+</tr>
+<tr>
+<td>Physical parameters</td>
+<td>Node mass/distribution, beam stiffness/damping/yield/break thresholds, wheel/suspension/drivetrain/aero values</td>
+</tr>
+<tr>
+<td>Loaded/coupled state</td>
+<td>Payload, trailer, hook/tie/rope/rail links and actor IDs</td>
+</tr>
+<tr>
+<td>Addons/tuneup</td>
+<td>Applicable .addonpart/.tuneup data, conflicts, edited parameters and resulting topology</td>
+</tr>
+<tr>
+<td>Visuals</td>
+<td>Skin, mesh/material variants, dashboard and camera settings; visual changes need not change physics</td>
+</tr>
+<tr>
+<td>Live overrides</td>
+<td>Mass APIs, ActorSimAttributes, controls and persistent FreeForces, with time/order recorded</td>
+</tr>
+<tr>
+<td>Initial state</td>
+<td>Spawn pose, settled node state, engine/gear/brakes, link state, initial velocities and deformation</td>
+</tr>
+</tbody></table></div>
+<p>The tuning feature supports addons, visual toggles and saved tuneups. Do not assume every cosmetic replacement changes the underlying node/beam model or tire characteristics. <a href="https://docs.rigsofrods.org/gameplay/tuning/">D11 · Official tuning guide</a></p>
+<p>The ActorSimAttr enum exposes traction-control and engine/transmission/turbo/aircraft/boat propulsion settings. It is a finite list, not arbitrary access to every spring, beam or environmental property. Indexed attributes are used for multi-engine propulsion settings. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimData.h#L924-L978">S09 · Source: supported simulation attributes</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L5110-L5127">S32 · Source: multiplayer guard and attribute-change events</a></p>
+<p>Mass setters and node mass options are exposed independently. Changing mass/stiffness may change numerical stability and the scenario&#39;s dynamics; preserve the effective values and verify the model after setup. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/ActorAngelscript.cpp#L135-L225">S08 · Source: actor telemetry and control bindings</a></p>
+<h3>3.3 Terrain, surfaces and environment</h3>
+<p>Terrn2 describes geometry, starting location, water, gravity, sky/render configuration, objects, scripts, traction maps and other terrain-specific data. Terrain geometry, placed objects, collision geometry and physical ground models must be identified together. <a href="https://docs.rigsofrods.org/terrain-creation/terrn2-subsystem/">D04 · Official terrn2 format</a></p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 4"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Existing control</th>
+<th>Experiment interpretation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Geometry and objects</td>
+<td>Terrn2/OTC/TOBJ/ODEF, height maps, collision meshes, procedural roads, object/editor APIs</td>
+<td>Terrain slope, collision shape and placement are experimental inputs</td>
+</tr>
+<tr>
+<td>Gravity</td>
+<td>Terrain value and game.getGravity()/setGravity(float); Earth preset -9.81</td>
+<td>Scalar acceleration on world Y; not an arbitrary 3D gravity vector</td>
+</tr>
+<tr>
+<td>Ground/traction</td>
+<td>Landuse mapping and ground_models.cfg with static/sliding friction, adhesion, Stribeck behavior and fluid parameters</td>
+<td>Friction/mud experiments are feasible with pinned physical surface assignments</td>
+</tr>
+<tr>
+<td>Water</td>
+<td>Water line/height APIs and terrain/wave settings</td>
+<td>Water contact is separate from visual water quality</td>
+</tr>
+<tr>
+<td>Sky/time</td>
+<td>SkyX/Caelum/render settings and available time controls</td>
+<td>Primarily presentation; inspect physical coupling before treating a visual setting as an environmental force</td>
+</tr>
+<tr>
+<td>Ambient wind/gusts</td>
+<td>No shared physical wind-field setter found in inspected game bindings/aerodynamic paths</td>
+<td>Requires a defined airflow model and likely engine changes</td>
+</tr>
+<tr>
+<td>Atmosphere</td>
+<td>Wing/fuselage code contains altitude-dependent air-density approximation</td>
+<td>No general validated pressure/temperature/humidity editor found for trials</td>
+</tr>
+<tr>
+<td>External forces</td>
+<td>Persistent node FreeForces</td>
+<td>Useful controlled actuator/disturbance; not equivalent to an aerodynamic wind field</td>
+</tr>
+</tbody></table></div>
+<p>World Y is up; gravity is signed and normally negative. Ground fluid buoyancy in the inspected collision path uses DEFAULT_GRAVITY rather than the terrain&#39;s live gravity. The local camera g-force calculation divides by terrain gravity. Thus zero/altered gravity requires explicit cross-subsystem validation, particularly fluids and g-force telemetry. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/Collisions.cpp#L1265-L1344">S25 · Source: collision reaction and friction calculation</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L4529-L4548">S05 · Source: local camera g-force calculation</a></p>
+<p>A visual mesh movement is not proof of a moved collision shape. Verify the chosen editor/object operation updates physical geometry and rebuilds relevant caches when a trial fixture moves.</p>
+<h2 id="section-04">4. Assets and terrains available to this fork</h2>
+<h3>4.1 Versioned starter inventory</h3>
+<p>The inspected content submodule contains <strong>three terrain definitions, three truck definitions and two trailer definitions</strong>. The main repository&#39;s resources additionally contain <strong>six .fixed definitions</strong>. These are definition-file counts, not a count of successfully loaded or scientifically validated assets. <a href="https://github.com/RigsOfRods/content/tree/34fefdd126784bf87b068fc283f812525d159dd7">D17 · Starter content repository at the inspected revision</a></p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 5"><table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Definition</th>
+<th>Trial value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Simple Test Terrain</td>
+<td>simple2.terrn2</td>
+<td>Existing baseline drive; simple setup and debugging</td>
+</tr>
+<tr>
+<td>Simple Test Terrain Asphalt</td>
+<td>simple2_a.terrn2</td>
+<td>Ground/traction-focused trials; verify its landuse mapping and surface model</td>
+</tr>
+<tr>
+<td>Simple Test Terrain Water</td>
+<td>simple2_w.terrn2</td>
+<td>Water/contact scenarios; waterline is 100 and spawn is above it</td>
+</tr>
+<tr>
+<td>Daf Semi truck</td>
+<td>b6b0UID-semi.truck</td>
+<td>Source-built driving already demonstrated; engine/load/coupling candidate</td>
+</tr>
+<tr>
+<td>Bus RVI Agora S</td>
+<td>95bbUID-agoras.truck</td>
+<td>Second vehicle class for controlled comparison</td>
+</tr>
+<tr>
+<td>Bus RVI Agora L</td>
+<td>95bbUID-agoral.truck</td>
+<td>Alternate bus geometry and mass configuration</td>
+</tr>
+<tr>
+<td>Semi trailer (37tons)</td>
+<td>b6b0UID-semi.trailer</td>
+<td>Articulated/load transfer studies; name is not a verified effective measured mass</td>
+</tr>
+<tr>
+<td>Flatbed semi trailer</td>
+<td>b6b0UID-semiflat.trailer</td>
+<td>Payload and coupling scenarios</td>
+</tr>
+</tbody></table></div>
+<p>Exact file hashes are in the source inspection record. A complete content identity must also hash referenced configuration, meshes/collision assets, airfoil data, materials and any scripts that influence physics.</p>
+<p>No .airplane or .boat definition was found in this starter content inventory. The engine supports those domains, but a flight/boat evaluation needs a curated external asset or an intentionally constructed test rig.</p>
+<h3>4.2 Broader ecosystem and useful tools</h3>
+<p>The documented mod landscape covers vehicles, trailers/loads, terrain/static objects, skins, dashboards, addons/tuneups and gadgets. Suitable trial terrain families include flat pads, tracks, slopes, roads, off-road surfaces, ramps, barriers and water/airport environments. That is a selection taxonomy, not a verified installed catalog. <a href="https://developer.rigsofrods.org/d7/d61/_scripting_features_overview_page.html">D10 · Official scripting features overview</a></p>
+<p>The official AI guide uses F1 Test Track, Bajarama V2 and Rock Falls Raceway as examples. They are candidate leads, not pinned/downloaded trial fixtures in this workspace. Community-maintained waypoint presets can be loaded locally rather than fetched dynamically. Freeze any selected preset file/version with the trial. <a href="https://docs.rigsofrods.org/gameplay/vehicle-ai/">D05 · Official vehicle AI guide</a> <a href="https://github.com/RigsOfRods-Community/ai-waypoints">D06 · Community-maintained waypoint presets</a></p>
+<p>Bundled gadgets include a script editor, rig/road/ODEF editors, OGRE/overlay inspection, an alpha Engine Tool, an alpha Shock Tool, and TerrnBatcher. Engine/Shock tools are useful diagnostic starting points. TerrnBatcher concerns static mesh/material batching, not experiment batches. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/gadgets/engine_tool.gadget#L7-L17">S35 · Source: engine diagnostics gadget</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/gadgets/shock_tool.as#L178-L191">S36 · Source: shock diagnostic samples</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/gadgets/terrn_batcher.as#L1-L15">S37 · Source: terrain mesh batcher role</a></p>
+<p>For trial assets, curate a small initial set with: provenance/license, bundle/dependency hashes, units, expected mass, coordinate conventions, node groups/measurement locations, surface assignment, calibration evidence, and compatible engine revision. Keep author-controlled simple fixtures for validation. Community content can support exploratory comparisons; it does not arrive as certified physical data.</p>
+<p>The source content repository includes a GPL license file; community assets have their own author/license conditions. Asset redistribution must be assessed per selected bundle, rather than inferred from the engine&#39;s license.</p>
+<h2 id="section-05">5. Existing control and automation surfaces</h2>
+<h3>5.1 Startup, spawning and actor lifecycle</h3>
+<p>The CLI supports -map/-terrain, -truck, -truckconfig, -pos, -rot, -runscript, -enter, -resume and -checkcache. No dedicated headless experiment/batch command was found in the inspected options. RoR&#39;s normal entry point runs a render/event loop; this report has not verified renderer-free execution. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/system/AppCommandLine.cpp#L52-L135">S23 · Source: supported launch arguments</a></p>
+<p>The source-supported spawn message is <strong>MSG_SIM_SPAWN_ACTOR_REQUESTED</strong>. It accepts a filename, position and quaternion rotation, with optional configuration, skin, entry flag and instance ID. Some public overview prose uses a different historical spelling; use the inspected bindings/dispatch code. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/GameScript.cpp#L1583-L1639">S11 · Source: actor spawn validation and fallback</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/MsgQueueAngelscript.cpp#L35-L116">S12 · Source: bound message types</a></p>
+<p>Two important reproducibility behaviors: lookup allows a partial filename match, and an invalid configuration may be logged and replaced by the first available configuration. A future trial runner should resolve exact asset identity and reject unintended effective configuration, rather than accept a plausible-looking launch. Spawn placement can also be adjusted by the engine; verify the realized node pose.</p>
+<p>The earlier CLI -enter issue is preserved in project memory. The successful baseline used diag_preset_veh_enter=true. It remains a workaround; the message-based spawn path has its own entry flag and should be checked independently.</p>
+<h3>5.2 Journey, pathing, speed and acceleration</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 6"><table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>What it offers</th>
+<th>Suitability</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Scripted input schedule</td>
+<td>Per-actor simulated throttle, brake, steering and other events; persistent values must be cleared</td>
+<td>Repeatable control intent and useful low-complexity trials</td>
+</tr>
+<tr>
+<td>Waypoint AI</td>
+<td>Waypoint list, activation, events, speed/power values at waypoints</td>
+<td>Route-following experiments; actual trajectory/speed must be measured</td>
+</tr>
+<tr>
+<td>Built-in AI modes</td>
+<td>Normal, race, drag race, crash, chase; repeat paths and multiple vehicles</td>
+<td>Rapid scenario exploration and visual repeated runs</td>
+</tr>
+<tr>
+<td>Flight autopilot</td>
+<td>Heading, altitude, vertical-speed, IAS and related modes</td>
+<td>Basic flight control experiments after selecting/calibrating an aircraft</td>
+</tr>
+<tr>
+<td>Engine APIs</td>
+<td>Gear, clutch, throttle, start/stop, RPM and finite simulation attributes</td>
+<td>Setup and controller composition; not an arbitrary vehicle velocity setter</td>
+</tr>
+<tr>
+<td>FreeForces</td>
+<td>Persistent forces applied to specified actor nodes</td>
+<td>Controlled actuator/fixture forces; timing is frame-requested and applied by physics</td>
+</tr>
+</tbody></table></div>
+<p>AI speeds are km/h for land vehicles and knots for boat/aircraft settings. The native route controller supports AI_SPEED and AI_POWER per waypoint. Target speed is a controller setting, not a guaranteed state. Normal/race/chase modes have different path/turn/obstacle behaviors; a path can be missed. Aircraft AI altitude is not a complete 3D waypoint mission planner. <a href="https://docs.rigsofrods.org/gameplay/vehicle-ai/">D05 · Official vehicle AI guide</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/VehicleAiAngelscript.cpp#L34-L56">S26 · Source: waypoint and per-waypoint control bindings</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gameplay/VehicleAI.cpp#L134-L150">S27 · Source: waypoint speed and power setters</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/AutopilotAngelscript.cpp#L31-L52">S28 · Source: flight autopilot bindings</a></p>
+<p>A desired acceleration curve must become a feedback-control objective or a declared force actuator. Throttle percentage does not prescribe acceleration. No generic actor/node initial-velocity setter appeared in the inspected bindings; boostCurrentTruck changes engine RPM, not translational velocity. Saved scenes include velocities and could be investigated as an initial-state mechanism, but editing/restoring one is not a verified trial API.</p>
+<p>Distinguish <strong>control replay</strong>, <strong>tracking a requested state</strong>, and <strong>imposing an artificial state</strong>. They answer different physical questions. For impacts, accept a run based on observed approach velocity/orientation at a defined gate, not merely requested throttle/speed.</p>
+<h3>5.3 Persistent force actuators and synthetic fixtures</h3>
+<p>FreeForces support constant-direction, toward-coordinate, toward-node and half-beam types. A FreeForce affects one node; a complete two-sided artificial beam needs matching opposite half-beams. Add/modify/remove requests and freeforce activity events are available. <a href="https://developer.rigsofrods.org/d0/dde/_free_forces_page.html">D07 · Official FreeForces description</a> <a href="https://developer.rigsofrods.org/d5/d34/_free_beams_page.html">D08 · Official FreeBeams description</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1624-L1768">S14 · Source: persistent force and half-beam calculation</a></p>
+<p>For constant forces, the solver adds force_magnitude times direction to the node accumulator. Normalize direction and record units as force in newtons. The public FreeForces text uses a confusing Newton/meters label; that should not be carried into trial units. Torque uses N·m, while beam stiffness uses N/m.</p>
+<p>These are persistent effects, not a script-call impulse API synchronized to a single physics tick. A duration-limited actuator needs defined activation/removal tick semantics. Record actuator work and its effect on the system boundary; a one-node external force can inject linear and angular momentum.</p>
+<h3>5.4 Existing trial-like systems</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 7"><table>
+<thead>
+<tr>
+<th>Existing subsystem</th>
+<th>Reuse</th>
+<th>Missing for the requested system</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vehicle AI and local waypoints</td>
+<td>Paths, repeats, multi-actor driving/crash setups</td>
+<td>Frozen experiment identity, acceptance gates, rich measurements and outcome records</td>
+</tr>
+<tr>
+<td>Race system/checkpoints</td>
+<td>Route/checkpoint events, timing, lap/results infrastructure</td>
+<td>General experiment semantics and physics accounting; manipulation rules can invalidate races</td>
+</tr>
+<tr>
+<td>Replay</td>
+<td>Node position/velocity samples and broken/disabled beam flags</td>
+<td>Durable full-rate force/energy export, experiment orchestration and complete restart state</td>
+</tr>
+<tr>
+<td>Save/load scene</td>
+<td>Vehicle/control/link/node/beam state persistence</td>
+<td>Proof of full simulation-state restoration, RNG/wind/profile reset and consistent cross-version meaning</td>
+</tr>
+<tr>
+<td>Gadgets/scripting</td>
+<td>Configurator, controller and diagnostics UI</td>
+<td>A complete experiment registry, batch queue and robust result storage</td>
+</tr>
+<tr>
+<td>OutGauge</td>
+<td>External dashboard stream</td>
+<td>Node/contact/beam physics and high-bandwidth impact events</td>
+</tr>
+<tr>
+<td>Dedicated server</td>
+<td>Multiplayer/session services</td>
+<td>Not established as a substitute for a client physics experiment worker</td>
+</tr>
+</tbody></table></div>
+<p>A combined script/gadget could reuse much of this control surface. No complete requested experiment harness was found in the inspected source/resources or official materials searched. This is a bounded research finding, not a claim that no community project exists anywhere. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/scripts/races.as#L1-L70">S34 · Source: bundled race management</a> <a href="https://docs.rigsofrods.org/terrain-creation/race-generator/">D14 · Official race script generator</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gameplay/Replay.cpp#L183-L211">S20 · Source: replay samples and beam flags</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Savegame.cpp#L719-L763">S21 · Source: saved node and beam state</a> <a href="https://github.com/RigsOfRods/ror-server">D16 · Official dedicated-server repository</a></p>
+<h2 id="section-06">6. Telemetry, event streams and logging</h2>
+<h3>6.1 Available measurements and their semantics</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 8"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Existing access</th>
+<th>Meaning / caution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Actor position/orientation</td>
+<td>getPosition(), getOrientation(), heading/rotation methods</td>
+<td>Position may be a camera-selected node or unweighted average; not guaranteed center of mass</td>
+</tr>
+<tr>
+<td>Scalar speed</td>
+<td>getSpeed(), getWheelSpeed()</td>
+<td>getSpeed derives from the actor reference-position change; wheel speed is a separate drivetrain/wheel reading</td>
+</tr>
+<tr>
+<td>Node position/velocity/mass</td>
+<td>getNodeCount(), getNodePosition(), getNodeVelocity(), getNodeMass()</td>
+<td>Useful basis for mass-weighted motion/energy; sample all selected nodes coherently</td>
+</tr>
+<tr>
+<td>Node force accumulator</td>
+<td>getNodeForces()</td>
+<td>Mutable solver accumulator; not a saved per-step contact/net-force sensor</td>
+</tr>
+<tr>
+<td>Camera g-force vector</td>
+<td>getGForces()</td>
+<td>Local camera axes, batch averaging/smoothing, gravity normalization; not raw world acceleration or peak impact load</td>
+</tr>
+<tr>
+<td>Actor mass</td>
+<td>getTotalMass(bool), dry/loaded/initial mass methods</td>
+<td>Linked actors may be included; define actor cohort and avoid double counting</td>
+</tr>
+<tr>
+<td>Shock state</td>
+<td>Count, spring rate, damping, velocity and endpoint IDs</td>
+<td>Exposed diagnostics; does not represent all beam stress/work channels</td>
+</tr>
+<tr>
+<td>Engine/controls</td>
+<td>RPM, gear, torque-related APIs, throttle/clutch, flags and input state</td>
+<td>Useful operational telemetry; verify per-function units and nominal/instantaneous meaning</td>
+</tr>
+<tr>
+<td>Flight/boat components</td>
+<td>Propulsion/autopilot component APIs</td>
+<td>Useful control/status; force decomposition still needs solver observation</td>
+</tr>
+<tr>
+<td>Beam state</td>
+<td>C++ beam fields; selected flags in replay/savegame</td>
+<td>No general public all-beam force/work time-series exporter found</td>
+</tr>
+</tbody></table></div>
+<p>getPosition() is explicitly camera-mode-dependent. getTotalMass(true) adds linked actor masses. A mass-weighted center of mass and momentum therefore require an explicit node/actor cohort rather than multiplying an arbitrary displayed position/speed by a total mass. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L1166-L1193">S04 · Source: actor reference position and camera-dependent averaging</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/ActorAngelscript.cpp#L135-L225">S08 · Source: actor telemetry and control bindings</a></p>
+<p><strong>Critical force-reading trap:</strong> getNodeForces() returns ar_nodes[n].Forces directly. CalcNodes integrates velocity/position, then resets Forces to gravity for the next loop. Other passes can add later/carry-over contributions. A script reading that accumulator sees its phase-dependent contents, not an archived complete pre-integration force, and cannot infer peak collision load from its name. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L4854-L4900">S03 · Source: node mass, velocity and force getters</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1602-L1675">S02 · Source: node integration and force reset</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1624-L1768">S14 · Source: persistent force and half-beam calculation</a></p>
+<p>The source has camera/force-feedback sensors and last-collision diagnostics, but their purposes, smoothing, channels and availability differ. They are useful evidence of internal data, not a ready research telemetry contract. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L4529-L4548">S05 · Source: local camera g-force calculation</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/Collisions.cpp#L1265-L1344">S25 · Source: collision reaction and friction calculation</a></p>
+<h3>6.2 Three clocks and sampling limits</h3><figure class="figure"><div class="figure-head">Sampling diagram · a frame can miss an impact peak</div><div class="svg-scroll" tabindex="0" aria-label="Scrollable diagram"><svg viewBox="0 0 960 266" role="img" aria-labelledby="timing-title timing-desc" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,Arial,sans-serif"><title id="timing-title">Sampling diagram · a frame can miss an impact peak</title><desc id="timing-desc">Illustrative physics ticks occur every half millisecond. Render or script frames are about 16.7 milliseconds apart at 60 hertz. A five millisecond pulse falls between adjacent frame samples, illustrating why frame samples cannot establish peak contact forces.</desc><defs><marker id="timing-arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#64818c"/></marker></defs><text x="12" y="72" font-size="13" fill="#526675">Physics ticks</text><line x1="120" y1="57" x2="120" y2="77" stroke="#338b86" stroke-width="2"/><line x1="131.6" y1="57" x2="131.6" y2="77" stroke="#338b86" stroke-width="1"/><line x1="143.2" y1="57" x2="143.2" y2="77" stroke="#338b86" stroke-width="2"/><line x1="154.8" y1="57" x2="154.8" y2="77" stroke="#338b86" stroke-width="1"/><line x1="166.4" y1="57" x2="166.4" y2="77" stroke="#338b86" stroke-width="2"/><line x1="178" y1="57" x2="178" y2="77" stroke="#338b86" stroke-width="1"/><line x1="189.6" y1="57" x2="189.6" y2="77" stroke="#338b86" stroke-width="2"/><line x1="201.2" y1="57" x2="201.2" y2="77" stroke="#338b86" stroke-width="1"/><line x1="212.8" y1="57" x2="212.8" y2="77" stroke="#338b86" stroke-width="2"/><line x1="224.39999999999998" y1="57" x2="224.39999999999998" y2="77" stroke="#338b86" stroke-width="1"/><line x1="236" y1="57" x2="236" y2="77" stroke="#338b86" stroke-width="2"/><line x1="247.6" y1="57" x2="247.6" y2="77" stroke="#338b86" stroke-width="1"/><line x1="259.2" y1="57" x2="259.2" y2="77" stroke="#338b86" stroke-width="2"/><line x1="270.79999999999995" y1="57" x2="270.79999999999995" y2="77" stroke="#338b86" stroke-width="1"/><line x1="282.4" y1="57" x2="282.4" y2="77" stroke="#338b86" stroke-width="2"/><line x1="294" y1="57" x2="294" y2="77" stroke="#338b86" stroke-width="1"/><line x1="305.6" y1="57" x2="305.6" y2="77" stroke="#338b86" stroke-width="2"/><line x1="317.2" y1="57" x2="317.2" y2="77" stroke="#338b86" stroke-width="1"/><line x1="328.79999999999995" y1="57" x2="328.79999999999995" y2="77" stroke="#338b86" stroke-width="2"/><line x1="340.4" y1="57" x2="340.4" y2="77" stroke="#338b86" stroke-width="1"/><line x1="352" y1="57" x2="352" y2="77" stroke="#338b86" stroke-width="2"/><line x1="363.6" y1="57" x2="363.6" y2="77" stroke="#338b86" stroke-width="1"/><line x1="375.2" y1="57" x2="375.2" y2="77" stroke="#338b86" stroke-width="2"/><line x1="386.8" y1="57" x2="386.8" y2="77" stroke="#338b86" stroke-width="1"/><line x1="398.4" y1="57" x2="398.4" y2="77" stroke="#338b86" stroke-width="2"/><line x1="410" y1="57" x2="410" y2="77" stroke="#338b86" stroke-width="1"/><line x1="421.59999999999997" y1="57" x2="421.59999999999997" y2="77" stroke="#338b86" stroke-width="2"/><line x1="433.2" y1="57" x2="433.2" y2="77" stroke="#338b86" stroke-width="1"/><line x1="444.8" y1="57" x2="444.8" y2="77" stroke="#338b86" stroke-width="2"/><line x1="456.4" y1="57" x2="456.4" y2="77" stroke="#338b86" stroke-width="1"/><line x1="468" y1="57" x2="468" y2="77" stroke="#338b86" stroke-width="2"/><line x1="479.59999999999997" y1="57" x2="479.59999999999997" y2="77" stroke="#338b86" stroke-width="1"/><line x1="491.2" y1="57" x2="491.2" y2="77" stroke="#338b86" stroke-width="2"/><line x1="502.8" y1="57" x2="502.8" y2="77" stroke="#338b86" stroke-width="1"/><line x1="514.4" y1="57" x2="514.4" y2="77" stroke="#338b86" stroke-width="2"/><line x1="526" y1="57" x2="526" y2="77" stroke="#338b86" stroke-width="1"/><line x1="537.5999999999999" y1="57" x2="537.5999999999999" y2="77" stroke="#338b86" stroke-width="2"/><line x1="549.2" y1="57" x2="549.2" y2="77" stroke="#338b86" stroke-width="1"/><line x1="560.8" y1="57" x2="560.8" y2="77" stroke="#338b86" stroke-width="2"/><line x1="572.4" y1="57" x2="572.4" y2="77" stroke="#338b86" stroke-width="1"/><line x1="584" y1="57" x2="584" y2="77" stroke="#338b86" stroke-width="2"/><line x1="595.5999999999999" y1="57" x2="595.5999999999999" y2="77" stroke="#338b86" stroke-width="1"/><line x1="607.2" y1="57" x2="607.2" y2="77" stroke="#338b86" stroke-width="2"/><line x1="618.8" y1="57" x2="618.8" y2="77" stroke="#338b86" stroke-width="1"/><line x1="630.4" y1="57" x2="630.4" y2="77" stroke="#338b86" stroke-width="2"/><line x1="642" y1="57" x2="642" y2="77" stroke="#338b86" stroke-width="1"/><line x1="653.6" y1="57" x2="653.6" y2="77" stroke="#338b86" stroke-width="2"/><line x1="665.1999999999999" y1="57" x2="665.1999999999999" y2="77" stroke="#338b86" stroke-width="1"/><line x1="676.8" y1="57" x2="676.8" y2="77" stroke="#338b86" stroke-width="2"/><line x1="688.4" y1="57" x2="688.4" y2="77" stroke="#338b86" stroke-width="1"/><line x1="700" y1="57" x2="700" y2="77" stroke="#338b86" stroke-width="2"/><line x1="711.6" y1="57" x2="711.6" y2="77" stroke="#338b86" stroke-width="1"/><line x1="723.1999999999999" y1="57" x2="723.1999999999999" y2="77" stroke="#338b86" stroke-width="2"/><line x1="734.8" y1="57" x2="734.8" y2="77" stroke="#338b86" stroke-width="1"/><line x1="746.4" y1="57" x2="746.4" y2="77" stroke="#338b86" stroke-width="2"/><line x1="758" y1="57" x2="758" y2="77" stroke="#338b86" stroke-width="1"/><line x1="769.6" y1="57" x2="769.6" y2="77" stroke="#338b86" stroke-width="2"/><line x1="781.1999999999999" y1="57" x2="781.1999999999999" y2="77" stroke="#338b86" stroke-width="1"/><line x1="792.8" y1="57" x2="792.8" y2="77" stroke="#338b86" stroke-width="2"/><line x1="804.4" y1="57" x2="804.4" y2="77" stroke="#338b86" stroke-width="1"/><line x1="816" y1="57" x2="816" y2="77" stroke="#338b86" stroke-width="2"/><line x1="827.6" y1="57" x2="827.6" y2="77" stroke="#338b86" stroke-width="1"/><line x1="839.1999999999999" y1="57" x2="839.1999999999999" y2="77" stroke="#338b86" stroke-width="2"/><line x1="850.8" y1="57" x2="850.8" y2="77" stroke="#338b86" stroke-width="1"/><line x1="862.4" y1="57" x2="862.4" y2="77" stroke="#338b86" stroke-width="2"/><line x1="874" y1="57" x2="874" y2="77" stroke="#338b86" stroke-width="1"/><line x1="885.6" y1="57" x2="885.6" y2="77" stroke="#338b86" stroke-width="2"/><text x="120" y="43" font-size="13" fill="#125b59">0.5 ms per tick (2,000 ticks per simulated second)</text><line x1="120" y1="122" x2="894" y2="122" stroke="#b2c3cc"/><text x="12" y="127" font-size="13" fill="#526675">Script frames</text><circle cx="120" cy="122" r="7" fill="#173d4e"/><text x="120" y="150" font-size="12" fill="#526675" text-anchor="middle">0 ms</text><circle cx="507" cy="122" r="7" fill="#173d4e"/><text x="507" y="150" font-size="12" fill="#526675" text-anchor="middle">16.7 ms</text><circle cx="894" cy="122" r="7" fill="#173d4e"/><text x="894" y="150" font-size="12" fill="#526675" text-anchor="middle">33.3 ms</text><line x1="120" y1="233" x2="894" y2="233" stroke="#b2c3cc"/><text x="12" y="213" font-size="13" fill="#526675">Force example</text><path d="M120,233 L252,233 C267,233 280,172 310,172 C340,172 354,233 368,233 L894,233" fill="#ffe8c8" stroke="#c6873c" stroke-width="3"/><text x="465" y="201" font-size="14" fill="#824b13">Illustrative 5 ms force pulse</text><text x="465" y="223" font-size="13" fill="#526675">No frame sample observes its peak.</text></svg></div><figcaption>The pulse and 60 Hz frame rate are illustrative, not measured data. Scripts run once per frame; physics advances in tick batches. Solver-phase placement matters even when a node force getter is available.</figcaption></figure>
+<p>Physics uses a fixed <strong>0.0005 s step</strong>, equivalent to a nominal <strong>2,000 steps per simulated second</strong>. It runs batches whose size depends on frame elapsed time, simulation-speed settings, remainders and pause/sleep state. Batch input time is clamped before scaling. A fixed step does not imply constant wall-clock throughput or bit-identical repetitions. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimConstants.h#L20-L37">S33 · Source: fixed step and compile-time limits</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1120-L1234">S06 · Source: frame batching and fixed-step accumulation</a></p>
+<p>At the start of the main loop, pending physics is synchronized. Script frameStep(float) runs before new actor physics tasks launch; this is a suitable existing point for coherent frame-level node reads. It is not called once for every 0.5 ms substep. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/main.cpp#L2196-L2237">S07 · Source: synchronized scripting before new physics tasks</a></p>
+<p>game.getTime() uses ActorManager&#39;s accumulated simulation time; frameStep&#39;s dt and video timestamps serve different roles. Record wall time, simulation time/tick and media time separately. Use actual timestamp differences for derivatives, account for pauses/scaling, and preserve tick counts in any native observer.</p>
+<p>At 60 rendered frames/s, a script nominally samples every 16.7 ms, spanning roughly 33 physics substeps at 1× speed. A 5 ms collision pulse can fit entirely between those samples. More CSV rows cannot recreate missing physics samples; repeatedly polling the same frame is not increased solver bandwidth.</p>
+<h3>6.3 Events and messages</h3>
+<p>Scripts register for events and receive eventCallback/eventCallbackEx payloads. Existing families include eventbox entry/exit, player/vehicle entry/exit, engine death/fire, water contact, actor creation/deletion/reset/teleport, input-related toggles, linking changes, freeforce changes/deformation/breaks, script diagnostics/exceptions and resource activity. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gameplay/ScriptEvents.h#L29-L132">S13 · Source: event definitions and payloads</a></p>
+<p>An eventbox crossing is a region/trigger event, not automatically a collision impulse or contact-force record. Freeforce half-beam break events do not constitute a universal break stream for every ordinary vehicle beam. No general every-contact/every-beam energy event stream was found in the inspected event enum.</p>
+<p>Messages request lifecycle/control operations through the main queue. They are asynchronous requests, not transactions with a complete experiment acknowledgement and durable event log. A future harness needs correlation IDs, effective-state confirmation, timestamps and terminal outcomes where current events do not supply them. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/MsgQueueAngelscript.cpp#L35-L116">S12 · Source: bound message types</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/GameScript.cpp#L1583-L1639">S11 · Source: actor spawn validation and fallback</a></p>
+<h3>6.4 Existing logs and export mechanisms</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 9"><table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Existing behavior</th>
+<th>Trial use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RoR.log</td>
+<td>Startup, content, rendering, configuration and runtime diagnostics</td>
+<td>Preserve full raw log and classify warnings/failures</td>
+</tr>
+<tr>
+<td>Angelscript.log / game.log</td>
+<td>Script diagnostics and explicitly emitted data</td>
+<td>Good for orchestration breadcrumbs or an initial low-rate recorder; log text is not a typed telemetry schema</td>
+</tr>
+<tr>
+<td>Script text resources</td>
+<td>Read/write text through OGRE resource groups; filenames cannot contain paths</td>
+<td>Possible buffered CSV/JSON export into a writable group, with return-value/error checks</td>
+</tr>
+<tr>
+<td>LocalStorage/.asdata</td>
+<td>Persistent key/value-style script storage</td>
+<td>Settings/metadata, not a full impact waveform pipeline</td>
+</tr>
+<tr>
+<td>Replay</td>
+<td>Configurable history sampling with node state/beam flags</td>
+<td>Visual debugging and selected state recovery, not force/energy accounting</td>
+</tr>
+<tr>
+<td>Savegames</td>
+<td>Node position/velocity plus beam/configuration state</td>
+<td>Candidate setup/reset asset; prove restoration semantics</td>
+</tr>
+<tr>
+<td>Screenshots/video</td>
+<td>Native requests and external capture</td>
+<td>Visual evidence correlated to physical/experiment timestamps</td>
+</tr>
+<tr>
+<td>OutGauge</td>
+<td>Windows/SocketW UDP packet for player vehicle dashboard</td>
+<td>Lightweight external monitoring; not the primary measurement bus</td>
+</tr>
+</tbody></table></div>
+<p>OutGauge populates wheel speed, RPM, gear, turbo, controls and lights. Engine temperature, fuel, oil pressure and oil temperature are zero placeholders in the inspected sender. Packet time uses the renderer timer. Its interval checks 0.1 times io_outgauge_delay, so the default 10 means approximately one second before frame quantization—not 10 ms. UDP delivery and the current player/engine dependency limit its role. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/network/OutGauge.cpp#L103-L202">S18 · Source: OutGauge interval, data fields and sender</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/network/OutGauge.h#L87-L118">S19 · Source: OutGauge packet field definitions</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/system/CVar.cpp#L32-L198">S22 · Source: runtime configuration variables</a></p>
+<p>The text-resource API is resource-group-based and checks writable streams; it does not offer arbitrary absolute-path file output. Buffering/chunking and a supervisor that copies finalized artifacts would need design, rather than repeatedly overwriting whole data files every substep. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/GameScript.cpp#L2044-L2191">S30 · Source: script text-resource creation and path restrictions</a></p>
+<p>Telemetry should distinguish observations, commanded inputs, effective configuration, engine events and derived metrics. Native instrumentation would need typed records, actor/node/beam identity, units/frame/phase, source hashes, sequence/tick IDs, and explicit dropped-data counters.</p>
+<h2 id="section-07">7. Physics measurements: what is defensible</h2><figure class="figure"><div class="figure-head">Energy ledger · measured channels before interpretation</div><div class="svg-scroll" tabindex="0" aria-label="Scrollable diagram"><svg viewBox="0 0 960 374" role="img" aria-labelledby="energy-title energy-desc" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,Arial,sans-serif"><title id="energy-title">Energy ledger · measured channels before interpretation</title><desc id="energy-desc">Initial mechanical energy and actuator work feed retained kinetic, gravitational and elastic energy, plus model-dependent damping, plasticity, contact, fracture and fluid transfers. Any unclosed residual remains explicit instead of being called absorbed energy.</desc><defs><marker id="energy-arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#64818c"/></marker></defs><rect x="12" y="98" width="252" height="135" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="28" y="125" fill="#125b59" font-size="16" font-weight="700">Energy entering the window</text><text x="28" y="151" fill="#125b59" font-size="13">Initial kinetic + potential</text><text x="28" y="172" fill="#125b59" font-size="13">Initial stored elastic energy</text><text x="28" y="193" fill="#125b59" font-size="13">Integrated actuator work</text><rect x="326" y="12" width="332" height="138" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="342" y="39" fill="#125b59" font-size="16" font-weight="700">State retained / transferred</text><text x="342" y="65" fill="#125b59" font-size="13">Node kinetic energy</text><text x="342" y="86" fill="#125b59" font-size="13">Gravitational potential</text><text x="342" y="107" fill="#125b59" font-size="13">Model-consistent elastic storage</text><text x="342" y="128" fill="#125b59" font-size="13">Coupled actors and boundaries</text><rect x="326" y="176" width="332" height="156" rx="10" fill="#fff4e4" stroke="#c6873c"/><text x="342" y="203" fill="#824b13" font-size="16" font-weight="700">Model-dependent channels</text><text x="342" y="229" fill="#824b13" font-size="13">Beam damping and plastic work</text><text x="342" y="250" fill="#824b13" font-size="13">Contact friction / dissipation</text><text x="342" y="271" fill="#824b13" font-size="13">Breakage and constraint changes</text><text x="342" y="292" fill="#824b13" font-size="13">Fluid / aerodynamic transfer</text><rect x="722" y="100" width="226" height="134" rx="10" fill="#fff4e4" stroke="#c6873c"/><text x="738" y="127" fill="#824b13" font-size="16" font-weight="700">Unclosed residual</text><text x="738" y="153" fill="#824b13" font-size="13">Numerics · unobserved terms</text><text x="738" y="174" fill="#824b13" font-size="13">Timing / model mismatch</text><text x="738" y="195" fill="#824b13" font-size="13">Report and bound explicitly</text><line x1="264" y1="146" x2="320" y2="87" stroke="#64818c" stroke-width="2" marker-end="url(#energy-arrowhead)"/><line x1="264" y1="188" x2="320" y2="249" stroke="#64818c" stroke-width="2" marker-end="url(#energy-arrowhead)"/><line x1="658" y1="87" x2="716" y2="143" stroke="#64818c" stroke-width="2" marker-end="url(#energy-arrowhead)"/><line x1="658" y1="249" x2="716" y2="195" stroke="#64818c" stroke-width="2" marker-end="url(#energy-arrowhead)"/><text x="18" y="362" font-size="13" fill="#526675">Kinetic-energy decrease alone is not a measurement of impact absorption.</text></svg></div><figcaption>This diagram lists analytical channels without assigning invented percentages. A defensible ledger needs work integrals, declared boundaries, consistent state times and calibration.</figcaption></figure>
+<h3>7.1 Define the body, frame, units and time first</h3>
+<p>A trial must declare its measurement boundary: one actor, a linked vehicle/trailer set, selected structural nodes, a whole closed system, or a vehicle against an externally supported ground/barrier. Include fragments or explicitly account for mass leaving the cohort. Actor deletion, teleport, reset, mass changes and artificial actuators are discontinuities, not ordinary collision outcomes.</p>
+<p>Use a declared world frame with Y up, SI units, and separate sensor/body axes. Preserve transform conventions and reference point. Engine outputs mix km/h, knots, RPM, kN, kW and dimensionless settings; normalize on export with original units retained. Record actual simulated time, rather than treating video frame time or requested control duration as the physics clock.</p>
+<h3>7.2 Kinematics, momentum and kinetic energy</h3>
+<p>For a defined set of mass-bearing nodes i with positions r_i, velocities v_i and masses m_i:</p>
+<pre><code class="language-text">M       = sum(m_i)
+r_COM   = sum(m_i * r_i) / M
+v_COM   = sum(m_i * v_i) / M
+p       = sum(m_i * v_i)                         [kg m/s]
+K_nodes = 0.5 * sum(m_i * dot(v_i, v_i))         [J]
+K_COM   = 0.5 * M * dot(v_COM, v_COM)            [J]
+L_COM   = sum((r_i-r_COM) cross (m_i*v_i))       [kg m²/s]
+a_COM   ≈ change(v_COM) / actual change(time)    [m/s²]
+</code></pre>
+<p>These are proposed derived measurements, supported by exposed node state. They have not been runtime-validated in this session. Exclude zero/invalid masses appropriately, audit immovable/virtual components, verify totals against the intended body, and avoid counting a linked actor twice. Internal/rotating/deforming motion can make K_nodes exceed K_COM; the latter alone is not the total kinetic energy of a deformable vehicle.</p>
+<p>For fixed-mass cohorts, a momentum change gives <strong>net external impulse</strong>, J_net=change(p), and average net external force over a defined interval, F_mean=change(p)/change(t). This does not by itself isolate barrier contact from gravity, tire friction, aerodynamic loads, propulsion, constraint reactions, or measurement error.</p>
+<p>Angular momentum from node state is useful for rollover/flight evaluation. It still needs a clear reference point, included bodies and any separately represented rotating state. Source fields for propulsion/rotation may need additional accounting beyond a generic node sum.</p>
+<h3>7.3 Impact-force vectors and impulse</h3><aside class="calculator" aria-label="Illustrative impact calculation"><div class="eyebrow">Calculated example · not simulation data</div><h4>Momentum, kinetic energy, and mean net force</h4><p>Ideal one-dimensional stop of a fixed mass. Change the speed to see why energy grows faster than momentum.</p><div class="calc-inputs"><label>Mass (kg)<input id="calc-mass" type="number" min="0.000001" step="any" value="1000"></label><label>Approach speed (m/s)<input id="calc-speed" type="number" min="0" step="any" value="10"></label><label>Stopping interval (ms)<input id="calc-stop" type="number" min="0.000001" step="any" value="100"></label></div><div class="calc-results" aria-live="polite"><div><span>Momentum magnitude · kg·m/s</span><output id="calc-momentum"></output></div><div><span>Initial kinetic energy · J</span><output id="calc-energy"></output></div><div><span>Mean net force magnitude · N</span><output id="calc-force"></output></div></div><p id="calc-warning" hidden>Enter finite values: positive mass and stopping interval; nonnegative speed.</p><p>p = mv; K = ½mv²; |F̄<sub>net</sub>| = mv/Δt for a complete stop. Mean net force is not peak contact force. Initial kinetic energy is not measured absorbed energy. Real trials require vector state, a defined body, and other forces.</p></aside>
+<p>Measure approach velocity at a plane/gate before contact, contact interval, force vector/sign convention, contacted fixture/body, net/contact impulses, rebound, deformation and post-contact state.</p>
+<p>For a contact channel with force vector F_contact at each solver tick:</p>
+<pre><code class="language-text">J_contact ≈ sum(F_contact[tick] * physics_dt)
+F_peak    = maximum magnitude over the defined channel/window
+</code></pre>
+<p>Peak resultant force, component peaks and the sum of individual node peak magnitudes are different statistics. A trustworthy exporter must say which it reports and whether multiple contacts are summed. Integrate matched samples to check momentum balance, including other external loads.</p>
+<p>The collision code has reaction/friction computations and per-node diagnostic state, so adding a meaningful observer has identifiable source locations. However, the live force accumulator and frame-level script callback do not provide a reliable complete contact waveform. Native sampling must specify the phase before force reset, account for actor/ground/inter-actor passes, and avoid double counting pairs or one-step carry-over contributions. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/Collisions.cpp#L1265-L1344">S25 · Source: collision reaction and friction calculation</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1602-L1675">S02 · Source: node integration and force reset</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1624-L1768">S14 · Source: persistent force and half-beam calculation</a></p>
+<p>A 0.5 ms sample is still a discrete numerical sample, not an infinitely resolved real-world force peak. Contact duration, smoothing, geometry, material parameters, solver approximations and convergence all affect the interpretation.</p>
+<h3>7.4 Beam force and deformation</h3>
+<p>The solver&#39;s beam field named stress stores a signed axial <strong>force-like value</strong>, computed from spring extension and damping velocity. Do not label it material stress in Pa/MPa without a defined physical cross-sectional area and calibrated material model. Plastic changes modify rest length/thresholds, and breakage disables load transmission according to source rules. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1317-L1445">S15 · Source: beam force, yield and break processing</a></p>
+<p>For a simple linear elastic beam with constant stiffness k and unchanging rest length L0, an illustrative stored energy is U=0.5<em>k</em>(length-L0)^2. For a passive linear dashpot c, dissipation rate is c*(relative axial velocity)^2. Actual shocks, bounded beams, ropes, actuated beams, plastic changes and break logic require their own model-consistent accounting. Do not apply the simple formula universally.</p>
+<p>A deformation visualization, count of broken beams or final crush distance can be a useful exploratory outcome. Those are not equivalent to energy absorbed by calibrated real materials.</p>
+<h3>7.5 Energy dispersal and the missing ledger</h3>
+<p>A useful energy balance would track:</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 10"><table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Interpretation</th>
+<th>Current assessment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Translational/internal/rotational kinetic energy</td>
+<td>Motion of the selected cohort</td>
+<td>Node-derived estimates feasible; explicit rotating-state audit required</td>
+</tr>
+<tr>
+<td>Gravity/potential work</td>
+<td>Position change in the declared field</td>
+<td>Derivable with fixed gravity/mass/reference; handle altered gravity coherently</td>
+</tr>
+<tr>
+<td>Beam elastic storage</td>
+<td>Recoverable strain energy</td>
+<td>Needs effective topology, stiffness, rest length and model-specific sampling</td>
+</tr>
+<tr>
+<td>Damping dissipation</td>
+<td>Mechanical energy removed by damping terms</td>
+<td>Needs solver-term work/power integration</td>
+</tr>
+<tr>
+<td>Plastic deformation</td>
+<td>Irrecoverable changes to model state</td>
+<td>Needs defined model accounting at yield/rest-length changes</td>
+</tr>
+<tr>
+<td>Breakage and fragments</td>
+<td>Transfer/removal/release of energy when connectivity changes</td>
+<td>Needs before/after state and bookkeeping; not a universal fracture-energy material law</td>
+</tr>
+<tr>
+<td>Contact/friction/constraints</td>
+<td>Work/impulse exchanged with ground, barrier or other actors</td>
+<td>Needs per-channel observer and explicit external bodies/reactions</td>
+</tr>
+<tr>
+<td>Aero/water loads</td>
+<td>Energy transferred through simplified air/fluid models</td>
+<td>Needs subsystem-specific force/work channels</td>
+</tr>
+<tr>
+<td>Engine/hydraulic/FreeForce work</td>
+<td>Added/removed actuator energy</td>
+<td>Needs logged controls and measured work, not nominal engine power alone</td>
+</tr>
+<tr>
+<td>Numerical/residual balance</td>
+<td>Unaccounted change after declared terms</td>
+<td>Must remain visible; not relabeled as physical dissipation</td>
+</tr>
+</tbody></table></div>
+<p>A reduction in kinetic energy is <strong>not automatically impact energy absorbed by the vehicle</strong>. Energy may remain in motion, elastic deformation, another actor, gravity, friction, numerical damping or omitted channels. A residual can diagnose model/export issues but does not identify a physical channel.</p>
+<p>&quot;Impact energy dispersal&quot; must be defined before design: whole-system energy balance, per-component work, spatial energy maps, residual crush, structural failure, occupant proxy, or a combination. RoR does not already expose a validated full energy-budget exporter.</p>
+<h3>7.6 Flight outcomes</h3>
+<p>Frame-level scripts can support trajectory, mass-weighted speed, altitude, orientation, climb/descent, path deviation, control/engine state and ground/water interactions. Angle-of-attack/airfoil forces and exact lift/drag/thrust decomposition are internal-model concerns requiring additional observation.</p>
+<p>The inspected wing model uses relative node motion plus propwash and an altitude-density approximation with an explicit tropospheric-range comment. It is not CFD. A new ambient wind field must be applied consistently to wing, fuselage and propulsion-related flow calculations; simply adding a lateral FreeForce changes a different model. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/flex/FlexAirfoil.cpp#L590-L678">S16 · Source: wing-relative flow and air-density model</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L123-L151">S17 · Source: fuselage-relative flow and drag</a></p>
+<p>For flight or drop tests, start with declared supported altitude/velocity ranges, selected asset/aero data, known coordinates, controlled initial state and analytical or empirical references. Avoid assuming that aircraft visual flight behavior proves physically accurate momentum, stability or impact loads.</p>
+<h2 id="section-08">8. The requested experiment use case</h2>
+<h3>8.1 Parameter and outcome coverage</h3>
+<div class="filters" role="search" aria-label="Filter use-case coverage"><label>Search dimensions<input id="coverage-search" type="search" placeholder="e.g. wind, momentum, flight"></label><label>Capability status<select id="coverage-status"><option value="all">All statuses</option><option>Native</option><option>Compose</option><option>Derive</option><option>Extend</option><option>Unverified</option></select></label><output id="coverage-count" aria-live="polite"></output></div><div class="table-scroll" tabindex="0" aria-label="Scrollable data table 11"><table id="coverage-table">
+<thead>
+<tr>
+<th>Requested dimension</th>
+<th>Status</th>
+<th>Practical evaluation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vehicle and section configuration</td>
+<td>Native + verification</td>
+<td>Select exact bundled identity; confirm effective section and topology</td>
+</tr>
+<tr>
+<td>Mass/payload/config variants</td>
+<td>Native + compose</td>
+<td>Mass APIs, content variants and supported live attributes; archive effective setup</td>
+</tr>
+<tr>
+<td>Terrain and collision fixture</td>
+<td>Native + content</td>
+<td>Terrain/objects/ground models; author and verify a simple barrier/ramp when needed</td>
+</tr>
+<tr>
+<td>Scalar vertical gravity</td>
+<td>Native + validate</td>
+<td>Terrain/script setting; check non-Earth/zero-gravity subsystem assumptions</td>
+</tr>
+<tr>
+<td>Spatial/time-varying physical wind</td>
+<td>Extend</td>
+<td>No general ambient-wind trial interface found; define and instrument airflow model</td>
+</tr>
+<tr>
+<td>Water/ground surface</td>
+<td>Native + configure</td>
+<td>Pin physical water/traction/ground settings independently of visuals</td>
+</tr>
+<tr>
+<td>Journey/waypoint path</td>
+<td>Native + compose</td>
+<td>AI or scripted controller; measure achieved path and checkpoints</td>
+</tr>
+<tr>
+<td>Requested speed/acceleration profile</td>
+<td>Compose + validate</td>
+<td>Closed-loop controller or declared actuator with tracking/acceptance limits</td>
+</tr>
+<tr>
+<td>Exact initial velocity/rotation/deformation</td>
+<td>Investigate / extend</td>
+<td>No general bound velocity setter found; saved-scene route requires proof</td>
+</tr>
+<tr>
+<td>Repeated experiment sweeps</td>
+<td>Compose</td>
+<td>External process supervision and/or script queue; native AI repeats are narrower</td>
+</tr>
+<tr>
+<td>Position/velocity/node mass</td>
+<td>Native, frame-level</td>
+<td>Useful low-bandwidth observation with stable cohort and timestamps</td>
+</tr>
+<tr>
+<td>Linear/angular momentum</td>
+<td>Derive + validate</td>
+<td>From coherent mass-weighted node state and declared boundaries</td>
+</tr>
+<tr>
+<td>Kinetic energy</td>
+<td>Derive + validate</td>
+<td>Node energy, not just displayed speed times gross mass</td>
+</tr>
+<tr>
+<td>Average net force/impulse</td>
+<td>Derive + validate</td>
+<td>Momentum differences with other forces/boundary conditions declared</td>
+</tr>
+<tr>
+<td>Peak contact-force vectors</td>
+<td>Extend</td>
+<td>Physics-tick observer, contact identity, phase and event window</td>
+</tr>
+<tr>
+<td>Beam forces/work/failure timeline</td>
+<td>Extend</td>
+<td>Existing internal data but missing general typed time-series export</td>
+</tr>
+<tr>
+<td>Energy dispersal/decomposition</td>
+<td>Extend + validate</td>
+<td>Integrated channel ledger and calibrated model assumptions</td>
+</tr>
+<tr>
+<td>Flight trajectory/control outcomes</td>
+<td>Native + compose</td>
+<td>Aircraft asset selection, control logic and trajectory metrics</td>
+</tr>
+<tr>
+<td>Flight load and gust response</td>
+<td>Extend + validate</td>
+<td>Consistent airflow and synchronized aerodynamic force channels</td>
+</tr>
+<tr>
+<td>Visual evidence and raw diagnostics</td>
+<td>Native + compose</td>
+<td>Screenshots, video, logs, hashes and synchronized timestamps</td>
+</tr>
+<tr>
+<td>Headless/high-throughput execution</td>
+<td>Unverified / extend</td>
+<td>Renderer-dependent client baseline; no experiment CLI found</td>
+</tr>
+<tr>
+<td>Bitwise deterministic replay</td>
+<td>Unverified</td>
+<td>Fixed step alone is insufficient; define and measure repeatability</td>
+</tr>
+</tbody></table></div><p id="coverage-empty" class="empty" hidden>No dimensions match these filters.</p>
+<p>&quot;Native&quot; means source-supported, not newly runtime-proven. The earlier smoke test demonstrated startup, vehicle entry workaround, simple controls, position/wheel-speed logs and visual capture.</p>
+<h3>8.2 Reuse versus build options</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 12"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Benefits</th>
+<th>Limits</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Built-in AI/race/save/replay only</td>
+<td>Quick manual scenario exploration</td>
+<td>Narrow outcomes and incomplete experiment/data lifecycle</td>
+<td>Useful evaluation tool; insufficient alone</td>
+</tr>
+<tr>
+<td>Script/gadget plus external supervisor</td>
+<td>Reuses public controls/state and preserves the engine initially</td>
+<td>Frame-rate sampling, no full force/energy observer or physical wind field</td>
+<td>Strong candidate for initial exploratory trials</td>
+</tr>
+<tr>
+<td>Script control plus native physics observer</td>
+<td>Preserves existing dynamics while capturing tick/channel data</td>
+<td>Engine changes, synchronization/export overhead and validation work</td>
+<td>Likely required for the full measurement use case</td>
+</tr>
+<tr>
+<td>Larger engine refactor/new execution mode</td>
+<td>Could add batch/headless stepping and stronger reset/reproducibility</td>
+<td>Greater scope and maintenance; performance benefit not yet measured</td>
+<td>Defer until precise needs and pilot results justify it</td>
+</tr>
+</tbody></table></div>
+<p>The recommended <strong>evaluation direction</strong> is to reuse RoR for assets/dynamics/control, build an explicit trial lifecycle around it, and add native observation only for measurement requirements that cannot be met honestly through scripts. Do not start with a large engine rewrite.</p>
+<p>No competing RoR-integrated experiment package was verified to satisfy the full requested use case. Existing AI and race tools should be tested against proposed acceptance requirements before deciding to replace or wrap them.</p>
+<h3>8.3 Trial identity and lifecycle</h3><figure class="figure"><div class="figure-head">Trial lifecycle · a conceptual acceptance process</div><div class="svg-scroll" tabindex="0" aria-label="Scrollable diagram"><svg viewBox="0 0 960 280" role="img" aria-labelledby="lifecycle-title lifecycle-desc" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,Arial,sans-serif"><title id="lifecycle-title">Trial lifecycle · a conceptual acceptance process</title><desc id="lifecycle-desc">A proposed sequence defines the question, resolves exact content, settles and verifies initial conditions, arms observation, executes, gates outcome validity, finalizes data and archives evidence. Invalid trials are retained with reasons.</desc><defs><marker id="lifecycle-arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#64818c"/></marker></defs><rect x="12" y="12" width="216" height="112" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="28" y="39" fill="#125b59" font-size="16" font-weight="700">1. Define</text><text x="28" y="65" fill="#125b59" font-size="13">Question · parameters</text><text x="28" y="86" fill="#125b59" font-size="13">Metrics and limits</text><rect x="252" y="12" width="216" height="112" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="268" y="39" fill="#125b59" font-size="16" font-weight="700">2. Resolve</text><text x="268" y="65" fill="#125b59" font-size="13">Pin content and build</text><text x="268" y="86" fill="#125b59" font-size="13">Validate effective setup</text><rect x="492" y="12" width="216" height="112" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="508" y="39" fill="#125b59" font-size="16" font-weight="700">3. Settle / verify</text><text x="508" y="65" fill="#125b59" font-size="13">Fresh state and transient</text><text x="508" y="86" fill="#125b59" font-size="13">Pose · mass · health</text><rect x="732" y="12" width="216" height="112" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="748" y="39" fill="#125b59" font-size="16" font-weight="700">4. Arm</text><text x="748" y="65" fill="#125b59" font-size="13">Observer and controller</text><text x="748" y="86" fill="#125b59" font-size="13">Window · clock alignment</text><rect x="732" y="151" width="216" height="112" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="748" y="178" fill="#125b59" font-size="16" font-weight="700">5. Execute</text><text x="748" y="204" fill="#125b59" font-size="13">Drive / fly / impact</text><text x="748" y="225" fill="#125b59" font-size="13">Observe actual conditions</text><rect x="492" y="151" width="216" height="112" rx="10" fill="#fff4e4" stroke="#c6873c"/><text x="508" y="178" fill="#824b13" font-size="16" font-weight="700">6. Gate</text><text x="508" y="204" fill="#824b13" font-size="13">Preconditions and outcome</text><text x="508" y="225" fill="#824b13" font-size="13">Reject invalid trials</text><rect x="252" y="151" width="216" height="112" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="268" y="178" fill="#125b59" font-size="16" font-weight="700">7. Finalize</text><text x="268" y="204" fill="#125b59" font-size="13">Export data and errors</text><text x="268" y="225" fill="#125b59" font-size="13">Compute declared metrics</text><rect x="12" y="151" width="216" height="112" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="28" y="178" fill="#125b59" font-size="16" font-weight="700">8. Archive</text><text x="28" y="204" fill="#125b59" font-size="13">Manifest · hashes · media</text><text x="28" y="225" fill="#125b59" font-size="13">Compare repetitions</text><line x1="228" y1="68" x2="246" y2="68" stroke="#64818c" stroke-width="2" marker-end="url(#lifecycle-arrowhead)"/><line x1="468" y1="68" x2="486" y2="68" stroke="#64818c" stroke-width="2" marker-end="url(#lifecycle-arrowhead)"/><line x1="708" y1="68" x2="726" y2="68" stroke="#64818c" stroke-width="2" marker-end="url(#lifecycle-arrowhead)"/><line x1="840" y1="130" x2="840" y2="145" stroke="#64818c" stroke-width="2" marker-end="url(#lifecycle-arrowhead)"/><line x1="732" y1="207" x2="714" y2="207" stroke="#64818c" stroke-width="2" marker-end="url(#lifecycle-arrowhead)"/><line x1="492" y1="207" x2="474" y2="207" stroke="#64818c" stroke-width="2" marker-end="url(#lifecycle-arrowhead)"/><line x1="252" y1="207" x2="234" y2="207" stroke="#64818c" stroke-width="2" marker-end="url(#lifecycle-arrowhead)"/></svg></div><figcaption>A failed precondition or incomplete capture should produce a rejected trial with a reason. This lifecycle is a research concept; implementation choices await the architecture/design specification.</figcaption></figure>
+<p>A future experiment should distinguish a <strong>parameterized experiment</strong> from each <strong>realized trial</strong> and repetition. Pin a manifest containing vehicle/content hashes, engine build, effective config, initial conditions, terrain/surface/environment, controller/path definition, requested values, observer version, sampling policy and outcome definitions.</p>
+<p>A conceptual lifecycle is:</p>
+<pre><code class="language-text">Define → Resolve/validate → Fresh setup → Settle/verify → Arm
+       → Execute/observe → Outcome gate → Finalize/export → Review/archive
+</code></pre>
+<p>This is an evaluation pattern, not the later architecture specification. Each phase needs observed completion/timeout/failure criteria. A spawn request being queued is not the same as successful settled setup. A process exit code is not the same as accepted trial data.</p>
+<p>Proposed trial records should include wall/simulation/tick times, expected/actual inputs, actor/node/beam identifiers, data-loss counters, messages/events, outcome window, source/binary/content identities, warnings and terminal status. Retain rejected/failed runs, explaining why they did not satisfy the acceptance gate.</p>
+<h3>8.4 Illustrative experiment families</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 13"><table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Parameters to vary</th>
+<th>Outcomes</th>
+<th>First measurement layer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Acceleration/braking</td>
+<td>Vehicle, payload, gear/control policy, traction</td>
+<td>Speed curve, COM acceleration, stopping distance, path error</td>
+<td>Script/node state</td>
+</tr>
+<tr>
+<td>Impact approach</td>
+<td>Mass, observed approach speed, barrier angle, structural variant</td>
+<td>Pre/post momentum, rebound, crush, failure; later contact waveform</td>
+<td>Script coarse outcomes, then native observer</td>
+</tr>
+<tr>
+<td>Drop/bounce</td>
+<td>Height, gravity, orientation, ground model</td>
+<td>Flight time, impact velocity, bounce, momentum change</td>
+<td>Simple calibrated fixture + native contact observation</td>
+</tr>
+<tr>
+<td>Ramp/jump/rollover</td>
+<td>Approach control, ramp geometry, mass distribution</td>
+<td>Trajectory, angular momentum, landing attitude and failure</td>
+<td>Script trajectory plus native impact metrics</td>
+</tr>
+<tr>
+<td>Aircraft maneuver/landing</td>
+<td>Aircraft config, speed/altitude targets, control policy</td>
+<td>Path tracking, climb/descent, stability, landing loads</td>
+<td>Curated aircraft + scripts; native aerodynamic/contact channels as required</td>
+</tr>
+<tr>
+<td>Gust response</td>
+<td>Wind field, duration/frequency, direction, aircraft setup</td>
+<td>Load/attitude response and recovery</td>
+<td>Extend airflow first, then validate</td>
+</tr>
+<tr>
+<td>Towing/load transfer</td>
+<td>Trailer/payload, links, slope, control</td>
+<td>Cohort momentum, link loads, load shift, failure</td>
+<td>Script state plus native link forces</td>
+</tr>
+<tr>
+<td>Surface/water transition</td>
+<td>Ground/fluid model, speed, immersion, load</td>
+<td>Drag/stopping/buoyancy/contact effects</td>
+<td>Model-specific calibration and observer</td>
+</tr>
+</tbody></table></div>
+<p>An illustrative first impact sweep might vary requested approach speeds of 5/10/15 m/s and selected mass variants on an author-controlled straight approach/barrier. Those are planning examples; no such runs were executed. Accept each repetition only if measured approach pose/velocity and setup meet declared tolerances.</p>
+<h2 id="section-09">9. Repeatability, accuracy and throughput</h2>
+<h3>9.1 Repeatability is a test result</h3>
+<p>Fixed-step physics does not establish bitwise determinism. Inputs arrive at frame boundaries; batches/clamping, async worker scheduling, actor order, sleep/reset state, platform/compiler floating-point behavior, content scripts, random variation and scene restoration may matter. Source contains random parameter/material/terrain behavior and no general trial seed/reset interface was found in the inspected binding/CLI/config surfaces.</p>
+<p>Record compiler/build mode, CPU/worker settings, async setting, frame cap, simulation speed, terrain/content revisions, controller and all initial-state data. Use multiple identical repetitions to measure variation, then define tolerances appropriate to the outcome. Do not promise identical results merely by fixing a seed.</p>
+<p>Scene saves preserve extensive node/beam/control data, and replays preserve selected sampled state. Neither has been demonstrated here to restore every stateful subsystem, force/observer state, random stream or active script. They must be validated as reset strategies rather than assumed to be complete checkpoints. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Savegame.cpp#L719-L763">S21 · Source: saved node and beam state</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gameplay/Replay.cpp#L183-L211">S20 · Source: replay samples and beam flags</a></p>
+<h3>9.2 Calibration before physical interpretation</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 14"><table>
+<thead>
+<tr>
+<th>Validation gate</th>
+<th>Question answered</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Units and mass audit</td>
+<td>Does exported state match known masses, frames, speed conversions and node cohorts?</td>
+</tr>
+<tr>
+<td>Free flight / free fall</td>
+<td>Do simple known-gravity fixtures match analytical position/velocity within declared limits?</td>
+</tr>
+<tr>
+<td>Constant actuator force</td>
+<td>Does the chosen boundary satisfy momentum change and known applied-force impulse?</td>
+</tr>
+<tr>
+<td>Linear spring/damper</td>
+<td>Does a simple rig match the selected model&#39;s frequency/damping and energy behavior?</td>
+</tr>
+<tr>
+<td>Momentum/contact accounting</td>
+<td>Do isolated pair and externally supported barrier cases close their declared impulse balances?</td>
+</tr>
+<tr>
+<td>Energy ledger closure</td>
+<td>Do stored/dissipated/actuator/contact channels explain changes, leaving an explicit residual?</td>
+</tr>
+<tr>
+<td>Sampling/convergence</td>
+<td>How do capture phase/rate, time step or numerical settings affect peaks and outcomes?</td>
+</tr>
+<tr>
+<td>Repeated-run variation</td>
+<td>Are distributions/tolerances stable under identical requested inputs?</td>
+</tr>
+<tr>
+<td>Asset calibration</td>
+<td>Are geometry, mass, tire/beam/aero properties tied to known reference data?</td>
+</tr>
+<tr>
+<td>Export overhead</td>
+<td>Does observation change frame timing, control arrival, or the outcome materially?</td>
+</tr>
+</tbody></table></div>
+<p>These are proposed gates, not passed tests. Use simple known rigs before calibrating complex community vehicles. Comparative sandbox results may be useful early; prediction of real-world crash/flight loads requires substantially stronger model and asset evidence. This report does not assign an engineering certification to RoR.</p>
+<h3>9.3 Data volume and performance</h3>
+<p>A nominal native recorder exporting position, velocity and force vectors as 9 float32 values for 1,000 nodes at 2,000 Hz produces <strong>72 MB/s</strong> before IDs, timestamps, masses, beam/contact records or compression: 1,000 × 2,000 × 9 × 4 bytes. Ten minutes is <strong>43.2 GB decimal</strong> for that subset alone. These are calculated examples, not RoR benchmarks.</p>
+<p>This suggests selective node groups/channels, tick summaries, configurable decimation, and event-triggered pre/post-impact windows with loss counters. A binary buffer/file can be more suitable for native high-rate capture than logging every value as text. Its buffer capacity, overflow policy and writer synchronization belong in the later design.</p>
+<p>A paused/slow-motion recording can improve inspection, but it changes wall/frame-to-simulation relationships; it is not proof that high-rate logging is inexpensive or that control delivery matches a real-time run.</p>
+<p>The source-defined actor limit of 5,000 is a compile-time ceiling, not evidence that 5,000 deformable actors run at a useful trial rate. Actual throughput depends on node/beam/contact workload, graphics, hardware and export policy. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimConstants.h#L20-L37">S33 · Source: fixed step and compile-time limits</a></p>
+<p>No headless throughput or concurrent-worker benchmark was executed. Single-player AI and manipulation restrictions also argue for isolated workers rather than relying on a multiplayer session as the experiment coordinator.</p>
+<h2 id="section-10">10. Findings and proposed next evaluation stages</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 15"><table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Research conclusion / proposed gate</th>
+<th>Expected deliverable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A — Define the measurement contract</td>
+<td>Decide exploratory comparison versus calibrated physical prediction; choose one vehicle/scenario and outcome definitions</td>
+<td>The forthcoming architecture/design specification</td>
+</tr>
+<tr>
+<td>B — Low-rate trial feasibility</td>
+<td>Validate exact asset resolution, setup/reset, script controls, COM/momentum calculations, acceptance gates and archive lifecycle</td>
+<td>A scoped prototype proposal and validation plan</td>
+</tr>
+<tr>
+<td>C — Impact instrumentation feasibility</td>
+<td>Define physics phase, contact/beam channels, tick/event synchronization, units and buffering</td>
+<td>Native-observer design and toy-rig calibration plan</td>
+</tr>
+<tr>
+<td>D — Energy accounting</td>
+<td>Define work/storage/loss channels and boundary conditions; keep residual visible</td>
+<td>Energy-ledger design, validation references and limitations</td>
+</tr>
+<tr>
+<td>E — Flight/wind extension</td>
+<td>Curate aircraft/aero data; define consistent airflow/atmosphere and instrument loads</td>
+<td>Separate flight/gust capability plan</td>
+</tr>
+<tr>
+<td>F — Scale/repeatability</td>
+<td>Measure repetition variance and observer overhead before headless/parallel refactors</td>
+<td>Benchmarks and justified execution-mode requirements</td>
+</tr>
+</tbody></table></div>
+<p>Do not equate Stage B completion with Stage D/E correctness. A useful exploratory trial platform can emerge earlier while advanced physics quantities remain clearly labeled.</p>
+<h2 id="section-11">11. Decisions needed for the architecture/design specification</h2>
+<ol>
+<li><strong>Purpose and fidelity:</strong> exploratory comparisons, educational visuals, automated regression, or predictions tied to real physical reference data?</li>
+<li><strong>First domain:</strong> ground acceleration/impact, drop/jump, coupled loads, or aircraft/landing? Select a minimal pilot.</li>
+<li><strong>Bodies and metrics:</strong> which actors/nodes, what reference frame, what impact window, what force/energy meaning, and which quantities need tick-level capture?</li>
+<li><strong>Control semantics:</strong> replayed inputs, closed-loop velocity/acceleration tracking, or explicitly imposed initial state/forces? Define acceptance tolerances.</li>
+<li><strong>Assets:</strong> source-owned fixtures versus third-party vehicles/terrains; calibration, redistribution rights, dependency identity and versions.</li>
+<li><strong>Environment:</strong> scalar gravity only initially, or true wind/gusts/atmosphere/water-model parameters? Which interactions must be physically consistent?</li>
+<li><strong>Repeat/reset:</strong> process-per-run, actor respawn, scene restore, or another strategy; how to prove a clean comparable setup?</li>
+<li><strong>Storage/events:</strong> required sampling windows, retention, data-loss policy, metadata schema, outcome status and correlation with video.</li>
+<li><strong>Validation:</strong> analytical/toy-rig references, empirical datasets, allowed errors and regression checks.</li>
+<li><strong>Execution/UI:</strong> interactive trials first, batch size/runtime budget, supported machines, and whether headless execution is a measured necessity.</li>
+</ol>
+<p>These questions establish the input to the next specification. They are not a request to start implementation now.</p>
+<h2 id="section-12">12. Evidence, limits and references</h2>
+<h3>Local research artifacts</h3>
+<ul>
+<li><a href="../../../doc/project/research/2026-10-08/source-inspection.json">Source inspection and starter-asset hashes</a></li>
+<li><a href="../../../doc/project/research/2026-10-08/binding-inventory.json">Static binding registration inventory</a></li>
+<li><a href="../../../doc/project/research/2026-10-08/references.json">Reference catalog</a></li>
+<li><a href="../../../doc/project/baselines/2026-10-08/README.md">Historical source-build proof records</a></li>
+<li><a href="../../../doc/project/build-and-record.md">Canonical build/record procedure</a></li>
+</ul>
+<p>The new research is static code/documentation analysis. Source-supported APIs and proposed derivations still need runtime tests in a new evidence session. Community catalog access was limited; no new assets were downloaded. No source build/rebuild was required for this documentation/report change.</p>
+<h3>Source and documentation catalog</h3>
+<p>All source links below pin the inspected fork commit. Web documentation was checked on 2026-10-08 and can evolve independently. The public documentation&#39;s version label, message spellings, force-unit wording and default assumptions may lag or differ from the fork; the report calls out material differences.</p>
+<ul>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimData.h#L250-L338">S01 · Source: node and beam data</a> — source/main/physics/SimData.h, lines 250–338.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1602-L1675">S02 · Source: node integration and force reset</a> — source/main/physics/ActorForcesEuler.cpp, lines 1602–1675.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L4854-L4900">S03 · Source: node mass, velocity and force getters</a> — source/main/physics/Actor.cpp, lines 4854–4900.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L1166-L1193">S04 · Source: actor reference position and camera-dependent averaging</a> — source/main/physics/Actor.cpp, lines 1166–1193.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L4529-L4548">S05 · Source: local camera g-force calculation</a> — source/main/physics/Actor.cpp, lines 4529–4548.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1120-L1234">S06 · Source: frame batching and fixed-step accumulation</a> — source/main/physics/ActorManager.cpp, lines 1120–1234.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/main.cpp#L2196-L2237">S07 · Source: synchronized scripting before new physics tasks</a> — source/main/main.cpp, lines 2196–2237.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/ActorAngelscript.cpp#L135-L225">S08 · Source: actor telemetry and control bindings</a> — source/main/scripting/bindings/ActorAngelscript.cpp, lines 135–225.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimData.h#L924-L978">S09 · Source: supported simulation attributes</a> — source/main/physics/SimData.h, lines 924–978.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/GameScriptAngelscript.cpp#L86-L206">S10 · Source: game, terrain, AI and resource bindings</a> — source/main/scripting/bindings/GameScriptAngelscript.cpp, lines 86–206.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/GameScript.cpp#L1583-L1639">S11 · Source: actor spawn validation and fallback</a> — source/main/scripting/GameScript.cpp, lines 1583–1639.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/MsgQueueAngelscript.cpp#L35-L116">S12 · Source: bound message types</a> — source/main/scripting/bindings/MsgQueueAngelscript.cpp, lines 35–118.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gameplay/ScriptEvents.h#L29-L132">S13 · Source: event definitions and payloads</a> — source/main/gameplay/ScriptEvents.h, lines 29–132.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1624-L1768">S14 · Source: persistent force and half-beam calculation</a> — source/main/physics/ActorManager.cpp, lines 1624–1768.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1317-L1445">S15 · Source: beam force, yield and break processing</a> — source/main/physics/ActorForcesEuler.cpp, lines 1317–1445.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/flex/FlexAirfoil.cpp#L590-L678">S16 · Source: wing-relative flow and air-density model</a> — source/main/physics/flex/FlexAirfoil.cpp, lines 590–678.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L123-L151">S17 · Source: fuselage-relative flow and drag</a> — source/main/physics/ActorForcesEuler.cpp, lines 123–151.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/network/OutGauge.cpp#L103-L202">S18 · Source: OutGauge interval, data fields and sender</a> — source/main/network/OutGauge.cpp, lines 103–202.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/network/OutGauge.h#L87-L118">S19 · Source: OutGauge packet field definitions</a> — source/main/network/OutGauge.h, lines 87–126.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gameplay/Replay.cpp#L183-L211">S20 · Source: replay samples and beam flags</a> — source/main/gameplay/Replay.cpp, lines 183–211.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Savegame.cpp#L719-L763">S21 · Source: saved node and beam state</a> — source/main/physics/Savegame.cpp, lines 719–763.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/system/CVar.cpp#L32-L198">S22 · Source: runtime configuration variables</a> — source/main/system/CVar.cpp, lines 32–198.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/system/AppCommandLine.cpp#L52-L135">S23 · Source: supported launch arguments</a> — source/main/system/AppCommandLine.cpp, lines 52–135.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/skeleton/config/ground_models.cfg#L7-L78">S24 · Source: friction and fluid ground parameters</a> — resources/skeleton/config/ground_models.cfg, lines 7–78.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/Collisions.cpp#L1265-L1344">S25 · Source: collision reaction and friction calculation</a> — source/main/physics/collision/Collisions.cpp, lines 1265–1344.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/VehicleAiAngelscript.cpp#L34-L56">S26 · Source: waypoint and per-waypoint control bindings</a> — source/main/scripting/bindings/VehicleAiAngelscript.cpp, lines 34–61.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gameplay/VehicleAI.cpp#L134-L150">S27 · Source: waypoint speed and power setters</a> — source/main/gameplay/VehicleAI.cpp, lines 134–150.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/AutopilotAngelscript.cpp#L31-L52">S28 · Source: flight autopilot bindings</a> — source/main/scripting/bindings/AutopilotAngelscript.cpp, lines 31–52.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/bindings/EngineAngelscript.cpp#L55-L138">S29 · Source: drivetrain bindings</a> — source/main/scripting/bindings/EngineAngelscript.cpp, lines 55–138.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/GameScript.cpp#L2044-L2191">S30 · Source: script text-resource creation and path restrictions</a> — source/main/scripting/GameScript.cpp, lines 2044–2191.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/scripting/GameScript.cpp#L110-L113">S31 · Source: script simulation clock</a> — source/main/scripting/GameScript.cpp, lines 110–113.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/Actor.cpp#L5110-L5127">S32 · Source: multiplayer guard and attribute-change events</a> — source/main/physics/Actor.cpp, lines 5110–5127.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimConstants.h#L20-L37">S33 · Source: fixed step and compile-time limits</a> — source/main/physics/SimConstants.h, lines 20–37.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/scripts/races.as#L1-L70">S34 · Source: bundled race management</a> — resources/scripts/races.as, lines 1–70.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/gadgets/engine_tool.gadget#L7-L17">S35 · Source: engine diagnostics gadget</a> — resources/gadgets/engine_tool.gadget, lines 7–17.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/gadgets/shock_tool.as#L178-L191">S36 · Source: shock diagnostic samples</a> — resources/gadgets/shock_tool.as, lines 178–191.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/resources/gadgets/terrn_batcher.as#L1-L15">S37 · Source: terrain mesh batcher role</a> — resources/gadgets/terrn_batcher.as, lines 1–15.</li>
+<li><a href="https://developer.rigsofrods.org/">D01 · Official developer portal</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://docs.rigsofrods.org/vehicle-creation/vehicle-concepts/">D02 · Official node/beam concepts</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://docs.rigsofrods.org/vehicle-creation/fileformat-truck/">D03 · Official vehicle file format</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://docs.rigsofrods.org/terrain-creation/terrn2-subsystem/">D04 · Official terrn2 format</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://docs.rigsofrods.org/gameplay/vehicle-ai/">D05 · Official vehicle AI guide</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://github.com/RigsOfRods-Community/ai-waypoints">D06 · Community-maintained waypoint presets</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://developer.rigsofrods.org/d0/dde/_free_forces_page.html">D07 · Official FreeForces description</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://developer.rigsofrods.org/d5/d34/_free_beams_page.html">D08 · Official FreeBeams description</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://developer.rigsofrods.org/d3/d52/_actor_sim_attributes_page.html">D09 · Official ActorSimAttributes description</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://developer.rigsofrods.org/d7/d61/_scripting_features_overview_page.html">D10 · Official scripting features overview</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://docs.rigsofrods.org/gameplay/tuning/">D11 · Official tuning guide</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://docs.rigsofrods.org/vehicle-creation/aircraft-and-aerodynamics/">D12 · Official aircraft creation guide</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://docs.rigsofrods.org/vehicle-creation/boats/">D13 · Official boat creation guide</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://docs.rigsofrods.org/terrain-creation/race-generator/">D14 · Official race script generator</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://docs.rigsofrods.org/gameplay/controls-config/">D15 · Official controls and replay bindings</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://github.com/RigsOfRods/ror-server">D16 · Official dedicated-server repository</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+<li><a href="https://github.com/RigsOfRods/content/tree/34fefdd126784bf87b068fc283f812525d159dd7">D17 · Starter content repository at the inspected revision</a> — documentation/ecosystem reference checked 2026-10-08.</li>
+</ul>
+</article><footer class="footnote">Generated from platform.md using the preserved local renderer. Diagrams and calculator are explanatory artifacts, not recorded simulation evidence. Source and citations are pinned where possible; future sessions must recheck the current tree.</footer></main><script>
+'use strict';
+const formatter=new Intl.NumberFormat('en-US',{maximumFractionDigits:2});
+const fields=['mass','speed','stop'].map(id=>document.getElementById('calc-'+id));
+function calculate(){
+ const values=fields.map(el=>Number(el.value));
+ const [m,v,t]=values;
+ const valid=fields.every(el=>el.value.trim()!==''&&el.checkValidity())&&values.every(Number.isFinite)&&m>0&&v>=0&&t>0;
+ const result=valid?[m*v,.5*m*v*v,m*v/(t/1000)]:null;
+ ['momentum','energy','force'].forEach((id,i)=>document.getElementById('calc-'+id).textContent=result?formatter.format(result[i]):'\u2014');
+ document.getElementById('calc-warning').hidden=valid;
+}
+fields.forEach(el=>el.addEventListener('input',calculate));calculate();
+const filter=document.getElementById('coverage-search');
+const status=document.getElementById('coverage-status');
+const rows=Array.from(document.querySelectorAll('#coverage-table tbody tr'));
+function updateCoverage(){
+ let n=0;const q=filter.value.trim().toLowerCase(),kind=status.value.toLowerCase();
+ for(const row of rows){const label=row.cells[1]?.textContent.toLowerCase()||'';const show=row.cells[0].textContent.toLowerCase().includes(q)&&(kind==='all'||label.includes(kind));row.hidden=!show;if(show)n++;}
+ document.getElementById('coverage-count').textContent=n+' of '+rows.length+' dimensions';
+ document.getElementById('coverage-empty').hidden=n!==0;
+}
+filter.addEventListener('input',updateCoverage);status.addEventListener('change',updateCoverage);updateCoverage();
+</script></body></html>

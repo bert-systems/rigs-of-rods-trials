@@ -38,6 +38,7 @@
 #include "SimData.h"
 #include "SoundScriptManager.h"
 #include "TyrePressure.h"
+#include "../trials/TrialLedger.h"
 #include "VehicleAI.h"
 
 #include <Ogre.h>
@@ -377,6 +378,7 @@ public:
     // Node additional info
     bool                 ar_minimass_skip_loaded_nodes = false;
     int                  ar_nodes_name_top_length = 0; //!< For nicely formatted diagnostic output
+    Trials::Ledger       ar_trial_ledger; //!< Optional actor-owned integration observations
     int                  ar_num_nodes = 0;
 
     // Beam data (split to layers)

@@ -1,0 +1,694 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RoR Trials — Implementation Specification</title><style>
+:root{--paper:#f3f5f6;--ink:#172e3d;--muted:#526675;--teal:#087c79;--line:#d7e0e5;--amber:#a05a13;--nav:#112b39}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:22px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 "Segoe UI",Arial,sans-serif}a{color:#006c75;text-underline-offset:3px}a:hover{color:#004b53}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid #e5a442;outline-offset:3px}
+.sidebar{position:fixed;inset:0 auto 0 0;width:258px;background:var(--nav);padding:30px 24px;overflow:auto;color:#cfdee4}.brand{color:white;font-size:19px;font-weight:700;line-height:1.3;margin-bottom:8px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700}.sidebar .eyebrow{color:#77d0c9;margin-bottom:24px}.sidebar a{display:block;color:#d4e3e9;text-decoration:none;font-size:13px;line-height:1.45;padding:9px 0;border-bottom:1px solid #29414d}.sidebar a:hover{color:#81e0d4}.sidebar small{display:block;margin-top:23px;line-height:1.65;color:#9cb5c1}.page{margin-left:258px;max-width:1400px;padding:42px 54px 64px}.hero{padding:38px 42px 32px;color:white;background:linear-gradient(130deg,#183b4c,#0b6567);border-radius:16px;position:relative}.hero .eyebrow{color:#a5e7dd}.hero h1{font-size:42px;line-height:1.15;letter-spacing:-.025em;margin:16px 0;max-width:770px}.hero p{color:#dbeded;max-width:810px;font-size:18px;line-height:1.6}.hero .meta{font-size:12px;color:#c6e2e3;border-top:1px solid #54818b;padding-top:16px;overflow-wrap:anywhere}.hero a{color:white}.hero .actions{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin-top:20px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 40px}.summary-card{border:1px solid var(--line);background:white;padding:20px 23px;border-radius:10px;line-height:1.55}.summary-card .eyebrow{color:var(--teal)}.summary-card h2{font-size:18px;margin:6px 0}.summary-card p{font-size:14px;margin:0;color:var(--muted)}article{min-width:0}article>p:first-child{font-size:14px;color:var(--muted)}h2{font-size:29px;letter-spacing:-.015em;line-height:1.25;margin:55px 0 22px;padding-top:18px;border-top:2px solid var(--line);scroll-margin-top:20px}h3{font-size:21px;line-height:1.35;margin:33px 0 14px}h4{font-size:18px}p{margin:14px 0}strong{color:#102f40}li{margin:6px 0}blockquote{border-left:4px solid var(--teal);background:#e5f2f1;margin:20px 0;padding:8px 22px}code{font:13px/1.5 Consolas,monospace;background:#e6ecef;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}pre{border:1px solid var(--line);padding:18px 22px;border-radius:8px;background:#eaf0f3;overflow:auto;max-width:100%}pre code{padding:0;background:none;overflow-wrap:normal}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55;background:white}th{background:#e4ecef;font-weight:650;color:#183a4a;text-align:left}th,td{padding:13px 15px;border:1px solid #dce4e8;vertical-align:top}td:first-child{font-weight:600}tr:nth-child(even)td{background:#f8fafb}td a{overflow-wrap:anywhere}.table-scroll{max-width:100%;overflow:auto;margin:18px 0 25px;border-radius:8px}.table-scroll table{min-width:680px}.figure{background:white;border:1px solid var(--line);border-radius:12px;margin:26px 0;padding:24px 22px 18px}.figure-head{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--teal);margin-bottom:16px}.svg-scroll{overflow:auto;max-width:100%}.svg-scroll svg{display:block;width:100%;min-width:740px;height:auto}.figure figcaption{font-size:13px;line-height:1.55;color:var(--muted);margin-top:16px}.calculator{background:#e8f3f2;border:1px solid #add2ce;border-radius:12px;padding:26px;margin:26px 0}.calculator h4{margin:7px 0 10px}.calculator .eyebrow{color:var(--teal)}.calc-inputs,.calc-results{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}.calc-inputs label{font-size:13px;font-weight:600;display:block}.calc-inputs input{width:100%;font:inherit;background:white;border:1px solid #9ebdbe;border-radius:5px;padding:8px 11px;color:var(--ink)}.calc-results div{padding:16px;background:white;border-radius:7px}.calc-results span{display:block;font-size:12px;color:var(--muted)}.calc-results output{font-size:23px;font-weight:650;color:#005b5b}.calculator p{font-size:13px;line-height:1.6}.filters{display:flex;gap:14px;align-items:end;flex-wrap:wrap;background:#eaf0f3;padding:18px;border-radius:8px}.filters label{font-size:13px;font-weight:600;display:block}.filters input,.filters select{padding:9px;border:1px solid #a9b9c2;border-radius:4px;font:14px "Segoe UI",sans-serif;max-width:100%;background:white;color:var(--ink)}.filters input{width:260px}.filters output{font-size:13px;margin-left:auto;padding:8px;color:var(--muted)}.empty{padding:14px;font-size:14px;background:#fff2dd}.footnote{font-size:13px;color:var(--muted);margin-top:45px;border-top:1px solid var(--line);padding-top:18px}[hidden]{display:none!important}
+@media(min-width:1600px){.page{padding-right:80px;max-width:1570px}}
+@media(max-width:1150px){.sidebar{width:225px;padding:25px 19px}.page{margin-left:225px;padding:30px}.hero{padding:30px}.hero h1{font-size:36px}.summary-grid{gap:12px}.summary-card{padding:17px}}
+@media(max-width:780px){.sidebar{position:static;width:auto;padding:22px}.sidebar nav{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.sidebar .eyebrow{margin-bottom:14px}.sidebar small{margin-top:16px}.page{margin-left:0;padding:20px 16px 40px}.hero{padding:26px 23px}.hero h1{font-size:31px}.hero p{font-size:16px}.summary-grid{grid-template-columns:1fr;margin-bottom:24px}.summary-card{padding:17px 20px}.summary-card h2{font-size:18px;margin:6px 0;border:0;padding:0}h2{font-size:25px;margin-top:38px}h3{font-size:20px}.figure{padding:18px 14px}.calc-inputs,.calc-results{grid-template-columns:1fr}.calculator{padding:20px}.calc-results{gap:10px}.filters{gap:10px}.filters input{width:240px}.filters output{margin-left:0}body{font-size:15px}}
+@media print{body{background:white;font-size:10pt}.sidebar,.actions,.filters{display:none}.page{margin:0;max-width:none;padding:0}.hero{background:#183b4c!important;print-color-adjust:exact}.hero h1{font-size:26pt}.summary-grid{margin-bottom:20px}h2{page-break-after:avoid;font-size:19pt}h3{page-break-after:avoid;font-size:14pt}table{font-size:8pt}.table-scroll,.svg-scroll{overflow:visible}.table-scroll table,.svg-scroll svg{min-width:0}figure,.calculator{break-inside:avoid}a{color:inherit}pre{white-space:pre-wrap}.calculator input{border:0}tr[hidden]{display:table-row!important}}
+
+body{overflow-wrap:anywhere}
+
+.summary-card h2{border:0;padding:0}
+.policy-explorer{background:#e8f3f2;border:1px solid #add2ce;border-radius:12px;margin:30px 0;padding:26px}
+.policy-explorer h3{margin:7px 0 10px}.policy-explorer .eyebrow{color:#087c79}
+.policy-explorer>p{font-size:14px}.policy-explorer label{display:block;font-size:14px;font-weight:600;max-width:560px}
+.policy-explorer select{display:block;width:100%;margin-top:8px;border:1px solid #9ebdbe;border-radius:5px;padding:10px;background:white;color:#172e3d;font:14px "Segoe UI",sans-serif}
+.policy-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:22px 0}
+.policy-results>div{background:white;padding:15px 18px;border-radius:7px}.policy-results span{display:block;text-transform:uppercase;letter-spacing:.07em;font-size:11px;color:#526675}
+.policy-results output{display:block;font-size:17px;font-weight:650;color:#005b5b;line-height:1.5;margin-top:5px}
+@media(max-width:780px){.policy-explorer{padding:20px}.policy-results{grid-template-columns:1fr}}
+@media print{.policy-explorer{break-inside:avoid}.policy-explorer select{border:0}}
+</style></head><body><aside class="sidebar"><div class="brand">rigs-of-rods-trials</div><div class="eyebrow">Implementation baseline</div><nav aria-label="Report sections"><a href="#section-01">1. Authority and agreed delivery scope</a><a href="#section-02">2. Components, responsibilities and deployment</a><a href="#section-03">3. Experiment, attempt and result contracts</a><a href="#section-04">4. Execution, commands and quality states</a><a href="#section-05">5. Native force and energy instrumentation</a><a href="#section-06">6. Environment and controlled initial conditions</a><a href="#section-07">7. Recorder, archive and resource budgets</a><a href="#section-08">8. Pilot fixtures and numerical acceptance proposals</a><a href="#section-09">9. Workbench and evidence experience</a><a href="#section-10">10. Delivery epics and milestone gates</a><a href="#section-11">11. Readiness and open engineering contracts</a><a href="#section-12">12. Evidence, references and maintenance</a></nav><small>Q&A complete.<br>14 epics · five delivery gates.<br>Preserve recorded data until manual archive/cleanup.</small></aside><main class="page"><header class="hero"><div class="eyebrow">Implementation specification / Review baseline 0.1 / 08 October 2026</div><h1>A measured trial.<br>A traceable result.</h1><p>The completed Q&A, consolidated into a native force-and-energy pipeline, environmental foundation and React/.NET trial workbench.</p><div class="meta">Fork: bert-systems/rigs-of-rods-trials · source e85535569102 · 15 confirmed selections<br>Documentation baseline. New engine instrumentation and trial software remain unimplemented.</div><div class="actions"><a href="../design/trial-platform-implementation-spec.md">Canonical specification</a><a href="../design/implementation-decisions.md">Confirmed decision log</a><a href="trial-architecture-options-2026-10-08.html">Architecture evaluation</a><a href="../../../PROJECT.md">Project introduction</a></div></header><div class="summary-grid"><div class="summary-card"><div class="eyebrow">Confirmed delivery</div><h2>Ground impacts first</h2><p>Pinned Daf / Simple2, controlled coast and analytical fixtures. React with a .NET coordinator.</p></div><div class="summary-card"><div class="eyebrow">Honest outcomes</div><h2>Keep observing after loss</h2><p>Required gaps stay incomplete and cannot pass validation. Independent queued trials can continue.</p></div><div class="summary-card"><div class="eyebrow">Engineering proposals</div><h2>Measure before accepting</h2><p>Fixture numbers, tolerances, transports and resource budgets require versioned contracts and evidence.</p></div></div><article><p>Version: <strong>0.1 — review baseline</strong>, 2026-10-08. Project: <strong>bert-systems/rigs-of-rods-trials</strong>. This consolidates the completed <a href="../design/implementation-decisions.md">implementation Q&amp;A</a>; it does not describe implemented software or validated physical accuracy.</p>
+<p><a href="trial-implementation-spec-2026-10-08.html">HTML review copy</a>. <a href="../design/trial-platform-architecture-options.md">Architecture evaluation</a>. <a href="../../../platform.md">Platform evidence</a>.</p>
+<h2 id="section-01">1. Authority and agreed delivery scope</h2>
+<p><strong>Confirmed requirements</strong> come from D001–D012, including the four D008 operational selections. <strong>Proposed engineering defaults</strong> in this document make the design concrete for review; they are not additional user selections or measured performance. <strong>Acceptance prerequisites</strong> identify work that must be completed before a build/run can claim the specified behavior. Future implementation tasks should follow the confirmed requirements and resolve/freeze the appropriate defaults through source inspection and meaningful validation.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 1"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Confirmed direction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Scientific purpose</td>
+<td>Validated simulation studies with scoped model coverage and explicit residuals</td>
+</tr>
+<tr>
+<td>First milestone</td>
+<td>Controlled ground impacts plus free-fall and spring/damper reference fixtures</td>
+</tr>
+<tr>
+<td>Workbench</td>
+<td>React, local browser first, with a UI-independent .NET coordinator</td>
+</tr>
+<tr>
+<td>Native measurements</td>
+<td>Complete applied-force attribution; core energy validation first; capture deformation/breakage transitions immediately</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>Configurable gravity, dry-air temperature/density and steady wind with coherent relevant drag adoption</td>
+</tr>
+<tr>
+<td>Capture</td>
+<td>Every-step accounting; approximately 200 Hz continuous summaries; configured 2 kHz detail, initially 2 s before/4 s after impact; UI 10–20 Hz</td>
+</tr>
+<tr>
+<td>Approach</td>
+<td>Controlled initialized/coasting vehicle first; driven path/speed approach later</td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>Sequential queued sweeps/repeats; fresh RoR process/private profile/results per attempt</td>
+</tr>
+<tr>
+<td>Required data loss</td>
+<td>Continue observation; mark capture incomplete persistently; prevent a scientific validation pass</td>
+</tr>
+<tr>
+<td>Pause/cancel/crash</td>
+<td>Tick-boundary in-process pause/resume; preserve partial cancellation/crash evidence; rerun as a new attempt</td>
+</tr>
+<tr>
+<td>Batch/retry</td>
+<td>Continue eligible independent trials after individual failures; manual retries initially; shared blockers hold new launches</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>Automated, scenario-specific reference/balance/repeatability/capture checks</td>
+</tr>
+<tr>
+<td>Pilot content</td>
+<td>Pinned Daf Semi and Simple Test Terrain, controlled fixed barrier and purpose-built analytical fixtures</td>
+</tr>
+<tr>
+<td>Live view</td>
+<td>React scientific dashboards alongside the separate native RoR window; interactive 3D inspector later</td>
+</tr>
+<tr>
+<td>Retention</td>
+<td>Preserve recorded data until explicit manual archive/cleanup; insufficient storage holds new launches</td>
+</tr>
+</tbody></table></div>
+<p>Flight, broader constitutive/drivetrain energy validation, structured wind/particulate exposure, driven journeys and interactive scientific 3D inspection follow the first milestone. Parallel/remote/headless workers and a desktop wrapper remain later options. Coupled particle forces, surface interactions and CFD require their own scope and validation decisions. Durable process-crash checkpoint restoration is outside the first release.</p>
+<p>The canonical engine remains at <code>e85535569102b6251849af574026984e3213b3f4</code> and versioned starter content at <code>34fefdd126784bf87b068fc283f812525d159dd7</code> at this review. Recheck identities at implementation time; existing local documentation changes remain uncommitted. The original source-build proof is protected.</p>
+<h2 id="section-02">2. Components, responsibilities and deployment</h2>
+<figure class="figure" id="implementation-boundaries"><div class="figure-head">Selected architecture · local React, .NET and native RoR</div><div class="svg-scroll" tabindex="0" aria-label="Scrollable architecture diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 493" role="img" aria-labelledby="implementation-boundaries-title implementation-boundaries-desc"><title id="implementation-boundaries-title">Selected architecture · local React, .NET and native RoR</title><desc id="implementation-boundaries-desc">A React workbench sends commands to a .NET coordinator, which launches an isolated instrumented RoR worker. Native physics feeds retained chunks, then analysis. Reduced snapshots travel to the coordinator and workbench; the native scene remains a separate window.</desc><defs><marker id="implementation-boundaries-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#64818c"/></marker></defs><g><rect x="12" y="16" width="264" height="139" rx="10" fill="#e9f5f3" stroke="#b4c6cb"/><text x="28" y="45" font-size="16" font-weight="700" fill="#125b59">React workbench</text><text x="28" y="73" font-size="13" fill="#42636a">Authoring · queue · live charts</text><text x="28" y="96" font-size="13" fill="#42636a">Archived results · manual actions</text><text x="28" y="119" font-size="13" fill="#42636a">Local browser, initially</text></g><g><rect x="348" y="16" width="264" height="139" rx="10" fill="#183b4c" stroke="#b4c6cb"/><text x="364" y="45" font-size="16" font-weight="700" fill="#ffffff">.NET coordinator</text><text x="364" y="73" font-size="13" fill="#dbecee">Revisions · sequential attempts</text><text x="364" y="96" font-size="13" fill="#dbecee">Process / command ownership</text><text x="364" y="119" font-size="13" fill="#dbecee">HTTP / SignalR · SQLite</text></g><g><rect x="684" y="16" width="264" height="139" rx="10" fill="#e9f5f3" stroke="#b4c6cb"/><text x="700" y="45" font-size="16" font-weight="700" fill="#125b59">C++ RoR trial worker</text><text x="700" y="73" font-size="13" fill="#42636a">Setup · environment · physics</text><text x="700" y="96" font-size="13" fill="#42636a">Force / energy epochs · capture</text><text x="700" y="119" font-size="13" fill="#42636a">Private profile per attempt</text></g><path d="M276,61 L342,61" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#implementation-boundaries-arrow)"/><path d="M348,116 L282,116" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#implementation-boundaries-arrow)"/><path d="M612,61 L678,61" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#implementation-boundaries-arrow)"/><path d="M684,116 L618,116" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#implementation-boundaries-arrow)"/><text x="311" y="48" font-size="11" fill="#526675" text-anchor="middle">intent</text><text x="311" y="137" font-size="11" fill="#526675" text-anchor="middle">live / results</text><text x="648" y="48" font-size="11" fill="#526675" text-anchor="middle">command</text><text x="648" y="137" font-size="11" fill="#526675" text-anchor="middle">ACK / status</text><g><rect x="12" y="225" width="264" height="139" rx="10" fill="#fff1df" stroke="#b4c6cb"/><text x="28" y="254" font-size="16" font-weight="700" fill="#713e12">Analysis / validation</text><text x="28" y="282" font-size="13" fill="#795731">Balances · coverage · fixtures</text><text x="28" y="305" font-size="13" fill="#795731">Repeat comparisons · reports</text><text x="28" y="328" font-size="13" fill="#795731">Scoped outcomes</text></g><g><rect x="348" y="225" width="264" height="139" rx="10" fill="#fff1df" stroke="#b4c6cb"/><text x="364" y="254" font-size="16" font-weight="700" fill="#713e12">Retained archive</text><text x="364" y="282" font-size="13" fill="#795731">Binary chunks · manifests</text><text x="364" y="305" font-size="13" fill="#795731">Events · gaps · health counters</text><text x="364" y="328" font-size="13" fill="#795731">Explicit manual retention</text></g><g><rect x="684" y="225" width="264" height="139" rx="10" fill="#e9f5f3" stroke="#b4c6cb"/><text x="700" y="254" font-size="16" font-weight="700" fill="#125b59">Separate RoR window</text><text x="700" y="282" font-size="13" fill="#42636a">Source-built scene evidence</text><text x="700" y="305" font-size="13" fill="#42636a">Images / native-window video</text><text x="700" y="328" font-size="13" fill="#42636a">3D scientific inspector later</text></g><path d="M480,161 L480,219" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#implementation-boundaries-arrow)"/><path d="M348,294 L282,294" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#implementation-boundaries-arrow)"/><path d="M816,161 L816,219" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#implementation-boundaries-arrow)"/><path d="M735,161 L735,192 L548,192 L548,219" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#implementation-boundaries-arrow)"/><text x="588" y="184" font-size="12" fill="#526675">raw capture</text><path d="M144,219 L144,193 L414,193 L414,161" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#implementation-boundaries-arrow)"/><text x="16" y="411" font-size="15" font-weight="700" fill="#125b59">Native timing owns the measurements. The archive owns the evidence.</text><text x="16" y="441" font-size="13" fill="#526675">Every-step accounting / event detail is independent of the 10–20 Hz dashboard.</text><text x="16" y="467" font-size="13" fill="#526675">Named pipes, SQLite and binary chunk layouts are proposed engineering choices.</text></svg></div><figcaption>Confirmed module direction; subsystem contracts remain to be implemented and qualified. The diagrams show planned data flow, not a running system.</figcaption></figure>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 2"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Owns</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Native trial adapter</td>
+<td>Capability handshake, controlled setup, tick commands, requested/resolved/applied/observed state</td>
+<td>Process/profile isolation does not replace state verification</td>
+</tr>
+<tr>
+<td>Native observer/reducers</td>
+<td>Applied force attribution, integration/state events, impulses/work, supported energy and capture health</td>
+<td>Preserve solver ordering initially; calculations are independent of UI speed</td>
+</tr>
+<tr>
+<td>Environment service/adapters</td>
+<td>Effective physical inputs and subsystem adoption evidence</td>
+<td>Uniform field initially; record the values actually used</td>
+</tr>
+<tr>
+<td>Native recorder</td>
+<td>Pre-trigger history, selected raw detail, continuous summaries, committed chunks and loss counters</td>
+<td>Bounded memory; no file/network operations in force callbacks</td>
+</tr>
+<tr>
+<td>.NET coordinator</td>
+<td>Immutable experiment revisions, expansion, sequential queue, process identity, status/events, catalog and API</td>
+<td>Commands express intent; the native worker acknowledges actual application</td>
+</tr>
+<tr>
+<td>Analysis/validation</td>
+<td>Archive-based balances, model coverage, fixture checks, repeatability and comparisons</td>
+<td>A live display is not the authoritative measurement record</td>
+</tr>
+<tr>
+<td>React workbench</td>
+<td>Authoring, queue control, scientific dashboards, result inspection, manual retry/archive</td>
+<td>Native scene remains a separate window initially</td>
+</tr>
+</tbody></table></div>
+<p><strong>Proposed organization:</strong> <code>source/main/trials/</code> for native modules, <code>apps/trials/coordinator/</code> for the .NET host, <code>apps/trials/workbench/</code> for React, <code>tests/trials/</code> for independent fixtures/contract tests, and <code>doc/project/design/</code> for versioned design/contracts. These are future directories, not existing implementations.</p>
+<p><strong>Proposed transport/storage choices:</strong> local Windows named pipes for acknowledged native control and reduced status; ASP.NET Core HTTP/SignalR for browser commands/live projections; SQLite for coordinator-owned metadata/events; self-describing binary raw chunks with an offline columnar export. Shared-memory raw transport is deferred until a measured bottleneck warrants it. The coordinator initially runs as one modular local application.</p>
+<p>Bind the browser service to loopback, serve the workbench from the same origin, validate origins/session credentials and expose typed trial/asset IDs rather than arbitrary shell commands. Use a private pipe/session identity and verify attempt/build/schema/PID/start-time handshake. Detailed access-control and wire layouts are to be frozen in E01.</p>
+<p>Read-only inspection found .NET SDKs <strong>10.0.103 and 10.0.203</strong> installed. The proposed host target is .NET 10 with a pinned SDK/dependency lock at implementation time; no framework was installed or built for this specification. Keep the verified native VS 2022 x64 toolchain until a deliberate toolchain validation changes it.</p>
+<h2 id="section-03">3. Experiment, attempt and result contracts</h2>
+<p>An experiment is an immutable versioned definition plus named sweeps/repeats. Expansion produces a realized trial configuration. Every execution/retry has a new attempt ID and private profile/archive directory. Editing an experiment creates a revision; it must not change an active attempt.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 3"><table>
+<thead>
+<tr>
+<th>Contract group</th>
+<th>Required information</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Identity</td>
+<td>Experiment/revision/trial/attempt IDs, parent retry ID, definition hash, schema/observer/validator versions</td>
+</tr>
+<tr>
+<td>Build/content</td>
+<td>Source commit and dirty-state record, executable/module hashes, content revision/archive hashes, resolved terrain/vehicle GUIDs and dependencies</td>
+</tr>
+<tr>
+<td>Scene</td>
+<td>Terrain, barrier geometry/material/transform, vehicle configuration/topology, node cohort, physical surface settings</td>
+</tr>
+<tr>
+<td>Initialization</td>
+<td>Requested pose/velocity, settling rules, wheel/rotating-state policy, applied initialization events and realized state</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>Requested and effective gravity/temperature/density/wind, field version, samples and adapter adoption</td>
+</tr>
+<tr>
+<td>Observation</td>
+<td>Channels/cohorts/masks, actual step duration, epochs, retention/trigger profile, required streams and budgets</td>
+</tr>
+<tr>
+<td>Completion/acceptance</td>
+<td>Scientific window, approach gates, end conditions, timeouts, fixture tolerances, required model coverage</td>
+</tr>
+<tr>
+<td>Evidence</td>
+<td>Chunk manifests, counters/gaps, summaries/events, logs, images/video/time mapping and hashes</td>
+</tr>
+<tr>
+<td>Result</td>
+<td>Execution outcome, capture quality, validation scope/outcomes, calibration/model badges and archive availability</td>
+</tr>
+</tbody></table></div>
+<p><strong>Proposed authoring example — explanatory, not an executable configuration:</strong></p>
+<pre><code class="language-json">{
+  &quot;schemaVersion&quot;: &quot;proposal-0.1&quot;,
+  &quot;scenarioId&quot;: &quot;daf-fixed-barrier-v1&quot;,
+  &quot;vehicleId&quot;: &quot;b6b0UID-semi.truck&quot;,
+  &quot;terrainId&quot;: &quot;simple2.terrn2&quot;,
+  &quot;initialStatePreset&quot;: &quot;settled-coast-v1&quot;,
+  &quot;launchSpeedMps&quot;: 5.0,
+  &quot;environment&quot;: {
+    &quot;gravityYMps2&quot;: -9.81,
+    &quot;airTemperatureK&quot;: 288.15,
+    &quot;airDensityKgM3&quot;: 1.225,
+    &quot;windWorldMps&quot;: [0.0, 0.0, 0.0]
+  },
+  &quot;captureProfileId&quot;: &quot;impact-window-v1&quot;,
+  &quot;repeats&quot;: 5
+}
+</code></pre>
+<p>The implementation must reject unsupported/missing assets and configuration rather than accept a fallback as the requested trial. Surface/material and asset hashes matter as much as visible scenery. The downloaded collection is at <code>D:\Rigs of Rods\content\Terrains</code> outside the fork: <a href="../research/2026-10-08/terrain-inventory.md">23 packages, 44 modern and 31 legacy terrain-definition entries</a>. These are available candidates, including paired variants, not loaded/calibrated terrains.</p>
+<h2 id="section-04">4. Execution, commands and quality states</h2>
+<p>The lifecycle is: draft → expanded/queued → preflight → launch/handshake → resolve scene → settle/initialize → verify realized state → observe/run → finalize/archive → analyze/validate. Pause is an acknowledged running-process state; cancellation/crash have terminal execution outcomes. Capturing/validation are independent state axes.</p>
+<figure class="figure" id="quality-policy"><div class="figure-head">Execution, capture and validation · independent outcomes</div><div class="svg-scroll" tabindex="0" aria-label="Scrollable architecture diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 421" role="img" aria-labelledby="quality-policy-title quality-policy-desc"><title id="quality-policy-title">Execution, capture and validation · independent outcomes</title><desc id="quality-policy-desc">Required measurement loss continues the active trial, marks capture incomplete, and prevents a passing scientific validation result. An individual completed or failed attempt may allow the next independent trial; a shared blocker holds new launches. A crash can be retried manually as a new attempt.</desc><defs><marker id="quality-policy-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#64818c"/></marker></defs><g><rect x="12" y="16" width="276" height="112" rx="10" fill="#fff1df" stroke="#b4c6cb"/><text x="28" y="45" font-size="16" font-weight="700" fill="#713e12">Required measurement gap</text><text x="28" y="73" font-size="13" fill="#795731">Continue active observation</text><text x="28" y="96" font-size="13" fill="#795731">Preserve later records / gaps</text></g><g><rect x="342" y="16" width="276" height="112" rx="10" fill="#fff1df" stroke="#b4c6cb"/><text x="358" y="45" font-size="16" font-weight="700" fill="#713e12">Capture: Incomplete</text><text x="358" y="73" font-size="13" fill="#795731">Sticky quality state</text><text x="358" y="96" font-size="13" fill="#795731">Normal finish remains possible</text></g><g><rect x="672" y="16" width="276" height="112" rx="10" fill="#fff1df" stroke="#b4c6cb"/><text x="688" y="45" font-size="16" font-weight="700" fill="#713e12">Validation: cannot pass</text><text x="688" y="73" font-size="13" fill="#795731">Explicit unavailable / failed checks</text><text x="688" y="96" font-size="13" fill="#795731">No silent reconstruction</text></g><path d="M288,72 L336,72" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#quality-policy-arrow)"/><path d="M618,72 L666,72" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#quality-policy-arrow)"/><g><rect x="12" y="168" width="276" height="112" rx="10" fill="#e9f5f3" stroke="#b4c6cb"/><text x="28" y="197" font-size="16" font-weight="700" fill="#125b59">Attempt completes / fails</text><text x="28" y="225" font-size="13" fill="#42636a">Retain its outcome and evidence</text><text x="28" y="248" font-size="13" fill="#42636a">No automatic retries</text></g><g><rect x="342" y="168" width="276" height="112" rx="10" fill="#e9f5f3" stroke="#b4c6cb"/><text x="358" y="197" font-size="16" font-weight="700" fill="#125b59">Next independent trial</text><text x="358" y="225" font-size="13" fill="#42636a">Continue eligible serial queue</text><text x="358" y="248" font-size="13" fill="#42636a">New process / private results</text></g><g><rect x="672" y="168" width="276" height="112" rx="10" fill="#183b4c" stroke="#b4c6cb"/><text x="688" y="197" font-size="16" font-weight="700" fill="#ffffff">Shared blocking problem</text><text x="688" y="225" font-size="13" fill="#dbecee">Hold new launches</text><text x="688" y="248" font-size="13" fill="#dbecee">Display reason / resolve blocker</text></g><path d="M288,224 L336,224" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#quality-policy-arrow)"/><text x="638" y="229" font-size="19" font-weight="700" fill="#526675">≠</text><rect x="12" y="325" width="936" height="76" rx="10" fill="#f8fafb" stroke="#b4c6cb"/><text x="29" y="353" font-size="15" font-weight="700" fill="#183b4c">Crash / cancellation preserve partial evidence. Manual retry creates a fresh attempt.</text><text x="29" y="379" font-size="13" fill="#526675">UI coalescing is distinct from a missing required measurement record.</text></svg></div><figcaption>D008.2–D008.4 govern required capture loss, queue progression and retry behavior. Storage preflight protects new launches; D012 retains data until explicit manual archive/cleanup.</figcaption></figure>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 4"><table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Active trial</th>
+<th>Capture/validation</th>
+<th>Queue/retry</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Required measurement gap</td>
+<td>Continue observation where possible</td>
+<td>Persistent incomplete quality; explicit gaps; cannot pass</td>
+<td>After finish, next eligible independent trial</td>
+</tr>
+<tr>
+<td>Dashboard disconnect</td>
+<td>Physics/capture continue independently</td>
+<td>UI stale state; archive counters determine actual quality</td>
+<td>Coordinator owns the queue</td>
+</tr>
+<tr>
+<td>Deliberate pause</td>
+<td>Pause at a safe physics boundary; preserve process state</td>
+<td>Pause event; no invented advancing physics samples</td>
+<td>Active attempt retains its slot</td>
+</tr>
+<tr>
+<td>Cancel</td>
+<td>Acknowledge, stop and finalize recoverable evidence</td>
+<td>Cancelled execution; preserve partial data/diagnostics</td>
+<td>Continue eligible queue; rerun is a new attempt</td>
+</tr>
+<tr>
+<td>Native crash</td>
+<td>Reconcile PID/start time and recover valid chunk prefixes</td>
+<td>Failed execution; partial/unavailable evidence marked</td>
+<td>Manual retry creates a fresh attempt</td>
+</tr>
+<tr>
+<td>Validation failure</td>
+<td>Preserve execution outcome and records</td>
+<td>Failed scoped check with thresholds/residuals</td>
+<td>Continue independent trials</td>
+</tr>
+<tr>
+<td>Shared storage/worker blocker</td>
+<td>Existing measurement-loss policy still applies</td>
+<td>Preserve known health/errors</td>
+<td>Hold new launches and display reason</td>
+</tr>
+<tr>
+<td>Insufficient preflight storage</td>
+<td>Keep trial queued/blocked</td>
+<td>No claim that an attempt ran</td>
+<td>Resume eligibility once the blocker clears</td>
+</tr>
+</tbody></table></div>
+<p><strong>Proposed native envelope:</strong> protocol version, session/attempt/build/schema identity, request ID, monotonic command sequence, target tick/boundary, operation and typed payload. ACKs distinguish accepted, rejected and applied, with applied epoch and resolved values. Duplicate request IDs return the recorded result rather than repeat a physical mutation. Capability mismatches fail preflight.</p>
+<p>Only acknowledged setup/control operations may mutate the trial. Initial accepted studies hold environment and scenario definition fixed during observation. Pause/resume/cancel are recorded; later driven-control commands receive the same timing/provenance rules. The browser never directly drives a mutable force accumulator.</p>
+<p><strong>Proposed timeout defaults:</strong> 120 s startup/asset-resolution budget, 30 s settling budget, 60 s simulation-time pilot cap and 300 s wall-time cap, configurable per revision. Pause excludes the ordinary simulation/wall progress timers but has a separate explicit idle/lease policy. A suggested 2 s heartbeat/10 s suspected-disconnect interval is for detection, not proof of worker failure. Reconnection reconciles worker identity and durable state. Coordinator-loss stop/drain at a safe boundary is a proposed lease action, not a confirmed policy or existing feature; freeze and failure-test it before enabling unattended trials.</p>
+<aside class="policy-explorer" id="policy-explorer" aria-label="Illustrative confirmed policy explorer"><div class="eyebrow">Confirmed policies · illustrative outcomes</div><h3>Follow an attempt through a condition</h3><p>This is a documentation aid, not live telemetry or a simulated result.</p><label for="policy-case">Condition<select id="policy-case"><option value="complete">Normal execution with complete capture</option><option value="gap">Required measurement gap</option><option value="crash">Native worker crashes</option><option value="pause">Acknowledged pause</option><option value="storage">Insufficient storage before launch</option><option value="failedcheck">Scoped validation check fails</option><option value="disconnect">Browser dashboard disconnects</option></select></label><div class="policy-results" aria-live="polite"><div><span>Execution</span><output id="policy-execution"></output></div><div><span>Capture</span><output id="policy-capture"></output></div><div><span>Validation</span><output id="policy-validation"></output></div><div><span>Queue</span><output id="policy-queue"></output></div></div><p id="policy-note"></p></aside><h2 id="section-05">5. Native force and energy instrumentation</h2>
+<h3>Timing and mutation coverage</h3>
+<p>The inspected solver integrates nodes before many later force passes. CalcNodes adds ground/object contact, consumes forces, integrates, resets to gravity, and generates drag/water terms for later use. Actor passes then generate other forces; inter-actor passes follow task barriers. Track <strong>generated epoch, actual consumed integration ID and evaluation state</strong>. Do not relabel a frame-level force getter as a complete waveform.</p>
+<p>Observe the actual final vectors applied by each write/add/replace/reset/transfer operation. Maintain channel attribution beside the real accumulator and reseed/transfer it in the same branch. Capture pre/post mass/velocity/position and direct state changes. Rope velocity/position copies, force transfer/clear, cached terms, wake/reset/spawn and topology changes require explicit records. Publish coherent snapshots after the relevant barriers, while preserving the earlier node/phase timing.</p>
+<p>Actor/job-owned preallocated buffers feed a stable barrier merge. Cross-actor records use task-owned scratch with audited ownership. Callbacks perform no allocation, file flush, formatted logging, database/browser/.NET calls or waits. Off mode must preserve the original force operations and random-draw behavior; observation equivalence and overhead tests are acceptance prerequisites.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 5"><table>
+<thead>
+<tr>
+<th>Channel/model</th>
+<th>First-milestone requirement</th>
+<th>Energy interpretation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Gravity</td>
+<td>Actual consumed nodal contribution and effective field</td>
+<td>Potential/work in the declared uniform field</td>
+</tr>
+<tr>
+<td>Beam elastic/damping</td>
+<td>Final applied endpoint vectors, effective parameters, generated/consumed state</td>
+<td>Validate linear storage/damping fixtures first</td>
+</tr>
+<tr>
+<td>Contact normal/friction</td>
+<td>Branch and actual node applications; stable object/feature IDs, relative motion and material</td>
+<td>Signed contact work; dissipative interpretation only for supported branches</td>
+</tr>
+<tr>
+<td>Plastic/break/detach</td>
+<td>Parameter/topology transitions and actual final force; cascades</td>
+<td>Qualified transition estimates/unclosed terms; broader validation later</td>
+</tr>
+<tr>
+<td>Wheel/drive/brake/actuator</td>
+<td>Attribute all contributions active in the chosen pilot; explicit disabled/inactive status</td>
+<td>Broader rotating/drivetrain energy validation later</td>
+</tr>
+<tr>
+<td>Aero/fluid/propulsion</td>
+<td>Attribute any active contribution and environment adoption</td>
+<td>Validate initial relevant dry-drag work; other enabled models require declared coverage</td>
+</tr>
+<tr>
+<td>Constraints/links/artificial forces</td>
+<td>Transfers/replacements, reactions and state corrections</td>
+<td>Boundary/state ports; unsupported models remain explicit</td>
+</tr>
+<tr>
+<td>Uninstrumented/unknown</td>
+<td>Visible coverage gap; no invented attribution</td>
+<td>Required unknown coverage blocks a scoped validation pass</td>
+</tr>
+</tbody></table></div>
+<p>A normalized contact identity must preserve actual applications, including barycentric node distributions, without double-counting one interaction in cohort totals. Track resultant peak norm, node/contact peak, normal/tangential components and duration separately. Independent component maxima at different ticks do not form an observed peak vector.</p>
+<h3>Measurement boundary and balances</h3>
+<p>Use SI units, recorded native world axes with Y up, explicit cohort membership/mass/topology and a fixed reference/datum. Record any body-frame transform rather than assume heading. Node kinetic energy already includes the motion of those wheel/deforming nodes; adding another rigid-body rotational term for the same mass would double-count it. Internal drivetrain reservoirs outside node state require separate coverage.</p>
+<pre><code class="language-text">p = sum(m_i v_i)
+K = sum(0.5 m_i |v_i|^2)
+x_COM = sum(m_i x_i) / sum(m_i)
+
+J_channel = F_channel_consumed * dt
+W_channel = v_mid dot J_channel
+v_mid = 0.5 (v_before + v_after)
+
+For fixed mass, J_actual = m (v_after - v_before)
+Delta K = v_mid dot J_actual
+</code></pre>
+<p>Archive the actual native integration factor/precision. Channel impulse from F·dt and actual m·Δv can differ through rounding, mass/state mutation or an integration branch; preserve that residual. The midpoint work identity is an accounting identity, not a change to the integrator.</p>
+<p>Maintain two related checks: <strong>kinetic update closure</strong> against all actually consumed channels, and <strong>mechanical storage/work closure</strong> for declared supported models. When gravitational/elastic storage is included on the energy side, do not also count the same conservative contribution as independent external energy input. Direct state/mass changes and fluxes have explicit ports. Contact work is not automatically heat; removed beam storage is not automatically fracture energy.</p>
+<p>Report signed absolute residuals and relative residuals with declared nonzero scales/absolute floors. Keep supported, estimated and unclosed terms separate. Missing data makes an interval&#39;s balance unavailable; later retained samples do not silently reconstruct it. Ambient drag uses u = v − wind and F·v = F·u + F·wind where that model decomposition is supported, so prescribed wind can supply vehicle energy.</p>
+<h2 id="section-06">6. Environment and controlled initial conditions</h2>
+<p>A versioned uniform dry environment initially provides vertical gravity, air temperature/density and world wind velocity. Each relevant physical adapter records effective samples and adoption state: migrated, inactive, unsupported or legacy. The accepted pilot must not treat a visual weather change as physical adoption.</p>
+<p><strong>Proposed baseline:</strong> gravity Y = −9.81 m/s², temperature 288.15 K, density 1.225 kg/m³, wind [0,0,0] m/s. Temperature/density are explicit dry-air inputs; derived pressure, reference altitude and any override consistency must be specified. A coherent zero-wind/reference-density mode needs regression checks against the original drag path and random-draw behavior. Seed/order policy is part of the manifest; it does not by itself establish bitwise determinism.</p>
+<p>Use relative airflow in the adopted generic dry-drag path, retaining/calibrating the actual model coefficient and force distribution. Do not silently replace a node-based model with a guessed whole-vehicle drag law. Wind/density changes and zero/non-Earth gravity require fixture tests. Existing gravity normalization, fixed fluid/pressure constants and separate aero inputs are known audit points; capability ranges stay limited until those paths are verified.</p>
+<p>Resolve the requested pose before settling; any later pose reapplication must refresh/verify relevant contact state. At the release boundary initialize coherent nodal/body motion, wheel motion/internal state and disabled propulsion/braking policy; record resulting p/K and state-injection ports. Define a measurement start after initialization and verify actual approach speed/alignment before impact. Do not continuously clamp speed during the observed coast/impact. A changed initial state is a new configuration/attempt.</p>
+<p>A constant-wind equivalence fixture compares relative flow under vehicle motion and ambient wind, with gravity/contact confounders removed. Later flight/gust/particle adapters extend the same field/observation contract; unsupported active paths cannot earn a coherent-environment validation badge.</p>
+<h2 id="section-07">7. Recorder, archive and resource budgets</h2>
+<p>Observe/reduce each active native step, independently of retention/display. The confirmed starting targets are approximately 200 Hz summaries, configured 2 kHz event detail for 2 s pre/4 s post and 10–20 Hz UI updates. Physics tick IDs and the actual step duration are the authoritative clock; wall/renderer/video time is mapped separately. Profiling must establish achievable capture demand.</p>
+<p><strong>Proposed raw records:</strong> native state/integration, force application/channel, contact, beam/model transition, direct state correction, environment sample, cohort summary, command/event and capture gap. Include attempt, actor/node/topology generation, stream/sequence, tick/phase, field precision/units and coverage. Detailed masks select retained nodes/contacts/beams; every-step accounting still covers the declared cohort and all active force channels.</p>
+<p>Versioned little-endian chunks carry schema/build/attempt identity, field layout, tick/sequence ranges, record counts, checksum and a commit marker. Separate produced, enqueued, written and durable counters. Recover only verified committed prefixes after a crash, and classify any tail uncertainty. Catalog/event durability and raw-chunk durability need their own journal rules.</p>
+<p>A pre-trigger ring is distinct from the writer queue. Trigger on the first required consumed vehicle/barrier-contact event; the exact threshold/feature predicate must be versioned. Merge overlapping windows or reserve them explicitly, extend later triggers and verify required prehistory/posthistory. Conditioning records may appear before the scientific measurement start but carry their phase. If history is missing, record the gap and retain later observations under D008.2.</p>
+<p>Recorder overflow/loss does not block a force callback or silently reduce the configured rate. Use bounded buffers, explicit dropped/unknown counts and a reserved health/event path. If an archive cannot accept health records, retain known counters in the worker/coordinator and mark archive availability/quality honestly. The active attempt continues where possible; future launches remain held while shared storage is unavailable.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 6"><table>
+<thead>
+<tr>
+<th>Budget/default</th>
+<th>Proposed starting point</th>
+<th>Verification needed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pre-trigger memory</td>
+<td>256 MiB per native worker</td>
+<td>Required 2 s history for the actual configured payload</td>
+</tr>
+<tr>
+<td>Writer queue</td>
+<td>Separate 256 MiB</td>
+<td>Burst throughput, high-water behavior and gap recording</td>
+</tr>
+<tr>
+<td>Pilot raw reservation</td>
+<td>1 GiB per attempt, expanded by preflight estimate when needed</td>
+<td>Actual node/beam/contact record mix and requested duration</td>
+</tr>
+<tr>
+<td>Free-space floor</td>
+<td>10 GiB after planned reservations</td>
+<td>Suitable operating margin on the selected archive volume</td>
+</tr>
+<tr>
+<td>Recording scope</td>
+<td>Whole-cohort accounting; bounded configured detailed traces</td>
+<td>Freeze required masks and inspect transient peaks</td>
+</tr>
+<tr>
+<td>Aggregate observer overhead</td>
+<td>Target ≤10% over observation-off physics workload</td>
+<td>Same workload/build/graphics settings and repeated profiling</td>
+</tr>
+<tr>
+<td>Event-detail overhead</td>
+<td>Target ≤25% over observation-off workload</td>
+<td>CPU/physics timing, writer lag and no hidden sampling reduction</td>
+</tr>
+</tbody></table></div>
+<p>These are <strong>engineering proposals</strong>, not user-approved byte limits or benchmark results. If the required profile exceeds a budget, preflight returns the reason and a revised estimate; it must not silently omit required data. Resource proposals can change through a versioned rationale/profiling record.</p>
+<p><strong>Calculated example:</strong> 176 nodes × 2,000 Hz × 4 × (9 + 8×3) float32 values = 46,464,000 bytes per simulated second, or 278,784,000 bytes for a 6 s detailed window. This uses the historical Daf node count and a hypothetical eight extra vector channels. It excludes IDs, masses, beam/contact/events, alignment, summary/video data, compression and the potentially different realized node count. It is not an archive-size or disk-throughput measurement.</p>
+<p>Retain archives, reports, logs/images/video and failed/incomplete attempts until explicit manual archive/cleanup. An archive action produces a verified manifest before original-location cleanup. Cleanup targets the configured trial archive and records what was removed; historical baseline/source/build inputs remain protected. Archive availability is separate from the historical execution/validation outcome. No automatic retention deletion is selected.</p>
+<h2 id="section-08">8. Pilot fixtures and numerical acceptance proposals</h2>
+<p>The first package uses the pinned <code>b6b0UID-semi.truck</code> and <code>simple2.terrn2</code> plus versioned purpose-built fixtures. Additional downloaded terrains remain future candidates. The fixture implementation must establish a valid minimal RoR actor/scene and actual force path; analytical reference math alone does not validate the runtime.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 7"><table>
+<thead>
+<tr>
+<th>Fixture</th>
+<th>Proposed parameters</th>
+<th>Independent evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Uniform free fall</td>
+<td>100 kg cohort, zero initial velocity, gravity −9.81 m/s², 0.5 s measurement; enough clearance; drag/contact/actuation inactive</td>
+<td>Recorded masses, gravity impulse, velocity/displacement and kinetic/work/potential changes</td>
+</tr>
+<tr>
+<td>Linear undamped spring</td>
+<td>100 kg moving mass, fixed anchor, k = 10,000 N/m, 0.05 m extension, c = 0; gravity disabled after zero-gravity guards pass</td>
+<td>Initial linear storage 12.5 J; analytic oscillator and native-step reference; anchor reaction and energy drift</td>
+</tr>
+<tr>
+<td>Linear damped spring</td>
+<td>Same k/m/extension, c = 200 N·s/m, 5 s bounded observation</td>
+<td>Damped reference response and actual signed damping work/storage balance</td>
+</tr>
+<tr>
+<td>Steady relative-air test</td>
+<td>Adopted dry drag, vehicle motion versus equivalent opposite wind; isolated from ground forces</td>
+<td>Relative-flow force/work equivalence and recorded environment samples</td>
+</tr>
+<tr>
+<td>Daf/fixed barrier</td>
+<td>Proposed launch speeds 3, 5 and 10 m/s, five repeats; neutral/off propulsion and coherent rolling initialization; controlled flat barrier</td>
+<td>Actual approach state, contacts/impulses/peaks, deformation transitions, core ledger/coverage and retained impact window</td>
+</tr>
+</tbody></table></div>
+<p>Numbers and geometry are <strong>proposals for review/spikes</strong>. Record actual realized mass; the truck&#39;s nominal header mass is not sufficient. Fix barrier material/transform/contact features and actor/node cohorts. Require demonstrated 2 s trigger history; select distance/conditioning phases accordingly. Resolve wheel initialization, fixed-node reaction semantics, gravity-zero normalization and drag-disable capability before accepting relevant fixtures.</p>
+<p>Proposed approach gate: actual speed within max(0.1 m/s, 2% of target) and heading/alignment within 1 degree of the declared barrier approach. Exact speed definitions, crossing plane, lateral tolerance and rejection rules must be frozen per scenario. A valid integration ledger does not make an out-of-condition approach the requested impact experiment.</p>
+<h3>Automated gates</h3>
+<p>A result references a versioned acceptance profile, observed values and per-check outcomes. If required thresholds/coverage are unresolved, validation is <code>NotReady</code>, not <code>Passed</code>. Numerical tolerances must account for native precision and discrete integration, with an independent expected result and absolute floor.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 8"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Candidate numerical budget / rule</th>
+<th>Qualification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Required capture</td>
+<td>Zero missing required records/ticks/transitions in the declared window</td>
+<td>Missing capture persists as incomplete and cannot pass</td>
+</tr>
+<tr>
+<td>Force attribution</td>
+<td>norm(real consumed F − sum(channel F)) ≤ 0.001 N + 0.00001 × sum(norm(channel F))</td>
+<td>Explicit unknown/uninstrumented coverage is a separate failing check, not a residual-filling channel</td>
+</tr>
+<tr>
+<td>Fixed-mass momentum update</td>
+<td>Residual ≤ 0.0001 kg·m/s + 0.00001 × declared impulse/state scale</td>
+<td>Include direct state/cohort flux ports and rounding semantics</td>
+</tr>
+<tr>
+<td>Discrete kinetic/work update</td>
+<td>Residual ≤ 0.001 J + 0.00001 × declared work/energy scale</td>
+<td>Uses actual integration state; no blanket thermodynamic interpretation</td>
+</tr>
+<tr>
+<td>Free-fall response</td>
+<td>Candidate velocity 0.1%, displacement 0.5%, with absolute floors</td>
+<td>Compare the native-step reference and continuous theory separately</td>
+</tr>
+<tr>
+<td>Linear storage response</td>
+<td>Candidate 1% normalized mechanical-energy/response envelope with a declared absolute floor</td>
+<td>Derived fixture-specific numerical bound; damping tails need absolute treatment</td>
+</tr>
+<tr>
+<td>Repeatability</td>
+<td>Five repeats initially; report spread in impact time, impulse, approach and K/work</td>
+<td>Derive/freeze metric envelopes through repeatability/concurrency spikes</td>
+</tr>
+<tr>
+<td>Observation equivalence</td>
+<td>No unexplained change in reference trajectories/force branches with observation enabled</td>
+<td>Do not claim whole-engine bitwise determinism</td>
+</tr>
+<tr>
+<td>Capture/compute performance</td>
+<td>Meet the selected profile without unreported loss; report overhead/lag</td>
+<td>Candidate overhead budgets from Section 7, distinct from physical accuracy</td>
+</tr>
+</tbody></table></div>
+<p>The numerical budgets are not calibrated or achieved. E01/E13 must verify them against independent references, document the error budget and freeze meaningful acceptance profiles before milestone evidence. A deliberate tolerance revision records its reason/version and does not rewrite past results or automatically convert a prior failure into success.</p>
+<p>A core scoped pass can coexist with estimated/unclosed nonlinear energy coverage. Full deformation/fracture/drivetrain, real-world predictive accuracy, heat/sound and asset/material calibration remain separate work. Report the scope and unsupported terms rather than apply one global “validated” badge.</p>
+<h2 id="section-09">9. Workbench and evidence experience</h2>
+<p>The initial local React workbench provides experiment drafts/revisions, unit-aware vehicle/terrain/environment/initial-state forms, capability errors, sweeps/repeats, a sequential queue, per-attempt timeline and pause/resume/cancel/manual retry/archive actions. Read-only active configuration displays requested, resolved, applied and observed values.</p>
+<p>Scientific dashboards show force-vector components and peak-preserving envelopes, contact impulse/normal/friction, momentum, node K and supported storage/work, residuals/coverage, gravity/air/wind, critical transitions and capture produced/written/durable/gap health. Drill-down selects cohort/channel/time interval and reads archived detail. Downsampled plots retain extrema and must not draw a false continuous line across an archive gap.</p>
+<p>Render model/estimate/calibration and capture-quality labels with the relevant values. A disconnected live view shows last-known tick/time and resynchronizes from a snapshot plus durable event cursor. Reconnecting the UI does not restart or reissue a physical trial command.</p>
+<p>The source-built RoR scene remains a separate window. Later interactive 3D inspection consumes reduced immutable node/beam/contact state with stable identities, selection and force glyphs. Browser video streaming/native-renderer embedding is not a prerequisite.</p>
+<p>For milestone evidence, run the exact new source-built executable with process/module provenance, capture meaningful native scene movement/impact plus telemetry, and retain logs/hashes. Map video/screenshot wall time to recorded physics events with synchronization uncertainty. A recorder success code, menu screenshot or browser chart alone does not prove the requested physical run.</p>
+<h2 id="section-10">10. Delivery epics and milestone gates</h2>
+<p>The epic IDs retain continuity with the architecture evaluation. First-release work is selected by the decision log; a later feature appearing here does not authorize its implementation now. No calendar or effort commitment is established.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 9"><table>
+<thead>
+<tr>
+<th>Epic</th>
+<th>First-release scope</th>
+<th>Completion evidence / later boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>E01 · Measurement and trial contracts</td>
+<td>Cohorts, SI units/world axes, epochs, capability matrix, immutable manifests and acceptance profiles</td>
+<td>Independent reference fixtures and reviewed schemas; freeze meaningful tolerances before qualification</td>
+</tr>
+<tr>
+<td>E02 · Native integration observer</td>
+<td>Generated/consumed attribution, final force writes, resets/transfers, state corrections and barrier publication</td>
+<td>Every active pilot force path classified; observation-on/off equivalence and fixed-mass update checks</td>
+</tr>
+<tr>
+<td>E03 · Contact and beam observations</td>
+<td>Actual contact applications/impulses, distributions, beam forces and plastic/break transitions</td>
+<td>Trace representative ground/barrier and beam cases without double counting; distinct peak definitions</td>
+</tr>
+<tr>
+<td>E04 · Core energy ledger</td>
+<td>Node kinetic energy, supported conservative storage, discrete work, direct-state ports and explicit residual/coverage</td>
+<td>Free-fall and linear spring/damper checks; broader nonlinear deformation/fracture/drivetrain closure follows later</td>
+</tr>
+<tr>
+<td>E05 · Capture and archive</td>
+<td>Bounded prehistory/writer queues, configured detail windows, summaries, gaps, committed recovery and manual retention</td>
+<td>Overflow, disk-full and abrupt-exit tests preserve verified records and sticky incomplete quality</td>
+</tr>
+<tr>
+<td>E06 · Environment foundation</td>
+<td>Uniform gravity, dry-air state, steady vector wind, physical drag adoption and capability reporting</td>
+<td>Zero-wind regression, gravity guards and relative-air equivalence; effective inputs are observable</td>
+</tr>
+<tr>
+<td>E07 · Structured atmosphere and particles</td>
+<td>Contract extension points and explicit unsupported status</td>
+<td>Gusts, correlated turbulence and particle exposure are later work; coupled particle/surface physics needs a separate coverage gate</td>
+</tr>
+<tr>
+<td>E08 · Execution adapter</td>
+<td>Controlled settling, coherent velocity release, coasting barrier scenario, tick-safe pause/resume/cancel</td>
+<td>Actual approach-state checks and recorded state injection; driven journey/path controller is the next execution milestone</td>
+</tr>
+<tr>
+<td>E09 · Coordinator and queue</td>
+<td>Fresh worker/private profile per attempt, sequential repeats/sweeps, acknowledged commands, catalog, shared-blocker handling and manual retry</td>
+<td>Independent queued trials continue after an attempt failure; process/queue recovery creates no duplicate run</td>
+</tr>
+<tr>
+<td>E10 · Trial authoring</td>
+<td>Unit-aware React forms, asset/capability resolution, immutable revisions and requested/resolved/applied views</td>
+<td>Invalid definitions fail preflight with specific reasons; edits cannot mutate an active attempt</td>
+</tr>
+<tr>
+<td>E11 · Live scientific workbench</td>
+<td>Force/momentum/energy/environment charts, event timeline, capture health and separate native RoR scene</td>
+<td>Reconnect/coalescing tests preserve history semantics; interactive 3D scientific inspection is later</td>
+</tr>
+<tr>
+<td>E12 · Analysis and reporting</td>
+<td>Archived metric queries, repeat comparisons, scoped validation and HTML evidence exports</td>
+<td>Metrics tie to immutable inputs, coverage, accepted profiles and source-built process evidence</td>
+</tr>
+<tr>
+<td>E13 · Integrated qualification</td>
+<td>Analytical fixtures, balance/repeatability checks, resource profiling and injected capture/control failures</td>
+<td>Reproducible pass/fail reports for the declared pilot scope; no general real-world accuracy claim</td>
+</tr>
+<tr>
+<td>E14 · Scale and advanced studies</td>
+<td>Preserve extensible identities, schemas and export boundaries</td>
+<td>Parallel workers, remote/headless execution, flight studies and advanced coupling are later gated options</td>
+</tr>
+</tbody></table></div>
+<h3>Dependency strategy</h3>
+<ol>
+<li><strong>Contract and feasibility gate:</strong> inventory actual native force paths, define initial schemas/coverage and demonstrate viable minimal fixtures. Spike wheel/release initialization, zero-gravity guards, trigger timing and representative recorder demand.</li>
+<li><strong>Scientific core gate:</strong> instrument the integration path and qualify free-fall/spring/damper references, force attribution and energy semantics. Add the adopted dry environment and relative-air fixture. Record unsupported branches explicitly.</li>
+<li><strong>Execution and capture gate:</strong> produce a controlled Daf/barrier attempt with required pre/posthistory, pause/cancel semantics and durable archive. Inject buffer/storage/process failures and verify D008.2 continuation and honest classification.</li>
+<li><strong>Workbench integration gate:</strong> connect the coordinator, serial queue and React authoring/live/history views to real worker commands and artifacts. UI work can proceed against visibly labeled synthetic fixtures while native work advances; mock values never become simulation evidence.</li>
+<li><strong>Pilot qualification gate:</strong> run the versioned approach-speed/repeat matrix, independent validation, observation/performance comparisons and source-built native evidence capture. Accept only the declared core scope; retain failures and incomplete attempts.</li>
+</ol>
+<p>The coordinator can share an initial contract with the workbench before the complete physics recorder exists. Integration still depends on the native timing/coverage and archive gates. A successful dashboard demonstration does not complete E02/E04/E13.</p>
+<h3>What the first milestone delivers</h3>
+<p>A locally authored experiment resolves pinned assets, performs preflight, launches a new instrumented source-built RoR process, establishes controlled initial conditions, executes a coast/barrier impact, records the declared measurement profile and presents live and archived results. The archive contains configuration/provenance, actual environment/state, forces/impulses, core energy accounts, capture quality, events and scoped automated checks. The sequential queue and manual retry/retention policies behave as selected.</p>
+<p>It does not require a driven journey controller, flight/gust/coupled-particle models, an embedded native viewport, parallel execution or a restartable physical checkpoint.</p>
+<h2 id="section-11">11. Readiness and open engineering contracts</h2>
+<p>The product-policy Q&amp;A is complete. The following items are engineering work within that selected direction, not another unanswered A/B questionnaire. Proposed defaults in this document require evidence and a versioned contract before they can support a passing scientific result.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 10"><table>
+<thead>
+<tr>
+<th>Contract / risk</th>
+<th>Resolution needed</th>
+<th>First-release gate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O01 · Fixture and release mechanics</td>
+<td>Valid minimal actors; fixed-anchor reactions; coherent node/wheel/internal motion; conditioning/contact refresh; zero-gravity/drag-disable guards</td>
+<td>E01/E06/E08 before accepting the affected fixtures or approach conditions</td>
+</tr>
+<tr>
+<td>O02 · Force/model coverage</td>
+<td>Enumerate actual writes, alias/rope corrections, mass/cohort changes, sleep/reset paths, contact distributions and native factor/precision</td>
+<td>E02–E04: every active pilot term covered or explicitly disqualifying the requested scope</td>
+</tr>
+<tr>
+<td>O03 · Protocol and durability</td>
+<td>Native IPC/chunk layout, schema negotiation, command deduplication, checksums/flush policy, catalog reconciliation and control-owner leases</td>
+<td>E05/E09: test crash/disconnect/reconnect and distinguish confirmed loss policy from proposed coordinator-loss behavior</td>
+</tr>
+<tr>
+<td>O04 · Capture profile and demand</td>
+<td>Exact trigger predicate, required masks/cohort, overlapping-window rules, prehistory phase, high-water and storage reservations</td>
+<td>E05/E13: measured payload/overhead support the selected profile or fail preflight explicitly</td>
+</tr>
+<tr>
+<td>O05 · Numerical acceptance</td>
+<td>Independent native-step/analytic references, unit/scales/floors, approach definition and repeat envelopes</td>
+<td>E01/E13: freeze versioned thresholds before acceptance, with reasoned error budgets</td>
+</tr>
+<tr>
+<td>O06 · Build and local packaging</td>
+<td>Pin .NET/Node/React/toolchain/dependencies, native schema/build identities, browser launch/origin and private worker profiles</td>
+<td>E09/E10: reproducible clean build/launch with installed-game binaries excluded</td>
+</tr>
+<tr>
+<td>O07 · Views and evidence mapping</td>
+<td>Peak/gap-preserving chart reduction, event cursors, exports and native video/physics time correlation</td>
+<td>E11/E12: UI/offline results match archived data and evidence states synchronization limits</td>
+</tr>
+<tr>
+<td>O08 · Future physical coupling</td>
+<td>Flight adapters, correlated turbulence, passive/coupled particles and material calibration</td>
+<td>Later scope; not a prerequisite for the first ground-impact pilot</td>
+</tr>
+</tbody></table></div>
+<p>The coordinator-loss lease/stop-and-drain proposal must be specified independently of recorder gaps. Losing required telemetry invokes the confirmed continue-and-mark-incomplete policy. Losing the control owner is a different lifecycle condition; test and record its eventual contract rather than infer approval for an unrecorded behavior.</p>
+<p>A first implementation session should start with E01 and the small native feasibility work in E02/E06/E08, using a new build/evidence directory. Preserve the existing source-build baseline. Use the build guide&#39;s source/process/module provenance and update this document with measured results and frozen contracts as work progresses.</p>
+<p><strong>Current readiness:</strong> planning baseline established; engine instrumentation, environmental adapters, coordinator, React workbench and new automated physical validation are unimplemented. This review does not claim that any proposed rate, tolerance, payload budget or physical model has been achieved. Documentation verification below concerns the report and its references only.</p>
+<h2 id="section-12">12. Evidence, references and maintenance</h2>
+<p>This specification consolidates the <a href="../design/implementation-decisions.md">decision log</a>, <a href="../design/trial-platform-architecture-options.md">architecture evaluation</a> and <a href="../../../platform.md">platform research</a>. Those evaluations contain the detailed pinned-source and primary-document references. The <a href="../research/2026-10-08/terrain-inventory.md">downloaded terrain inventory</a> is a read-only candidate inventory, not an asset qualification.</p>
+<ul>
+<li><a href="../../../PROJECT.md">Project introduction</a>, <a href="../../../architecture.md">architecture overview</a>, <a href="../../../project-memory.md">project memory</a> and <a href="../../../todo.md">backlog</a> establish session context and open work.</li>
+<li><a href="../build-and-record.md">Build and recording guide</a> establishes source-build and native evidence procedures.</li>
+<li><a href="../baselines/2026-10-08/README.md">Original source-build records</a> record historical build/run evidence; it does not validate this new pipeline.</li>
+<li><a href="../design/2026-10-08/references.json">Architecture reference inventory</a> and <a href="../research/2026-10-08/source-inspection.json">platform source inspection</a> preserve research provenance.</li>
+<li><a href="../design/2026-10-08/implementation-review.md">Implementation review reproduction and checks</a> records how the HTML companion was rendered and checked.</li>
+</ul>
+<p>Local code findings are tied to source HEAD <code>e85535569102b6251849af574026984e3213b3f4</code> and content commit <code>34fefdd126784bf87b068fc283f812525d159dd7</code>, with local documentation changes. Verify the current tree before implementation. Read-only tool inspection found .NET 10 SDKs installed; dependency pinning and a coordinator build remain future work.</p>
+<p>Maintain the decision log for user policy, this specification for contracts and measured refinements, and dated evidence records for validation. Preserve historical reports. A changed profile creates a new schema/configuration/acceptance revision; do not revise archived measurements or silently reinterpret a prior outcome.</p>
+<h3>Pinned native implementation anchors</h3>
+<ul>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1247-L1320">A01 · Global physics loop, actor barriers and FreeForces</a></li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1602-L1699">A03 · Ground contact, integration, force reset and generic drag</a></li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1210-L1465">A04 · Beam models, deformation, breakage and final applied forces</a></li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/Collisions.cpp#L1243-L1344">A05 · Ground collision and combined contact/fluid response</a></li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/DynamicCollisions.cpp#L92-L115">A06 · Inter-actor contact and barycentric force distribution</a></li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1827-L1853">A13 · Rope-linked node velocity/force replacement</a></li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimConstants.h#L17-L21">A14 · Native physics step</a></li>
+</ul>
+<p>These are static code references at the pinned revision. Runtime branch coverage remains an implementation acceptance obligation.</p>
+</article><footer class="footnote">Generated from the canonical implementation specification. Diagrams and policy explorer are explanatory. Numeric budgets are proposals/calculated examples, not benchmarks or new physics-validation results. No engine or launcher implementation was performed for this review.</footer></main><script>(() => {
+ const states={
+  complete:{execution:'Completed',capture:'Complete',validation:'Pending automated checks',queue:'Continue eligible independent trials',note:'Complete capture permits validation to run. It does not establish physical accuracy or guarantee a pass.'},
+  gap:{execution:'Running; may complete normally',capture:'Incomplete — required gap retained',validation:'Cannot pass',queue:'Continue eligible independent trials after finish',note:'Keep observing and retain later samples. Gap intervals remain explicit; the archive cannot silently reconstruct missing measurements.'},
+  crash:{execution:'Failed — process exit',capture:'Partial / tail uncertainty assessed',validation:'No completed-trial pass',queue:'Continue eligible trials; manual retry is a new attempt',note:'Recover verified committed prefixes and preserve diagnostics. Physical checkpoint restoration is outside the first release.'},
+  pause:{execution:'Paused — acknowledged boundary',capture:'Quality retained; no advancing physics ticks',validation:'Pending completion and checks',queue:'Active attempt retains its slot',note:'Resume uses the same live process and records the boundary. The final idle/lease contract remains engineering work.'},
+  storage:{execution:'Queued — preflight blocked',capture:'No attempt launched',validation:'Not evaluated',queue:'Hold new launches',note:'Shared storage insufficiency blocks new launches. Existing archives remain until explicit manual archive/cleanup; active loss still follows the continuation policy.'},
+  failedcheck:{execution:'Completed',capture:'Complete',validation:'Failed scoped check',queue:'Continue eligible independent trials',note:'Retain measured values, thresholds and evidence. Manual retry creates a new attempt rather than editing the failed result.'},
+  disconnect:{execution:'Running under coordinator ownership',capture:'Native archive determines quality',validation:'Pending automated checks',queue:'Coordinator continues eligible queue',note:'The browser shows last-known time and resynchronizes. A slow or disconnected view does not block native physics or repeat a physical command.'}
+ };
+ const choice=document.getElementById('policy-case');
+ function update(){
+  const state=states[choice.value];
+  for(const key of ['execution','capture','validation','queue'])document.getElementById('policy-'+key).textContent=state[key];
+  document.getElementById('policy-note').textContent=state.note;
+ }
+ choice.addEventListener('change',update);update();
+})();
+</script></body></html>

@@ -1,0 +1,212 @@
+[
+  {
+    "id": "A01",
+    "title": "Global physics loop, actor barriers and FreeForces",
+    "type": "source",
+    "file": "source/main/physics/ActorManager.cpp",
+    "start": 1247,
+    "end": 1320,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1247-L1320"
+  },
+  {
+    "id": "A02",
+    "title": "Actor force/integration ordering",
+    "type": "source",
+    "file": "source/main/physics/ActorForcesEuler.cpp",
+    "start": 46,
+    "end": 67,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L46-L67"
+  },
+  {
+    "id": "A03",
+    "title": "Ground contact, integration, force reset and generic drag",
+    "type": "source",
+    "file": "source/main/physics/ActorForcesEuler.cpp",
+    "start": 1602,
+    "end": 1699,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1602-L1699"
+  },
+  {
+    "id": "A04",
+    "title": "Beam models, deformation, breakage and final applied forces",
+    "type": "source",
+    "file": "source/main/physics/ActorForcesEuler.cpp",
+    "start": 1210,
+    "end": 1465,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1210-L1465"
+  },
+  {
+    "id": "A05",
+    "title": "Ground collision and combined contact/fluid response",
+    "type": "source",
+    "file": "source/main/physics/collision/Collisions.cpp",
+    "start": 1243,
+    "end": 1344,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/Collisions.cpp#L1243-L1344"
+  },
+  {
+    "id": "A06",
+    "title": "Inter-actor contact and barycentric force distribution",
+    "type": "source",
+    "file": "source/main/physics/collision/DynamicCollisions.cpp",
+    "start": 92,
+    "end": 115,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/DynamicCollisions.cpp#L92-L115"
+  },
+  {
+    "id": "A07",
+    "title": "Wing airflow, propwash and density",
+    "type": "source",
+    "file": "source/main/physics/flex/FlexAirfoil.cpp",
+    "start": 590,
+    "end": 678,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/flex/FlexAirfoil.cpp#L590-L678"
+  },
+  {
+    "id": "A08",
+    "title": "Fuselage airflow and drag",
+    "type": "source",
+    "file": "source/main/physics/ActorForcesEuler.cpp",
+    "start": 125,
+    "end": 149,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L125-L149"
+  },
+  {
+    "id": "A09",
+    "title": "Turboprop density and force update",
+    "type": "source",
+    "file": "source/main/physics/air/TurboProp.cpp",
+    "start": 222,
+    "end": 244,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/air/TurboProp.cpp#L222-L244"
+  },
+  {
+    "id": "A10",
+    "title": "Propeller airflow, blade forces and wash",
+    "type": "source",
+    "file": "source/main/physics/air/TurboProp.cpp",
+    "start": 350,
+    "end": 432,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/air/TurboProp.cpp#L350-L432"
+  },
+  {
+    "id": "A11",
+    "title": "Jet thrust model",
+    "type": "source",
+    "file": "source/main/physics/air/TurboJet.cpp",
+    "start": 227,
+    "end": 283,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/air/TurboJet.cpp#L227-L283"
+  },
+  {
+    "id": "A12",
+    "title": "Hull pressure/drag and water velocity",
+    "type": "source",
+    "file": "source/main/physics/water/Buoyance.cpp",
+    "start": 69,
+    "end": 110,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/water/Buoyance.cpp#L69-L110"
+  },
+  {
+    "id": "A13",
+    "title": "Rope-linked node velocity/force replacement",
+    "type": "source",
+    "file": "source/main/physics/ActorForcesEuler.cpp",
+    "start": 1827,
+    "end": 1853,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1827-L1853"
+  },
+  {
+    "id": "A14",
+    "title": "Native physics step",
+    "type": "source",
+    "file": "source/main/physics/SimConstants.h",
+    "start": 17,
+    "end": 21,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimConstants.h#L17-L21"
+  },
+  {
+    "id": "A15",
+    "title": "Wall-time batching and simulation clock",
+    "type": "source",
+    "file": "source/main/physics/ActorManager.cpp",
+    "start": 1120,
+    "end": 1234,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1120-L1234"
+  },
+  {
+    "id": "A16",
+    "title": "Native particle-system construction",
+    "type": "source",
+    "file": "source/main/gfx/DustPool.cpp",
+    "start": 39,
+    "end": 65,
+    "url": "https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gfx/DustPool.cpp#L39-L65"
+  },
+  {
+    "id": "T01",
+    "title": "WPF overview",
+    "type": "official",
+    "url": "https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/"
+  },
+  {
+    "id": "T02",
+    "title": "Current .NET support policy",
+    "type": "official",
+    "url": "https://dotnet.microsoft.com/en-us/platform/support/policy"
+  },
+  {
+    "id": "T03",
+    "title": "SignalR streaming",
+    "type": "official",
+    "url": "https://learn.microsoft.com/en-us/aspnet/core/signalr/streaming?view=aspnetcore-10.0"
+  },
+  {
+    "id": "T04",
+    "title": "SignalR reconnect/configuration",
+    "type": "official",
+    "url": "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-10.0"
+  },
+  {
+    "id": "T05",
+    "title": "React UI model",
+    "type": "official",
+    "url": "https://react.dev/learn"
+  },
+  {
+    "id": "T06",
+    "title": "WebView2 introduction",
+    "type": "official",
+    "url": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/"
+  },
+  {
+    "id": "T07",
+    "title": "Pipe operations in .NET",
+    "type": "official",
+    "url": "https://learn.microsoft.com/en-us/dotnet/standard/io/pipe-operations"
+  },
+  {
+    "id": "T08",
+    "title": "Parquet overview and interoperability",
+    "type": "official",
+    "url": "https://parquet.apache.org/docs/overview/"
+  },
+  {
+    "id": "T09",
+    "title": "SQLite WAL concurrency",
+    "type": "official",
+    "url": "https://sqlite.org/wal.html"
+  },
+  {
+    "id": "P01",
+    "title": "NASA drag equation and reference area",
+    "type": "official",
+    "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/drag-equation/"
+  },
+  {
+    "id": "P02",
+    "title": "NASA simplified Earth atmosphere model",
+    "type": "official",
+    "url": "https://www.grc.nasa.gov/www/k-12/airplane/atmosmet.html"
+  }
+]

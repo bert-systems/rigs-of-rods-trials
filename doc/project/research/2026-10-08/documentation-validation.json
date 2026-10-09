@@ -1,0 +1,769 @@
+{
+  "allChecksPassed": true,
+  "problems": [],
+  "documents": 10,
+  "localLinkCount": 123,
+  "localLinks": [
+    {
+      "document": "PROJECT.md",
+      "href": "AGENTS.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "architecture.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "doc/project/baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "BUILDING.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "PROJECT.md",
+      "href": "CONTRIBUTING.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "PROJECT.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "architecture.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "CONTRIBUTING.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "AGENTS.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/main.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/AppContext.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/Application.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/GameContext.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/GameContext.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/utils/InputEngine.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/system/CVar.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/system/AppConfig.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/system/AppCommandLine.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/ActorSpawner.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/ActorSpawnerFlow.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/resources/rig_def_fileformat",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/ActorManager.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/Actor.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/ActorForcesEuler.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/SimData.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/collision/Collisions.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/collision/DynamicCollisions.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/collision/PointColDetector.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/gfx",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/gfx/SimBuffers.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/flex/FlexBody.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/terrain/Terrain.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/terrain/TerrainGeometryManager.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/terrain/TerrainObjectManager.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/terrain/ProceduralRoad.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/resources/ContentManager.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/resources/CacheSystem.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/scripting/ScriptEngine.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/scripting/GameScript.cpp",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/scripting/bindings",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/gui",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/audio",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/network",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "CMakeLists.txt",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "conanfile.py",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "cmake/DependenciesConfig.cmake",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "cmake/conan_provider.cmake",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/CMakeLists.txt",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/version_info",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "external/angelscript_addons",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": ".github/workflows/build-game.yml",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "source/main/physics/SimConstants.h",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "architecture.md",
+      "href": "doc/doxygen/CodebaseOverview.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "todo.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "todo.md",
+      "href": "doc/project/reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "todo.md",
+      "href": "platform.md#11-decisions-needed-for-the-architecturedesign-specification",
+      "exists": true,
+      "anchorValid": true
+    },
+    {
+      "document": "todo.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "project-memory.md",
+      "href": "doc/project/research/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "PROJECT.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/research/2026-10-08/source-inspection.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/research/2026-10-08/binding-inventory.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/research/2026-10-08/source-inspection.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/research/2026-10-08/binding-inventory.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/research/2026-10-08/references.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "platform.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "doc/images/RoR_Banner.png",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "PROJECT.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "AGENTS.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "architecture.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "doc/project/build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "AUTHORS.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "COPYING",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "README.md",
+      "href": "DEPENDENCIES.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../PROJECT.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "baselines/2026-10-08/conan.lock",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "baselines/2026-10-08/build-proof.as",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../todo.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../project-memory.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../BUILDING.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\build-and-record.md",
+      "href": "../../cmake/conan_provider.cmake",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "provenance.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "verification.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "report-validation.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "conan.lock",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "build-proof.as",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\baselines\\2026-10-08\\README.md",
+      "href": "../../build-and-record.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "../../../../platform.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "../../reports/platform-evaluation-2026-10-08.html",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "../../baselines/2026-10-08/README.md",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "source-inspection.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "binding-inventory.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "references.json",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "render-report.mjs",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "report-style.css",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "report-client.js",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "verify-report.py",
+      "exists": true,
+      "anchorValid": null
+    },
+    {
+      "document": "doc\\project\\research\\2026-10-08\\README.md",
+      "href": "report-validation.json",
+      "exists": true,
+      "anchorValid": null
+    }
+  ],
+  "references": 54,
+  "bindingRegistrations": 2236,
+  "wordCount": 7939,
+  "identity": {
+    "branch": "master",
+    "head": "e85535569102b6251849af574026984e3213b3f4",
+    "origin": "https://github.com/bert-systems/rigs-of-rods-trials.git",
+    "submodule": "34fefdd126784bf87b068fc283f812525d159dd7 content (heads/master)",
+    "trackedChangedFiles": [
+      "README.md"
+    ],
+    "status": [
+      "M README.md",
+      "?? AGENTS.md",
+      "?? PROJECT.md",
+      "?? architecture.md",
+      "?? doc/project/",
+      "?? platform.md",
+      "?? project-memory.md",
+      "?? todo.md"
+    ]
+  },
+  "scope": "Documentation, references, report and repository identity; not runtime simulation validation."
+}

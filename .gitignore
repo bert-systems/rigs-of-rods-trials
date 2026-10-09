@@ -41,3 +41,11 @@ tmp
 Stamp
 *.tar.gz
 *.zip
+# Trial workbench and coordinator build outputs
+**/node_modules/
+apps/trials/**/bin/
+apps/trials/**/obj/
+apps/trials/workbench/dist/
+**/__pycache__/
+tests/trials/bin/
+tests/trials/obj/

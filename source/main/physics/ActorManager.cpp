@@ -24,6 +24,7 @@
 /// @date   24th of August 2009
 
 #include "ActorManager.h"
+#include "../trials/TrialRuntime.h"
 
 #include "Actor.h"
 #include "Application.h"
@@ -79,6 +80,7 @@ ActorManager::ActorManager()
 ActorManager::~ActorManager()
 {
     this->SyncWithSimThread(); // Wait for sim task to finish
+    Trials::Runtime::Get().Stop();
 }
 
 ActorPtr ActorManager::CreateNewActor(ActorSpawnRequest rq, RigDef::DocumentPtr def)
@@ -1119,6 +1121,11 @@ const ActorPtr& ActorManager::FetchRescueVehicle()
 
 void ActorManager::UpdateActors(ActorPtr player_actor)
 {
+    if (Trials::Runtime::Get().Enabled())
+    {
+        this->SyncWithSimThread();
+        if (m_simulation_paused) return;
+    }
     float dt = m_simulation_time;
 
     // do not allow dt > 1/20
@@ -1261,6 +1268,7 @@ void ActorManager::UpdatePhysicsSimulation()
                 {
                     auto func = std::function<void()>([this, i, &actor]()
                         {
+                            Trials::Runtime::Get().BeginStep(*actor.GetRef());
                             actor->CalcForcesEulerCompute(i == 0, m_physics_steps);
                         });
                     tasks.push_back(func);
@@ -1306,6 +1314,8 @@ void ActorManager::UpdatePhysicsSimulation()
 
         // Apply FreeForces - intentionally as a separate pass over all actors
         this->CalcFreeForces();
+        for (ActorPtr& actor: m_actors)
+            if (actor->ar_update_physics) Trials::Runtime::Get().FinishStep(*actor.GetRef());
     }
     for (ActorPtr& actor: m_actors)
     {
@@ -1329,6 +1339,7 @@ void ActorManager::SyncWithSimThread()
 {
     if (m_sim_task)
         m_sim_task->join();
+    Trials::Runtime::Get().Poll(*this);
 }
 
 void HandleErrorLoadingFile(std::string type, std::string filename, std::string exception_msg)

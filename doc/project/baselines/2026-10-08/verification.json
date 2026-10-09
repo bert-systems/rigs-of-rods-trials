@@ -1,0 +1,55 @@
+{
+  "sourceCommit": "e85535569102b6251849af574026984e3213b3f4",
+  "upstreamMasterAtCheck": "e85535569102b6251849af574026984e3213b3f4",
+  "sourceExecutable": "D:\\Rigs of Rods\\source-build-2026-10-08\\build\\bin\\RoR.exe",
+  "sha256": "2F74316A16AE2D44B7E1D458ECF25E409E1CD0D853DBE0F1065AC91FE7BBC70A",
+  "installedExeSHA256": "63F67CEE7474BC1AECCEC74F344668F9D229F0754FDF2931334024AEF53F1454",
+  "processId": 40196,
+  "windowTitle": "Rigs of Rods version 2026.10-dev-e85535569",
+  "samples": 36,
+  "durationSeconds": 36.0,
+  "maximumWheelSpeedKph": 19.9565,
+  "maximumDisplacementMeters": 125.54,
+  "dependencyPackagesCompiled": [
+    "discord-rpc/3.4.0@anotherfoxguy/stable:d31c22c4c735800cd1de06af91016561d7f2b85b",
+    "jasper/4.2.4:46622bcbdd3af04ee8dd10d87c17532ee0d803b9",
+    "ois/1.4.1@rigsofrods/custom:ca7b0cbd66e069a3665cb365a7be29c8b300fdc1",
+    "libtiff/4.6.0:0c01ed2f791d44ec36c2779a485f909953b64b49",
+    "libcurl/8.2.1:ca2741d9d27132f6b058df6922f57dd1a6dfcd80",
+    "libraw/0.20.2:cf5b92900e602171c7e88f35e2a0e05ba5d98729",
+    "socketw/3.11.0@anotherfoxguy/stable:da5bb73cf5eebd69b2f49890355ce20989b3d080",
+    "freeimage/3.18.0@anotherfoxguy/stable:400d9d496a36ff03420d6152788ce0aa218f8ed0",
+    "ogre3d/1.11.6.1@anotherfoxguy/stable:23aee4e7b9719a21c124759c703f91a506c54612",
+    "mygui/3.4.0@anotherfoxguy/stable:fbf183542a60320487ca50ffdb2f336f08115058",
+    "ogre3d-caelum/0.6.3.1@anotherfoxguy/stable:680094682c97bece74c81938741faef9a225aedb",
+    "ogre3d-pagedgeometry/1.2.0@anotherfoxguy/stable:680094682c97bece74c81938741faef9a225aedb"
+  ],
+  "builds": [
+    {
+      "mode": "build",
+      "start": "2026-10-08T09:15:19.2294828-04:00",
+      "end": "2026-10-08T09:16:23.1827618-04:00",
+      "seconds": 63.953279,
+      "exitCode": 0
+    },
+    {
+      "mode": "rebuild",
+      "start": "2026-10-08T09:16:48.7555884-04:00",
+      "end": "2026-10-08T09:17:56.0059173-04:00",
+      "seconds": 67.2503289,
+      "exitCode": 0
+    },
+    {
+      "mode": "incremental",
+      "start": "2026-10-08T09:18:17.1912001-04:00",
+      "end": "2026-10-08T09:18:45.9733339-04:00",
+      "seconds": 28.7821338,
+      "exitCode": 0
+    }
+  ],
+  "screenshots": [
+    "simulation-01.png",
+    "simulation-02.png",
+    "simulation-03.png"
+  ]
+}

@@ -1,0 +1,940 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RoR Trials — Architecture Options</title><style>
+:root{--paper:#f3f5f6;--ink:#172e3d;--muted:#526675;--teal:#087c79;--line:#d7e0e5;--amber:#a05a13;--nav:#112b39}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:22px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 "Segoe UI",Arial,sans-serif}a{color:#006c75;text-underline-offset:3px}a:hover{color:#004b53}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid #e5a442;outline-offset:3px}
+.sidebar{position:fixed;inset:0 auto 0 0;width:258px;background:var(--nav);padding:30px 24px;overflow:auto;color:#cfdee4}.brand{color:white;font-size:19px;font-weight:700;line-height:1.3;margin-bottom:8px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700}.sidebar .eyebrow{color:#77d0c9;margin-bottom:24px}.sidebar a{display:block;color:#d4e3e9;text-decoration:none;font-size:13px;line-height:1.45;padding:9px 0;border-bottom:1px solid #29414d}.sidebar a:hover{color:#81e0d4}.sidebar small{display:block;margin-top:23px;line-height:1.65;color:#9cb5c1}.page{margin-left:258px;max-width:1400px;padding:42px 54px 64px}.hero{padding:38px 42px 32px;color:white;background:linear-gradient(130deg,#183b4c,#0b6567);border-radius:16px;position:relative}.hero .eyebrow{color:#a5e7dd}.hero h1{font-size:42px;line-height:1.15;letter-spacing:-.025em;margin:16px 0;max-width:770px}.hero p{color:#dbeded;max-width:810px;font-size:18px;line-height:1.6}.hero .meta{font-size:12px;color:#c6e2e3;border-top:1px solid #54818b;padding-top:16px;overflow-wrap:anywhere}.hero a{color:white}.hero .actions{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin-top:20px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 40px}.summary-card{border:1px solid var(--line);background:white;padding:20px 23px;border-radius:10px;line-height:1.55}.summary-card .eyebrow{color:var(--teal)}.summary-card h2{font-size:18px;margin:6px 0}.summary-card p{font-size:14px;margin:0;color:var(--muted)}article{min-width:0}article>p:first-child{font-size:14px;color:var(--muted)}h2{font-size:29px;letter-spacing:-.015em;line-height:1.25;margin:55px 0 22px;padding-top:18px;border-top:2px solid var(--line);scroll-margin-top:20px}h3{font-size:21px;line-height:1.35;margin:33px 0 14px}h4{font-size:18px}p{margin:14px 0}strong{color:#102f40}li{margin:6px 0}blockquote{border-left:4px solid var(--teal);background:#e5f2f1;margin:20px 0;padding:8px 22px}code{font:13px/1.5 Consolas,monospace;background:#e6ecef;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}pre{border:1px solid var(--line);padding:18px 22px;border-radius:8px;background:#eaf0f3;overflow:auto;max-width:100%}pre code{padding:0;background:none;overflow-wrap:normal}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55;background:white}th{background:#e4ecef;font-weight:650;color:#183a4a;text-align:left}th,td{padding:13px 15px;border:1px solid #dce4e8;vertical-align:top}td:first-child{font-weight:600}tr:nth-child(even)td{background:#f8fafb}td a{overflow-wrap:anywhere}.table-scroll{max-width:100%;overflow:auto;margin:18px 0 25px;border-radius:8px}.table-scroll table{min-width:680px}.figure{background:white;border:1px solid var(--line);border-radius:12px;margin:26px 0;padding:24px 22px 18px}.figure-head{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--teal);margin-bottom:16px}.svg-scroll{overflow:auto;max-width:100%}.svg-scroll svg{display:block;width:100%;min-width:740px;height:auto}.figure figcaption{font-size:13px;line-height:1.55;color:var(--muted);margin-top:16px}.calculator{background:#e8f3f2;border:1px solid #add2ce;border-radius:12px;padding:26px;margin:26px 0}.calculator h4{margin:7px 0 10px}.calculator .eyebrow{color:var(--teal)}.calc-inputs,.calc-results{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}.calc-inputs label{font-size:13px;font-weight:600;display:block}.calc-inputs input{width:100%;font:inherit;background:white;border:1px solid #9ebdbe;border-radius:5px;padding:8px 11px;color:var(--ink)}.calc-results div{padding:16px;background:white;border-radius:7px}.calc-results span{display:block;font-size:12px;color:var(--muted)}.calc-results output{font-size:23px;font-weight:650;color:#005b5b}.calculator p{font-size:13px;line-height:1.6}.filters{display:flex;gap:14px;align-items:end;flex-wrap:wrap;background:#eaf0f3;padding:18px;border-radius:8px}.filters label{font-size:13px;font-weight:600;display:block}.filters input,.filters select{padding:9px;border:1px solid #a9b9c2;border-radius:4px;font:14px "Segoe UI",sans-serif;max-width:100%;background:white;color:var(--ink)}.filters input{width:260px}.filters output{font-size:13px;margin-left:auto;padding:8px;color:var(--muted)}.empty{padding:14px;font-size:14px;background:#fff2dd}.footnote{font-size:13px;color:var(--muted);margin-top:45px;border-top:1px solid var(--line);padding-top:18px}[hidden]{display:none!important}
+@media(min-width:1600px){.page{padding-right:80px;max-width:1570px}}
+@media(max-width:1150px){.sidebar{width:225px;padding:25px 19px}.page{margin-left:225px;padding:30px}.hero{padding:30px}.hero h1{font-size:36px}.summary-grid{gap:12px}.summary-card{padding:17px}}
+@media(max-width:780px){.sidebar{position:static;width:auto;padding:22px}.sidebar nav{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.sidebar .eyebrow{margin-bottom:14px}.sidebar small{margin-top:16px}.page{margin-left:0;padding:20px 16px 40px}.hero{padding:26px 23px}.hero h1{font-size:31px}.hero p{font-size:16px}.summary-grid{grid-template-columns:1fr;margin-bottom:24px}.summary-card{padding:17px 20px}.summary-card h2{font-size:18px;margin:6px 0;border:0;padding:0}h2{font-size:25px;margin-top:38px}h3{font-size:20px}.figure{padding:18px 14px}.calc-inputs,.calc-results{grid-template-columns:1fr}.calculator{padding:20px}.calc-results{gap:10px}.filters{gap:10px}.filters input{width:240px}.filters output{margin-left:0}body{font-size:15px}}
+@media print{body{background:white;font-size:10pt}.sidebar,.actions,.filters{display:none}.page{margin:0;max-width:none;padding:0}.hero{background:#183b4c!important;print-color-adjust:exact}.hero h1{font-size:26pt}.summary-grid{margin-bottom:20px}h2{page-break-after:avoid;font-size:19pt}h3{page-break-after:avoid;font-size:14pt}table{font-size:8pt}.table-scroll,.svg-scroll{overflow:visible}.table-scroll table,.svg-scroll svg{min-width:0}figure,.calculator{break-inside:avoid}a{color:inherit}pre{white-space:pre-wrap}.calculator input{border:0}tr[hidden]{display:table-row!important}}
+
+body{overflow-wrap:anywhere}
+</style></head><body><aside class="sidebar"><div class="brand">rigs-of-rods-trials</div><div class="eyebrow">Architecture options</div><nav aria-label="Report sections"><a href="#section-01">1. Recommendation and decision framing</a><a href="#section-02">2. What “medium to high resolution” should mean</a><a href="#section-03">3. Shared architecture and ownership</a><a href="#section-04">4. Instrumentation must follow the actual solver</a><a href="#section-05">5. Energy accounting: a measured ledger with residuals</a><a href="#section-06">6. Improved environment configuration</a><a href="#section-07">7. Two workbench implementation options</a><a href="#section-08">8. Trial definition, execution and management</a><a href="#section-09">9. Records, transport and live observability</a><a href="#section-10">10. Workbench feature set and user experience</a><a href="#section-11">11. Epics, dependencies and completion criteria</a><a href="#section-12">12. Delivery strategies and planning envelope</a><a href="#section-13">13. Validation, major risks and decisions still needed</a><a href="#section-14">14. Evidence, references and limits</a></nav><small>Recommended direction: React + local .NET coordinator.<br>14 epics. Native capture is independent of UI rate.<br>Implementation decisions remain explicit.</small></aside><main class="page"><header class="hero"><div class="eyebrow">Architecture evaluation / 08 October 2026</div><h1>Measure the physics.<br>Manage the experiment.</h1><p>Two workbench options for a native force-and-energy pipeline, coherent atmosphere, and an end-to-end trial system.</p><div class="meta">Fork: bert-systems/rigs-of-rods-trials · source e85535569102 · 27 source/primary references<br>Proposed architecture and planning estimates. No engine implementation or new physics validation.</div><div class="actions"><a href="../design/trial-platform-architecture-options.md">Architecture evaluation Markdown</a><a href="platform-evaluation-2026-10-08.html">Platform landscape</a><a href="../../../PROJECT.md">Project introduction</a></div></header><div class="summary-grid"><div class="summary-card"><div class="eyebrow">Scientific core</div><h2>Observe each integration</h2><p>Track applied force epochs, work channels, model coverage and residuals inside the native solver.</p></div><div class="summary-card"><div class="eyebrow">Environment</div><h2>One physical field</h2><p>Wind, atmosphere and particles need consistent force-model adoption and explicit coupling scope.</p></div><div class="summary-card"><div class="eyebrow">Workbench</div><h2>Two front-end options</h2><p>WPF or React can share a .NET coordinator and the same isolated, instrumented RoR worker.</p></div></div><article><p>Evaluated <strong>2026-10-08</strong> against the personal fork <strong>bert-systems/rigs-of-rods-trials</strong>, source <strong>e85535569102b6251849af574026984e3213b3f4</strong>, content <strong>34fefdd126784bf87b068fc283f812525d159dd7</strong>.</p>
+<p><strong>Status: architecture evaluation and proposed delivery strategy.</strong> This document recommends boundaries, candidate contracts, validation gates and epics. It does not claim a completed instrumentation pipeline, calibrated physics, final technology selection or implementation. <a href="../design/../reports/trial-architecture-options-2026-10-08.html">Illustrated HTML</a>. <a href="../design/../../../platform.md">Platform research</a>. <a href="../design/../../../architecture.md">Current engine map</a>.</p>
+<h2 id="section-01">1. Recommendation and decision framing</h2>
+<p>Build an <strong>instrumented native RoR worker</strong>, an independent <strong>trial coordinator</strong>, and a replaceable <strong>workbench UI</strong>. Keep physical force/energy observation inside the C++ solver; keep process supervision, experiments, records and presentation outside it. An external launcher alone cannot reconstruct accurate contact peaks or an energy ledger from current script getters.</p>
+<p>Evaluate two delivery options:</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 1"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Shape</th>
+<th>Best fit</th>
+<th>Main tradeoff</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A — Windows .NET workbench</td>
+<td>Native worker + .NET coordinator + WPF desktop UI; authenticated local pipes; native game window alongside dashboard</td>
+<td>A Windows laboratory tool with straightforward desktop/process integration</td>
+<td>Windows UI commitment and more specialized chart/3D tooling</td>
+</tr>
+<tr>
+<td>B — React workbench with .NET coordinator</td>
+<td>Same native worker + ASP.NET Core local coordinator + React/TypeScript UI; HTTP commands and SignalR summaries; optional WebView2 shell</td>
+<td>Rich trial authoring, comparisons and live scientific views, with a route to remote workers later</td>
+<td>More deployment/browser/state boundaries; browser still needs the native coordinator to launch RoR</td>
+</tr>
+</tbody></table></div>
+<p><strong>Recommended evaluation direction: B, local first</strong>, using the same reusable .NET coordinator that A could consume. React fits a growing configuration/dashboard/analysis product; .NET provides strong local process and filesystem integration. If one Windows workstation is the long-term product and desktop conventions dominate, A is a sound lower-scope choice. Neither UI choice removes the native physics work.</p>
+<p>Implement the coordinator initially as a modular application with a local durable catalog, not a fleet of services. Run one isolated native process per realized trial initially. Add concurrent or remote workers only after measuring simulation, capture, graphics and storage demand. Keep a potential future headless execution adapter behind the worker contract; extracting the solver now would multiply coupling and validation work.</p>
+<p>The most difficult work is <strong>complete force attribution, model-consistent energy transitions, synchronized atmosphere adoption, and validation</strong>. Trial forms and live charts are substantial product work, but they are not the critical scientific dependency.</p>
+<h2 id="section-02">2. What “medium to high resolution” should mean</h2>
+<p>Resolution has four independent dimensions: <strong>time</strong>, <strong>spatial/component coverage</strong>, <strong>numerical precision</strong>, and <strong>physical/model fidelity</strong>. Increasing sample rate or using double-precision sums does not make an uncalibrated vehicle a validated material/flight model.</p>
+<p>RoR&#39;s baseline step is 0.5 ms: nominally 2,000 integration steps per simulated second. At this step a 2 ms pulse spans only about four intervals. “High resolution” here means observing the existing solver faithfully; changing the solver step, contact law, vehicle mesh or material model is a separate convergence/model programme. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimConstants.h#L17-L21">A14 · Native physics step</a></p>
+<p>Proposed initial capture profiles, subject to profiling:</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 2"><table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Observe/reduce</th>
+<th>Retain</th>
+<th>Live display</th>
+<th>Intended use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Medium</td>
+<td>Every active 0.5 ms step: body/channel impulses, work totals, extrema and health checks</td>
+<td>Actor/channel aggregates at 100–200 Hz; full node state around 200 Hz; selected nodes/contact events at up to 2 kHz</td>
+<td>10–20 updates/s; peak-preserving envelopes and last-known status</td>
+<td>End-to-end exploratory trials with bounded storage</td>
+</tr>
+<tr>
+<td>High event capture</td>
+<td>Same every-step accounting plus detailed selected beam/contact/node traces</td>
+<td>2 kHz detailed state in trigger windows, e.g. 2 s before and 4 s after impact; low-rate baseline outside</td>
+<td>Same UI cadence, with drill-down to raw archived windows</td>
+<td>Crash/landing/load events where peaks and timing matter</td>
+</tr>
+<tr>
+<td>Full audit</td>
+<td>Every actual force/state mutation and active integration</td>
+<td>Full configured node/channel detail at 2 kHz for a short bounded run; all transitions</td>
+<td>Reduced live feed, authoritative raw archive</td>
+<td>Coverage debugging and model validation; expensive</td>
+</tr>
+</tbody></table></div>
+<p>These are targets, not achieved performance numbers. A medium profile still computes impulses/energy each step: reducing <em>retention</em> must not reduce accounting fidelity. Preserve transient event records and tick extrema before downsampling; distinguish capture gaps from intentionally omitted raw channels.</p>
+<p>Adopt integer tick/epoch IDs and the recorded step duration as the analytical clock. Keep monotonic wall time, renderer/video timestamps and batch simulation time separately. Paused/sleeping actors have explicit active/inactive flags; a UI value repeated during pause is not a new physical sample. The current frame batching and simulation clock remain relevant until a controlled trial execution mode is validated. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1120-L1234">A15 · Wall-time batching and simulation clock</a></p>
+<p>Tentative acceptance targets to negotiate in the detailed specification:</p>
+<ul>
+<li>Zero missing accounting ticks or critical transitions within an accepted observation window; selected raw retention can be narrower by policy.</li>
+<li>A source-attribution check at each integration: applied channel sum matches the actual consumed force within absolute-plus-relative numerical tolerance; unsupported channels remain explicit.</li>
+<li>No silent relaxation of capture rate, validation rules or environment coverage. A profile change has its own event and affects acceptance.</li>
+<li>Live status age target under 250 ms at one real-time worker; UI publishes around 10–20 Hz. This is a product SLO to benchmark, not a timing claim.</li>
+<li>Observer overhead target below 5% for Medium and below 10% for High event capture on a declared workload. Benchmark actual outcome variation as well as throughput.</li>
+<li>Energy closure must use scenario-specific tolerance and reference scale. Start with simple fixtures; do not impose one arbitrary percentage on every nonlinear crash.</li>
+</ul>
+<h2 id="section-03">3. Shared architecture and ownership</h2><figure class="figure"><div class="figure-head">Shared architecture · two UI choices, one scientific core</div><div class="svg-scroll" tabindex="0" aria-label="Scrollable architecture diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 466" role="img" aria-labelledby="architecture-title architecture-desc" font-family="Segoe UI,Arial,sans-serif"><title id="architecture-title">Shared architecture · two UI choices, one scientific core</title><desc id="architecture-desc">WPF or React sends trial intents to a .NET coordinator. The coordinator controls an isolated native RoR worker through acknowledged commands. The worker writes authoritative raw chunks and emits reduced live summaries; the coordinator catalogs and analyzes artifacts for the workbench. Closing or slowing the UI does not block physics.</desc><defs><marker id="architecture-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#64818c"/></marker></defs><rect x="12" y="12" width="260" height="107" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="26" y="38" font-size="15" font-weight="700" fill="#125b59">Option A · WPF / .NET</text><text x="26" y="63" font-size="12.5" fill="#125b59">Windows workbench</text><text x="26" y="83" font-size="12.5" fill="#125b59">Native desktop forms and views</text><rect x="12" y="143" width="260" height="107" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="26" y="169" font-size="15" font-weight="700" fill="#125b59">Option B · React</text><text x="26" y="194" font-size="12.5" fill="#125b59">Browser or WebView2 shell</text><text x="26" y="214" font-size="12.5" fill="#125b59">HTTP + SignalR presentation</text><rect x="340" y="47" width="278" height="155" rx="10" fill="#173d4e" stroke="#173d4e"/><text x="354" y="73" font-size="15" font-weight="700" fill="#fff">.NET trial coordinator</text><text x="354" y="98" font-size="12.5" fill="#fff">Definitions · queue · leases</text><text x="354" y="118" font-size="12.5" fill="#fff">Process/profile isolation</text><text x="354" y="138" font-size="12.5" fill="#fff">Metadata · analysis · UI APIs</text><rect x="688" y="47" width="260" height="155" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="702" y="73" font-size="15" font-weight="700" fill="#125b59">Native RoR worker</text><text x="702" y="98" font-size="12.5" fill="#125b59">Tick controls · environment</text><text x="702" y="118" font-size="12.5" fill="#125b59">Applied-force observer / ledger</text><text x="702" y="138" font-size="12.5" fill="#125b59">Buffers · writer · summaries</text><rect x="688" y="272" width="260" height="148" rx="10" fill="#fff4e4" stroke="#c6873c"/><text x="702" y="298" font-size="15" font-weight="700" fill="#824b13">Authoritative capture</text><text x="702" y="323" font-size="12.5" fill="#824b13">Versioned binary chunks</text><text x="702" y="343" font-size="12.5" fill="#824b13">Integrity and recovery markers</text><text x="702" y="363" font-size="12.5" fill="#824b13">Columnar analytical export</text><rect x="340" y="272" width="278" height="148" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="354" y="298" font-size="15" font-weight="700" fill="#125b59">Archive / live projection</text><text x="354" y="323" font-size="12.5" fill="#125b59">SQLite catalog + artifact files</text><text x="354" y="343" font-size="12.5" fill="#125b59">Derived metrics · event cursor</text><text x="354" y="363" font-size="12.5" fill="#125b59">Peak-preserving live snapshots</text><line x1="272" y1="65" x2="334" y2="92" stroke="#64818c" stroke-width="2" marker-end="url(#architecture-arrow)"/><line x1="272" y1="194" x2="334" y2="163" stroke="#64818c" stroke-width="2" marker-end="url(#architecture-arrow)"/><line x1="618" y1="110" x2="682" y2="110" stroke="#64818c" stroke-width="2" marker-end="url(#architecture-arrow)"/><line x1="688" y1="162" x2="624" y2="162" stroke="#64818c" stroke-width="2" marker-end="url(#architecture-arrow)"/><line x1="818" y1="208" x2="818" y2="266" stroke="#64818c" stroke-width="2" marker-end="url(#architecture-arrow)"/><line x1="688" y1="346" x2="624" y2="346" stroke="#64818c" stroke-width="2" marker-end="url(#architecture-arrow)"/><line x1="476" y1="266" x2="476" y2="208" stroke="#64818c" stroke-width="2" marker-end="url(#architecture-arrow)"/><text x="643" y="91" font-size="12" fill="#526675" text-anchor="middle">intent</text><text x="654" y="183" font-size="12" fill="#526675" text-anchor="middle">ACK / status</text><text x="12" y="316" font-size="14" font-weight="700" fill="#125b59">First delivery: local rendered worker.</text><text x="12" y="341" font-size="13" fill="#526675">Raw 2 kHz data bypasses the UI.</text><text x="12" y="366" font-size="13" fill="#526675">Remote / headless modes are later gates.</text><text x="12" y="445" font-size="13" fill="#526675">Proposed architecture; none of these new subsystems has been implemented.</text></svg></div><figcaption>The coordinator can support either UI. Native simulation owns the force/energy timing; the durable capture path is independent of browser refresh and chart throughput.</figcaption></figure>
+<h3>3.1 Native worker boundary</h3>
+<p>The RoR process owns simulation, tick-scheduled control, atmosphere evaluation, applied-force observation, immediate reductions and a bounded asynchronous recorder. It can publish immutable summaries and chunk metadata. No dashboard or IPC thread may read live ar_nodes/ar_beams directly.</p>
+<p>Proposed native modules:</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 3"><table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Responsibility</th>
+<th>Ownership rule</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TrialExecutionAdapter</td>
+<td>Exact asset/config verification, lifecycle, initial state, tick-scheduled controller and acceptance probes</td>
+<td>Commands enter only at defined safe barriers</td>
+</tr>
+<tr>
+<td>ObservationContext</td>
+<td>Trial/epoch/tick identity, force-channel registry, immutable selection and coverage configuration</td>
+<td>No arbitrary script callbacks inside the solver</td>
+</tr>
+<tr>
+<td>ForceAttribution / MutationAudit</td>
+<td>Pending and consumed force channels, direct velocity/position/mass changes, link/contact identity</td>
+<td>Mirrors actual force reset/transfer behavior</td>
+</tr>
+<tr>
+<td>EnergyReducer</td>
+<td>Body momentum/kinetic state, work/impulse integrals, stored energy, transitions and residuals</td>
+<td>Worker-local accumulation; stable merge order</td>
+</tr>
+<tr>
+<td>EnvironmentService</td>
+<td>Versioned gravity, atmosphere, wind/gust field and optional particulate field</td>
+<td>Thread-safe immutable configuration with deterministic sampling</td>
+</tr>
+<tr>
+<td>Recorder / LivePublisher</td>
+<td>Preallocated buffers, chunk writer, peaks/envelopes, sequence/gap counters and heartbeat</td>
+<td>Disk/compression/network work outside physics tasks</td>
+</tr>
+</tbody></table></div>
+<p>The first implementation can keep these modules compiled into the existing executable. A build/runtime observation switch and an independently testable reducer library limit the fork&#39;s maintenance surface. A runtime plugin ABI is not needed initially; per-mutation dispatch across a plugin boundary would complicate the hottest code and lifecycle.</p>
+<h3>3.2 Coordinator and storage boundary</h3>
+<p>The .NET coordinator owns experiment definitions/revisions, realized trial expansion, asset/build resolution, queueing/resource leases, process/profile isolation, command acknowledgements, durable trial state, archive catalog, analysis jobs and UI APIs. The native writer owns raw capture until completed chunks are handed off; the coordinator does not insert a database row for every physics value.</p>
+<p>Use SQLite for local metadata/status with a single coordinator write owner. Keep raw chunks and finalized columnar files in a trial directory outside Git. WAL helps local reader/writer concurrency but still has one writer at a time and is unsuitable as a shared network database. A future remote service can use a server database through the coordinator rather than placing SQLite on a network share. <a href="https://sqlite.org/wal.html">T09 · SQLite WAL concurrency</a></p>
+<p>Store immutable artifacts by identity/hash and mark results complete only after capture closure, inventory/hash verification and metric validation. SQL transactions and filesystem writes are not one atomic transaction: write to staging, finalize files, commit references, then reconcile orphan/staged items after a crash.</p>
+<h3>3.3 UI boundary</h3>
+<p>The workbench edits draft definitions, validates server-returned capabilities, monitors trials, and compares archived results. It consumes derived snapshots and a durable event cursor. It cannot directly change a running actor, choose its actual force-integration timing, or make an invalid run valid.</p>
+<p>A separate RoR window is the first live visual view. An eventual synchronized vehicle/node view can use reduced immutable geometry/state, selectable vector glyphs and force/energy coloring. Embedding OGRE into WPF/WebView or sending video into a browser should be a separately justified feature, not a prerequisite for the accounting pipeline.</p>
+<h3>3.4 Two independent data paths</h3>
+<p><strong>Authoritative path:</strong> force/state mutation → tick reduction → bounded native buffers → finalized raw chunks → analysis/columnar archive → scientific result.</p>
+<p><strong>Presentation path:</strong> native peak/envelope summaries → coordinator → WPF bindings or SignalR → charts/vector scene.</p>
+<p>Losing or slowing the UI must not drop authoritative data or steer the controller. A live disconnected/stale indicator is distinct from capture corruption. A coordinator crash must not cause the engine to keep running indefinitely without an explicit lease policy.</p>
+<h2 id="section-04">4. Instrumentation must follow the actual solver</h2><figure class="figure"><div class="figure-head">Solver timing · generated and consumed epochs</div><div class="svg-scroll" tabindex="0" aria-label="Scrollable architecture diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 425" role="img" aria-labelledby="epochs-title epochs-desc" font-family="Segoe UI,Arial,sans-serif"><title id="epochs-title">Solver timing · generated and consumed epochs</title><desc id="epochs-desc">Actual actor compute begins with ground/object contact and integration of accumulated forces. It resets force to gravity and generates later actor forces. After actor barriers, inter-actor beams, collisions and FreeForces contribute for later integration. Proposed attribution mirrors these operations and records generated versus consumed epochs.</desc><defs><marker id="epochs-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#64818c"/></marker></defs><rect x="12" y="12" width="288" height="124" rx="10" fill="#173d4e" stroke="#173d4e"/><text x="26" y="38" font-size="15" font-weight="700" fill="#fff">Actor phase · parallel</text><text x="26" y="63" font-size="12.5" fill="#fff">Ground/object contact added</text><text x="26" y="83" font-size="12.5" fill="#fff">Observe consumed forces</text><text x="26" y="103" font-size="12.5" fill="#fff">Integrate node velocity / position</text><rect x="340" y="12" width="288" height="124" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="354" y="38" font-size="15" font-weight="700" fill="#125b59">Reset / prepare later forces</text><text x="354" y="63" font-size="12.5" fill="#125b59">Reset to gravity; seed channels</text><text x="354" y="83" font-size="12.5" fill="#125b59">Drag / water contributions</text><text x="354" y="103" font-size="12.5" fill="#125b59">Aero · wheels · beams · constraints</text><rect x="668" y="12" width="280" height="124" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="682" y="38" font-size="15" font-weight="700" fill="#125b59">After task barriers</text><text x="682" y="63" font-size="12.5" fill="#125b59">Inter-actor beam work</text><text x="682" y="83" font-size="12.5" fill="#125b59">Inter-actor collision applications</text><text x="682" y="103" font-size="12.5" fill="#125b59">Persistent FreeForces</text><line x1="300" y1="73" x2="334" y2="73" stroke="#64818c" stroke-width="2" marker-end="url(#epochs-arrow)"/><line x1="628" y1="73" x2="662" y2="73" stroke="#64818c" stroke-width="2" marker-end="url(#epochs-arrow)"/><path d="M810,143 L810,177 L157,177 L157,142" fill="none" stroke="#64818c" stroke-width="2" marker-end="url(#epochs-arrow)"/><text x="410" y="166" font-size="13" fill="#526675">Pending contributions can be consumed by a later integration.</text><rect x="12" y="218" width="288" height="114" rx="10" fill="#fff4e4" stroke="#c6873c"/><text x="26" y="244" font-size="15" font-weight="700" fill="#824b13">Consumed-epoch record</text><text x="26" y="269" font-size="12.5" fill="#824b13">Actual force / impulse channels</text><text x="26" y="289" font-size="12.5" fill="#824b13">Pre/post mass and velocity</text><text x="26" y="309" font-size="12.5" fill="#824b13">Work identity and sum check</text><rect x="340" y="218" width="288" height="114" rx="10" fill="#fff4e4" stroke="#c6873c"/><text x="354" y="244" font-size="15" font-weight="700" fill="#824b13">Mirrored attribution</text><text x="354" y="269" font-size="12.5" fill="#824b13">Reset / replace / transfer rules</text><text x="354" y="289" font-size="12.5" fill="#824b13">Generated and target epochs</text><text x="354" y="309" font-size="12.5" fill="#824b13">Direct-state correction events</text><rect x="668" y="218" width="280" height="114" rx="10" fill="#fff4e4" stroke="#c6873c"/><text x="682" y="244" font-size="15" font-weight="700" fill="#824b13">Safe publication boundary</text><text x="682" y="269" font-size="12.5" fill="#824b13">Stable merge after barriers</text><text x="682" y="289" font-size="12.5" fill="#824b13">Coherent immutable summaries</text><text x="682" y="309" font-size="12.5" fill="#824b13">Capture health and raw records</text><line x1="157" y1="142" x2="157" y2="212" stroke="#64818c" stroke-width="2" marker-end="url(#epochs-arrow)"/><line x1="484" y1="142" x2="484" y2="212" stroke="#64818c" stroke-width="2" marker-end="url(#epochs-arrow)"/><line x1="810" y1="182" x2="810" y2="212" stroke="#64818c" stroke-width="2" marker-end="url(#epochs-arrow)"/><text x="16" y="377" font-size="14" fill="#824b13">A frame-level force getter cannot recover this history.</text><text x="16" y="403" font-size="13" fill="#526675">Observation preserves current solver order initially. A whole-world force-assembly refactor is a separate strategy.</text></svg></div><figcaption>Top row reflects inspected code, with actor-force details simplified. Bottom row is proposed instrumentation. Cached terms, per-node sequencing, sleep/reset and transfers still require an explicit coverage audit.</figcaption></figure>
+<h3>4.1 Source-grounded phase map</h3>
+<p>At the inspected commit, ActorManager iterates substeps. Active actor compute tasks run in parallel and complete before inter-actor beams; another parallel phase resolves inter-actor collisions; FreeForces runs afterwards. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1247-L1320">A01 · Global physics loop, actor barriers and FreeForces</a></p>
+<p>Within an actor compute task, CalcNodes runs first, followed by aircraft/fuselage/buoyancy, wheels/shocks/hydros/commands/engine, beams, cab collisions and slide-node work. CalcNodes adds ground/object contact, integrates velocity and position, then resets each node&#39;s force to gravity and adds drag/water contributions for a later integration. This is <strong>not</strong> a clean “clear all forces → calculate all forces → integrate all actors” loop. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L46-L67">A02 · Actor force/integration ordering</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1602-L1699">A03 · Ground contact, integration, force reset and generic drag</a></p>
+<p>Consequences for the design:</p>
+<ol>
+<li>Introduce a <strong>generated epoch</strong> and <strong>consumed integration epoch</strong>. Forces accumulated after an integration may be consumed later; some cached terms have additional lag.</li>
+<li>Maintain attribution buffers alongside the force accumulator. When it resets to gravity, reset/reseed its channel buffer in the same branch. When forces move between nodes, move the corresponding attribution.</li>
+<li>Capture the actual consumed vector immediately before a node&#39;s velocity integration, after that node&#39;s ground/object collision contribution. Retain pre/post mass/velocity/state with that integration ID.</li>
+<li>Do not reinterpret previously generated forces as having arisen from the current post-integration geometry. Carry their evaluation state/timing or clearly expose the lag.</li>
+<li>Publish a coherent actor/world boundary only after all relevant task barriers. This does not make earlier per-node integration phases simultaneous; the record must retain those semantics.</li>
+<li>Keep first-tick initialization, actor sleep/wake/reset, disabled nodes and queued actor changes in the model. An inactive actor&#39;s force buffer is not an ordinary new active integration.</li>
+</ol>
+<p>Audit all write/replace/transfer paths, including rope-linked nodes that copy velocity/position and transfer then clear a force. A first regex pass found 68 force write expressions under physics, but aliases, helpers, resets, spawning and other modules make that a lead list, not exhaustive coverage. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1827-L1853">A13 · Rope-linked node velocity/force replacement</a></p>
+<h3>4.2 Force attribution and contact identity</h3>
+<p>Prefer small inline hooks/wrappers at force-producing sites that record the <strong>same final applied vector</strong> without recomputing a different physical law. Classify the contribution and mirror it into the existing accumulator. Initially preserve solver ordering and physical results; a later force-assembly refactor is optional after observation equivalence tests.</p>
+<p>Channels should cover gravity; beam elastic/damping/nonlinear response; drivetrain/wheel drive/braking; actuators/hydros; ground/object normal and friction response; actor contact; fluid/buoyancy; generic aero drag; wing/fuselage/propulsion; links/constraints; and artificial/user forces. Include Unknown/Uninstrumented and StateCorrection explicitly.</p>
+<p>The primitive collision function mixes solid normal/friction response and ground-fluid effects. Record branch contributions there, then record their actual application at the caller. Inter-actor contact distributes the hit-node force over three triangle nodes using barycentric weights. One contact record should include the hit actor/node, triangle actor/three nodes, feature IDs, weights, normal, penetration, material/ground-model identity, relative velocity, generated/consumed phase, and applied vectors. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/Collisions.cpp#L1243-L1344">A05 · Ground collision and combined contact/fluid response</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/DynamicCollisions.cpp#L92-L115">A06 · Inter-actor contact and barycentric force distribution</a></p>
+<p>Do not double-count one physical interaction in scene-level totals merely because both endpoints are recorded. Preserve every actual application needed to reproduce the solver sum. A normalized contact key supports correlation/aggregation; it must not silently remove two separate solver applications under the assumption that they are duplicates.</p>
+<p>For actor-only momentum, internal beams should cancel net force while external contact/actuation remain. For multi-actor boundaries, contacts/links internal to that cohort cancel net impulse, yet still transfer work between bodies. Unsupported externally held/fixed nodes can transmit a reaction with zero displacement/work; both facts matter.</p>
+<p>Define distinct peak outputs: largest norm of the whole-body contact resultant per tick; largest node contact load; per-contact peak; normal/tangential components; and threshold duration. A vector formed from independent component maxima at different times is not a physically observed peak vector.</p>
+<h3>4.3 Beam forces and transition events</h3>
+<p>Capture effective k, damping, branch, extension/rate, rest length before/after, yield/strength before/after, final endpoint vectors and enabled/broken state. In CalcBeams, stress is assigned before plasticity/break logic may change the force; use the final applied vector, not that field alone, as authoritative load. If a branch clamps/changes the combined elastic and damping force, retain pre-branch diagnostics and the actual correction separately; do not invent a physical decomposition by scaling components. Detacher groups can disable additional beams/wheels; report the cascade as structured transitions. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1210-L1465">A04 · Beam models, deformation, breakage and final applied forces</a></p>
+<p>Linear spring/damper accounting is a tractable first model. Shocks, support/rope bounds, changing hydraulic length, nonlinear damping, plastic rest-length updates and beam deletion need model-specific storage/work terms. Beam break sound modulation uses an energy-like expression, but a sound effect is not a validated fracture-energy measurement.</p>
+<h3>4.4 Concurrency and hot-path constraints</h3>
+<p>Use actor/job-owned preallocated buffers for parallel actor work. For cross-actor collision jobs, record into task-owned scratch records and merge at existing barriers; avoid concurrent mutation of one observation accumulator without an audited ownership rule. The observer must not introduce data races or hide existing synchronization assumptions.</p>
+<p>No allocations, formatted logging, file flushes, chart serialization, database calls, mutex-heavy aggregation, .NET calls or network waits inside each force callback. Select channels/nodes with precomputed masks; use an observation-disabled fast path. Merge in a stable order with double-precision reductions; this improves accounting stability without changing native solver precision.</p>
+<p>Keep compile options and observation levels separable: Off, aggregate accounting, selected raw, full audit. Coverage tests compare channel sums to real consumed forces, not merely observer outputs to their own formulas.</p>
+<h2 id="section-05">5. Energy accounting: a measured ledger with residuals</h2>
+<h3>5.1 Declare the measurement boundary</h3>
+<p>Use a fixed world frame with Y up and SI units. Define the actor/node cohort and reference point; pin topology and mass definitions. Do not mix the vehicle&#39;s camera reference with center of mass. Include payloads/trailers/fragments in a declared cohort or account for transfer across its boundary.</p>
+<p>The initial mechanical ledger should cover node translational kinetic energy, supported model-consistent elastic storage, gravitational potential where valid, external work and documented dissipation/state transitions. A full vehicle system may also contain engine/drivetrain rotating inertias or other internal energy reservoirs not represented by node kinetic energy. Their state/work ports must be included or declared outside scope. Fuel chemistry, heat, sound radiation and fracture material physics cannot be inferred from display gauges.</p>
+<h3>5.2 Discrete work and momentum</h3>
+<p>For a fixed-mass node whose only velocity change is the observed integration:</p>
+<pre><code class="language-text">v_after = v_before + J_total / m
+ΔK = 0.5 m (|v_after|² - |v_before|²)
+   = v_mid · J_total,  v_mid = 0.5 (v_before + v_after)
+
+J_channel = F_channel_consumed × dt
+W_channel = v_mid · J_channel
+</code></pre>
+<p>The midpoint velocity here is an <strong>accounting identity for that discrete velocity update</strong>, not a replacement integrator. Sum channels against the same actual consumed epoch. If velocity is directly set, mass changes, or a constrained node bypasses integration, the identity needs explicit state-correction/boundary terms. Position integration, gravity potential and approximate constitutive forces can still leave a numerical residual.</p>
+<p>For an endpoint pair, evaluate both endpoint work contributions in the same epoch. Net internal force may cancel, while internal work changes deformation/storage/dissipation. For a static barrier, vehicle energy can leave the measured body through contact/model dissipation despite the supported barrier doing no displacement work.</p>
+<p>Keep a momentum residual Δp minus external impulse, and an energy residual. Report absolute residual and relative residual normalized to a declared nonzero reference scale with an absolute floor. Near-zero inputs need absolute tolerances, not unstable percentages.</p>
+<h3>5.3 Proposed ledger channels</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 4"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Initial implementation</th>
+<th>Interpretation / extension</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Node kinetic energy and momentum</td>
+<td>Coherent pre/post node mass/velocity with cohort mapping</td>
+<td>Distinguish COM motion, internal vibration, rotational/deformation contributions; node K already includes motion of all selected nodes</td>
+</tr>
+<tr>
+<td>Gravity potential/work</td>
+<td>Constant uniform gravity with declared zero datum; also retain actual gravity work</td>
+<td>Spatial/time-varying gravity may lack a single conservative potential; retain field work instead of forcing mgh</td>
+</tr>
+<tr>
+<td>Elastic storage</td>
+<td>Supported linear beam fixture and branch-specific state functions</td>
+<td>Nonlinear/hysteretic models need explicitly derived storage; use “unclosed” until supported</td>
+</tr>
+<tr>
+<td>Damping loss</td>
+<td>Actual damping contribution and endpoint work</td>
+<td>Check signs and discrete energy behavior; do not substitute c·v² for every nonlinear branch</td>
+</tr>
+<tr>
+<td>Plastic/rest-length transition</td>
+<td>Record parameter/state jumps and associated work/storage change</td>
+<td>Label model-transition estimate; current laws do not automatically supply a thermodynamic heat/fracture split</td>
+</tr>
+<tr>
+<td>Beam break / detach</td>
+<td>Before/after stored state and actual final applied force</td>
+<td>Removed model storage is not proven fracture/heat energy; preserve signed transition and residual</td>
+</tr>
+<tr>
+<td>Contact normal/friction/fluid</td>
+<td>Branch forces, endpoint relative motion and consumed work</td>
+<td>Separate support/penalty response from dissipative friction and fluid effects</td>
+</tr>
+<tr>
+<td>Actuator/propulsion work</td>
+<td>Applied node/constraint work and rotating-state ports where represented</td>
+<td>Engine torque×RPM alone may not equal delivered chassis work; internal losses/states need boundaries</td>
+</tr>
+<tr>
+<td>Aerodynamic exchange</td>
+<td>Vehicle work plus relative-air loss and ambient-reservoir term where model supports it</td>
+<td>Wind can add energy to a vehicle; never label all aero work as positive dissipation</td>
+</tr>
+<tr>
+<td>Direct state/mass changes</td>
+<td>Reset/teleport/velocity-copy/loading/detach events and energy/momentum deltas</td>
+<td>Mark discontinuities or reject within scientific windows; open systems need flux terms</td>
+</tr>
+<tr>
+<td>Numerical / unsupported residual</td>
+<td>Visible signed residual and coverage flags</td>
+<td>Never allocate it automatically to “energy absorbed”</td>
+</tr>
+</tbody></table></div>
+<p>For air relative velocity u = v − w and a dissipative drag force F opposing u, vehicle power is F·v = F·u + F·w. The first term is relative-motion loss; the second is exchange with the prescribed wind reservoir. Lift/propwash/propeller work requires additional ports and consistent local frames. This decomposition explains why windy trials need environment fields inside the ledger.</p>
+<p>A complete, accurate ledger is <strong>incremental model coverage</strong>, not one total-energy formula. Display Supported, Estimated and Unclosed status for each term and list coverage by subsystem/version. “All forces captured” and “all energies physically explained” are different acceptance gates.</p>
+<h2 id="section-06">6. Improved environment configuration</h2><figure class="figure"><div class="figure-head">Environment pipeline · coherent physics, explicit particle scope</div><div class="svg-scroll" tabindex="0" aria-label="Scrollable architecture diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 448" role="img" aria-labelledby="environment-title environment-desc" font-family="Segoe UI,Arial,sans-serif"><title id="environment-title">Environment pipeline · coherent physics, explicit particle scope</title><desc id="environment-desc">A versioned physical environment field provides local gravity, air velocity, density, pressure, temperature and optional particle properties to all force models. Applied samples and forces feed the observer. Visual dust is separate; passive and coupled particles have different conservation obligations.</desc><defs><marker id="environment-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#64818c"/></marker></defs><rect x="12" y="87" width="278" height="175" rx="10" fill="#173d4e" stroke="#173d4e"/><text x="26" y="113" font-size="15" font-weight="700" fill="#fff">Physical environment field</text><text x="26" y="138" font-size="12.5" fill="#fff">Gravity · altitude datum</text><text x="26" y="158" font-size="12.5" fill="#fff">Temperature / pressure / density</text><text x="26" y="178" font-size="12.5" fill="#fff">Vector wind · shear · gust fields</text><text x="26" y="198" font-size="12.5" fill="#fff">Seeded correlated turbulence</text><rect x="348" y="12" width="290" height="112" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="362" y="38" font-size="15" font-weight="700" fill="#125b59">Aero / propulsion adoption</text><text x="362" y="63" font-size="12.5" fill="#125b59">Generic drag · wings · fuselage</text><text x="362" y="83" font-size="12.5" fill="#125b59">Propeller / wash · thrust limits</text><rect x="348" y="156" width="290" height="112" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="362" y="182" font-size="15" font-weight="700" fill="#125b59">Particle model · explicit mode</text><text x="362" y="207" font-size="12.5" fill="#125b59">Visual / passive / coupled</text><text x="362" y="227" font-size="12.5" fill="#125b59">Exposure · settling · deposition</text><rect x="698" y="83" width="250" height="179" rx="10" fill="#fff4e4" stroke="#c6873c"/><text x="712" y="109" font-size="15" font-weight="700" fill="#824b13">Observe what was used</text><text x="712" y="134" font-size="12.5" fill="#824b13">Local sample / evaluation epoch</text><text x="712" y="154" font-size="12.5" fill="#824b13">Applied force and work channel</text><text x="712" y="174" font-size="12.5" fill="#824b13">Coverage / legacy-mode flags</text><text x="712" y="194" font-size="12.5" fill="#824b13">Ambient energy exchange</text><line x1="290" y1="126" x2="342" y2="73" stroke="#64818c" stroke-width="2" marker-end="url(#environment-arrow)"/><line x1="290" y1="213" x2="342" y2="212" stroke="#64818c" stroke-width="2" marker-end="url(#environment-arrow)"/><line x1="638" y1="73" x2="692" y2="130" stroke="#64818c" stroke-width="2" marker-end="url(#environment-arrow)"/><line x1="638" y1="212" x2="692" y2="215" stroke="#64818c" stroke-width="2" marker-end="url(#environment-arrow)"/><rect x="12" y="319" width="936" height="110" rx="10" fill="#f8fafb" stroke="#9dafb8" stroke-dasharray="6 4"/><text x="30" y="347" font-size="15" font-weight="700" fill="#25485a">Adoption and validation gates</text><text x="30" y="372" font-size="13" fill="#526675">Zero-wind regression → relative-flow equivalence → known gust/flight fixtures → particle transport</text><text x="30" y="397" font-size="13" fill="#526675">Two-way particle forces require momentum/work exchange. Visual intensity is independent of physical coupling.</text></svg></div><figcaption>A single provider is a proposed replacement for scattered model inputs. Each enabled subsystem must show migrated or legacy status; configured weather alone does not establish coherent physical behavior.</figcaption></figure>
+<h3>6.1 A common physical environment service</h3>
+<p>Introduce a pure, versioned environment query at declared position/time:</p>
+<pre><code class="language-text">EnvironmentSample = sample(world_position, evaluation_tick)
+  gravity vector / configured scalar mode
+  air velocity vector, density, pressure, temperature, viscosity
+  gust/turbulence components, model and seed identity
+  optional particulate concentration/size-bin properties
+  coverage flags, validity range and configuration version
+</code></pre>
+<p>Start with uniform gravity and dry atmosphere; design the service to accommodate spatial profiles rather than prematurely implementing full meteorology. Make terrain origin/height versus physical altitude datum explicit. Validate units, wind azimuth convention (“from” versus “toward”), world/body transformation, weather profiles, and supported ranges.</p>
+<p>One provider must serve generic node/body drag, wings, fuselage, propellers/propwash and relevant propulsion models. Record the sample actually used at the force evaluation epoch. A higher-level actor-center sample is useful for the UI but does not prove the same flow at every wing/node.</p>
+<p>Current code has separate density formulas in wing/fuselage/propeller paths, generic node drag with random terms, velocity-derived airflow, and a jet thrust model with its own assumptions. Hull buoyancy also uses fixed pressure constants, while ground-fluid buoyancy uses DEFAULT_GRAVITY. A configuration change is incomplete until its subsystem adoption/limitations are explicit. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1602-L1699">A03 · Ground contact, integration, force reset and generic drag</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/flex/FlexAirfoil.cpp#L590-L678">A07 · Wing airflow, propwash and density</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L125-L149">A08 · Fuselage airflow and drag</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/air/TurboProp.cpp#L222-L244">A09 · Turboprop density and force update</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/air/TurboProp.cpp#L350-L432">A10 · Propeller airflow, blade forces and wash</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/air/TurboJet.cpp#L227-L283">A11 · Jet thrust model</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/water/Buoyance.cpp#L69-L110">A12 · Hull pressure/drag and water velocity</a> <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/Collisions.cpp#L1243-L1344">A05 · Ground collision and combined contact/fluid response</a></p>
+<h3>6.2 Proposed environmental levels</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 5"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Features</th>
+<th>Work / validation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ENV-1 — Coherent basic atmosphere</td>
+<td>Explicit gravity, dry temperature/pressure/density profile, constant vector wind, per-asset drag configuration</td>
+<td>Replace scattered airflow/density reads; zero-wind regression and uniform-wind relative-flow tests</td>
+</tr>
+<tr>
+<td>ENV-2 — Structured wind</td>
+<td>Altitude shear, time ramps/step/sine gusts, spatial gust regions, seeded band-limited turbulence, optional wind-field import</td>
+<td>Deterministic spatial/time sampling, domain/interpolation provenance, controller/load response and RNG-order tests</td>
+</tr>
+<tr>
+<td>ENV-3 — Particulate exposure</td>
+<td>Concentration/size bins, tracer/super-particle advection and settling, optional deposition/visibility</td>
+<td>Physical particle state independent of graphics; material/size/drag inputs, one-way transport first</td>
+</tr>
+<tr>
+<td>ENV-4 — Coupled advanced effects</td>
+<td>Vehicle/air/particle feedback, accretion/mass changes, surface wetness/traction, thermal/humidity interactions or obstacle wakes</td>
+<td>Separate constitutive models, stability and calibration; significantly larger scientific scope</td>
+</tr>
+<tr>
+<td>CFD / resolved granular programme</td>
+<td>Resolved fluid obstacles, detailed wakes, granular contact/erosion or two-way multiphase solver coupling</td>
+<td>Separate solver/coupling architecture and validation budget; outside the recommended first delivery</td>
+</tr>
+</tbody></table></div>
+<p>Atmospheric drag depends on density, relative speed, drag coefficient and a declared reference area. A per-node arbitrary force/drag multiplier does not establish calibrated vehicle CdA; splitting a vehicle into more nodes must not accidentally multiply its physical drag. Preserve legacy mode for existing content and add an explicit physical-drag model/parameters for calibrated fixtures. NASA&#39;s drag and simplified atmosphere guides provide useful reference equations, not an RoR accuracy certification. <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/drag-equation/">P01 · NASA drag equation and reference area</a> <a href="https://www.grc.nasa.gov/www/k-12/airplane/atmosmet.html">P02 · NASA simplified Earth atmosphere model</a></p>
+<h3>6.3 Wind, atmosphere and model consistency</h3>
+<ul>
+<li>Use u = body velocity − ambient flow, adding propwash in the force model with its existing sign convention verified. Test stationary craft in wind, craft moving with the air, and Galilean-equivalent relative flow.</li>
+<li>Centralize pressure/temperature/density calculations with validity limits. Support either a derived thermodynamic profile or an explicitly overridden density; flag inconsistent overrides. Humidity/viscosity additions need calibrated equations and relevant force-model adoption.</li>
+<li>Supply gusts as known time/space functions first. Add spatially correlated stochastic turbulence using seeded, order-independent sampling or precomputed fields keyed by tick/cell; a seeded global RNG consumed in parallel callbacks is insufficient.</li>
+<li>Audit engine thrust/propeller behavior, ground/fluid gravity assumptions, caching and wake/propwash timing. A complete atmosphere badge requires all enabled subsystems to adopt the chosen provider or clearly declare legacy behavior.</li>
+<li>Version the physical environment separately from visual sky/water/cloud/dust settings; the UI can preview both, but each has its own provenance.</li>
+<li>Freeze environment configuration during an accepted trial by default. Scheduled changes belong in the definition; manual changes create a new version/event and may invalidate comparison.</li>
+</ul>
+<h3>6.4 Particulates require an explicit interpretation</h3>
+<p>Existing DustPool constructs OGRE particle systems; it is a visual surface, not evidence of particulate momentum/energy coupling. <a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gfx/DustPool.cpp#L39-L65">A16 · Native particle-system construction</a></p>
+<p>Offer three explicit feature modes: <strong>visual appearance</strong>, <strong>passive transport/exposure</strong>, and <strong>coupled physical particles</strong>. Passive tracers can provide concentration/deposition/exposure without claiming forces on the vehicle. Super-particles represent many grains and require weights/size/material distribution, drag/settling laws, emission boundaries, collision/deposition rules, deterministic updates and numerical limits.</p>
+<p>Two-way coupling requires equal/opposite momentum exchange, corresponding work/energy terms, removed/deposited particle accounting, and mass/inertia changes if material sticks to the vehicle. Visibility or rain visuals alone cannot set friction, lift or mass. Weather-to-surface traction and particulate wear/erosion should be separate model epics, not hidden consequences of a graphical intensity slider.</p>
+<p>For an initial end-to-end system, ship ENV-1/ENV-2 plus visual/passive particulate mode; make full coupled particulates a separately gated expansion.</p>
+<h2 id="section-07">7. Two workbench implementation options</h2>
+<h3>7.1 Option A — .NET/WPF Windows workbench</h3>
+<p><strong>Components:</strong> WPF MVVM application; UI-independent .NET coordinator/domain library; native RoR worker; local named-pipe command/summary transport; native raw writer; SQLite artifact catalog; background analysis.</p>
+<p>WPF supports data binding, Windows controls and 2D/3D presentation, and runs on Windows. .NET offers pipe primitives for local native/managed interprocess communication. These capabilities fit the current Windows source-build workflow, while charting/vector presentation still needs a selected and benchmarked UI implementation. <a href="https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/">T01 · WPF overview</a> <a href="https://learn.microsoft.com/en-us/dotnet/standard/io/pipe-operations">T07 · Pipe operations in .NET</a></p>
+<p>Advantages: desktop process/file dialogs and native window placement are direct; fewer browser deployment boundaries; a self-contained local product is practical. Limits: Windows-only UI, scientific plotting/navigation still substantial, and future remote/browser access needs an API facade rather than exposing UI-bound objects.</p>
+<p>Keep TrialCoordinator independent of WPF Dispatcher and application lifetime. Prefer a local host process if trials must outlive closing the UI. Do not host simulation in-process through C++/CLI or P/Invoke into the existing application: process isolation improves crash/reset boundaries and protects the UI from native faults.</p>
+<h3>7.2 Option B — React + ASP.NET Core workbench</h3>
+<p><strong>Components:</strong> React/TypeScript front end; ASP.NET Core .NET coordinator; REST commands/queries; SignalR live snapshots/events; same native worker/pipe/raw-writer contract; same local metadata/files; optional WebView2 desktop shell.</p>
+<p>A browser page cannot directly launch a local executable or inspect its modules. The local .NET host performs those actions. React is the presentation layer; WebView2 can provide an optional Windows desktop package without moving simulation ownership into the browser. <a href="https://react.dev/learn">T05 · React UI model</a> <a href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/">T06 · WebView2 introduction</a></p>
+<p>SignalR supports asynchronous streaming; reconnect support is configurable and bounded. Use it for reduced live snapshots and notifications, <strong>not</strong> as the authoritative physics archive or a durable experiment event store. The coordinator must retain durable event sequences and offer snapshot/cursor resynchronization after a gap or restart. <a href="https://learn.microsoft.com/en-us/aspnet/core/signalr/streaming?view=aspnetcore-10.0">T03 · SignalR streaming</a> <a href="https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-10.0">T04 · SignalR reconnect/configuration</a></p>
+<p>Advantages: rich reusable forms, route/path editors, comparisons and web-based visualization; clearer future remote-worker/API path. Limits: local host plus web asset deployment, two-language contracts, browser reconnection/stale state, and secure loopback launch/control access.</p>
+<p>Bind locally by default. Use an application-scoped authenticated session, origin/CSRF checks and capability-limited commands; a web page must not supply arbitrary shell command text or unconstrained filesystem destinations. Named pipes need appropriate local access rules. Remote access is a distinct deployment mode with authenticated/TLS transport and worker identity.</p>
+<h3>7.3 Comparison and migration strategy</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 6"><table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Option A</th>
+<th>Option B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>First Windows desktop experience</td>
+<td>Strong</td>
+<td>Strong with optional shell; browser dashboard also works</td>
+</tr>
+<tr>
+<td>Forms/charts/comparison product growth</td>
+<td>Native MVVM/chart work</td>
+<td>React composition and web visualization</td>
+</tr>
+<tr>
+<td>Native process management</td>
+<td>Coordinator, same in both</td>
+<td>Coordinator, same in both</td>
+</tr>
+<tr>
+<td>Raw force capture/energy correctness</td>
+<td>Same C++ work</td>
+<td>Same C++ work</td>
+</tr>
+<tr>
+<td>Remote workers</td>
+<td>Add an API-facing host</td>
+<td>Natural extension of host contract, still substantial work</td>
+</tr>
+<tr>
+<td>Installation/runtime</td>
+<td>.NET desktop package and RoR assets</td>
+<td>.NET host, compiled web assets, optionally WebView2</td>
+</tr>
+<tr>
+<td>Engine view</td>
+<td>Separate game window first</td>
+<td>Separate game window first; synchronized web view later</td>
+</tr>
+<tr>
+<td>First delivery scope</td>
+<td>Smaller if permanently Windows-only</td>
+<td>Slightly more boundaries; better long-term workbench flexibility</td>
+</tr>
+</tbody></table></div>
+<p>Target an actively supported .NET LTS runtime at implementation time. On the research date, .NET 10 is active LTS under Microsoft&#39;s current policy; this is a proposed coordinator target, <strong>not a verified installed SDK/toolchain</strong>. Pin React, charting, transport and storage package versions only after a dependency/interop spike. <a href="https://dotnet.microsoft.com/en-us/platform/support/policy">T02 · Current .NET support policy</a></p>
+<p>The reversible strategic choice is <strong>native worker contract + UI-independent coordinator first</strong>. Choose one UI for the alpha; implementing two full front ends at once would dilute physics and acceptance work.</p>
+<h2 id="section-08">8. Trial definition, execution and management</h2>
+<h3>8.1 Definition versus realization</h3>
+<p>An experiment is an immutable revision of a template plus sweep/repetition policy. A realized trial resolves every asset, setting, seed and controller choice. A retry is a new attempt with its own artifacts, not overwriting the failed attempt.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 7"><table>
+<thead>
+<tr>
+<th>Contract group</th>
+<th>Required information</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Identity</td>
+<td>Experiment/revision, trial/attempt, schema version, created-by context, parent sweep/repetition</td>
+</tr>
+<tr>
+<td>Engine</td>
+<td>Source commit, dirty patch hash/archive, executable hash, build/toolchain, observer/environment versions, worker capabilities</td>
+</tr>
+<tr>
+<td>Asset closure</td>
+<td>Vehicle/config/tuneup, skins if relevant, terrain, surface/fixture data, dependencies, hashes, licenses/redistribution metadata</td>
+</tr>
+<tr>
+<td>Body/initial state</td>
+<td>Actor cohort and linked bodies, pose, per-node mass/topology, payload, initial linear/angular velocity, engine/rotating states, settle criteria</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>Gravity and altitude datum; air profile; wind/gust/turbulence; seeds/field hash; particulate mode and physical/visual parameters; water/surface conditions</td>
+</tr>
+<tr>
+<td>Controller/path</td>
+<td>Waypoints/route, open-loop inputs or closed-loop target profiles, speed/acceleration constraints, actuators, controller gains/version/limits</td>
+</tr>
+<tr>
+<td>Observation</td>
+<td>Channels/cohorts, accounting and retention profiles, peak definitions, trigger windows, raw selection, buffer/disk limits, omission policy</td>
+</tr>
+<tr>
+<td>Outcome/acceptance</td>
+<td>Impact/flight window, preconditions, completion rules, tolerances, invalidation events, supported model coverage and required metrics</td>
+</tr>
+<tr>
+<td>Execution/evidence</td>
+<td>Wall/sim timeout, pause/cancel policy, worker lease, resource budget, screenshot/video settings, archive root and retention</td>
+</tr>
+</tbody></table></div>
+<p>Keep <strong>requested</strong>, <strong>resolved</strong>, <strong>applied</strong>, and <strong>observed</strong> values separate. Archive the effective vehicle configuration and spawned topology. Partial asset name lookup or a fallback to the first configuration section cannot silently satisfy an exact requested setup.</p>
+<p>Use a shared versioned schema and units library with generated .NET/TypeScript types where practical, but make the native worker perform its own capability and bounds checks. Examples in a later specification must distinguish omitted defaults from explicitly zero values.</p>
+<h3>8.2 Engine execution adapter</h3>
+<p>A startup adapter establishes an isolated portable profile, loads exact pinned content, creates known actor/fixture identities, verifies effective settings, settles the scene and arms observation. Existing scripts/AI can assemble early scenarios, but high-resolution control and reliable initial state need native, tick-safe extensions.</p>
+<p>For a rigid initial translational/angular motion, the adapter can propose per-node velocity v_i = v_COM + ω×(r_i − r_COM) on the chosen free-node body. It must handle constrained nodes, internal modes, existing engine states and force-cache initialization explicitly. Do not use an RPM “boost” as a general velocity setter. Reject unsupported initial deformations or constrained configurations rather than pretending all fields are applied.</p>
+<p>Schedule controllers and environment changes inside the worker on the integration clock. Remote/UI commands express intent with command IDs and target ticks; responses distinguish Received, Validated, Applied, Rejected and Finalized. Record the actual tick/phase applied. A late command has a declared reject/reschedule policy; never backdate it.</p>
+<p>Begin with a simple native open-loop input timeline and a validated speed-tracking controller, retaining achieved speed/acceleration/path. Existing waypoint AI/autopilot remain optional controller adapters. Wall-frame input timing is not sufficient for a high-resolution repeatability contract.</p>
+<h3>8.3 State machine and result axes</h3>
+<p>Proposed phases: Draft → Validating → Queued → Provisioning → Loading → Settling → Armed → Running → Finalizing → Completed. Paused is an explicit substate of execution; cancelling drains capture before a terminal state.</p>
+<p>Result classification is separate: <strong>Accepted</strong>, <strong>Rejected</strong>, <strong>Failed</strong>, <strong>Cancelled</strong>, <strong>Partial</strong>. Capture integrity, model coverage, calibration status and statistical repeatability are independent fields. A run can finish successfully as a process yet be rejected for a missed target velocity or unsupported energy channel.</p>
+<p>Examples:</p>
+<ul>
+<li>Simulation crash: Failed; preserve last valid chunks and diagnostics.</li>
+<li>Normal finish with missing required capture sequence: Rejected or Partial by declared policy.</li>
+<li>Impact outside target approach-speed tolerance: Rejected even if video looks convincing.</li>
+<li>Complete exploratory capture with unsupported plastic-energy decomposition: Accepted only for metrics that explicitly exclude that claim.</li>
+<li>Pause/manual setup adjustment during an accepted impact window: record the event and apply the experiment&#39;s invalidation policy.</li>
+</ul>
+<p>Initial execution uses a fresh process/profile per attempt. This avoids claiming a full reset interface before it exists. Later scene/actor reuse is an optimization gated by tests of state, force caches, RNG, scripts, controller and observer reset.</p>
+<h3>8.4 Queueing, sweeps and recovery</h3>
+<p>Support named experiment revisions, parameter sweeps, deterministic expansion order, repetition/seed plans, queue priority, worker resource leases, disk reservation, pause/cancel/retry, search/tags and immutable result comparisons. Bound sweep size and show the predicted trial count/storage/time envelope before enqueueing.</p>
+<p>A worker has a capability matrix, executable identity and heartbeat. Native ticks emit progress; the coordinator uses monotonic wall time to detect stalls. A controller never waits for the next UI frame. Closing/reloading the UI leaves execution governed by a lease/owner policy in the coordinator; reconnect reconstructs status from the durable store.</p>
+<p>Retries create new attempts, preserving the original failure and inherited definition. After coordinator/native crashes, reconcile journaled state, verify process identity with PID/start time/build handshake, recover valid chunk prefixes, and mark incomplete work. Do not infer success from an exit code or stale completed flag.</p>
+<p>Start with one rendered worker per workstation. Parallel workers require GPU/window placement/capture contention, CPU/task-pool caps, content-cache isolation, sufficient sustained disk throughput and measured variation. Remote worker agents/fleet scheduling are optional later epics; multiplayer is not the trial runner.</p>
+<h2 id="section-09">9. Records, transport and live observability</h2>
+<h3>9.1 Candidate record families</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 8"><table>
+<thead>
+<tr>
+<th>Record</th>
+<th>Contents / semantics</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TrialResolved</td>
+<td>Requested-to-effective settings, build/content/environment/controller versions, capability and topology maps</td>
+</tr>
+<tr>
+<td>NodeState</td>
+<td>Integration tick, actor generation/node ID, mass, pre/post position/velocity, active/constrained flags; state corrections identified</td>
+</tr>
+<tr>
+<td>ForceContribution</td>
+<td>Channel, feature/pair ID, generated and consumed epoch, actual applied vector/impulse, evaluation state reference</td>
+</tr>
+<tr>
+<td>BeamStateTransition</td>
+<td>Model/branch, endpoints, effective parameters, extension/rate, rest-length/yield/strength changes, final force, break/detach reason</td>
+</tr>
+<tr>
+<td>ContactSample</td>
+<td>Node/triangle or fixture identity, normal/tangent/penetration/material, relative velocity, branch forces, weights and actual application</td>
+</tr>
+<tr>
+<td>EnvironmentUsed</td>
+<td>Provider/config/field/seed version; sampled position/time; air velocity/density/temperature/pressure and coverage</td>
+</tr>
+<tr>
+<td>BodyLedger</td>
+<td>Cohort definition, p/L/K and supported U, integrated channel work/impulse, state-transition terms, residuals, coverage</td>
+</tr>
+<tr>
+<td>TrialEvent / CommandApplied</td>
+<td>Durable sequence, causal command ID, lifecycle/acceptance reason, actor generation and applied tick/phase</td>
+</tr>
+<tr>
+<td>CaptureHealth</td>
+<td>Produced/written sequences, queue high-water, omissions/gaps, writer latency, disk state, checksums and termination reason</td>
+</tr>
+<tr>
+<td>LiveSnapshot</td>
+<td>Summary window start/end, min/max/mean/integral/peak vector/tick, newest sample age, coverage and capture health</td>
+</tr>
+</tbody></table></div>
+<p>Treat these as candidate contracts to refine, not a finalized protobuf/database schema. Use stable IDs plus actor-generation IDs so respawns cannot reuse old state identity. Schema and force-channel registries are versioned; an unsupported channel means Unknown, not zero. Non-finite values are flagged/rejected, not coerced into missing-free charts.</p>
+<h3>9.2 Native capture and files</h3>
+<p>First choice: a bounded in-process recorder with per-producer buffers and a native background writer, plus low-volume pipe summaries. Avoid transferring all raw values through JSON, HTTP or SignalR.</p>
+<p>Use self-describing versioned binary blocks: header/endian/field layout, trial/build/schema identity, tick/sequence ranges, row counts, checksum, block payload, and commit marker. Chunk by time and byte limit, with small maximum uncommitted tail. Flush/fsync policy defines durability exposure; “enqueued” and “written” are not yet durable. A process crash may lose the tail; a power loss may lose more according to the selected flush policy.</p>
+<p>Readers consume only finalized blocks/chunks. Use temp/staging names and finalization markers, plus recovery that scans valid prefixes and reports the missing range. The archive is append-only for raw evidence; derived analysis may be regenerated under a new version.</p>
+<p>Parquet is suitable for finalized analytical datasets because it is columnar and widely supported. Convert outside the physics loop in bounded batches; do not depend on an unfinished Parquet footer for crash recovery. Choose a tested C++/managed converter after an interop spike, preserving types, null/unknown semantics and units metadata. CSV exports are conveniences, not the full raw representation. <a href="https://parquet.apache.org/docs/overview/">T08 · Parquet overview and interoperability</a></p>
+<p>Shared memory with a versioned ring is an optional later raw-data path if native file ownership or copying becomes a measured bottleneck. It adds buffer ownership, atomic indices, ABI/layout compatibility, crash recovery and access-control work; a memory-mapped ring is not inherently durable or lossless.</p>
+<h3>9.3 Backpressure policy</h3>
+<p>Separate capture pressure from presentation pressure. The live feed may coalesce windows and resynchronize; authoritative capture cannot silently coalesce required ticks.</p>
+<p>For an exhausted raw buffer, choose an explicit policy per profile: terminate/reject strict real-time trials; or pause/throttle only at a declared safe barrier for offline controlled stepping, with an event and changed wall-time semantics. A bounded queue cannot promise losslessness during an arbitrarily long disk outage. Never block inside a force callback.</p>
+<p>Reserve space before launching, monitor write throughput/high-water/disk fullness, and stop with preserved evidence before uncontrolled overwrites. Ring space for pre-trigger history is distinct from the writer queue; overlapping impact windows must merge or reserve additional capacity. Required trigger history is verified after the event.</p>
+<p>A slow UI gets newest summaries, timestamped gap notices and a durable event cursor; it does not delay the raw writer. Reconnect gets a current snapshot plus missing persistent events. Critical acceptance events must remain reconstructable after restart.</p>
+<h3>9.4 Data volume and sizing examples</h3><aside class="calculator" aria-label="Illustrative capture payload calculator"><div class="eyebrow">Calculated sizing · not a benchmark</div><h4>What continuous raw capture would cost</h4><p>Position, velocity and total force use nine float32 values per node. Add per-node channel vectors to see the retention cost.</p><div class="calc-inputs"><label>Recorded nodes<input id="budget-nodes" type="number" min="1" step="1" value="1000"></label><label>Retained samples / simulated second<input id="budget-hz" type="number" min="1" max="2000" step="1" value="2000"></label><label>Extra force-channel vectors / node<input id="budget-channels" type="number" min="0" step="1" value="0"></label><label>Duration (simulated minutes)<input id="budget-minutes" type="number" min="0.001" step="any" value="10"></label><label>Queue capacity (MiB)<input id="budget-buffer" type="number" min="1" step="any" value="512"></label></div><div class="calc-results" aria-live="polite"><div><span>Payload · decimal MB / simulated s</span><output id="budget-rate"></output></div><div><span>Total payload · decimal GB</span><output id="budget-total"></output></div><div><span>Queue lag · s at real-time</span><output id="budget-lag"></output></div></div><p id="budget-warning" hidden>Use finite positive values, whole nodes/channels/rate, and a rate up to the inspected 2,000 Hz step.</p><p>Bytes/sample/node = 4 × (9 + 3 × extra channels). Excludes IDs, timestamps, contact/beam records, metadata, compression and synchronization overhead. Wall-clock throughput scales with achieved simulation speed. Sampling less data does not automatically reduce per-tick accounting work.</p></aside>
+<p>For position, velocity and total force (nine float32 values), excluding all metadata:</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 9"><table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Arithmetic</th>
+<th>Payload rate</th>
+<th>10 min at real-time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1,000 nodes at 200 Hz</td>
+<td>1,000 × 200 × 9 × 4 bytes</td>
+<td>7.2 MB/s</td>
+<td>4.32 GB</td>
+</tr>
+<tr>
+<td>100 selected nodes at 2 kHz</td>
+<td>100 × 2,000 × 9 × 4</td>
+<td>7.2 MB/s</td>
+<td>4.32 GB</td>
+</tr>
+<tr>
+<td>1,000 nodes at 2 kHz</td>
+<td>1,000 × 2,000 × 9 × 4</td>
+<td>72 MB/s</td>
+<td>43.2 GB</td>
+</tr>
+<tr>
+<td>Above plus 8 force-channel vectors per node</td>
+<td>1,000 × 2,000 × (9 + 8×3) × 4</td>
+<td>264 MB/s</td>
+<td>158.4 GB</td>
+</tr>
+<tr>
+<td>Ten actors, 160-byte aggregate each at 2 kHz</td>
+<td>10 × 2,000 × 160</td>
+<td>3.2 MB/s</td>
+<td>1.92 GB</td>
+</tr>
+</tbody></table></div>
+<p>All MB/GB above are decimal, theoretical payload only. Contact/beam records, IDs, timestamps, environment values, indices, alignment and duplication add cost. Compression is workload-dependent. Rates scale with achieved simulated seconds per wall second, not just tick frequency.</p>
+<p>At 72 MB/s, a 2 s raw pre-trigger history needs 144 MB plus metadata; a 512 MiB queue absorbs about 7.46 seconds of writer lag. At 264 MB/s the same queue covers about 2.03 seconds. A six-second full-node impact window is 432 MB before metadata. Do not assume RAM or disk headroom from the earlier hardware specification without benchmarking this load.</p>
+<p>The report&#39;s bandwidth calculator is illustrative arithmetic, not a benchmark or a configured launcher.</p>
+<h2 id="section-10">10. Workbench feature set and user experience</h2>
+<h3>10.1 Trial authoring</h3>
+<p>Provide an experiment workspace with versioned presets, exact asset/config selectors, payload/body cohorts, terrain/fixture selection, physical and visual environment panels, path/waypoint editing, target velocity/acceleration curves, controller selection, measurement profiles, outcome gates and sweep/repetition setup.</p>
+<p>Show units at entry and output, parameter dependencies, supported bounds and capability errors. An environment feature with no active force-model coverage is visibly unsupported, not a successful slider. The resolved trial preview should show effective settings, expected capture volume, selected metrics and known limitations before launch.</p>
+<p>Support save/duplicate/revise/import/export definitions, dry-run resolution, asset hash comparison and definition diffs. Treat user scripts/external content as executable/trusted extensions, versioned and explicitly selected; keep generated controller parameters separate from arbitrary code.</p>
+<h3>10.2 Live trial console</h3>
+<p>Suggested panels:</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 10"><table>
+<thead>
+<tr>
+<th>View</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Trial progress</td>
+<td>Phase, current trial/repetition, simulation time/tick, wall time, playback speed, heartbeat, queue/resource state</td>
+</tr>
+<tr>
+<td>Physical loads</td>
+<td>Contact/beam/actor resultant vectors with world/body frame selector; current and peak loads, impulse and threshold duration</td>
+</tr>
+<tr>
+<td>Energy ledger</td>
+<td>Signed cumulative work, K/U, supported loss/transition channels, unclosed residual, scope/coverage/calibration badges</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>Requested vs applied provider/version, sampled wind/gust/density/temperature, particle mode and spatial sample location</td>
+</tr>
+<tr>
+<td>Motion/control</td>
+<td>COM speed/acceleration, route tracking, targets versus achieved values, steering/throttle/brake/propulsion</td>
+</tr>
+<tr>
+<td>Structural state</td>
+<td>Selected-node/beam force coloring, deformed shape, failures/detacher cascade and component timeline</td>
+</tr>
+<tr>
+<td>Capture/evidence</td>
+<td>Written versus produced ticks, gaps/omissions, raw queue/disk state, screenshots/video sync, warnings</td>
+</tr>
+<tr>
+<td>Event timeline</td>
+<td>Native physics transitions, command acknowledgements, environment versions and acceptance reasons</td>
+</tr>
+</tbody></table></div>
+<p>Every live metric carries sample time/window, units/frame, reduction type and data freshness. Peak displays retain the actual vector and tick that produced the magnitude. Use a signed energy chart or balance table; a Sankey with all values forced positive would hide wind work and residual signs.</p>
+<p>A native in-game overlay can provide synchronized scene force arrows for selected nodes/contacts, but it consumes an immutable observation snapshot. The separate workbench can initially show a simplified reduced node/beam scene. Limit glyph count, use cohort filters and scalable picking; sending every 2 kHz value into React component state is unnecessary.</p>
+<h3>10.3 Archive, comparison and governance of results</h3>
+<p>Provide search/filter/tags; trial/attempt history; definition/build/asset/environment diffs; synchronized charts/video/event cursor; selected raw-window inspection; sweep heatmaps and distributions; export reports/datasets; metric recomputation with analysis version; and configurable retention/pinning.</p>
+<p>Comparisons must use compatible units, body boundaries, metrics, observer versions, calibration and capture coverage. Warn on differing assets or environment/controller versions. Show rejected/partial trials distinctly and keep them discoverable. Statistical repeatability requires enough repetitions and declared tolerances; one pleasing plot is insufficient.</p>
+<h2 id="section-11">11. Epics, dependencies and completion criteria</h2>
+<p>Sizes below are rough <strong>engineer-week bands</strong>, not commitments: S ≈ 2–4, M ≈ 4–8, L ≈ 8–16, XL ≈ 16–32+. Dependencies and acceptance work limit parallelism. They include implementation and local verification for the named scope; scientific calibration datasets, unknown content behavior and advanced coupling can expand them.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 11"><table>
+<thead>
+<tr>
+<th>Epic</th>
+<th>Feature/subsystem scope</th>
+<th>Dependencies</th>
+<th>Completion evidence</th>
+<th>Indicative size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>E01 — Measurement and capability contract</td>
+<td>Units/frame/cohort/clock, peaks, ledger scope, accepted result rules, schema and unsupported states</td>
+<td>User fidelity/pilot decisions</td>
+<td>Reviewed contracts and hand-calculated fixtures; no ambiguous force/energy labels</td>
+<td>S–M</td>
+</tr>
+<tr>
+<td>E02 — Native epoch/force observer</td>
+<td>Applied/generation epochs, gravity/reset/transfer hooks, channel registry, job ownership and consumed-force check</td>
+<td>E01</td>
+<td>Per-tick sums match consumed forces; observation-off/on equivalence; initialization/sleep/reset tests</td>
+<td>XL</td>
+</tr>
+<tr>
+<td>E03 — Contact/beam/constraint detail</td>
+<td>Branch contact forces/IDs, barycentric allocation, effective beam forces, break/detach and direct state corrections</td>
+<td>E02</td>
+<td>Pair/boundary impulse tests; no double-count; transitions cover enabled pilot models</td>
+<td>L–XL</td>
+</tr>
+<tr>
+<td>E04 — Energy reducers and model coverage</td>
+<td>K/p/L, work/impulse, linear storage/damping, nonlinear state transitions, internal reservoirs, explicit residuals</td>
+<td>E01–E03</td>
+<td>Toy-rig closure/convergence; independent balance checker; coverage by model/version</td>
+<td>XL</td>
+</tr>
+<tr>
+<td>E05 — Capture and analytical archive</td>
+<td>Buffers/pre-trigger windows, chunk recovery, integrity/gaps/durability, Parquet conversion and resource sizing</td>
+<td>E01–E02</td>
+<td>Crash/disk-slow/full injection; strict trials rejected on missing required data; measured throughput</td>
+<td>L</td>
+</tr>
+<tr>
+<td>E06 — Coherent basic environment</td>
+<td>Shared gravity/atmosphere/relative-airflow provider, legacy compatibility and migrated drag/wing/fuselage/propulsion paths</td>
+<td>E01–E02</td>
+<td>Zero-wind regression; moving-air equivalence; density/gravity cross-subsystem checks</td>
+<td>L–XL</td>
+</tr>
+<tr>
+<td>E07 — Structured wind and particle exposure</td>
+<td>Gust/shear/seeded correlated fields/imports; separate visual/passive particles and sampling provenance</td>
+<td>E06; E05 for field records</td>
+<td>Order-independent field tests; known gust response; transport/settling and exposure fixtures</td>
+<td>L–XL</td>
+</tr>
+<tr>
+<td>E08 — Trial execution/controller adapter</td>
+<td>Exact resolution, initial state/settle/arm, tick input/controller, acknowledgements, completion and invalidation</td>
+<td>E01–E02; E06 for environment claims</td>
+<td>Repeated fresh-process trial; exact effective config; late command and target-tolerance tests</td>
+<td>L</td>
+</tr>
+<tr>
+<td>E09 — Coordinator and queue</td>
+<td>Definitions/sweeps/revisions, leases/process/profile isolation, metadata, recovery, retries and artifact reconciliation</td>
+<td>E01; E05/E08 contracts</td>
+<td>Crash/restart/timeout/cancel paths preserve attempts; UI disconnect does not corrupt runs</td>
+<td>L</td>
+</tr>
+<tr>
+<td>E10 — Authoring workbench</td>
+<td>Chosen WPF or React UI, asset/environment/path/profile editors, validation, diff/preview</td>
+<td>E01/E09</td>
+<td>End-to-end create/resolve/launch flow; invalid configurations blocked; units/accessibility checked</td>
+<td>L</td>
+</tr>
+<tr>
+<td>E11 — Live telemetry and scene views</td>
+<td>Snapshot/events, extrema-preserving charts, vector views, structural/env/capture panels and stale/resync state</td>
+<td>E02/E04/E05/E09–E10</td>
+<td>UI overload/disconnect cannot lose raw capture; plotted peaks trace to raw ticks</td>
+<td>L–XL</td>
+</tr>
+<tr>
+<td>E12 — Analysis, comparison and evidence</td>
+<td>Metric jobs, repeated-run statistics, archive browser, video/time correlation and portable reports</td>
+<td>E04/E05/E09</td>
+<td>Raw-to-result reproducibility; accepted/rejected filtering; comparable cohorts/units/versions</td>
+<td>L</td>
+</tr>
+<tr>
+<td>E13 — Scientific/performance validation</td>
+<td>Canonical fixtures, balances/convergence, asset calibration, observer perturbation and regression</td>
+<td>Begins with E01, gates every epic</td>
+<td>Published validation matrix and declared error/coverage envelope for each scenario</td>
+<td>L–XL, ongoing</td>
+</tr>
+<tr>
+<td>E14 — Scale and advanced physical coupling</td>
+<td>Concurrent/remote workers, optional controlled/headless mode, two-way particles/wakes/thermal/surface models</td>
+<td>Validated local pipeline and measured need</td>
+<td>Resource/variance benchmarks; exchange conservation and model-specific validation</td>
+<td>Separate expansion; XL+</td>
+</tr>
+</tbody></table></div>
+<p>These are overlapping work packages, not additive calendar estimates. E04/E13 are the critical scientific path. E10/E11 can develop against recorded fixtures/synthetic datasets while native work advances; all such UI development data must be labeled as fixtures, not measured trials.</p>
+<h2 id="section-12">12. Delivery strategies and planning envelope</h2><figure class="figure"><div class="figure-head">Delivery dependencies · scientific gates lead the workbench</div><div class="svg-scroll" tabindex="0" aria-label="Scrollable architecture diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 437" role="img" aria-labelledby="delivery-title delivery-desc" font-family="Segoe UI,Arial,sans-serif"><title id="delivery-title">Delivery dependencies · scientific gates lead the workbench</title><desc id="delivery-desc">Measurement contracts lead native epoch/force capture, contact and beam detail, then energy coverage and validation. In parallel, a trial coordinator and UI can be developed with labeled fixtures. Environment adoption and gust/flight require shared native contracts. Broad rollout waits for integrated validation.</desc><defs><marker id="delivery-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#64818c"/></marker></defs><rect x="12" y="146" width="220" height="111" rx="10" fill="#173d4e" stroke="#173d4e"/><text x="26" y="172" font-size="15" font-weight="700" fill="#fff">E01 · Contract</text><text x="26" y="197" font-size="12.5" fill="#fff">Units · boundary · timing</text><text x="26" y="217" font-size="12.5" fill="#fff">Fidelity and pilot acceptance</text><rect x="292" y="12" width="276" height="108" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="306" y="38" font-size="15" font-weight="700" fill="#125b59">E02–E05 · Native core</text><text x="306" y="63" font-size="12.5" fill="#125b59">Epochs · contacts · energy</text><text x="306" y="83" font-size="12.5" fill="#125b59">Capture / recovery / validation</text><rect x="292" y="157" width="276" height="108" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="306" y="183" font-size="15" font-weight="700" fill="#125b59">E06–E07 · Environment</text><text x="306" y="208" font-size="12.5" fill="#125b59">Shared physical atmosphere</text><text x="306" y="228" font-size="12.5" fill="#125b59">Gust / flight / particle scope</text><rect x="292" y="302" width="276" height="108" rx="10" fill="#e6f3f1" stroke="#61aaa1"/><text x="306" y="328" font-size="15" font-weight="700" fill="#125b59">E08–E12 · Workbench</text><text x="306" y="353" font-size="12.5" fill="#125b59">Execution adapter · coordinator</text><text x="306" y="373" font-size="12.5" fill="#125b59">Authoring / live / comparison</text><rect x="636" y="137" width="312" height="151" rx="10" fill="#fff4e4" stroke="#c6873c"/><text x="650" y="163" font-size="15" font-weight="700" fill="#824b13">E13 · Integrated evidence gate</text><text x="650" y="188" font-size="12.5" fill="#824b13">Independent balance checks</text><text x="650" y="208" font-size="12.5" fill="#824b13">Repeatability / overhead / recovery</text><text x="650" y="228" font-size="12.5" fill="#824b13">Calibrated scope and known residuals</text><text x="650" y="248" font-size="12.5" fill="#824b13">Then E14: scale / advanced coupling</text><line x1="232" y1="169" x2="286" y2="68" stroke="#64818c" stroke-width="2" marker-end="url(#delivery-arrow)"/><line x1="232" y1="201" x2="286" y2="212" stroke="#64818c" stroke-width="2" marker-end="url(#delivery-arrow)"/><line x1="232" y1="234" x2="286" y2="357" stroke="#64818c" stroke-width="2" marker-end="url(#delivery-arrow)"/><line x1="568" y1="67" x2="630" y2="175" stroke="#64818c" stroke-width="2" marker-end="url(#delivery-arrow)"/><line x1="568" y1="212" x2="630" y2="212" stroke="#64818c" stroke-width="2" marker-end="url(#delivery-arrow)"/><line x1="568" y1="355" x2="630" y2="252" stroke="#64818c" stroke-width="2" marker-end="url(#delivery-arrow)"/></svg></div><figcaption>UI development can proceed against labeled fixtures while native work advances. It cannot establish physical validity; E04/E13 remain the scientific dependency.</figcaption></figure>
+<h3>12.1 Recommended staged delivery</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 12"><table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Scope</th>
+<th>Exit gate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S0 — Contract and integration spikes</td>
+<td>Choose Option A/B; agree E01; map mutation coverage; measure recorder payload; compile schema/interop and UI-state prototype</td>
+<td>Agreed supported model/pilot and measured bottleneck hypotheses</td>
+</tr>
+<tr>
+<td>S1 — Narrow end-to-end alpha</td>
+<td>One pinned ground rig/terrain, fresh-process trials, native epoch/force accounting, linear fixture energy, durable capture, constant atmosphere/wind, minimal chosen workbench</td>
+<td>Repeatable accepted/rejected trials with source-built executable proof and closed toy-rig balances</td>
+</tr>
+<tr>
+<td>S2 — Medium/high impact workbench</td>
+<td>Contact/beam/constraint detail, event windows, model coverage/residuals, authoring/sweeps, live vector/energy views, crash recovery and comparison</td>
+<td>Bounded error/overhead/retention envelope on selected impact scenarios</td>
+</tr>
+<tr>
+<td>S3 — Atmosphere and flight expansion</td>
+<td>Shared aero/propulsion adoption, shear/gust/correlated fields, aircraft asset calibration, passive particle exposure</td>
+<td>Wind-load/flight validation and synchronized environment/energy reporting</td>
+</tr>
+<tr>
+<td>S4 — Scale/advanced coupling</td>
+<td>Only justified concurrency/remote/controlled stepping; two-way particles or other chosen models</td>
+<td>Resource/variance/conservation gates for the expansion</td>
+</tr>
+</tbody></table></div>
+<p>For staffing, assume <strong>4–5 effective people</strong>: two C++/physics engineers, one .NET/coordinator engineer, one UI engineer, plus 0.5–1 validation/physics-analysis capacity (some roles can overlap). As an initial planning envelope, a narrow alpha may be <strong>12–18 calendar weeks</strong>; a broad medium/high pipeline with the selected nonlinear models, atmospheric flight, mature trial management and credible validation may be <strong>6–12 months</strong>. These are judgment estimates before spikes, not promises or estimates for resolving every material/CFD/particulate model.</p>
+<p>With one developer, the same programme is a substantially longer sequence; reducing UI polish alone does not remove accounting/calibration dependencies. Access to suitable assets/reference datasets, the number of supported model branches and required scientific error bounds are dominant schedule variables.</p>
+<h3>12.2 Alternative strategies</h3>
+<p><strong>Observer-first strategy:</strong> establish native coverage and archive using a thin script/CLI supervisor before a polished workbench. This provides the earliest evidence on force/energy feasibility; use a skeletal UI for progress/status so end-to-end contracts are exercised. Appropriate if measurement correctness is the primary risk.</p>
+<p><strong>Product-first parallel strategy:</strong> build the coordinator and chosen workbench against labeled replay fixtures while two native engineers build the observer/environment. Freeze shared contracts early; gate live scientific claims until E13 passes. Appropriate if trial authoring/operator experience is equally important.</p>
+<p><strong>Solver modernization strategy:</strong> later introduce an explicit whole-world force-assembly/integrate barrier, controlled tick stepping or headless worker. This may simplify subsequent timing/throughput but changes numerical/control/contact ordering and could change outcomes. Take it only after observing the existing solver, with an A/B regression and convergence programme. Do not combine it silently with first instrumentation.</p>
+<p>For the first implementation decision, select B + observer-first milestones with parallel minimal coordinator/UI development, unless the user prioritizes a permanently Windows-native application.</p>
+<h2 id="section-13">13. Validation, major risks and decisions still needed</h2>
+<h3>13.1 Proposed validation matrix</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 13"><table>
+<thead>
+<tr>
+<th>Test family</th>
+<th>What it establishes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>No-force/constant-force free node</td>
+<td>Momentum and kinetic-work accounting against analytic/discrete reference</td>
+</tr>
+<tr>
+<td>Uniform gravity / free fall</td>
+<td>Applied gravity, timing and potential/work residual; zero/non-Earth gravity and fluid adoption boundaries</td>
+</tr>
+<tr>
+<td>Linear beam/damper pair</td>
+<td>Equal/opposite force, internal work, stored energy and damping behavior</td>
+</tr>
+<tr>
+<td>Collision pair / supported barrier</td>
+<td>Cohort impulse cancellation, normal/friction separation, contact IDs and externally held support</td>
+</tr>
+<tr>
+<td>Plasticity/break/detach toy rigs</td>
+<td>Exact transition capture and honest model-energy coverage; no implied fracture calibration</td>
+</tr>
+<tr>
+<td>Rope/slide/immovable node fixtures</td>
+<td>Direct-state correction and constraint/reaction accounting</td>
+</tr>
+<tr>
+<td>Stationary/moving body in uniform wind</td>
+<td>Relative-flow conventions, drag reference-area/density behavior, ambient-reservoir work</td>
+</tr>
+<tr>
+<td>Wing/propeller/gust fixture</td>
+<td>Shared atmosphere, propwash signs/lag, gust response and model coverage</td>
+</tr>
+<tr>
+<td>Passive particulate transport</td>
+<td>Known advection/settling, emission/deposition and no claimed two-way force in passive mode</td>
+</tr>
+<tr>
+<td>Recorder failure injection</td>
+<td>Slow/full disk, overflow, crash tail, partial chunks, loss counters and result rejection</td>
+</tr>
+<tr>
+<td>Coordinator/UI failure injection</td>
+<td>Restart, lease expiry, duplicate/late commands, disconnect/resync and attempt recovery</td>
+</tr>
+<tr>
+<td>Repeated runs and observation perturbation</td>
+<td>Variation versus defined tolerances under identical definitions; Off/Medium/High overhead and outcome differences</td>
+</tr>
+</tbody></table></div>
+<p>Tests should compare independent analytical/discrete references and actual consumed state, not merely mirror the implementation. Lowering the physics time step or changing the mesh can be a diagnostic convergence experiment; it is not a routine user sampling slider.</p>
+<h3>13.2 Major risks and mitigations</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable data table 14"><table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Consequence</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Phase/lag misattribution</td>
+<td>Plausible but incorrect force/work traces</td>
+<td>Generated/consumed epochs and channel-sum assertion at integration</td>
+</tr>
+<tr>
+<td>Incomplete constitutive energy</td>
+<td>“Absorbed energy” includes numerical/model artifacts</td>
+<td>Supported/estimated/unclosed ledger and toy-rig validation</td>
+</tr>
+<tr>
+<td>Observation changes timing/RNG/ownership</td>
+<td>Different results or data races</td>
+<td>Hot-path isolation, stable merge, per-field RNG design and paired repeated benchmarks</td>
+</tr>
+<tr>
+<td>Partial environment adoption</td>
+<td>Displayed wind/density differs across force models</td>
+<td>Migration coverage mask, actual sample records and legacy mode</td>
+</tr>
+<tr>
+<td>Full-rate channel explosion</td>
+<td>RAM/disk overload and silent loss</td>
+<td>Retention profiles, peak-preserving reductions, event windows and explicit backpressure</td>
+</tr>
+<tr>
+<td>Arbitrary community assets</td>
+<td>Uncalibrated masses/drag/materials and unstable comparisons</td>
+<td>Pin dependencies, start with owned fixtures, calibrate selected assets</td>
+</tr>
+<tr>
+<td>UI/coordinator too tightly coupled to solver</td>
+<td>Crashes, blocked steps or reset ambiguity</td>
+<td>Native process isolation, immutable snapshots, acknowledged barrier commands</td>
+</tr>
+<tr>
+<td>Premature headless/distributed rewrite</td>
+<td>Scope/correctness regressions before baseline</td>
+<td>Local rendered worker first; optimize from measured need</td>
+</tr>
+<tr>
+<td>Visual dust mistaken for physics</td>
+<td>False particulate/environment claims</td>
+<td>Distinct visual/passive/coupled modes with separate coverage</td>
+</tr>
+</tbody></table></div>
+<h3>13.3 Decisions for the detailed implementation specification</h3>
+<ol>
+<li>Which first two canonical scenarios: ground barrier impact plus free-fall/linear fixture, or flight/gust as a co-primary requirement?</li>
+<li>Which physics claims must be calibrated at first delivery, and which remain exploratory? What reference data/error bounds define acceptance?</li>
+<li>Choose A or B; confirm Windows-only local alpha versus immediate remote/multi-user requirements.</li>
+<li>Approve actual observer/retention budgets: node counts, channel coverage, event-window duration, storage cap, duration and runtime/overhead limits.</li>
+<li>Define closed-loop profile/path tolerances and whether exact initial angular/linear state is required for the pilot.</li>
+<li>Select the initial nonlinear/constraint/drivetrain models in the energy boundary, and how unsupported terms appear.</li>
+<li>Choose ENV-1/ENV-2 scope and particulate interpretation; coupled particles/CFD need separate requirements.</li>
+<li>Set pause/cancel/reconnect/lease behavior, accepted-trial data-loss rules and archival/retention policy.</li>
+<li>Confirm staffing and whether scientific validation/asset calibration can proceed alongside native/UI work.</li>
+</ol>
+<p>This evaluation has enough detail to choose an architectural direction and a scoped programme. A final implementation specification should resolve these choices and pin contracts, tolerances, dependencies and milestone acceptance before code is started.</p>
+<h2 id="section-14">14. Evidence, references and limits</h2>
+<p>This is a documentation-only evaluation. Engine source and content remain at the original inspected revisions. Existing local foundation/research changes were preserved. No new simulator build, native run, framework install, performance benchmark or physical calibration was performed. .NET/React capabilities were checked in primary documentation; specific package/toolchain compatibility still requires a spike.</p>
+<p>Local companions: <a href="../design/../../../platform.md">platform landscape</a>, <a href="../design/../../../architecture.md">engine map</a>, <a href="../design/../baselines/2026-10-08/README.md">baseline evidence records</a>, <a href="../design/../build-and-record.md">build/record procedure</a>, and <a href="../design/2026-10-08/README.md">architecture evaluation records</a>.</p>
+<p>The diagrams show proposed component boundaries and actual inspected solver ordering. The storage calculator uses transparent arithmetic. Neither is runtime measurement evidence.</p>
+<h3>Source and primary technology references</h3>
+<ul>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1247-L1320">A01 · Global physics loop, actor barriers and FreeForces</a> — inspected local file source/main/physics/ActorManager.cpp, lines 1247–1320.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L46-L67">A02 · Actor force/integration ordering</a> — inspected local file source/main/physics/ActorForcesEuler.cpp, lines 46–67.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1602-L1699">A03 · Ground contact, integration, force reset and generic drag</a> — inspected local file source/main/physics/ActorForcesEuler.cpp, lines 1602–1699.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1210-L1465">A04 · Beam models, deformation, breakage and final applied forces</a> — inspected local file source/main/physics/ActorForcesEuler.cpp, lines 1210–1465.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/Collisions.cpp#L1243-L1344">A05 · Ground collision and combined contact/fluid response</a> — inspected local file source/main/physics/collision/Collisions.cpp, lines 1243–1344.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/collision/DynamicCollisions.cpp#L92-L115">A06 · Inter-actor contact and barycentric force distribution</a> — inspected local file source/main/physics/collision/DynamicCollisions.cpp, lines 92–115.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/flex/FlexAirfoil.cpp#L590-L678">A07 · Wing airflow, propwash and density</a> — inspected local file source/main/physics/flex/FlexAirfoil.cpp, lines 590–678.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L125-L149">A08 · Fuselage airflow and drag</a> — inspected local file source/main/physics/ActorForcesEuler.cpp, lines 125–149.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/air/TurboProp.cpp#L222-L244">A09 · Turboprop density and force update</a> — inspected local file source/main/physics/air/TurboProp.cpp, lines 222–244.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/air/TurboProp.cpp#L350-L432">A10 · Propeller airflow, blade forces and wash</a> — inspected local file source/main/physics/air/TurboProp.cpp, lines 350–432.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/air/TurboJet.cpp#L227-L283">A11 · Jet thrust model</a> — inspected local file source/main/physics/air/TurboJet.cpp, lines 227–283.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/water/Buoyance.cpp#L69-L110">A12 · Hull pressure/drag and water velocity</a> — inspected local file source/main/physics/water/Buoyance.cpp, lines 69–110.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorForcesEuler.cpp#L1827-L1853">A13 · Rope-linked node velocity/force replacement</a> — inspected local file source/main/physics/ActorForcesEuler.cpp, lines 1827–1853.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/SimConstants.h#L17-L21">A14 · Native physics step</a> — inspected local file source/main/physics/SimConstants.h, lines 17–21.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/physics/ActorManager.cpp#L1120-L1234">A15 · Wall-time batching and simulation clock</a> — inspected local file source/main/physics/ActorManager.cpp, lines 1120–1234.</li>
+<li><a href="https://github.com/bert-systems/rigs-of-rods-trials/blob/e85535569102b6251849af574026984e3213b3f4/source/main/gfx/DustPool.cpp#L39-L65">A16 · Native particle-system construction</a> — inspected local file source/main/gfx/DustPool.cpp, lines 39–65.</li>
+<li><a href="https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/">T01 · WPF overview</a> — primary documentation checked 2026-10-08.</li>
+<li><a href="https://dotnet.microsoft.com/en-us/platform/support/policy">T02 · Current .NET support policy</a> — primary documentation checked 2026-10-08.</li>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/signalr/streaming?view=aspnetcore-10.0">T03 · SignalR streaming</a> — primary documentation checked 2026-10-08.</li>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-10.0">T04 · SignalR reconnect/configuration</a> — primary documentation checked 2026-10-08.</li>
+<li><a href="https://react.dev/learn">T05 · React UI model</a> — primary documentation checked 2026-10-08.</li>
+<li><a href="https://learn.microsoft.com/en-us/microsoft-edge/webview2/">T06 · WebView2 introduction</a> — primary documentation checked 2026-10-08.</li>
+<li><a href="https://learn.microsoft.com/en-us/dotnet/standard/io/pipe-operations">T07 · Pipe operations in .NET</a> — primary documentation checked 2026-10-08.</li>
+<li><a href="https://parquet.apache.org/docs/overview/">T08 · Parquet overview and interoperability</a> — primary documentation checked 2026-10-08.</li>
+<li><a href="https://sqlite.org/wal.html">T09 · SQLite WAL concurrency</a> — primary documentation checked 2026-10-08.</li>
+<li><a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/drag-equation/">P01 · NASA drag equation and reference area</a> — primary documentation checked 2026-10-08.</li>
+<li><a href="https://www.grc.nasa.gov/www/k-12/airplane/atmosmet.html">P02 · NASA simplified Earth atmosphere model</a> — primary documentation checked 2026-10-08.</li>
+</ul>
+</article><footer class="footnote">Architecture evaluation generated from the canonical design document. Illustrations and calculator are explanatory. Schedule and performance numbers are proposals/calculated examples, not measured results.</footer></main><script>
+'use strict';
+const fields=['nodes','hz','channels','minutes','buffer'].map(x=>document.getElementById('budget-'+x));
+const format=new Intl.NumberFormat('en-US',{maximumFractionDigits:2});
+function calculate(){
+ const [n,h,c,m,b]=fields.map(el=>Number(el.value));
+ const valid=fields.every(el=>el.value.trim()!==''&&el.checkValidity())&&[n,h,c,m,b].every(Number.isFinite)&&[n,h,c].every(Number.isInteger)&&n>0&&h>0&&h<=2000&&c>=0&&m>0&&b>0;
+ const rate=n*h*(9+3*c)*4;
+ const values=valid?[rate/1e6,rate*m*60/1e9,b*1048576/rate]:null;
+ ['rate','total','lag'].forEach((key,i)=>document.getElementById('budget-'+key).textContent=values?format.format(values[i]):'\u2014');
+ document.getElementById('budget-warning').hidden=valid;
+}
+fields.forEach(el=>el.addEventListener('input',calculate));calculate();
+</script></body></html>

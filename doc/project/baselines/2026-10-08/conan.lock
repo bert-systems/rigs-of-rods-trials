@@ -1,0 +1,93 @@
+{
+    "version": "0.5",
+    "requires": [
+        "zziplib/0.13.78@anotherfoxguy/stable#bf8657d888013c9fa386c74af0448544%1787922341.0",
+        "zlib/1.3.2#1cb806da49011867778ffb6ac7190fcb%1777558780.503",
+        "xz_utils/5.8.4#8f8f25b0e4c422a4469a6f7ead5b355c%1789627837.904",
+        "socketw/3.11.0@anotherfoxguy/stable#62f16409deecda2464ccacc501a0273c%1776587169.0",
+        "rapidjson/cci.20211112#0e610cba48da9ecd145a5f74afbe1607%1705070241.583",
+        "pugixml/1.16#aa265531e325d44acf11ae7903ec9410%1782305323.685",
+        "openssl/3.6.3#a81313131c78c6414f25b5fe0a83204b%1783446193.901",
+        "openjpeg/2.5.2#6f7b733e151d1bbf5ed05cbabb846828%1709653017.024",
+        "openexr/2.5.7#191290b5cb7da90a05ed351fae29d9c4%1720516145.62",
+        "openal-soft/1.24.3#0f2e117218b8294276a3c56fa57d3bec%1784044713.923",
+        "ois/1.4.1@rigsofrods/custom#4248983cc9bc394b5aae10416dde5b45%1777286919.0",
+        "ogre3d-pagedgeometry/1.2.0@anotherfoxguy/stable#3ef679d6dcd6b28b0a769570d1a45a8c%1777652000.0",
+        "ogre3d-caelum/0.6.3.1@anotherfoxguy/stable#582b63c68679060f9375e7834ce80c94%1776587162.0",
+        "ogre3d/1.11.6.1@anotherfoxguy/stable#36ad8dbaee3b00bfd75b79b785b04827%1777651993.0",
+        "mygui/3.4.0@anotherfoxguy/stable#20eae1babcecadf3e2bf44650cf686c5%1790184521.0",
+        "libwebp/1.6.0#eb5f8e35fc95980e32b5544a33a270b4%1754386366.205",
+        "libtiff/4.6.0#61cbca1281f1ac78681dbd3b0eaf2026%1783597166.079",
+        "libraw/0.20.2#ce19752ee79b6b1e23b3bcb567ba4831%1765533800.922",
+        "libpng/1.6.58#19cb72905ae54f54948401f753faa2c1%1776606503.628",
+        "libjpeg/9e#41e2469373bb9d9a678c8aaf2af326f0%1780476340.043",
+        "libcurl/8.2.1#3b6103c90eeb20e92a706cbf2dc0c04a%1745508829.85",
+        "lcms/2.19.1#a6579472795f0cd5578ff9f6511f8b80%1783337105.374",
+        "jxrlib/cci.20170615#576979230d06d6cc445342b2731b517f%1741857141.178",
+        "jasper/4.2.4#694a46302082de14f5af08d15d959dc6%1769596777.807",
+        "freetype/2.14.3#4ee27b7918b546a96d7e6898e3a02b34%1774443541.191",
+        "freeimage/3.18.0@anotherfoxguy/stable#17f6e5ad1ee945e3237f57b8f920a46d%1777651989.0",
+        "fmt/12.2.0#b445244e6d0151a425e229248cd2bed8%1785754552.386",
+        "discord-rpc/3.4.0@anotherfoxguy/stable#ca4bc020405c03c925dbda647e75f108%1777651987.0",
+        "directx-sdk/9.0@anotherfoxguy/stable#a07e247d5f7bbaf0e37d73e250dc0530%1777651984.0",
+        "cg-toolkit/3.1@anotherfoxguy/stable#03122e4b3dd30d8a89dc033739a37841%1777651981.0",
+        "bzip2/1.0.8#c470882369c2d95c5c77e970c0c7e321%1762886692.465",
+        "brotli/1.1.0#3f631ef77008f7b5eb388780116371a3%1764862343.045",
+        "angelscript/2.38.0#8c9b8d736d0176a6e69c64a4501eeeb1%1755270102.651"
+    ],
+    "build_requires": [
+        "strawberryperl/5.32.1.1#8d114504d172cfea8ea1662d09b6333e%1751971032.423",
+        "pkgconf/2.5.1#93c2051284cba1279494a43a4fcfeae2%1757684701.089",
+        "ninja/1.13.2#c8c5dc2a52ed6e4e42a66d75b4717ceb%1764096931.974",
+        "nasm/2.16.01#31e26f2ee3c4346ecd347911bd126904%1745483323.489",
+        "meson/1.10.2#9d2d10681fe7fe61c788c58626c89b25%1775558003.754",
+        "cmake/4.4.4#fec9c7048fae91e03c31e59977cd9c12%1791276141.315",
+        "cmake/3.31.12#5c883f7908780190d9d4ab52e0da7bfd%1789658723.981"
+    ],
+    "python_requires": [],
+    "overrides": {
+        "rapidjson/cci.20230929": [
+            "rapidjson/cci.20211112"
+        ],
+        "openssl/[>=1.1 <4]": [
+            "openssl/3.6.3"
+        ],
+        "zlib/[>=1.2.11 <2]": [
+            "zlib/1.3.2"
+        ],
+        "ogre3d/[>=1 <15]@anotherfoxguy/stable": [
+            "ogre3d/1.11.6.1@anotherfoxguy/stable"
+        ],
+        "zlib/1.3": [
+            "zlib/1.3.2#1cb806da49011867778ffb6ac7190fcb"
+        ],
+        "zziplib/[~0]": [
+            "zziplib/0.13.78@anotherfoxguy/stable"
+        ],
+        "libpng/1.6.40": [
+            "libpng/1.6.58"
+        ],
+        "libwebp/1.3.2": [
+            "libwebp/1.6.0"
+        ],
+        "libpng/[>=1.6 <2]": [
+            "libpng/1.6.58"
+        ],
+        "zlib/[>=1.2.10 <2]": [
+            "zlib/1.3.2#1cb806da49011867778ffb6ac7190fcb"
+        ],
+        "jasper/[>=4.0.0 <5]": [
+            "jasper/4.2.4"
+        ],
+        "ogre3d/[~14]@anotherfoxguy/stable": [
+            "ogre3d/1.11.6.1@anotherfoxguy/stable"
+        ],
+        "ogre3d/[~1.11]@anotherfoxguy/stable": [
+            "ogre3d/1.11.6.1@anotherfoxguy/stable#36ad8dbaee3b00bfd75b79b785b04827"
+        ],
+        "openssl/3.1.2": [
+            "openssl/3.6.3#a81313131c78c6414f25b5fe0a83204b"
+        ]
+    },
+    "config_requires": []
+}

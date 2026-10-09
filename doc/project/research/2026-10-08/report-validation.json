@@ -1,0 +1,424 @@
+{
+  "researchDate": "2026-10-08",
+  "report": "D:\\Rigs of Rods\\rigs-of-rods-trials\\doc\\project\\reports\\platform-evaluation-2026-10-08.html",
+  "captureDirectory": "D:\\Rigs of Rods\\platform-evaluation-2026-10-08-123840",
+  "sourceReferenceChecks": [
+    {
+      "id": "S01",
+      "file": "source/main/physics/SimData.h",
+      "start": 250,
+      "end": 338,
+      "lineCount": 981,
+      "valid": true
+    },
+    {
+      "id": "S02",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 1602,
+      "end": 1675,
+      "lineCount": 1853,
+      "valid": true
+    },
+    {
+      "id": "S03",
+      "file": "source/main/physics/Actor.cpp",
+      "start": 4854,
+      "end": 4900,
+      "lineCount": 5296,
+      "valid": true
+    },
+    {
+      "id": "S04",
+      "file": "source/main/physics/Actor.cpp",
+      "start": 1166,
+      "end": 1193,
+      "lineCount": 5296,
+      "valid": true
+    },
+    {
+      "id": "S05",
+      "file": "source/main/physics/Actor.cpp",
+      "start": 4529,
+      "end": 4548,
+      "lineCount": 5296,
+      "valid": true
+    },
+    {
+      "id": "S06",
+      "file": "source/main/physics/ActorManager.cpp",
+      "start": 1120,
+      "end": 1234,
+      "lineCount": 1918,
+      "valid": true
+    },
+    {
+      "id": "S07",
+      "file": "source/main/main.cpp",
+      "start": 2196,
+      "end": 2237,
+      "lineCount": 2302,
+      "valid": true
+    },
+    {
+      "id": "S08",
+      "file": "source/main/scripting/bindings/ActorAngelscript.cpp",
+      "start": 135,
+      "end": 225,
+      "lineCount": 250,
+      "valid": true
+    },
+    {
+      "id": "S09",
+      "file": "source/main/physics/SimData.h",
+      "start": 924,
+      "end": 978,
+      "lineCount": 981,
+      "valid": true
+    },
+    {
+      "id": "S10",
+      "file": "source/main/scripting/bindings/GameScriptAngelscript.cpp",
+      "start": 86,
+      "end": 206,
+      "lineCount": 243,
+      "valid": true
+    },
+    {
+      "id": "S11",
+      "file": "source/main/scripting/GameScript.cpp",
+      "start": 1583,
+      "end": 1639,
+      "lineCount": 2192,
+      "valid": true
+    },
+    {
+      "id": "S12",
+      "file": "source/main/scripting/bindings/MsgQueueAngelscript.cpp",
+      "start": 35,
+      "end": 116,
+      "lineCount": 116,
+      "valid": true
+    },
+    {
+      "id": "S13",
+      "file": "source/main/gameplay/ScriptEvents.h",
+      "start": 29,
+      "end": 132,
+      "lineCount": 134,
+      "valid": true
+    },
+    {
+      "id": "S14",
+      "file": "source/main/physics/ActorManager.cpp",
+      "start": 1624,
+      "end": 1768,
+      "lineCount": 1918,
+      "valid": true
+    },
+    {
+      "id": "S15",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 1317,
+      "end": 1445,
+      "lineCount": 1853,
+      "valid": true
+    },
+    {
+      "id": "S16",
+      "file": "source/main/physics/flex/FlexAirfoil.cpp",
+      "start": 590,
+      "end": 678,
+      "lineCount": 697,
+      "valid": true
+    },
+    {
+      "id": "S17",
+      "file": "source/main/physics/ActorForcesEuler.cpp",
+      "start": 123,
+      "end": 151,
+      "lineCount": 1853,
+      "valid": true
+    },
+    {
+      "id": "S18",
+      "file": "source/main/network/OutGauge.cpp",
+      "start": 103,
+      "end": 202,
+      "lineCount": 203,
+      "valid": true
+    },
+    {
+      "id": "S19",
+      "file": "source/main/network/OutGauge.h",
+      "start": 87,
+      "end": 118,
+      "lineCount": 118,
+      "valid": true
+    },
+    {
+      "id": "S20",
+      "file": "source/main/gameplay/Replay.cpp",
+      "start": 183,
+      "end": 211,
+      "lineCount": 303,
+      "valid": true
+    },
+    {
+      "id": "S21",
+      "file": "source/main/physics/Savegame.cpp",
+      "start": 719,
+      "end": 763,
+      "lineCount": 1043,
+      "valid": true
+    },
+    {
+      "id": "S22",
+      "file": "source/main/system/CVar.cpp",
+      "start": 32,
+      "end": 198,
+      "lineCount": 343,
+      "valid": true
+    },
+    {
+      "id": "S23",
+      "file": "source/main/system/AppCommandLine.cpp",
+      "start": 52,
+      "end": 135,
+      "lineCount": 188,
+      "valid": true
+    },
+    {
+      "id": "S24",
+      "file": "resources/skeleton/config/ground_models.cfg",
+      "start": 7,
+      "end": 78,
+      "lineCount": 130,
+      "valid": true
+    },
+    {
+      "id": "S25",
+      "file": "source/main/physics/collision/Collisions.cpp",
+      "start": 1265,
+      "end": 1344,
+      "lineCount": 1620,
+      "valid": true
+    },
+    {
+      "id": "S26",
+      "file": "source/main/scripting/bindings/VehicleAiAngelscript.cpp",
+      "start": 34,
+      "end": 56,
+      "lineCount": 56,
+      "valid": true
+    },
+    {
+      "id": "S27",
+      "file": "source/main/gameplay/VehicleAI.cpp",
+      "start": 134,
+      "end": 150,
+      "lineCount": 651,
+      "valid": true
+    },
+    {
+      "id": "S28",
+      "file": "source/main/scripting/bindings/AutopilotAngelscript.cpp",
+      "start": 31,
+      "end": 52,
+      "lineCount": 53,
+      "valid": true
+    },
+    {
+      "id": "S29",
+      "file": "source/main/scripting/bindings/EngineAngelscript.cpp",
+      "start": 55,
+      "end": 138,
+      "lineCount": 139,
+      "valid": true
+    },
+    {
+      "id": "S30",
+      "file": "source/main/scripting/GameScript.cpp",
+      "start": 2044,
+      "end": 2191,
+      "lineCount": 2192,
+      "valid": true
+    },
+    {
+      "id": "S31",
+      "file": "source/main/scripting/GameScript.cpp",
+      "start": 110,
+      "end": 113,
+      "lineCount": 2192,
+      "valid": true
+    },
+    {
+      "id": "S32",
+      "file": "source/main/physics/Actor.cpp",
+      "start": 5110,
+      "end": 5127,
+      "lineCount": 5296,
+      "valid": true
+    },
+    {
+      "id": "S33",
+      "file": "source/main/physics/SimConstants.h",
+      "start": 20,
+      "end": 37,
+      "lineCount": 85,
+      "valid": true
+    },
+    {
+      "id": "S34",
+      "file": "resources/scripts/races.as",
+      "start": 1,
+      "end": 70,
+      "lineCount": 1684,
+      "valid": true
+    },
+    {
+      "id": "S35",
+      "file": "resources/gadgets/engine_tool.gadget",
+      "start": 7,
+      "end": 17,
+      "lineCount": 17,
+      "valid": true
+    },
+    {
+      "id": "S36",
+      "file": "resources/gadgets/shock_tool.as",
+      "start": 178,
+      "end": 191,
+      "lineCount": 302,
+      "valid": true
+    },
+    {
+      "id": "S37",
+      "file": "resources/gadgets/terrn_batcher.as",
+      "start": 1,
+      "end": 15,
+      "lineCount": 792,
+      "valid": true
+    }
+  ],
+  "localLinks": [
+    {
+      "href": "../../../platform.md",
+      "exists": true
+    },
+    {
+      "href": "../../../PROJECT.md",
+      "exists": true
+    },
+    {
+      "href": "../research/2026-10-08/references.json",
+      "exists": true
+    },
+    {
+      "href": "../../../doc/project/reports/platform-evaluation-2026-10-08.html",
+      "exists": true
+    },
+    {
+      "href": "../../../PROJECT.md",
+      "exists": true
+    },
+    {
+      "href": "../../../doc/project/build-and-record.md",
+      "exists": true
+    },
+    {
+      "href": "../../../doc/project/research/2026-10-08/source-inspection.json",
+      "exists": true
+    },
+    {
+      "href": "../../../doc/project/research/2026-10-08/binding-inventory.json",
+      "exists": true
+    },
+    {
+      "href": "../../../doc/project/baselines/2026-10-08/README.md",
+      "exists": true
+    },
+    {
+      "href": "../../../doc/project/research/2026-10-08/source-inspection.json",
+      "exists": true
+    },
+    {
+      "href": "../../../doc/project/research/2026-10-08/binding-inventory.json",
+      "exists": true
+    },
+    {
+      "href": "../../../doc/project/research/2026-10-08/references.json",
+      "exists": true
+    },
+    {
+      "href": "../../../doc/project/baselines/2026-10-08/README.md",
+      "exists": true
+    },
+    {
+      "href": "../../../doc/project/build-and-record.md",
+      "exists": true
+    }
+  ],
+  "problems": [],
+  "browserChecks": {
+    "pageErrors": [],
+    "sectionCount": 12,
+    "navLinks": 12,
+    "svgCount": 4,
+    "tableCount": 15,
+    "desktopOverflow": {
+      "width": 1440,
+      "documentWidth": 1440,
+      "bodyWidth": 1440
+    },
+    "calculatorDefault": {
+      "momentum": "10,000",
+      "energy": "50,000",
+      "force": "100,000"
+    },
+    "calculatorSpeed20": {
+      "momentum": "20,000",
+      "energy": "200,000",
+      "force": "200,000"
+    },
+    "calculatorInvalid": true,
+    "filterWind": 1,
+    "filterWindRows": [
+      "Spatial/time-varying physical wind\tExtend\tNo general ambient-wind trial interface found; define and instrument airflow model"
+    ],
+    "filterExtend": 7,
+    "emptyFilter": true,
+    "coverageRows": 22,
+    "accessibleDiagrams": true,
+    "externalRequests": [],
+    "mobileOverflow": {
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390
+    },
+    "mobileCoverageOverflow": {
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390
+    },
+    "mobileCalculatorOverflow": {
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390
+    },
+    "browserVersion": "154.0.8037.98",
+    "browserExecutable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+  },
+  "screenshots": [
+    "D:\\Rigs of Rods\\platform-evaluation-2026-10-08-123840\\desktop-overview.png",
+    "D:\\Rigs of Rods\\platform-evaluation-2026-10-08-123840\\platform-map.png",
+    "D:\\Rigs of Rods\\platform-evaluation-2026-10-08-123840\\sampling-and-telemetry.png",
+    "D:\\Rigs of Rods\\platform-evaluation-2026-10-08-123840\\energy-ledger.png",
+    "D:\\Rigs of Rods\\platform-evaluation-2026-10-08-123840\\trial-coverage.png",
+    "D:\\Rigs of Rods\\platform-evaluation-2026-10-08-123840\\trial-lifecycle.png",
+    "D:\\Rigs of Rods\\platform-evaluation-2026-10-08-123840\\mobile-overview.png",
+    "D:\\Rigs of Rods\\platform-evaluation-2026-10-08-123840\\mobile-coverage.png"
+  ],
+  "reportSha256": "a07eb3d3ff82eec5cff066eb271b2857622262ea87cf3c9d6273adcd8f8fc9b5",
+  "allChecksPassed": true,
+  "verificationScope": "Static source anchors, local HTML links, report UI, formula examples and responsiveness. No native simulator run or physical accuracy validation."
+}

@@ -17,6 +17,12 @@
 [Developer Portal](https://developer.rigsofrods.org/) -
 [What's New?](https://forum.rigsofrods.org/forums/announcements.44/)
 
+## Personal fork development
+
+This checkout is maintained as [bert-systems/rigs-of-rods-trials](https://github.com/bert-systems/rigs-of-rods-trials), a development fork of Rigs of Rods.
+
+Start with [PROJECT.md](PROJECT.md) for repository identity and the verified source-build baseline. See [AGENTS.md](AGENTS.md), [architecture.md](architecture.md), [todo.md](todo.md), [project-memory.md](project-memory.md), and [the build/record guide](doc/project/build-and-record.md) for future sessions.
+
 ## Features
 
 * **Vehicles of all kinds:** cars, trucks, trains, boats, airplanes, helicopters, and heavy machinery
@@ -96,3 +102,7 @@ along with Rigs of Rods. If not, see <http://www.gnu.org/licenses/>.
 For the full license text see [COPYING](COPYING).
 For licenses of used libraries see [DEPENDENCIES.md](DEPENDENCIES.md).
 
+\n
+## Trial workbench
+
+The first implementation slice adds a React/.NET local workbench and a native every-step aggregate recorder for controlled Daf/Simple2 coast trials. See [build/start instructions](apps/trials/README.md) and [Slice 01 delivery and evidence](doc/project/slices/slice-01.md). Full impact/energy qualification remains in progress; current attempts report scientific validation NotReady.
