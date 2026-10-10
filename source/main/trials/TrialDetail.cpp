@@ -55,7 +55,7 @@ void Encode(std::vector<unsigned char>& v,const unsigned char* frame){
     std::memcpy(v.data(),frame,v.size());
 }
 }
-Detail::Detail(const std::string& root,const std::string& fault,int nodes,int beams,int barrier,Vec origin,Vec direction):
+Detail::Detail(const std::string& root,const std::string& fault,int nodes,int beams,int barrier,Vec origin,Vec direction,bool impactFixture):
     m_root(root),m_fault(fault),m_nodes(nodes),m_beams(beams),m_barrier(barrier),m_origin(origin),m_direction(direction)
 {
     const std::uint32_t endian=1;
@@ -66,11 +66,13 @@ Detail::Detail(const std::string& root,const std::string& fault,int nodes,int be
     // This full-window burst buffer accommodates measured archive-volume drain latency.
     m_stride=128+nodes*256+beams*112+(nodes*4+32)*104;
     if(m_stride*m_history_capacity>1024ull*1024*1024)throw std::runtime_error("Required detail prehistory exceeds profile budget");
-    m_capacity=std::max<std::size_t>(2,3072ull*1024*1024/m_stride);
+    // A separate frozen four-node profile uses 64 MiB; the Daf v2 reservation is unchanged.
+    if(impactFixture&&(nodes!=4||beams!=3))throw std::runtime_error("Impact fixture detail requires the pinned 4-node/3-beam cohort");
+    m_capacity=std::max<std::size_t>(2,(impactFixture?64ull:3072ull)*1024*1024/m_stride);
     m_scratch.resize(m_stride);m_queue.resize(m_capacity*m_stride);m_history.resize(m_history_capacity*m_stride);
     m_sink.owner=this;
     std::ofstream budget(m_root+"/detail-profile.json");
-    budget<<"{\"schema\":1,\"profile\":\"whole-pilot-f32-v1\",\"nodes\":"<<nodes<<",\"beams\":"<<beams
+    budget<<"{\"schema\":1,\"profile\":\""<<(impactFixture?"two-mass-impact-f32-v1":"whole-pilot-f32-v1")<<"\",\"nodes\":"<<nodes<<",\"beams\":"<<beams
         <<",\"contactCapacityPerTick\":"<<nodes*4+32<<",\"strideBytes\":"<<m_stride<<",\"preTicks\":4000,\"postTicks\":8000"
         <<",\"historyBytes\":"<<m_history.size()<<",\"queueBytes\":"<<m_queue.size()<<",\"queueFrames\":"<<m_capacity
         <<",\"fault\":\""<<fault<<"\",\"floatPrecision\":\"native float32; double cohort reduction/clock\"}\n";

@@ -56,7 +56,7 @@ struct ContactSink {
 };
 class Detail {
 public:
-    Detail(const std::string& root,const std::string& fault,int nodes,int beams,int barrier,Vec origin,Vec direction);
+    Detail(const std::string& root,const std::string& fault,int nodes,int beams,int barrier,Vec origin,Vec direction,bool impactFixture=false);
     ~Detail();
     void Begin(Actor& actor,std::uint64_t tick,bool released);
     ContactSink* Sink(int node);

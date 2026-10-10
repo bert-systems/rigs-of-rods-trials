@@ -310,6 +310,8 @@ Archive the report with required relative assets/evidence. Include a SHA-256 fil
 
 ## Session closeout
 
+For Slice 07 use a fresh durable session on a volume with sufficient capacity; `C:\Users\berts\Documents\RoR-trials-evidence\trial-slice-07-2026-10-10-013100` retains this session's build and all originals. `build.ps1 -Session <new-root> -Parallel 6`, `start.ps1 -Session <new-root> -Port <free-port> -Renderer OpenGL -EvidenceFrames`, then `verify-slice-07.py --session <new-root> --base <loopback-url> --phase qualification` exercise frozen later-collision fixtures and regressions. `verify-slice-07-ui.py` authors fresh native trials with unique names; reruns add retained attempts. Managed contract reinspection accepts the archive root and covers aggregate-only as well as optional-probe captures. See the [frozen contract](../../apps/trials/impact-fixture-format.md) and [delivery](slices/slice-07.md). PNG/video capture adds cost and must remain outside performance-budget claims.
+
 Write a summary with objective, source inputs, commands/results, runtime behavior, media/HTML checks, issues, and absolute evidence paths. Update [todo.md](../../todo.md) and [project-memory.md](../../project-memory.md); link detailed new summaries from the project docs.
 
 Preserve historical records. Add dated corrections rather than replacing original evidence. Keep generated build/cache/media outside Git; select lightweight docs/scripts/records for versioning when repository publication is requested.

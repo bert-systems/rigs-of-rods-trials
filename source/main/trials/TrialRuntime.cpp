@@ -79,7 +79,7 @@ Runtime::Runtime()
     if(number("schema",0)!=1) return;
     if(doc.HasMember("scenario")&&doc["scenario"].IsString())m_scenario=doc["scenario"].GetString();
     if(m_scenario!="barrier-v1"&&m_scenario!="coast-v1"&&m_scenario!="freefall-v1"&&m_scenario!="spring-v1"&&m_scenario!="damper-v1"&&
-       m_scenario!="yield-tension-v1"&&m_scenario!="yield-compression-v1"&&m_scenario!="fracture-v1"&&m_scenario!="protected-beam-v1")return;
+       m_scenario!="yield-tension-v1"&&m_scenario!="yield-compression-v1"&&m_scenario!="fracture-v1"&&m_scenario!="protected-beam-v1"&&!IsImpactFixture())return;
     m_vehicle=IsFixture()?"ror-"+m_scenario+".truck":"b6b0UID-semi.truck";
     m_accounting=!doc.HasMember("accounting")||!doc["accounting"].IsBool()||doc["accounting"].GetBool();
     if(doc.HasMember("observation")&&doc["observation"].IsString()){
@@ -99,7 +99,8 @@ Runtime::Runtime()
     m_wind=Vec(number("windX",0),number("windY",0),number("windZ",0));
     const bool transition_fixture=m_scenario=="yield-tension-v1"||m_scenario=="yield-compression-v1"||m_scenario=="fracture-v1"||m_scenario=="protected-beam-v1";
     if(transition_fixture&&(m_duration>1||m_gravity!=0||m_settle!=0||m_speed!=0||m_wind.Norm()!=0))return;
-    if(!std::isfinite(m_speed) || m_speed<0 || m_speed>20 || !std::isfinite(m_duration) || m_duration<0.1 || m_duration>(IsFixture()?5:120) ||
+    if(IsImpactFixture()&&(!m_observe||!m_accounting||m_duration!=7||m_gravity!=0||m_settle!=0||m_speed!=5||m_barrier_distance!=13||m_wind.Norm()!=0))return;
+    if(!std::isfinite(m_speed) || m_speed<0 || m_speed>20 || !std::isfinite(m_duration) || m_duration<0.1 || m_duration>(IsImpactFixture()?7:IsFixture()?5:120) ||
        !std::isfinite(m_settle) || m_settle<(IsFixture()?0:2) || m_settle>30 || !std::isfinite(m_gravity) || m_gravity>0 || (m_gravity==0&&m_scenario=="coast-v1") || m_gravity < -30 ||
        !std::isfinite(m_density) || m_density<=0 || m_density>3 || !std::isfinite(m_wind.Norm()) || m_wind.Norm()>30) return;
     if(m_observe)m_queue.resize(32768); // bounded 65 MiB of records, one physics producer

@@ -4,6 +4,35 @@ namespace RoR.Trials;
 // Streaming reader: only CRC+DONE frames contribute, including after injected gaps.
 public static class DetailReader
 {
+    // Independently recheck the stream when science reads it; an old index or health
+    // snapshot cannot certify bytes modified after the initial inspection.
+    public static IEnumerable<byte[]> VerifiedFrames(string path)
+    {
+        using var f=File.OpenRead(path);using var r=new BinaryReader(f);
+        if(Encoding.ASCII.GetString(r.ReadBytes(8))!="RORDTAIL"||r.ReadUInt32()!=1)throw new InvalidDataException("Unknown detail schema.");
+        uint nodes=r.ReadUInt32(),beams=r.ReadUInt32(),cap=r.ReadUInt32();
+        if(nodes==0||nodes>65536||beams>65536||cap!=nodes*4+32||r.ReadUInt32()!=4000||r.ReadUInt32()!=8000)throw new InvalidDataException("Invalid detail cohort/window.");
+        ulong frames=0;long last=0;
+        while(f.Position<f.Length){
+            string marker=Encoding.ASCII.GetString(r.ReadBytes(4));
+            if(marker=="END!"){
+                if(r.ReadUInt64()!=frames||r.ReadUInt64()!=0||r.ReadUInt64()!=0||r.ReadUInt32()!=0||f.Position!=f.Length)
+                    throw new InvalidDataException("Required detail loss/footer.");
+                yield break;
+            }
+            if(marker!="DATA"||r.ReadUInt32()!=1)throw new InvalidDataException("Invalid detail block.");
+            uint size=r.ReadUInt32(),crc=r.ReadUInt32();
+            if(size<128L+nodes*256L+beams*112L||size>128L+nodes*256L+beams*112L+cap*104L||size>16*1024*1024)throw new InvalidDataException("Invalid detail size.");
+            var data=r.ReadBytes((int)size);
+            if(data.Length!=size||ArchiveReader.Crc(data)!=crc||Encoding.ASCII.GetString(r.ReadBytes(4))!="DONE")throw new InvalidDataException("Detail checksum/commit failure.");
+            long tick=BitConverter.ToInt64(data,0);int contacts=BitConverter.ToInt32(data,28);
+            if(tick<=0||last!=0&&tick!=last+1||BitConverter.ToUInt32(data,20)!=nodes||BitConverter.ToUInt32(data,24)!=beams||contacts<0||contacts>cap||
+               size!=128L+nodes*256L+beams*112L+contacts*104L||BitConverter.ToUInt32(data,36)!=0||BitConverter.ToUInt32(data,40)!=0)
+                throw new InvalidDataException("Detail tick/cohort/loss failure.");
+            last=tick;++frames;yield return data;
+        }
+        throw new InvalidDataException("No clean detail footer.");
+    }
     public sealed record Check(long Records,bool Closed,bool Complete,string? Problem,long FirstTick,long LastTick,
         long TriggerTick,long Dropped,long MissingRequiredTicks,int Nodes,int Beams,long ContactApplications,
         long BarrierApplications,long ParameterTransitions,long StrengthTransitions,long RemovedBeams,

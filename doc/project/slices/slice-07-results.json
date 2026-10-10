@@ -1,0 +1,1532 @@
+{
+  "session": "C:\\Users\\berts\\Documents\\RoR-trials-evidence\\trial-slice-07-2026-10-10-013100",
+  "sourceHead": "fe4fa7cece6bb092434ff7f1d2389c4cd2aca4a4",
+  "sourceWasDirty": true,
+  "nativeSha256": "E949B4F106C2E927BD4A64CDA5DFBA83AEE13DED0C0533CB0A8573BCF24CBF4F",
+  "nativeInputs": 475,
+  "nativeProcesses": 20,
+  "outcomes": {
+    "CompletePassed": 18,
+    "IncompleteNotReady": 2
+  },
+  "repeats": {
+    "impact-yield-v1": {
+      "attempts": [
+        "12d664b5bfa44745b52a9f8821f8ed0e",
+        "1d59a720a56a401c9375a798c4428686",
+        "cbe64d4fd5374c4086ed5f88ef0ab548"
+      ],
+      "detailPayloadSha256": "5bacf9e22ffc45e7d5a837cbe2c59601deac62a8253e59ff724dc19c9e59dcaa",
+      "aggregateWithoutTimerSha256": "fba82b071b3d5410163b19d4fa4b9fb3b2046c9571b1315f41781c62019ebf04",
+      "denseFrames": 12001,
+      "aggregateTicks": 14000
+    },
+    "impact-fracture-v1": {
+      "attempts": [
+        "aff80439118b45dd90f482b9f1bdf2af",
+        "98e3edb0b386459bbd50d6e3010ca498",
+        "cf2df52002b3418797d69f18a9171cdf"
+      ],
+      "detailPayloadSha256": "e72b672a9948b1ebbf3fd55aa3339f8f053aaf7710f64fd084fddaa08ab238a3",
+      "aggregateWithoutTimerSha256": "735d1d1b8fb0bc9268d382dddd0fb5072027d4fbea267397fa95bcd23d5f0223",
+      "denseFrames": 12001,
+      "aggregateTicks": 14000
+    },
+    "fifteenFreshProcesses": true,
+    "allDeclaredOutcomes": true
+  },
+  "selected": [
+    {
+      "id": "12d664b5bfa44745b52a9f8821f8ed0e",
+      "scenario": "impact-yield-v1",
+      "timeline": {
+        "firstContactTick": 5202,
+        "firstParameterTick": 5210,
+        "firstStrengthTick": 5978,
+        "firstRemovalTick": null,
+        "parameterChanges": 103,
+        "strengthChanges": 19,
+        "removed": 0
+      },
+      "detail": {
+        "records": 12001,
+        "closed": true,
+        "complete": true,
+        "problem": null,
+        "firstTick": 1202,
+        "lastTick": 13202,
+        "triggerTick": 5202,
+        "dropped": 0,
+        "missingRequiredTicks": 0,
+        "nodes": 4,
+        "beams": 3,
+        "contactApplications": 888,
+        "barrierApplications": 888,
+        "parameterTransitions": 103,
+        "strengthTransitions": 19,
+        "removedBeams": 0,
+        "peakApplicationForceN": 800000.1875,
+        "peakNetBarrierForceN": 800000.1875,
+        "barrierImpulseNs": [
+          -1133.5955139611888,
+          0,
+          0
+        ],
+        "barrierWorkJ": -2057.122506253901,
+        "maxBeamStrain": 13.036579132080078,
+        "nodePeakForceN": {
+          "0": 800000.1875,
+          "1": 642306.625
+        },
+        "normalImpulseNs": [
+          -1133.5955139611888,
+          0,
+          0
+        ],
+        "tangentialImpulseNs": [
+          0,
+          0,
+          0
+        ],
+        "peakNormalApplicationForceN": 800000.1875,
+        "peakTangentialApplicationForceN": 0
+      },
+      "events": [
+        {
+          "tick": 5210,
+          "kind": 1,
+          "oldRestM": 1.0,
+          "newRestM": 0.9931284785270691,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.2668203704713221,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5213,
+          "kind": 1,
+          "oldRestM": 0.9931284785270691,
+          "newRestM": 0.9857410788536072,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.3886432931542458,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5216,
+          "kind": 1,
+          "oldRestM": 0.9857410788536072,
+          "newRestM": 0.9783679246902466,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.3937859434953737,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5219,
+          "kind": 1,
+          "oldRestM": 0.9783679246902466,
+          "newRestM": 0.971000075340271,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.401037122263915,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5222,
+          "kind": 1,
+          "oldRestM": 0.971000075340271,
+          "newRestM": 0.9636386036872864,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4081501787721606,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5225,
+          "kind": 1,
+          "oldRestM": 0.9636386036872864,
+          "newRestM": 0.9562847018241882,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4151114780247553,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5228,
+          "kind": 1,
+          "oldRestM": 0.9562847018241882,
+          "newRestM": 0.9489361643791199,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4226772796632758,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5231,
+          "kind": 1,
+          "oldRestM": 0.9489361643791199,
+          "newRestM": 0.941594123840332,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4300952891410645,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5234,
+          "kind": 1,
+          "oldRestM": 0.941594123840332,
+          "newRestM": 0.9342577457427979,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4378276361526332,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5237,
+          "kind": 1,
+          "oldRestM": 0.9342577457427979,
+          "newRestM": 0.926927924156189,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4454683431353033,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5240,
+          "kind": 1,
+          "oldRestM": 0.926927924156189,
+          "newRestM": 0.9196057915687561,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4529709338795271,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5243,
+          "kind": 1,
+          "oldRestM": 0.9196057915687561,
+          "newRestM": 0.9122893214225769,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4610685461491357,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5246,
+          "kind": 1,
+          "oldRestM": 0.9122893214225769,
+          "newRestM": 0.9049795866012573,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4690408492334939,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5249,
+          "kind": 1,
+          "oldRestM": 0.9049795866012573,
+          "newRestM": 0.8976766467094421,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4771297491300572,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5252,
+          "kind": 1,
+          "oldRestM": 0.8976766467094421,
+          "newRestM": 0.8903804421424866,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4853588758967362,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5255,
+          "kind": 1,
+          "oldRestM": 0.8903804421424866,
+          "newRestM": 0.8830909729003906,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.4937136748649493,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5258,
+          "kind": 1,
+          "oldRestM": 0.8830909729003906,
+          "newRestM": 0.875808596611023,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.5021330033704317,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5261,
+          "kind": 1,
+          "oldRestM": 0.875808596611023,
+          "newRestM": 0.8685330748558044,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.5107430539806899,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5264,
+          "kind": 1,
+          "oldRestM": 0.8685330748558044,
+          "newRestM": 0.8612646460533142,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.5194446771715775,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5267,
+          "kind": 1,
+          "oldRestM": 0.8612646460533142,
+          "newRestM": 0.8540042042732239,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.5280702790221312,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5270,
+          "kind": 1,
+          "oldRestM": 0.8540042042732239,
+          "newRestM": 0.8467498421669006,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.5373108574578964,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5273,
+          "kind": 1,
+          "oldRestM": 0.8467498421669006,
+          "newRestM": 0.8395035862922668,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.5462007444000392,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5276,
+          "kind": 1,
+          "oldRestM": 0.8395035862922668,
+          "newRestM": 0.8322644829750061,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.5554789008831449,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5279,
+          "kind": 1,
+          "oldRestM": 0.8322644829750061,
+          "newRestM": 0.8250337839126587,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.564613573581397,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5282,
+          "kind": 1,
+          "oldRestM": 0.8250337839126587,
+          "newRestM": 0.8178094029426575,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.574433595319391,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5285,
+          "kind": 1,
+          "oldRestM": 0.8178094029426575,
+          "newRestM": 0.8105932474136353,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.5839272513495928,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5288,
+          "kind": 1,
+          "oldRestM": 0.8105932474136353,
+          "newRestM": 0.8033846616744995,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.5937656911546583,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5291,
+          "kind": 1,
+          "oldRestM": 0.8033846616744995,
+          "newRestM": 0.7961845397949219,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.6035461067787082,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5294,
+          "kind": 1,
+          "oldRestM": 0.7961845397949219,
+          "newRestM": 0.7889928817749023,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.613496310710616,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5297,
+          "kind": 1,
+          "oldRestM": 0.7889928817749023,
+          "newRestM": 0.7818089127540588,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.6238314270644594,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5300,
+          "kind": 1,
+          "oldRestM": 0.7818089127540588,
+          "newRestM": 0.7746326923370361,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.6343388839068496,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5303,
+          "kind": 1,
+          "oldRestM": 0.7746326923370361,
+          "newRestM": 0.7674651741981506,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.6447804762087515,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5306,
+          "kind": 1,
+          "oldRestM": 0.7674651741981506,
+          "newRestM": 0.7603066563606262,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.65534700258263,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5309,
+          "kind": 1,
+          "oldRestM": 0.7603066563606262,
+          "newRestM": 0.7531569004058838,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.6661631822678657,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5312,
+          "kind": 1,
+          "oldRestM": 0.7531569004058838,
+          "newRestM": 0.746015191078186,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.6773755165644388,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5315,
+          "kind": 1,
+          "oldRestM": 0.746015191078186,
+          "newRestM": 0.7388826012611389,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.6885084696660613,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5318,
+          "kind": 1,
+          "oldRestM": 0.7388826012611389,
+          "newRestM": 0.7317591309547424,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.6998494945141829,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5321,
+          "kind": 1,
+          "oldRestM": 0.7317591309547424,
+          "newRestM": 0.7246449589729309,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.711361007465939,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5324,
+          "kind": 1,
+          "oldRestM": 0.7246449589729309,
+          "newRestM": 0.7175400853157043,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.7230907189969003,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5327,
+          "kind": 1,
+          "oldRestM": 0.7175400853157043,
+          "newRestM": 0.7104446887969971,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.735000251006369,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5330,
+          "kind": 1,
+          "oldRestM": 0.7104446887969971,
+          "newRestM": 0.7033587694168091,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -1.7471379114653018,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5334,
+          "kind": 1,
+          "oldRestM": 0.7033587694168091,
+          "newRestM": 0.6938545107841492,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.4785560355233827,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5338,
+          "kind": 1,
+          "oldRestM": 0.6938545107841492,
+          "newRestM": 0.6844411492347717,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.4780774644739267,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5342,
+          "kind": 1,
+          "oldRestM": 0.6844411492347717,
+          "newRestM": 0.6750423908233643,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.5014845715709555,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5346,
+          "kind": 1,
+          "oldRestM": 0.6750423908233643,
+          "newRestM": 0.6656630039215088,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.524043986795732,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5350,
+          "kind": 1,
+          "oldRestM": 0.6656630039215088,
+          "newRestM": 0.6563020944595337,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.5475216656190014,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5354,
+          "kind": 1,
+          "oldRestM": 0.6563020944595337,
+          "newRestM": 0.6469607949256897,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.5712852877823877,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5358,
+          "kind": 1,
+          "oldRestM": 0.6469607949256897,
+          "newRestM": 0.637639582157135,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.595577369675084,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5362,
+          "kind": 1,
+          "oldRestM": 0.637639582157135,
+          "newRestM": 0.6283388137817383,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.6204606624169458,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5366,
+          "kind": 1,
+          "oldRestM": 0.6283388137817383,
+          "newRestM": 0.619059681892395,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.6456717113632067,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5370,
+          "kind": 1,
+          "oldRestM": 0.619059681892395,
+          "newRestM": 0.6098015904426575,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.6718247467805156,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5374,
+          "kind": 1,
+          "oldRestM": 0.6098015904426575,
+          "newRestM": 0.6005659699440002,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.6982780995865596,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5378,
+          "kind": 1,
+          "oldRestM": 0.6005659699440002,
+          "newRestM": 0.5913521647453308,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.7257508510558637,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5382,
+          "kind": 1,
+          "oldRestM": 0.5913521647453308,
+          "newRestM": 0.5821616649627686,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.753551021488221,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5386,
+          "kind": 1,
+          "oldRestM": 0.5821616649627686,
+          "newRestM": 0.5729948878288269,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.782067655129339,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5390,
+          "kind": 1,
+          "oldRestM": 0.5729948878288269,
+          "newRestM": 0.5638531446456909,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.8110048837426405,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5394,
+          "kind": 1,
+          "oldRestM": 0.5638531446456909,
+          "newRestM": 0.5547351241111755,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.8413298145402166,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5398,
+          "kind": 1,
+          "oldRestM": 0.5547351241111755,
+          "newRestM": 0.5456432700157166,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -2.8717414127754637,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5403,
+          "kind": 1,
+          "oldRestM": 0.5456432700157166,
+          "newRestM": 0.5342015027999878,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -3.799968816569077,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5408,
+          "kind": 1,
+          "oldRestM": 0.5342015027999878,
+          "newRestM": 0.5229189395904541,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -3.804542697949387,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5413,
+          "kind": 1,
+          "oldRestM": 0.5229189395904541,
+          "newRestM": 0.5116754174232483,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -3.857305437104941,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5418,
+          "kind": 1,
+          "oldRestM": 0.5116754174232483,
+          "newRestM": 0.5004782676696777,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -3.909378074542502,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5423,
+          "kind": 1,
+          "oldRestM": 0.5004782676696777,
+          "newRestM": 0.48932763934135437,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -3.9636743253579354,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5428,
+          "kind": 1,
+          "oldRestM": 0.48932763934135437,
+          "newRestM": 0.47822797298431396,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -4.018539231229745,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5433,
+          "kind": 1,
+          "oldRestM": 0.47822797298431396,
+          "newRestM": 0.46718066930770874,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -4.075291075533727,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5438,
+          "kind": 1,
+          "oldRestM": 0.46718066930770874,
+          "newRestM": 0.4561873972415924,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -4.1339252265037985,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5444,
+          "kind": 1,
+          "oldRestM": 0.4561873972415924,
+          "newRestM": 0.44291067123413086,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -5.24691205452843,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5450,
+          "kind": 1,
+          "oldRestM": 0.44291067123413086,
+          "newRestM": 0.42988109588623047,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -5.261560119151909,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5456,
+          "kind": 1,
+          "oldRestM": 0.42988109588623047,
+          "newRestM": 0.41693150997161865,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -5.357008848747569,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5462,
+          "kind": 1,
+          "oldRestM": 0.41693150997161865,
+          "newRestM": 0.40407636761665344,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -5.451187911513777,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5468,
+          "kind": 1,
+          "oldRestM": 0.40407636761665344,
+          "newRestM": 0.3913211524486542,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -5.54843575905295,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5475,
+          "kind": 1,
+          "oldRestM": 0.3913211524486542,
+          "newRestM": 0.3763653635978699,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -6.851184338771965,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5482,
+          "kind": 1,
+          "oldRestM": 0.3763653635978699,
+          "newRestM": 0.3617810010910034,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -6.87609892944252,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5489,
+          "kind": 1,
+          "oldRestM": 0.3617810010910034,
+          "newRestM": 0.3473382890224457,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -7.031132977775023,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5497,
+          "kind": 1,
+          "oldRestM": 0.3473382890224457,
+          "newRestM": 0.33079564571380615,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -8.512333633459157,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5505,
+          "kind": 1,
+          "oldRestM": 0.33079564571380615,
+          "newRestM": 0.3147725462913513,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -8.549412552323332,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5514,
+          "kind": 1,
+          "oldRestM": 0.3147725462913513,
+          "newRestM": 0.2967293858528137,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -10.225974978794738,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5523,
+          "kind": 1,
+          "oldRestM": 0.2967293858528137,
+          "newRestM": 0.27939197421073914,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -10.267189530650533,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5533,
+          "kind": 1,
+          "oldRestM": 0.27939197421073914,
+          "newRestM": 0.26018810272216797,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -12.15412739619115,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5544,
+          "kind": 1,
+          "oldRestM": 0.26018810272216797,
+          "newRestM": 0.23976139724254608,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -13.862371960006172,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5556,
+          "kind": 1,
+          "oldRestM": 0.23976139724254608,
+          "newRestM": 0.21830487251281738,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -15.725592028569267,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5570,
+          "kind": 1,
+          "oldRestM": 0.21830487251281738,
+          "newRestM": 0.19403076171875,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -19.62521470915135,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5587,
+          "kind": 1,
+          "oldRestM": 0.19403076171875,
+          "newRestM": 0.16623082756996155,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -25.355580558854562,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5608,
+          "kind": 1,
+          "oldRestM": 0.16623082756996155,
+          "newRestM": 0.13512545824050903,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": -32.905963614191506,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5978,
+          "kind": 5,
+          "oldRestM": 0.13512545824050903,
+          "newRestM": 0.14026199281215668,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 1948.6346435546875,
+          "restPortJ": -0.9024001533919357,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5987,
+          "kind": 5,
+          "oldRestM": 0.14026199281215668,
+          "newRestM": 0.14552828669548035,
+          "oldStrengthN": 1948.6346435546875,
+          "newStrengthN": 1895.9716796875,
+          "restPortJ": -0.9586414057738413,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 5997,
+          "kind": 5,
+          "oldRestM": 0.14552828669548035,
+          "newRestM": 0.15134283900260925,
+          "oldStrengthN": 1895.9716796875,
+          "newStrengthN": 1837.826171875,
+          "restPortJ": -1.1083741495099275,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6007,
+          "kind": 5,
+          "oldRestM": 0.15134283900260925,
+          "newRestM": 0.15699733793735504,
+          "oldStrengthN": 1837.826171875,
+          "newStrengthN": 1781.28125,
+          "restPortJ": -1.1098378500518091,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6018,
+          "kind": 5,
+          "oldRestM": 0.15699733793735504,
+          "newRestM": 0.16318747401237488,
+          "oldStrengthN": 1781.28125,
+          "newStrengthN": 1719.3798828125,
+          "restPortJ": -1.270402811158755,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6030,
+          "kind": 5,
+          "oldRestM": 0.16318747401237488,
+          "newRestM": 0.16979306936264038,
+          "oldStrengthN": 1719.3798828125,
+          "newStrengthN": 1653.323974609375,
+          "restPortJ": -1.4147798672903278,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6042,
+          "kind": 5,
+          "oldRestM": 0.16979306936264038,
+          "newRestM": 0.17619803547859192,
+          "oldStrengthN": 1653.323974609375,
+          "newStrengthN": 1589.2742919921875,
+          "restPortJ": -1.4123509083807662,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6055,
+          "kind": 5,
+          "oldRestM": 0.17619803547859192,
+          "newRestM": 0.18303917348384857,
+          "oldStrengthN": 1589.2742919921875,
+          "newStrengthN": 1520.8629150390625,
+          "restPortJ": -1.5720912762906547,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6069,
+          "kind": 5,
+          "oldRestM": 0.18303917348384857,
+          "newRestM": 0.19019144773483276,
+          "oldStrengthN": 1520.8629150390625,
+          "newStrengthN": 1449.3402099609375,
+          "restPortJ": -1.7090318767121193,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6084,
+          "kind": 5,
+          "oldRestM": 0.19019144773483276,
+          "newRestM": 0.1976105272769928,
+          "oldStrengthN": 1449.3402099609375,
+          "newStrengthN": 1375.1494140625,
+          "restPortJ": -1.8415868944066105,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6100,
+          "kind": 5,
+          "oldRestM": 0.1976105272769928,
+          "newRestM": 0.205235555768013,
+          "oldStrengthN": 1375.1494140625,
+          "newStrengthN": 1298.899169921875,
+          "restPortJ": -1.963357633995022,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6117,
+          "kind": 5,
+          "oldRestM": 0.205235555768013,
+          "newRestM": 0.21300271153450012,
+          "oldStrengthN": 1298.899169921875,
+          "newStrengthN": 1221.2276611328125,
+          "restPortJ": -2.071216993210223,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6136,
+          "kind": 5,
+          "oldRestM": 0.21300271153450012,
+          "newRestM": 0.22130624949932098,
+          "oldStrengthN": 1221.2276611328125,
+          "newStrengthN": 1138.1922607421875,
+          "restPortJ": -2.3081151549797507,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6157,
+          "kind": 5,
+          "oldRestM": 0.22130624949932098,
+          "newRestM": 0.2299260050058365,
+          "oldStrengthN": 1138.1922607421875,
+          "newStrengthN": 1051.9947509765625,
+          "restPortJ": -2.48909511587847,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6180,
+          "kind": 5,
+          "oldRestM": 0.2299260050058365,
+          "newRestM": 0.2386823147535324,
+          "oldStrengthN": 1051.9947509765625,
+          "newStrengthN": 964.431640625,
+          "restPortJ": -2.6182918409478617,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6206,
+          "kind": 5,
+          "oldRestM": 0.2386823147535324,
+          "newRestM": 0.2477315068244934,
+          "oldStrengthN": 964.431640625,
+          "newStrengthN": 873.9397583007812,
+          "restPortJ": -2.8070803333613004,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6236,
+          "kind": 5,
+          "oldRestM": 0.2477315068244934,
+          "newRestM": 0.25697898864746094,
+          "oldStrengthN": 873.9397583007812,
+          "newStrengthN": 781.46484375,
+          "restPortJ": -2.9706512121840944,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6273,
+          "kind": 5,
+          "oldRestM": 0.25697898864746094,
+          "newRestM": 0.2665916085243225,
+          "oldStrengthN": 781.46484375,
+          "newStrengthN": 685.3385009765625,
+          "restPortJ": -3.2041777867952703,
+          "removalPortJ": 0.0
+        },
+        {
+          "tick": 6325,
+          "kind": 5,
+          "oldRestM": 0.2665916085243225,
+          "newRestM": 0.27658811211586,
+          "oldStrengthN": 685.3385009765625,
+          "newStrengthN": 585.3734130859375,
+          "restPortJ": -3.457995254101398,
+          "removalPortJ": 0.0
+        }
+      ],
+      "restPortJ": -381.9664604950246,
+      "removalPortJ": 0.0,
+      "finalStrengthN": 585.3734130859375,
+      "finalRestM": 0.27658811211586,
+      "rawWindowBytes": 18189924,
+      "profile": {
+        "schema": 1,
+        "profile": "two-mass-impact-f32-v1",
+        "nodes": 4,
+        "beams": 3,
+        "contactCapacityPerTick": 48,
+        "strideBytes": 6480,
+        "preTicks": 4000,
+        "postTicks": 8000,
+        "historyBytes": 25926480,
+        "queueBytes": 67106880,
+        "queueFrames": 10356,
+        "fault": "none",
+        "floatPrecision": "native float32; double cohort reduction/clock"
+      },
+      "qualification": {
+        "status": "Passed",
+        "scope": "two-mass-impact-reference-v1: later native collision, local law/integration conformance and dense/aggregate force/storage parity; material dissipation and vehicles unqualified",
+        "checks": [
+          {
+            "name": "pinned initial kinetic energy / J",
+            "observed": 0,
+            "limit": 1e-06,
+            "passed": true
+          },
+          {
+            "name": "pinned initial rest storage / J",
+            "observed": 0,
+            "limit": 1e-06,
+            "passed": true
+          },
+          {
+            "name": "pinned initial velocity / m/s",
+            "observed": 0,
+            "limit": 1e-06,
+            "passed": true
+          },
+          {
+            "name": "prepared moving cohort / nodes",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "first consumed contact equals trigger",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "two seconds of actual precontact history",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "transition occurs strictly after consumed collision",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "required postcollision strength/removal outcome",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "cohort/epoch/event/removal identity mismatches",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "local beam law/channel conformance / N",
+            "observed": 0.0012035369873046875,
+            "limit": 0.1,
+            "passed": true
+          },
+          {
+            "name": "contact law and strength conformance / N",
+            "observed": 0.03476310323458165,
+            "limit": 0.25,
+            "passed": true
+          },
+          {
+            "name": "beam rest/state continuity / m",
+            "observed": 8.495795977836451e-08,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "kick integration / velocity continuity / m/s",
+            "observed": 3.38152676526704e-07,
+            "limit": 2e-06,
+            "passed": true
+          },
+          {
+            "name": "world-position drift step envelope / m",
+            "observed": 5.9496948618443374e-05,
+            "limit": 0.00015,
+            "passed": true
+          },
+          {
+            "name": "dense versus aggregate force/momentum/kinetic parity",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "declared storage/event ports / J",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "unattributed/reconstructed contact rounding / N",
+            "observed": 0.02435302734375,
+            "limit": 0.25,
+            "passed": true
+          },
+          {
+            "name": "integration impulse residual / kg m/s",
+            "observed": 5.2888754904500956e-05,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "kinetic midpoint work residual / J",
+            "observed": 0.00019681324509335154,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "pinned seven-second record count",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "aff80439118b45dd90f482b9f1bdf2af",
+      "scenario": "impact-fracture-v1",
+      "timeline": {
+        "firstContactTick": 5202,
+        "firstParameterTick": null,
+        "firstStrengthTick": null,
+        "firstRemovalTick": 5284,
+        "parameterChanges": 0,
+        "strengthChanges": 0,
+        "removed": 1
+      },
+      "detail": {
+        "records": 12001,
+        "closed": true,
+        "complete": true,
+        "problem": null,
+        "firstTick": 1202,
+        "lastTick": 13202,
+        "triggerTick": 5202,
+        "dropped": 0,
+        "missingRequiredTicks": 0,
+        "nodes": 4,
+        "beams": 3,
+        "contactApplications": 15571,
+        "barrierApplications": 15571,
+        "parameterTransitions": 0,
+        "strengthTransitions": 0,
+        "removedBeams": 1,
+        "peakApplicationForceN": 800000.1875,
+        "peakNetBarrierForceN": 800000.1875,
+        "barrierImpulseNs": [
+          -1000.0000473585959,
+          0,
+          0
+        ],
+        "barrierWorkJ": -2300.2441456508077,
+        "maxBeamStrain": 13.03720760345459,
+        "nodePeakForceN": {
+          "0": 800000.1875,
+          "1": 733293.625
+        },
+        "normalImpulseNs": [
+          -1000.0000473585959,
+          0,
+          0
+        ],
+        "tangentialImpulseNs": [
+          0,
+          0,
+          0
+        ],
+        "peakNormalApplicationForceN": 800000.1875,
+        "peakTangentialApplicationForceN": 0
+      },
+      "events": [
+        {
+          "tick": 5284,
+          "kind": 2,
+          "oldRestM": 1.0,
+          "newRestM": 1.0,
+          "oldStrengthN": 2000.0,
+          "newStrengthN": 2000.0,
+          "restPortJ": 0.0,
+          "removalPortJ": -202.05527152938885
+        }
+      ],
+      "restPortJ": 0.0,
+      "removalPortJ": -202.05527152938885,
+      "finalStrengthN": 2000.0,
+      "finalRestM": 1.0,
+      "rawWindowBytes": 19716956,
+      "profile": {
+        "schema": 1,
+        "profile": "two-mass-impact-f32-v1",
+        "nodes": 4,
+        "beams": 3,
+        "contactCapacityPerTick": 48,
+        "strideBytes": 6480,
+        "preTicks": 4000,
+        "postTicks": 8000,
+        "historyBytes": 25926480,
+        "queueBytes": 67106880,
+        "queueFrames": 10356,
+        "fault": "none",
+        "floatPrecision": "native float32; double cohort reduction/clock"
+      },
+      "qualification": {
+        "status": "Passed",
+        "scope": "two-mass-impact-reference-v1: later native collision, local law/integration conformance and dense/aggregate force/storage parity; material dissipation and vehicles unqualified",
+        "checks": [
+          {
+            "name": "pinned initial kinetic energy / J",
+            "observed": 0,
+            "limit": 1e-06,
+            "passed": true
+          },
+          {
+            "name": "pinned initial rest storage / J",
+            "observed": 0,
+            "limit": 1e-06,
+            "passed": true
+          },
+          {
+            "name": "pinned initial velocity / m/s",
+            "observed": 0,
+            "limit": 1e-06,
+            "passed": true
+          },
+          {
+            "name": "prepared moving cohort / nodes",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "first consumed contact equals trigger",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "two seconds of actual precontact history",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "transition occurs strictly after consumed collision",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "required postcollision strength/removal outcome",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "cohort/epoch/event/removal identity mismatches",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          },
+          {
+            "name": "local beam law/channel conformance / N",
+            "observed": 0.001312255859375,
+            "limit": 0.1,
+            "passed": true
+          },
+          {
+            "name": "contact law and strength conformance / N",
+            "observed": 0.03476310323458165,
+            "limit": 0.25,
+            "passed": true
+          },
+          {
+            "name": "beam rest/state continuity / m",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "kick integration / velocity continuity / m/s",
+            "observed": 3.38152676526704e-07,
+            "limit": 2e-06,
+            "passed": true
+          },
+          {
+            "name": "world-position drift step envelope / m",
+            "observed": 5.8594345580809115e-05,
+            "limit": 0.00015,
+            "passed": true
+          },
+          {
+            "name": "dense versus aggregate force/momentum/kinetic parity",
+            "observed": 0,
+            "limit": 1e-05,
+            "passed": true
+          },
+          {
+            "name": "declared storage/event ports / J",
+            "observed": 0,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "unattributed/reconstructed contact rounding / N",
+            "observed": 0.02435302734375,
+            "limit": 0.25,
+            "passed": true
+          },
+          {
+            "name": "integration impulse residual / kg m/s",
+            "observed": 5.2888754904500956e-05,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "kinetic midpoint work residual / J",
+            "observed": 0.00019681324509335154,
+            "limit": 0.001,
+            "passed": true
+          },
+          {
+            "name": "pinned seven-second record count",
+            "observed": 0,
+            "limit": 0,
+            "passed": true
+          }
+        ]
+      }
+    }
+  ],
+  "uiChecks": {
+    "frozenAuthoringControls": true,
+    "realLiveRecorder": true,
+    "uiAuthoredSourceWorkerPassed": true,
+    "impact-yield-v1SequenceAndLedger": true,
+    "impact-yield-v1ExactTickInspection": true,
+    "impact-fracture-v1SequenceAndLedger": true,
+    "impact-fracture-v1ExactTickInspection": true,
+    "stickyLossVisible": true,
+    "mobileNoOverflow": true,
+    "noBrowserErrors": true
+  },
+  "media": {
+    "imageFallbackAdvances": true,
+    "webmVisiblePixels": true,
+    "webmDecodedPixels": [
+      {
+        "time": 1,
+        "width": 960,
+        "height": 540,
+        "mean": 139.1267382893424,
+        "variance": 136.51625069293033
+      },
+      {
+        "time": 3,
+        "width": 960,
+        "height": 540,
+        "mean": 139.151496937265,
+        "variance": 306.63073109805754
+      },
+      {
+        "time": 5,
+        "width": 960,
+        "height": 540,
+        "mean": 137.91487561347097,
+        "variance": 649.7335221556024
+      }
+    ],
+    "mobileNoHorizontalOverflow": true,
+    "browserErrors": [],
+    "viewer": "Headless system Chrome; does not prove Codex in-app GPU video rendering"
+  },
+  "retention": "All native originals, failed harness logs and adversarial copies retained; no automatic cleanup",
+  "scope": "Per-step native-law conformance, not independent full-trajectory prediction or physical material calibration"
+}

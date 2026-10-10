@@ -1,6 +1,6 @@
 # Project TODO
 
-Updated: 2026-10-09. This is a planning record, not authorization to implement every item. Research, architecture evaluation and policy Q&A are complete. The [implementation specification](doc/project/design/trial-platform-implementation-spec.md) establishes review baseline 0.1; its proposed defaults/contracts need feasibility and qualification work before acceptance claims.
+Updated: 2026-10-10. This is a planning record, not authorization to implement every item. Research, architecture evaluation and policy Q&A are complete. The [implementation specification](doc/project/design/trial-platform-implementation-spec.md) establishes review baseline 0.1; its proposed defaults/contracts need feasibility and qualification work before acceptance claims.
 
 Current publication workflow: develop, integrate, commit and push on `dev`. The user manages periodic pull requests into `master`; follow [AGENTS.md](AGENTS.md) rather than the historical automatic master-merge workflow.
 
@@ -84,7 +84,9 @@ Implementation is underway in [Slice 01](doc/project/slices/slice-01.md). D003 c
 - [x] Slice 06: populated detail copies (36.95% less producer traffic), slicing-by-eight CRC (4.167× isolated throughput), cached fixture filenames and inactive detail-call skips; [delivery](doc/project/slices/slice-06.md).
 - [x] Slice 06: tested completion-based sync scheduling, explicit queue/write/durability health, writer finalizing progress, optional phase profiles and actual live/closed/loss React views.
 - [x] Slice 06: 32 retained native processes, exact dense payload preservation across four healthy variants, final required-loss recovery, unchanged fixture regressions, independent readers, image/video progression and portable review evidence. Alternate C: archives preserved alongside D: originals; cross-volume timings remain separate.
-- [ ] Qualify later collision-induced strength/removal and physical material energy interpretation. Slice 05 qualifies controlled tick-1 initialization transitions and signed storage bookkeeping; calibrated dissipation and vehicle fracture remain open.
+- [x] Slice 07: later collision-induced two-mass yield/strength/removal, recorded-input local native-law reference, 2 kHz dense/aggregate parity, observed timeline and verified inspection; [delivery](doc/project/slices/slice-07.md).
+- [x] Slice 07: three exact fresh repeats per fixture, continued required-loss capture, seven unchanged reference regressions, twenty native reader/provenance checks, semantic adversaries, actual React/native PNG/video evidence and portable raw review bundle.
+- [ ] Qualify vehicle impact fracture and physical material energy interpretation. Slice 07 qualifies pinned two-mass local law/capture agreement; calibrated dissipation, predicted trajectories and vehicle/nonlinear closure remain open.
 - [ ] Optimize detail memory/drain cost and qualify longer/separated/retriggered windows, larger scenes and barrier observation-off equivalence. Current pilot needs ~782 MiB history, ~3 GiB queue and ~1.55 GB per window; proposed overhead targets remain unmet/unqualified.
 - [ ] Later: generalized asset/configuration selection, driven journeys, flight, gusts/particulates, live 3D inspector and comparison/export.
 - [ ] Broader operational qualification: coordinator hard-crash/orphan ownership, physical storage exhaustion/holds, workload stress and alternate renderers. Slice 04 qualifies owned-worker abrupt exit/verified-prefix recovery/fresh retry and injected partial-write recovery, not physical disk-full or coordinator orphan recovery.

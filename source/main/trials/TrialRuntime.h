@@ -29,6 +29,7 @@ public:
     static Runtime& Get();
     bool Enabled() const { return m_enabled; }
     bool IsFixture() const { return m_scenario!="coast-v1" && m_scenario!="barrier-v1"; }
+    bool IsImpactFixture() const {return m_scenario=="impact-yield-v1"||m_scenario=="impact-fracture-v1";}
     bool Accounting() const { return m_accounting; }
     bool Initializing(const Actor& actor) const {return m_initializing && Matches(actor);}
     void Probe(Actor& actor);

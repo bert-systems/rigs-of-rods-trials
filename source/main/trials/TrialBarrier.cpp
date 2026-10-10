@@ -15,6 +15,7 @@ void Runtime::PrepareBarrier(Actor& a)
     // Main-thread setup after joining physics; geometry is fixed for the attempt.
     auto terrain=App::GetGameContext()->GetTerrain();
     Ogre::Vector3 forward=a.getDirection();forward.y=0;
+    if(IsImpactFixture())forward=Ogre::Vector3::UNIT_X;
     if(forward.squaredLength()<1e-8f){m_scope_violation=true;return;}
     forward.normalise();
     Ogre::Vector3 center=Ogre::Vector3::ZERO;double mass=0,front=-1e30;
@@ -23,6 +24,7 @@ void Runtime::PrepareBarrier(Actor& a)
     center/=static_cast<float>(mass);
     center+=forward*static_cast<float>(front-V(center).Dot(V(forward))+m_barrier_distance+.5);
     center.y=terrain->getHeightAt(center.x,center.z);
+    if(IsImpactFixture())center=Ogre::Vector3(514.5f,20.f,500.f);
     const float yaw=static_cast<float>(std::atan2(-forward.z,forward.x)*180/3.141592653589793);
     auto* collisions=terrain->GetCollisions();
     int feature=collisions->addCollisionBox(false,false,center,Ogre::Vector3(0,yaw,0),
@@ -50,7 +52,7 @@ void Runtime::PrepareBarrier(Actor& a)
         if(comma)models<<",";comma=true;const auto& model=item.second;
         models<<std::setprecision(17)<<"{\"id\":"<<hash<<",\"name\":\""<<item.first<<"\",\"staticFriction\":"<<model.ms<<",\"slidingFriction\":"<<model.mc<<",\"strength\":"<<model.strength<<"}";
     }models<<"]";
-    m_detail=std::make_unique<Detail>(m_root,m_detail_fault,a.ar_num_nodes,a.ar_num_beams,feature,V(center),V(forward));
+    m_detail=std::make_unique<Detail>(m_root,m_detail_fault,a.ar_num_nodes,a.ar_num_beams,feature,V(center),V(forward),IsImpactFixture());
 }
 ContactSink* Runtime::ContactObserver(Actor& a,int node)
 {

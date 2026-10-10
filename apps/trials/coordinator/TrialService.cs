@@ -26,7 +26,7 @@ public sealed class TrialService : BackgroundService
         catalog=new(archive); attempts=catalog.Load();
         foreach(var a in attempts)
         {
-            if(a.Definition.Scenario=="barrier-v1"&&a.Execution is "Completed" or "Failed" or "Cancelled")ImpactProjection.Restore(a);
+            if(Contract.HasDetail(a.Definition.Scenario)&&a.Execution is "Completed" or "Failed" or "Cancelled")ImpactProjection.Restore(a);
             if(a.Execution=="Queued") queue.Writer.TryWrite(a.Id);
             else if(a.Execution is "Starting" or "Running" or "Finalizing" or "Paused" or "Pausing" or "Resuming" or "Cancelling")
             {
@@ -36,7 +36,7 @@ public sealed class TrialService : BackgroundService
             }
         }
     }
-    public object Configuration => new { gameBin, archive, renderer, evidenceFrames, scenarios=new[]{"coast-v1","barrier-v1","freefall-v1","spring-v1","damper-v1","yield-tension-v1","yield-compression-v1","fracture-v1","protected-beam-v1"}, nativeCoverage="accounting-v2 / transition-flags-v2",
+    public object Configuration => new { gameBin, archive, renderer, evidenceFrames, scenarios=new[]{"coast-v1","barrier-v1","freefall-v1","spring-v1","damper-v1","yield-tension-v1","yield-compression-v1","fracture-v1","protected-beam-v1","impact-yield-v1","impact-fracture-v1"}, nativeCoverage="accounting-v2 / transition-flags-v2",
         retention="Manual; no automatic deletion", captureProfile="Every-step aggregates; barrier all-node/channel/beam/contact detail at 2 kHz, 2 s pre/4 s post; ~200 Hz summaries",
         unavailable=new[]{"Nonlinear storage and full model energy closure","Driven journeys","Flight/gust/particles"} };
     public object Snapshot(string? selected=null,bool compact=false)
@@ -130,12 +130,12 @@ public sealed class TrialService : BackgroundService
     }
     string? Preflight(ExperimentDefinition definition)
     {
-        if(definition.Scenario=="barrier-v1"&&WorkerResources.MemoryPreflight() is {} memory)return memory;
+        if(Contract.HasDetail(definition.Scenario)&&WorkerResources.MemoryPreflight() is {} memory)return memory;
         string exe=Path.Combine(gameBin,"RoR.exe");
         if(!File.Exists(exe)) return "Source-build RoR.exe unavailable: "+exe;
         if(!Directory.Exists(Path.Combine(gameBin,"resources")) || !Directory.Exists(Path.Combine(gameBin,"content")))
             return "Compiled runtime resources/content unavailable.";
-        long reservation=definition.Scenario=="barrier-v1"?3L*1024*1024*1024:1L*1024*1024*1024;
+        long reservation=Contract.HasDetail(definition.Scenario)?3L*1024*1024*1024:1L*1024*1024*1024;
         if(new DriveInfo(Path.GetPathRoot(archive)!).AvailableFreeSpace<10L*1024*1024*1024+reservation) return "Storage below 10 GiB floor plus declared attempt reservation; new launches held.";
         string storageProbe=Path.Combine(archive,".storage-preflight-"+Guid.NewGuid().ToString("N"));
         try{using(var probe=new FileStream(storageProbe,FileMode.CreateNew,FileAccess.Write)){probe.WriteByte(1);probe.Flush(true);}File.Delete(storageProbe);}
@@ -181,11 +181,12 @@ public sealed class TrialService : BackgroundService
         a.ExecutableSha256=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(exe)));
         if(a.ExecutableSha256!=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(source)))) throw new IOException("Copied executable hash mismatch.");
         AtomicJson(Path.Combine(dir,"manifest.json"),new {
-            schema=5,transitionFlags="1 linear parameters / 2 removed / 4 strength / 8 unsupported parameters; state changes, not calibrated fracture energy",
+            schema=6,transitionFlags="1 linear parameters / 2 removed / 4 strength / 8 unsupported parameters; state changes, not calibrated fracture energy",
             transitionFixture=Contract.TransitionFixture(a.Definition.Scenario)?new {profile="beam-transition-reference-v1",springNpm=10000,damperNspm=0,initialExtensionM=a.Definition.Scenario=="yield-compression-v1"?-.05:.05,yieldN=a.Definition.Scenario.StartsWith("yield-")?200:1e9,initialStrengthN=a.Definition.Scenario.StartsWith("yield-")?2000:200,plasticCoefficient=.25,protectedCabNode=a.Definition.Scenario=="protected-beam-v1"}:null,
+            impactFixture=Contract.ImpactFixture(a.Definition.Scenario)?new{profile="two-mass-impact-reference-v1",movingNodes=2,massPerNodeKg=100,springNpm=10000,restM=1,initialStrengthN=2000,yieldN=a.Definition.Scenario=="impact-yield-v1"?200:1e9,plasticCoefficient=.25,initialVelocityMps=5,faceXM=514,gravity=0,drag=false,queueMiB=64}:null,
             resourceEstimate=a.Definition.Scenario=="barrier-v1"?WorkerResources.DetailEstimate:null,
-            impactProfile=a.Definition.Scenario=="barrier-v1"?"whole-pilot-f32-v1 / barrier-approach-capture-v1":null,
-            requiredDetail=a.Definition.Scenario=="barrier-v1"?new{preTicks=4000,postTicks=8000,nodeBytes=256,beamBytes=112,contactBytes=104,prehistoryBudgetMiB=1024,writerQueueBudgetMiB=3072,rawReservationGiB=3,resourceProfile="daf-detail-resources-v2"}:null,
+            impactProfile=Contract.ImpactFixture(a.Definition.Scenario)?"two-mass-impact-f32-v1 / two-mass-impact-reference-v1":a.Definition.Scenario=="barrier-v1"?"whole-pilot-f32-v1 / barrier-approach-capture-v1":null,
+            requiredDetail=Contract.HasDetail(a.Definition.Scenario)?new{preTicks=4000,postTicks=8000,nodeBytes=256,beamBytes=112,contactBytes=104,prehistoryBudgetMiB=1024,writerQueueBudgetMiB=Contract.ImpactFixture(a.Definition.Scenario)?64:3072,rawReservationGiB=3,resourceProfile=Contract.ImpactFixture(a.Definition.Scenario)?"two-mass-detail-resources-v1":"daf-detail-resources-v2"}:null,
             barrierAsset=a.Definition.Scenario=="barrier-v1"?new{asset="controlled-concrete-box-v1",geometry="native fixed collision box and visible mesh; resolved transform/material in barrier.json",speedDefinition="Signed movable-node COM velocity along frozen direction at front-node crossing 0.25 m before face",speedToleranceMps=Math.Max(.1,(a.Definition.TargetImpactSpeedMps??a.Definition.LaunchSpeedMps)*.02),alignmentDegrees=1,lateralM=.25}:null,
             observerMode=a.Definition.Observation,performanceProbe=a.Definition.PerformanceProbe,observerProfiling=a.Definition.ObserverProfiling,
             recorderHealth="schema1; independently sampled queue/write/sync diagnostics; archive CRC/count gates remain authoritative",
@@ -332,7 +333,7 @@ public sealed class TrialService : BackgroundService
         var check=off?new ArchiveReader.Check(probe!.Records,probe.Closed,probe.Complete,probe.Dropped,0,0,0,probe.Problem):
             ArchiveReader.Inspect(Path.Combine(dir,"steps.rort"));
         DetailReader.Check? detail=null;
-        if(a.Definition.Scenario=="barrier-v1"){
+        if(Contract.HasDetail(a.Definition.Scenario)){
             var health=ReadJson(Path.Combine(dir,"detail-health.json"));
             long trigger=health?.GetProperty("triggerTick").GetInt64()??0,end=health?.GetProperty("requiredEndTick").GetInt64()??0;
             if(trigger==0&&File.Exists(Path.Combine(dir,"impact-events.jsonl")))foreach(string line in File.ReadLines(Path.Combine(dir,"impact-events.jsonl"))){
@@ -351,7 +352,8 @@ public sealed class TrialService : BackgroundService
             if(finalHealth is not { } health || health.GetProperty("ioError").GetBoolean() ||
                health.GetProperty("dropped").GetInt64()>0) a.Capture="Incomplete";
             a.Capture=check.Complete&&(probe==null||probe.Complete)&&a.Capture!="Incomplete"?"Complete":"Incomplete";
-            var qualification=FixtureValidation.Evaluate(Path.Combine(dir,"steps.rort"),a.Definition,check,a.Execution=="Completed"&&a.Capture=="Complete");
+            var qualification=Contract.ImpactFixture(a.Definition.Scenario)?ImpactFixtureValidation.Evaluate(Path.Combine(dir,"steps.rort"),a.Definition,check,detail,a.Execution=="Completed"&&a.Capture=="Complete"):
+                FixtureValidation.Evaluate(Path.Combine(dir,"steps.rort"),a.Definition,check,a.Execution=="Completed"&&a.Capture=="Complete");
             a.Validation=qualification.Status;
             a.Metrics=new() {["durationMet"]=durationMet,["workerWallSeconds"]=timer.Elapsed.TotalSeconds,["records"]=check.Records,["cleanClose"]=check.Closed,["dropped"]=check.Dropped,
                 ["maxMomentumUpdateResidualKgMps"]=check.MaxMomentumResidual,["maxKineticWorkResidualJ"]=check.MaxWorkResidual,
@@ -366,7 +368,9 @@ public sealed class TrialService : BackgroundService
             if(a.Definition.ObserverProfiling&&ReadJson(Path.Combine(dir,"observer-profile.json")) is {} profile)a.Metrics["observerProfile"]=profile;
             a.Metrics["qualification"]=qualification;
             if(!off&&check.Complete)a.Metrics["beamTransitions"]=TransitionReader.Read(Path.Combine(dir,"steps.rort"),check,0,20);
-            if(detail!=null){a.Metrics["impactDetail"]=detail;a.Metrics["impactQualification"]=ImpactQualification.Evaluate(a.Definition,detail,ReadJson(Path.Combine(dir,"approach.json")),a.Execution=="Completed",a.Capture=="Complete");}
+            if(Contract.ImpactFixture(a.Definition.Scenario)&&check.Complete&&detail!=null)
+                a.Metrics["impactTimeline"]=ImpactFixtureValidation.ReadTimeline(Path.Combine(dir,"steps.rort"),detail.TriggerTick);
+            if(detail!=null){a.Metrics["impactDetail"]=detail;a.Metrics["impactQualification"]=Contract.ImpactFixture(a.Definition.Scenario)?qualification:ImpactQualification.Evaluate(a.Definition,detail,ReadJson(Path.Combine(dir,"approach.json")),a.Execution=="Completed",a.Capture=="Complete");}
 
             AddEvent(a,"finished",$"{a.Execution}; capture {a.Capture}; validation {a.Validation} ({qualification.Scope}).");
             catalog.Save(a);

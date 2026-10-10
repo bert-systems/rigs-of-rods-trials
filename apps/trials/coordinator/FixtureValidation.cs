@@ -10,6 +10,7 @@ public static class FixtureValidation
     {
         const string scope="Pinned dry one-node native fixture with precise beam lengths only; excludes vehicle, contact, impact, nonlinear beams and flight";
         if(d.Observation=="off")return new("NotReady","Ledger disabled; control probe only, no force/energy qualification",[]);
+        if(Contract.ImpactFixture(d.Scenario))return new("NotReady","Two-mass impact requires independently verified dense contact/beam detail",[]);
         if(d.Scenario is "coast-v1" or "barrier-v1")return new("NotReady","Vehicle constitutive/storage and environment qualification pending",[]);
         if(!executionComplete||!capture.Complete||!d.Accounting)return new("NotReady",scope,[]);
         if(Contract.TransitionFixture(d.Scenario))return TransitionValidation.Evaluate(path,d);

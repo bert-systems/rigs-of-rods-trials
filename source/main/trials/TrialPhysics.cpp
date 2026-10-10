@@ -35,7 +35,7 @@ void Runtime::PrepareActor(Actor& actor)
     if(actor.ar_num_nodes<=0 || actor.ar_num_nodes>65536 || actor.ar_num_beams>65536){m_scope_violation=true;return;}
     l.Prepare(actor.ar_num_nodes,actor.ar_num_beams);
     l.attribution_enabled=m_accounting;
-    if(m_scenario=="barrier-v1"&&!m_detail)PrepareBarrier(actor);
+    if((m_scenario=="barrier-v1"||IsImpactFixture())&&!m_detail)PrepareBarrier(actor);
     l.detail_transitions=m_detail!=nullptr;
     for(int i=0;i<actor.ar_num_nodes;++i)
         {l.nodes[i].force[Unattributed]=V(actor.ar_nodes[i].Forces);l.nodes[i].active=1u<<Unattributed;} // honest warm-up provenance
@@ -60,20 +60,21 @@ void Runtime::InitializeFixture(Actor& actor)
 {
     if(actor.ar_num_nodes!=4 || actor.ar_num_beams<1){m_scope_violation=true;return;}
     actor.ar_origin=Ogre::Vector3(500,20,500); // preserve local-coordinate precision in the controlled fixture
-    const Ogre::Vector3 offsets[]={Ogre::Vector3(m_scenario=="yield-compression-v1"?.95f:1.05f,0,0),Ogre::Vector3(0,0,0),Ogre::Vector3(0,0,1),Ogre::Vector3(0,1,0)};
+    const Ogre::Vector3 offsets[]={Ogre::Vector3(IsImpactFixture()?1.f:m_scenario=="yield-compression-v1"?.95f:1.05f,0,0),Ogre::Vector3(0,0,0),Ogre::Vector3(0,0,1),Ogre::Vector3(0,1,0)};
     for(int i=0;i<actor.ar_num_nodes;++i)
     {
         node_t& n=actor.ar_nodes[i];
-        n.nd_immovable=i!=0;n.nd_no_ground_contact=true;
+        n.nd_immovable=IsImpactFixture()?i>1:i!=0;n.nd_no_ground_contact=!IsImpactFixture()||i>1;
         // The protected fixture isolates the real cab-node break guard without a contact surface.
         n.nd_cab_node=m_scenario=="protected-beam-v1" && i==0;
-        n.mass=i==0?100.f:1.f;n.Velocity=Ogre::Vector3::ZERO;
+        n.mass=i==0||(IsImpactFixture()&&i==1)?100.f:1.f;
+        n.Velocity=IsImpactFixture()&&i<2?Ogre::Vector3(5,0,0):Ogre::Vector3::ZERO;
         n.RelPosition=offsets[i];
         n.AbsPosition=actor.ar_origin+n.RelPosition;
         n.Forces=Ogre::Vector3(0,n.mass*static_cast<float>(m_gravity),0);
         if(actor.ar_trial_ledger.enabled)actor.ar_trial_ledger.Reset(i,V(n.Forces),!n.nd_immovable);
     }
-    actor.ar_total_mass=103.f;actor.ar_initial_total_mass=103.f;
+    actor.ar_total_mass=IsImpactFixture()?202.f:103.f;actor.ar_initial_total_mass=actor.ar_total_mass;
     actor.ar_disable_aerodyn_turbulent_drag=true;
     for(int i=0;i<actor.ar_num_beams;++i)
     {
@@ -86,6 +87,11 @@ void Runtime::InitializeFixture(Actor& actor)
         }
         if(m_scenario=="fracture-v1" || m_scenario=="protected-beam-v1"){
             b.strength=200.f;b.minmaxposnegstress=200.f;
+        }
+        if(IsImpactFixture()){
+            b.strength=2000.f;b.plastic_coef=.25f;
+            if(m_scenario=="impact-yield-v1") {b.maxposstress=200.f;b.maxnegstress=-200.f;}
+            b.minmaxposnegstress=std::min(b.maxposstress,std::min(-b.maxnegstress,b.strength));
         }
     }
     if(actor.ar_engine){actor.ar_engine->stopEngine();actor.ar_engine->setGear(0);}

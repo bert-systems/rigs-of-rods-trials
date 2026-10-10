@@ -41,6 +41,8 @@ public sealed class Attempt
 }
 public static class Contract
 {
+    public static bool ImpactFixture(string scenario)=>scenario is "impact-yield-v1" or "impact-fracture-v1";
+    public static bool HasDetail(string scenario)=>scenario=="barrier-v1"||ImpactFixture(scenario);
     public static bool TransitionFixture(string scenario)=>scenario is "yield-tension-v1" or "yield-compression-v1" or "fracture-v1" or "protected-beam-v1";
     public static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web) { WriteIndented = false };
     public static List<string> Validate(ExperimentDefinition d)
@@ -51,19 +53,22 @@ public static class Contract
         if(d.ObserverProfiling&&(d.Observation!="full"||!d.PerformanceProbe))errors.Add("Diagnostic observer profiling requires full observation and the performance probe.");
         if (string.IsNullOrWhiteSpace(d.Name) || d.Name.Length > 120) errors.Add("Name must contain 1–120 characters.");
         bool transition=TransitionFixture(d.Scenario);
-        bool fixture=transition||d.Scenario is "freefall-v1" or "spring-v1" or "damper-v1";
+        bool impact=ImpactFixture(d.Scenario);
+        bool fixture=impact||transition||d.Scenario is "freefall-v1" or "spring-v1" or "damper-v1";
         bool barrier=d.Scenario=="barrier-v1";
         if ((!fixture && !barrier && d.Scenario!="coast-v1") || d.Terrain!="simple2.terrn2" ||
             d.Vehicle!=(fixture?"ror-"+d.Scenario+".truck":"b6b0UID-semi.truck"))
             errors.Add("Choose a pinned coast or analytical fixture scenario/asset pair.");
         if (!double.IsFinite(d.LaunchSpeedMps) || d.LaunchSpeedMps < 0 || d.LaunchSpeedMps > 20) errors.Add("Launch speed must be 0–20 m/s.");
-        if (!double.IsFinite(d.DurationSeconds) || d.DurationSeconds < (fixture?.1:1) || d.DurationSeconds > (fixture?5:120)) errors.Add("Duration outside scenario range (fixture 0.1–5 s; coast 1–120 s).");
+        if (!double.IsFinite(d.DurationSeconds) || d.DurationSeconds < (fixture?.1:1) || d.DurationSeconds > (impact?7:fixture?5:120)) errors.Add("Duration outside scenario range.");
         if (!double.IsFinite(d.SettleSeconds) || (fixture ? d.SettleSeconds!=0 : d.SettleSeconds<2||d.SettleSeconds>30)) errors.Add("Fixtures require zero settling; coast requires 2–30 s.");
-        if(fixture && d.LaunchSpeedMps!=0)errors.Add("Fixtures use the pinned initial state, with zero release speed.");
+        if(fixture&&!impact&&d.LaunchSpeedMps!=0)errors.Add("Dry fixtures use the pinned initial state, with zero release speed.");
+        if(impact&&(d.LaunchSpeedMps!=5||d.DurationSeconds!=7||d.BarrierDistanceM!=13||d.Observation!="full"||!d.Accounting))
+            errors.Add("Two-mass impact fixtures require 5 m/s, 7 s, a 13 m barrier distance and full accounting/detail.");
         if(transition&&d.DurationSeconds>1)errors.Add("Transition fixtures use a 0.1–1 s qualification window.");
         if (d.Repeats < 1 || d.Repeats > 20) errors.Add("Repeats must be 1–20.");
         if(d.DetailFault is not ("none" or "queue-overflow" or "storage-error" or "short-history"))errors.Add("Unknown detail fault qualification profile.");
-        if(!barrier&&d.DetailFault!="none")errors.Add("Detail fault profiles require the controlled barrier scenario.");
+        if(!HasDetail(d.Scenario)&&d.DetailFault!="none")errors.Add("Detail fault profiles require a controlled impact scenario.");
         if(barrier){
             if(d.Observation!="full"||!d.Accounting)errors.Add("Barrier detail requires full force accounting.");
             if(!double.IsFinite(d.BarrierDistanceM)||d.BarrierDistanceM<1||d.BarrierDistanceM>100)errors.Add("Barrier distance must be 1–100 m from the initial front.");
@@ -72,7 +77,7 @@ public static class Contract
             if(d.DurationSeconds<6)errors.Add("Barrier duration must be at least 6 s; pre/post coverage is verified from actual trigger ticks.");
         }
         var e = d.Environment ?? new();
-        if (!double.IsFinite(e.Gravity) || e.Gravity < -30 || (transition||d.Scenario is "spring-v1" or "damper-v1" ? e.Gravity!=0 : e.Gravity>=0))
+        if (!double.IsFinite(e.Gravity) || e.Gravity < -30 || (impact||transition||d.Scenario is "spring-v1" or "damper-v1" ? e.Gravity!=0 : e.Gravity>=0))
             errors.Add("Coast/freefall require negative gravity; spring/damper require zero gravity.");
         if(fixture && (e.WindX!=0 || e.WindY!=0 || e.WindZ!=0))errors.Add("Analytical dry fixtures require zero wind (drag disabled).");
         if (!double.IsFinite(e.TemperatureK) || e.TemperatureK < 180 || e.TemperatureK > 350) errors.Add("Dry-air temperature must be 180–350 K.");

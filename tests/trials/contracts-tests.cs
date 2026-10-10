@@ -156,16 +156,29 @@ bool invalidCapture=false;try{TransitionReader.Read(strengthPath,strengthCheck w
 Check(invalidCapture,"incomplete aggregate cannot serve verified transition view");
 Console.WriteLine("PASS: transition fixtures, strength-only zero storage ports, bounded pages and quality gate");
 
+var laterImpact=new ExperimentDefinition("later collision",5,7,0,Environment:new(Gravity:0),Vehicle:"ror-impact-yield-v1.truck",Scenario:"impact-yield-v1",BarrierDistanceM:13);
+Check(Contract.Validate(laterImpact).Count==0,"pinned later collision fixture");
+foreach(var invalid in new[]{laterImpact with {DurationSeconds=5},laterImpact with {LaunchSpeedMps=0},laterImpact with {BarrierDistanceM=12},
+    laterImpact with {Environment=new(Gravity:-9.81)},laterImpact with {Observation="off",PerformanceProbe=true},laterImpact with {Accounting=false}})
+    Check(Contract.Validate(invalid).Count>0,"later impact cannot silently change frozen state/capture");
+Check(ImpactFixtureValidation.Evaluate(strengthPath,laterImpact,strengthCheck,null,true).Status=="NotReady","aggregate alone cannot certify later collision science");
+Check(Contract.HasDetail("impact-fracture-v1")&&!Contract.TransitionFixture("impact-fracture-v1"),"later impact is distinct from tick-1 fixture");
+Console.WriteLine("PASS: pinned later-collision contracts and mandatory dense qualification gate");
+
 
 if(args.Length>1){
  var inspected=new List<object>();
- foreach(var path in Directory.GetFiles(Path.GetFullPath(args[1]),"probe.rort",SearchOption.AllDirectories)){
-  var check=ProbeReader.Inspect(path);Check(check.Complete&&check.Closed,"retained native probe reinspection: "+path);
+ var impactCorruptionChecked=new HashSet<string>();
+ foreach(var nativeDir in Directory.GetFiles(Path.GetFullPath(args[1]),"manifest.json",SearchOption.AllDirectories).Select(Path.GetDirectoryName).Distinct().Where(d=>File.Exists(Path.Combine(d!,"steps.rort"))||File.Exists(Path.Combine(d!,"probe.rort")))){
+  string path=Path.Combine(nativeDir!,"probe.rort");
+  var check=File.Exists(path)?ProbeReader.Inspect(path):null;
+  Check(check==null||check.Complete&&check.Closed,"retained native probe reinspection: "+path);
   string aggregate=Path.Combine(Path.GetDirectoryName(path)!,"steps.rort");
   if(File.Exists(aggregate))Check(ArchiveReader.Inspect(aggregate).Complete,"retained native aggregate reinspection: "+aggregate);
   string manifest=Path.Combine(Path.GetDirectoryName(path)!,"manifest.json");
   using var m=System.Text.Json.JsonDocument.Parse(File.ReadAllText(manifest));
   var definition=System.Text.Json.JsonSerializer.Deserialize<ExperimentDefinition>(m.RootElement.GetProperty("definition").GetRawText(),Contract.Json)!;
+  Check(check!=null||!definition.PerformanceProbe,"required native probe is present");
   if(Contract.TransitionFixture(definition.Scenario)){
    var original=ArchiveReader.Inspect(aggregate);
    Check(FixtureValidation.Evaluate(aggregate,definition,original,true).Status=="Passed","final independent native transition reference: "+aggregate);
@@ -180,6 +193,42 @@ if(args.Length>1){
     string forgedPath=Path.Combine(dir,definition.Scenario+"-"+mutation+".rort");File.WriteAllBytes(forgedPath,forged);
     var forgedCheck=ArchiveReader.Inspect(forgedPath);Check(forgedCheck.Complete,"forged reference retains valid capture CRC");
     Check(FixtureValidation.Evaluate(forgedPath,definition,forgedCheck,true).Status=="Failed","CRC-valid wrong "+mutation+" cannot earn scientific Passed");
+   }
+  }
+  if(Contract.ImpactFixture(definition.Scenario)){
+   string detailFile=Path.Combine(Path.GetDirectoryName(path)!,"detail.rort");
+   using var h=System.Text.Json.JsonDocument.Parse(File.ReadAllText(Path.Combine(Path.GetDirectoryName(path)!,"detail-health.json")));
+   long trigger=h.RootElement.GetProperty("triggerTick").GetInt64(),end=h.RootElement.GetProperty("requiredEndTick").GetInt64();
+   var dense=DetailReader.Inspect(detailFile,trigger,end);var ledger=ArchiveReader.Inspect(aggregate);
+   string expected=definition.DetailFault=="none"?"Passed":"NotReady";
+   Check(ImpactFixtureValidation.Evaluate(aggregate,definition,ledger,dense,true).Status==expected,"final later impact reference: "+path);
+   if(dense.Complete&&impactCorruptionChecked.Add(definition.Scenario))foreach(string mutation in new[]{"kind","port","epoch","contact","velocity","strength"}){
+    string caseDir=Path.Combine(dir,definition.Scenario+"-"+mutation);Directory.CreateDirectory(caseDir);
+    string mutatedAggregate=Path.Combine(caseDir,"steps.rort"),mutatedDetail=Path.Combine(caseDir,"detail.rort");
+    File.Copy(aggregate,mutatedAggregate);File.Copy(detailFile,mutatedDetail);
+    bool denseMutation=mutation is "contact" or "velocity" or "strength";
+    string target=denseMutation?mutatedDetail:mutatedAggregate;var forged=File.ReadAllBytes(target);int position=denseMutation?32:16;bool changed=false;
+    while(position<forged.Length&&Encoding.ASCII.GetString(forged,position,4)=="DATA"){
+     int count=BitConverter.ToInt32(forged,position+4),size=BitConverter.ToInt32(forged,position+8),start=position+16;
+     for(int i=0;i<count&&!changed;++i){int at=start+(denseMutation?0:i*2080);long tick=BitConverter.ToInt64(forged,at);
+      if(mutation=="epoch"){BitConverter.GetBytes(1ul).CopyTo(forged,at+1352);changed=true;}
+      if(mutation is "kind" or "port"&&BitConverter.ToUInt32(forged,at+1368)>0){
+       if(mutation=="kind")BitConverter.GetBytes(0u).CopyTo(forged,at+1380);else BitConverter.GetBytes(50.0).CopyTo(forged,at+1232);changed=true;
+      }
+      if(denseMutation&&tick==trigger){
+       if(mutation=="contact")BitConverter.GetBytes(1f).CopyTo(forged,at+128+4*256+3*112+28);
+       if(mutation=="velocity")BitConverter.GetBytes(12f).CopyTo(forged,at+128+40);
+       if(mutation=="strength")BitConverter.GetBytes(123f).CopyTo(forged,at+128+4*256+36);
+       changed=true;
+      }
+     }
+     if(changed){BitConverter.GetBytes(ArchiveReader.Crc(forged.AsSpan(start,size).ToArray())).CopyTo(forged,position+12);break;}
+     position+=size+20;
+    }
+    Check(changed,"semantic mutation selected a real record");File.WriteAllBytes(target,forged);
+    var fakeLedger=ArchiveReader.Inspect(mutatedAggregate);var fakeDense=DetailReader.Inspect(mutatedDetail,trigger,end);
+    Check(fakeLedger.Complete&&fakeDense.Complete,"semantic adversary retains both valid byte captures: "+mutation);
+    Check(ImpactFixtureValidation.Evaluate(mutatedAggregate,definition,fakeLedger,fakeDense,true).Status=="Failed","CRC-valid later impact "+mutation+" cannot pass science");
    }
   }
   inspected.Add(new{path,check});

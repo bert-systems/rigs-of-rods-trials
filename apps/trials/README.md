@@ -1,6 +1,8 @@
-# Local trial workbench — through Slice 04
+# Local trial workbench — through Slice 07
 
 React 19.3 and ASP.NET Core/.NET 10 run a serial queue of fresh source-built RoR workers. Each attempt has an immutable configuration, private copied runtime/profile, native binary capture, SQLite catalog and separately reported execution/capture/scientific-validation states.
+
+Latest: [later collision fixtures](impact-fixture-format.md) and [Slice 07 evidence](../../doc/project/slices/slice-07.md). Choose the pinned two-mass yield/strength or removal scenario for later native transitions. The workbench shows observed chronology, verified ledger and exact tick inspection. Its scoped reference uses recorded inputs; real vehicle/material energy calibration remains open. See the contract for frozen settings, small-profile memory and reproduction commands. UI checks author fresh native attempts and require unique names. Keep all originals on the selected durable volume.
 
 This first slice supports Daf Semi (`b6b0UID-semi.truck`), Simple Test Terrain (`simple2.terrn2`), settling followed by initialized rolling motion and a propulsion-free coast. It records consumed forces, ground/object-contact force deltas, movable-node momentum, kinetic energy and kinetic-work integration residuals. Vehicle attempts remain scientific NotReady; pinned dry analytical fixtures now have scoped acceptance.
 
