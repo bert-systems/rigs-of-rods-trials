@@ -44,6 +44,8 @@ public:
     ContactSink* ContactObserver(Actor& actor,int node);
     void DetailBeamObserved(Actor& actor,int beam,Vec first,Vec second,Vec elastic,Vec damping);
     void DetailNodeObserved(Actor& actor,int node,Vec beforeVelocity,Vec force);
+    bool Profiling() const {return m_profile;}
+    void Profile(unsigned phase,std::chrono::steady_clock::time_point start);
     bool Released() const { return m_released; }
     std::uint64_t Tick() const { return m_tick; }
     void BeginStep(Actor& actor);
@@ -58,9 +60,16 @@ private:
     ~Runtime();
     void Writer();
     void Event(const std::string& name, std::uint64_t sequence=0);
+    std::string Recorders() const;
+    void WriteProfile();
     bool m_enabled = false, m_released = false, m_closed = false;
-    std::string m_root,m_scenario="coast-v1";
-    bool m_accounting=true,m_observe=true,m_probe=false,m_initializing=false;
+    std::string m_root,m_scenario="coast-v1",m_vehicle;
+    bool m_accounting=true,m_observe=true,m_probe=false,m_initializing=false,m_profile=false;
+    std::array<double,5> m_profile_sum{},m_profile_max{};
+    std::uint64_t m_profile_steps=0;
+    double m_profile_total=0;
+    std::chrono::steady_clock::time_point m_solver_started;
+    RecorderHealth m_aggregate_health,m_probe_health;
     std::vector<ProbeRecord> m_probe_queue;
     std::atomic<std::uint64_t> m_probe_head{0},m_probe_tail{0},m_probe_dropped{0},m_probe_written{0};
     std::atomic<bool> m_probe_error{false};

@@ -80,6 +80,7 @@ Runtime::Runtime()
     if(doc.HasMember("scenario")&&doc["scenario"].IsString())m_scenario=doc["scenario"].GetString();
     if(m_scenario!="barrier-v1"&&m_scenario!="coast-v1"&&m_scenario!="freefall-v1"&&m_scenario!="spring-v1"&&m_scenario!="damper-v1"&&
        m_scenario!="yield-tension-v1"&&m_scenario!="yield-compression-v1"&&m_scenario!="fracture-v1"&&m_scenario!="protected-beam-v1")return;
+    m_vehicle=IsFixture()?"ror-"+m_scenario+".truck":"b6b0UID-semi.truck";
     m_accounting=!doc.HasMember("accounting")||!doc["accounting"].IsBool()||doc["accounting"].GetBool();
     if(doc.HasMember("observation")&&doc["observation"].IsString()){
         const std::string mode=doc["observation"].GetString();
@@ -87,6 +88,8 @@ Runtime::Runtime()
         m_observe=mode!="off";
     }
     m_probe=doc.HasMember("performanceProbe")&&doc["performanceProbe"].IsBool()&&doc["performanceProbe"].GetBool();
+    m_profile=doc.HasMember("observerProfiling")&&doc["observerProfiling"].IsBool()&&doc["observerProfiling"].GetBool();
+    if(m_profile&&(!m_probe||!m_observe))return;
     if(doc.HasMember("detailFault")&&doc["detailFault"].IsString())m_detail_fault=doc["detailFault"].GetString();
     m_barrier_distance=number("barrierDistanceM",0);
     if(m_scenario=="barrier-v1"&&(!m_observe||!m_accounting||m_barrier_distance<1||m_barrier_distance>100))return;
@@ -105,7 +108,7 @@ Runtime::Runtime()
     std::ofstream hello(m_root+"/handshake.json");
     hello<<"{\"schema\":1,\"observer\":\"accounting-v2\",\"capture\":\"crc32-binary-v2\","
           "\"coverage\":\"phase/node channels; linear storage subset; explicit unclosed terms\","
-          "\"observation\":\""<<(m_observe?"full":"off")<<"\",\"performanceProbe\":"<<(m_probe?"true":"false")<<",\"cohort\":\"movable nodes\",\"dt\":"<<std::setprecision(17)<<static_cast<double>(PHYSICS_DT)<<"}\n";
+          "\"observation\":\""<<(m_observe?"full":"off")<<"\",\"performanceProbe\":"<<(m_probe?"true":"false")<<",\"observerProfiling\":"<<(m_profile?"true":"false")<<",\"cohort\":\"movable nodes\",\"dt\":"<<std::setprecision(17)<<static_cast<double>(PHYSICS_DT)<<"}\n";
     hello.close();
     if(m_observe)m_writer=std::thread(&Runtime::Writer,this);
     if(m_probe)m_probe_writer=std::thread(&Runtime::ProbeWriter,this);
@@ -119,6 +122,8 @@ void Runtime::Stop()
     if(m_writer.joinable()) m_writer.join();
     if(m_probe_writer.joinable())m_probe_writer.join();
     if(m_detail)m_detail->Stop();
+    std::ofstream recorder(m_root+"/recorder-health.json");recorder<<Recorders()<<"\n";
+    if(m_profile)WriteProfile();
     if(!m_observe){
         std::ofstream health(m_root+"/capture-health.json");
         health<<std::setprecision(17)<<"{\"tick\":"<<m_tick<<",\"timeSeconds\":"<<m_tick*static_cast<double>(PHYSICS_DT)
@@ -126,6 +131,31 @@ void Runtime::Stop()
             <<",\"enqueued\":"<<m_probe_head.load()<<",\"durable\":"<<m_probe_written.load()<<",\"dropped\":"<<m_probe_dropped.load()
             <<",\"ioError\":"<<(m_probe_error.load()?"true":"false")<<",\"closed\":true}\n";
     }
+}
+std::string Runtime::Recorders() const
+{
+    std::ostringstream out;out<<"{\"schema\":1,\"aggregate\":";
+    const auto tail=m_tail.load(),head=m_head.load();
+    if(m_observe)out<<m_aggregate_health.Json(head,tail,m_written.load(),m_queue.size(),RecordBytes,m_dropped.load(),m_io_error.load());else out<<"null";
+    const auto probeTail=m_probe_tail.load(),probeHead=m_probe_head.load();
+    out<<",\"probe\":";
+    if(m_probe)out<<m_probe_health.Json(probeHead,probeTail,m_probe_written.load(),m_probe_queue.size(),128,m_probe_dropped.load(),m_probe_error.load());else out<<"null";
+    out<<",\"detail\":"<<(m_detail?m_detail->Health():"null")<<"}";return out.str();
+}
+void Runtime::Profile(unsigned phase,std::chrono::steady_clock::time_point start)
+{
+    if(!m_profile)return;
+    const auto us=std::chrono::duration<double,std::micro>(std::chrono::steady_clock::now()-start).count();
+    m_profile_sum[phase]+=us;m_profile_max[phase]=std::max(m_profile_max[phase],us);
+}
+void Runtime::WriteProfile()
+{
+    std::ofstream out(m_root+"/observer-profile.json");
+    out<<std::setprecision(17)<<"{\"schema\":1,\"steps\":"<<m_profile_steps<<",\"totalStepWallUs\":"<<m_profile_total
+        <<",\"scope\":\"Opt-in diagnostic clock overhead included; solver/attribution phase includes native job waits. Not a budget benchmark.\",\"phases\":[";
+    const char* names[]={"energyBefore","detailBefore","solverAndAttribution","energyAfterAndDetail","ledgerFinalizeAndQueue"};
+    for(unsigned i=0;i<5;++i){if(i)out<<",";out<<"{\"name\":\""<<names[i]<<"\",\"sumWallUs\":"<<m_profile_sum[i]<<",\"maxWallUs\":"<<m_profile_max[i]<<"}";}
+    out<<"]}\n";
 }
 void Runtime::Event(const std::string& name,std::uint64_t sequence)
 {
@@ -164,7 +194,7 @@ void Runtime::Poll(ActorManager& manager)
         <<",\"durable\":"<<(m_observe?m_written.load():m_probe_written.load())<<",\"dropped\":"<<(m_observe?m_dropped.load():m_probe_dropped.load())
         <<",\"detailTriggerTick\":"<<(m_detail?m_detail->Trigger():0)<<",\"detailDurable\":"<<(m_detail?m_detail->Durable():0)
         <<",\"detailDropped\":"<<(m_detail?m_detail->Dropped():0)<<",\"detailIoError\":"<<(m_detail&&m_detail->Error()?"true":"false")
-        <<",\"ioError\":"<<((m_io_error.load()||m_probe_error.load())?"true":"false")<<"}\n";
+        <<",\"ioError\":"<<((m_io_error.load()||m_probe_error.load())?"true":"false")<<",\"recorders\":"<<Recorders()<<"}\n";
     // Wall time is owned by the coordinator. This native completion uses physics ticks.
     if(m_released && m_tick*static_cast<double>(PHYSICS_DT)>=m_settle+m_duration)
         App::GetGameContext()->PushMessage(Message(MSG_APP_SHUTDOWN_REQUESTED));
@@ -233,27 +263,37 @@ void Runtime::BeginStep(Actor& actor)
     if(!m_observe)return;
     ledger.Begin(m_tick,static_cast<std::uint32_t>(actor.ar_instance_id),m_released?1:0,PHYSICS_DT);
     ledger.record.injection_kinetic=injection;ledger.record.injection_impulse=injected_p;
-    Energy(actor,true);
-    if(m_detail)m_detail->Begin(actor,m_tick,m_released);
+    auto profileStart=m_profile?std::chrono::steady_clock::now():std::chrono::steady_clock::time_point{};
+    Energy(actor,true);if(m_profile)Profile(0,profileStart);
+    if(m_detail){profileStart=m_profile?std::chrono::steady_clock::now():std::chrono::steady_clock::time_point{};
+        m_detail->Begin(actor,m_tick,m_released);if(m_profile)Profile(1,profileStart);}
     if(!m_accounting)ledger.record.flags|=4;
     if(m_scope_violation.load()) ledger.record.flags |= 1; // unsupported additional pilot actor
     if(!was_released && m_released) {
         ledger.record.flags |= 2; // initialization port boundary
 
     }
+    if(m_profile)m_solver_started=std::chrono::steady_clock::now();
 }
 void Runtime::FinishStep(Actor& actor)
 {
     if(!m_enabled || m_closed || !Matches(actor) || m_pilot_actor.load()!=actor.ar_instance_id)return;
     if(actor.ar_trial_ledger.enabled){
+    if(m_profile)Profile(2,m_solver_started);
+    auto profileStart=m_profile?std::chrono::steady_clock::now():std::chrono::steady_clock::time_point{};
     Energy(actor,false);
     if(m_detail)m_detail->Finish(actor);
+    if(m_profile)Profile(3,profileStart);
     actor.ar_trial_ledger.record.physics_cpu_us=std::chrono::duration<double,std::micro>(std::chrono::steady_clock::now()-m_step_started).count();
+    profileStart=m_profile?std::chrono::steady_clock::now():std::chrono::steady_clock::time_point{};
     Record record=actor.ar_trial_ledger.Finish();
     record.gravity=m_gravity; record.density=m_density; record.wind=m_wind;
     const auto head=m_head.load(std::memory_order_relaxed);
     if(head-m_tail.load(std::memory_order_acquire)>=m_queue.size()) { ++m_dropped; }
-    else {m_queue[head % m_queue.size()]=record;m_head.store(head+1,std::memory_order_release);}
+    else {const auto tail=m_tail.load(std::memory_order_acquire);m_queue[head % m_queue.size()]=record;
+        m_aggregate_health.Admit(head+1-tail,RecordBytes);m_head.store(head+1,std::memory_order_release);}
+    if(m_profile){Profile(4,profileStart);++m_profile_steps;
+        m_profile_total+=std::chrono::duration<double,std::micro>(std::chrono::steady_clock::now()-m_step_started).count();}
     }
     if(m_probe)Probe(actor);
 }
@@ -264,19 +304,24 @@ void Runtime::Writer()
 #else
     FILE* file=std::fopen((m_root+"/steps.rort").c_str(),"wb");
 #endif
-    if(!file) { m_io_error=true; return; }
+    if(!file) { m_io_error=true;m_aggregate_health.closed=true;return; }
+    auto sync=[&](){const auto start=std::chrono::steady_clock::now();const bool ok=Sync(file);
+        m_aggregate_health.Synced(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-start).count());return ok;};
+    auto progress=[&](){const auto tail=m_tail.load(),head=m_head.load();std::ofstream out(m_root+"/aggregate-progress.json");
+        out<<m_aggregate_health.Json(head,tail,m_written.load(),m_queue.size(),RecordBytes,m_dropped.load(),m_io_error.load())<<"\n";};
     std::vector<unsigned char> header; U32(header,2); U32(header,RecordBytes);
     std::fwrite("RORTRIAL",1,8,file); std::fwrite(header.data(),1,header.size(),file);
-    if(!Sync(file)) m_io_error=true;
+    if(!sync()) m_io_error=true;
     std::ofstream summaries(m_root+"/summaries.jsonl");
     std::ofstream transitions(m_root+"/beam-transitions.jsonl");
     std::vector<unsigned char> bytes; bytes.reserve(128*RecordBytes);
     std::uint64_t pending_durable=0;
-    auto last_sync=std::chrono::steady_clock::now();
+    SyncSchedule syncSchedule;
     double window_peak=0;
     while(!m_stop.load(std::memory_order_acquire) || m_tail.load()<m_head.load())
     {
         bytes.clear();
+        const auto encodeStart=std::chrono::steady_clock::now();
         auto tail=m_tail.load(std::memory_order_relaxed);
         auto head=m_head.load(std::memory_order_acquire);
         const auto count=std::min<std::uint64_t>(128,head-tail);
@@ -327,27 +372,33 @@ void Runtime::Writer()
         {
             std::vector<unsigned char> block; U32(block,static_cast<std::uint32_t>(count));
             U32(block,static_cast<std::uint32_t>(bytes.size())); U32(block,Crc32(bytes.data(),bytes.size()));
+            m_aggregate_health.encode_ns+=std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-encodeStart).count();
+            const auto writeStart=std::chrono::steady_clock::now();
             bool ok=std::fwrite("DATA",1,4,file)==4 && std::fwrite(block.data(),1,block.size(),file)==block.size()
                 && std::fwrite(bytes.data(),1,bytes.size(),file)==bytes.size() && std::fwrite("DONE",1,4,file)==4;
-            if(!ok) m_io_error=true; else pending_durable+=count;
+            m_aggregate_health.write_ns+=std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-writeStart).count();
+            if(!ok) m_io_error=true; else {pending_durable+=count;m_aggregate_health.written+=count;m_aggregate_health.bytes+=bytes.size()+20;}
             const auto now=std::chrono::steady_clock::now();
-            if(now-last_sync>=std::chrono::milliseconds(250) || m_stop.load())
+            if(syncSchedule.Due(now) || m_stop.load())
             {
-                if(Sync(file)) { m_written+=pending_durable; pending_durable=0; }
+                if(sync()) { m_written+=pending_durable; pending_durable=0; }
                 else m_io_error=true;
-                last_sync=now;
+                syncSchedule.Completed(std::chrono::steady_clock::now());
+                progress();
             }
             summaries.flush(); transitions.flush(); if(!summaries||!transitions) m_io_error=true;
             m_tail.store(tail+count,std::memory_order_release);
         }
         else std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
-    if(Sync(file)) m_written+=pending_durable; else m_io_error=true;
+    if(sync()) m_written+=pending_durable; else m_io_error=true;
     std::vector<unsigned char> footer;
     U64(footer,m_written.load()); U64(footer,m_dropped.load()); U32(footer,m_io_error.load()?1:0);
     if(std::fwrite("END!",1,4,file)!=4 || std::fwrite(footer.data(),1,footer.size(),file)!=footer.size()) m_io_error=true;
-    if(!Sync(file)) m_io_error=true;
+    if(!sync()) m_io_error=true;
     if(std::fclose(file)!=0) m_io_error=true;
+    m_aggregate_health.closed=true;
+    progress();
     std::ofstream health(m_root+"/capture-health.json");
     health<<std::setprecision(17)<<"{\"tick\":"<<m_tick<<",\"timeSeconds\":"<<m_tick*static_cast<double>(PHYSICS_DT)<<",\"released\":"<<(m_released?"true":"false")<<",\"produced\":"<<(m_head.load()+m_dropped.load())<<",\"enqueued\":"<<m_head.load()
           <<",\"durable\":"<<m_written.load()<<",\"dropped\":"<<m_dropped.load()

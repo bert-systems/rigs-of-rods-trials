@@ -3,7 +3,7 @@ import {createRoot} from 'react-dom/client';
 import './style.css';
 
 const initial={name:'Daf controlled barrier impact',launchSpeedMps:6.2,durationSeconds:9,settleSeconds:3,repeats:1,
- scenario:'barrier-v1',barrierDistanceM:12,targetImpactSpeedMps:5,detailFault:'none',vehicle:'b6b0UID-semi.truck',terrain:'simple2.terrn2',accounting:true,observation:'full',performanceProbe:false,
+ scenario:'barrier-v1',barrierDistanceM:12,targetImpactSpeedMps:5,detailFault:'none',vehicle:'b6b0UID-semi.truck',terrain:'simple2.terrn2',accounting:true,observation:'full',performanceProbe:false,observerProfiling:false,
  environment:{gravity:-9.81,temperatureK:288.15,density:1.225,windX:0,windY:0,windZ:0}};
 const norm=v=>v?Math.hypot(...v):0;
 const fmt=(n,d=2)=>Number.isFinite(n)?n.toLocaleString(undefined,{maximumFractionDigits:d}):'—';
@@ -75,6 +75,28 @@ function TransitionView({attempt}){
  <div className="controls"><button disabled={busy||page.offset===0} onClick={()=>load(Math.max(0,page.offset-20))}>Previous transitions</button><span>{page.offset+page.events.length} of {page.total}</span><button disabled={busy||page.offset+page.events.length>=page.total} onClick={()=>load(page.offset+20)}>Next transitions</button></div>
  </section>;
 }
+function RecorderView({attempt}){
+ const health=attempt.recorderHealth;
+ const streams=health?['aggregate','probe','detail'].filter(k=>health[k]).map(k=>[k,health[k]]):[];
+ const busy=attempt.execution==='Finalizing',lost=attempt.capture==='Incomplete'||streams.some(([,s])=>s.dropped>0||s.ioError);
+ return <section className="accounting recorder-panel"><div className="section-title"><h3>Recorder health</h3><span>{lost?'REQUIRED LOSS':busy?'DRAINING':streams.length&&streams.every(([,s])=>s.closed)?'WRITERS CLOSED':'LIVE COUNTERS'}</span></div>
+ {busy&&<p className="drain-note">Physics finished. Waiting for archive writers and verification. {lost?'Required loss remains incomplete.':'Capture is still being finalized.'}</p>}
+ {streams.length===0?<p>Recorder diagnostics are unavailable for this attempt.</p>:<>
+ <p>Queue pressure shows admitted frames waiting for the recorder. Detail includes prehistory and frames outside the selected impact window. Written frames await sync; durable frames have completed file synchronization. Final CRC and coverage checks determine capture quality.</p>
+ {lost&&<div className="warning">Required loss is sticky. Later frames continue recording; scientific acceptance cannot pass.</div>}
+ <div className="recorder-streams">{streams.map(([name,s])=>{
+  const pressure=s.capacity?s.queued/s.capacity:0;
+  return <div className="recorder-stream" key={name} data-stream={name}><div className="section-title"><h4>{name==='aggregate'?'Aggregate ledger':name==='probe'?'Control probe':'Detailed impact'}</h4><span>{s.closed?'CLOSED':s.ioError?'I/O ERROR':'RECORDING'}</span></div>
+   <label>Queue {fmt(s.queued,0)} / {fmt(s.capacity,0)} frames · {fmt(pressure*100,1)}%<progress max="1" value={Math.min(1,pressure)} aria-label={name+' queue pressure'}/></label>
+   {pressure>=.8&&<p className="pressure-note">Queue exceeds 80% capacity. Recording continues at the configured rate.</p>}
+   <div className="recorder-values"><div>Queue high-water<strong>{fmt(s.highWater,0)} frames</strong></div><div>Reserved queue<strong>{fmt(s.reservedQueueBytes/2**20,1)} MiB</strong></div>
+   <div>Written / durable<strong>{fmt(s.written,0)} / {fmt(s.durable,0)}</strong></div><div>Pending sync<strong>{fmt(s.pendingSync,0)} frames</strong></div>
+   <div>Committed frame bytes<strong>{fmt(s.archiveBytes/2**20,1)} MiB</strong></div><div>Required loss / I/O<strong className={s.dropped||s.ioError?'bad':''}>{fmt(s.dropped,0)} / {s.ioError?'Error':'Healthy'}</strong></div></div>
+  </div>;
+ })}</div></>}
+ {attempt.metrics?.observerProfile&&<><h4>Diagnostic observer phases</h4><p>Opt-in clock overhead is included. These diagnostic timings are excluded from the performance budget comparisons.</p><div className="recorder-values">{attempt.metrics.observerProfile.phases.map(p=><div key={p.name}>{p.name}<strong>{fmt(p.sumWallUs/attempt.metrics.observerProfile.steps,2)} µs / step</strong></div>)}</div></>}
+ </section>;
+}
 function App(){
  const [data,setData]=useState(null),[form,setForm]=useState(initial),[selected,setSelected]=useState(null);
  const [error,setError]=useState(''),[live,setLive]=useState(false),[sending,setSending]=useState(false),[tab,setTab]=useState('Trials');
@@ -130,9 +152,10 @@ function App(){
  <option value="barrier-v1">Daf controlled barrier · 2 kHz detail</option><option value="coast-v1">Daf rolling coast · study</option><option value="freefall-v1">Free fall · dry fixture</option>
  <option value="spring-v1">Linear spring · dry fixture</option><option value="damper-v1">Spring + damper · dry fixture</option>
  <option value="yield-tension-v1">Tensile yield + strength · fixture</option><option value="yield-compression-v1">Compressive yield · fixture</option><option value="fracture-v1">Beam removal · fixture</option><option value="protected-beam-v1">Protected beam strength · fixture</option></select></label>
- <label>Observation profile<select value={form.observation==='off'?'off':form.accounting?'full':'basic'} onChange={e=>setForm(f=>({...f,observation:e.target.value==='off'?'off':'full',accounting:e.target.value==='full',performanceProbe:e.target.value==='off'?true:f.performanceProbe}))}>
+ <label>Observation profile<select value={form.observation==='off'?'off':form.accounting?'full':'basic'} onChange={e=>setForm(f=>({...f,observation:e.target.value==='off'?'off':'full',accounting:e.target.value==='full',observerProfiling:e.target.value==='off'?false:f.observerProfiling,performanceProbe:e.target.value==='off'?true:f.performanceProbe}))}>
  <option value="full">Full force / core energy ledger</option><option value="basic">Channels disabled · base ledger</option><option value="off">Ledger off · control probe only</option></select></label>
- <label className="probe-option"><input type="checkbox" checked={form.performanceProbe} disabled={form.observation==='off'} onChange={e=>setForm({...form,performanceProbe:e.target.checked})}/> Timing / equivalence probe</label>
+ <label className="probe-option"><input type="checkbox" checked={form.performanceProbe} disabled={form.observation==='off'} onChange={e=>setForm({...form,performanceProbe:e.target.checked,observerProfiling:e.target.checked?form.observerProfiling:false})}/> Timing / equivalence probe</label>
+ <label className="probe-option"><input type="checkbox" checked={form.observerProfiling} disabled={form.observation==='off'} onChange={e=>setForm({...form,observerProfiling:e.target.checked,performanceProbe:e.target.checked?true:form.performanceProbe})}/> Diagnostic observer phase profiling</label>
  <div className="asset"><span>Vehicle / fixture</span><strong>{fixture?'100 kg movable node + fixed anchors':'Daf Semi'}</strong><small>{form.vehicle}</small></div>
  <div className="asset"><span>Terrain</span><strong>Simple Test Terrain</strong><small>simple2.terrn2</small></div>
  <div className="form-pair"><Field label="Release speed · m/s" k="launchSpeedMps" min="0" max="20"/><Field label="Observe · s" k="durationSeconds" min={fixture?".1":"1"} max={transitionFixture?"1":fixture?"5":"120"}/></div>
@@ -153,6 +176,7 @@ function App(){
  </div></div>
  {current?.blockedReason&&<div className="warning">{current.blockedReason}</div>}
  <div className="quality"><div><span>Execution</span><strong>{current?.execution??'—'}</strong></div><div><span>Capture</span><strong className={current?.capture==='Incomplete'?'bad':''}>{current?.capture??'—'}</strong></div><div><span>Scientific validation</span><strong className="amber">{current?.validation??'Not evaluated'}</strong></div><div><span>Simulation clock</span><strong>{fmt(current?.workerStatus?.timeSeconds??sample?.timeSeconds,3)} <small>s</small></strong></div></div>
+ {current&&<RecorderView attempt={current}/>}
  {off?<><div className="warning">Force/energy ledger disabled. Complete capture refers only to the declared control probe; scientific qualification is NotReady.</div>
  <div className="chart-pair"><Spark points={history} field="sentinelSpeedMps" title="Node 0 speed · control probe" unit="m/s"/><Spark points={history} field="physicsStepElapsedUs" title="Native step elapsed · control probe" unit="µs"/></div></>:<>
  <div className="metrics">{[

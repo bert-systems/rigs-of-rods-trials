@@ -19,7 +19,7 @@ double Length(const beam_t& b)
 }
 bool Runtime::Matches(const Actor& a) const
 {
-    return a.ar_filename==(IsFixture()?"ror-"+m_scenario+".truck":"b6b0UID-semi.truck");
+    return a.ar_filename==m_vehicle; // prepared once; no temporary filename allocation in callbacks
 }
 void Runtime::PrepareActor(Actor& actor)
 {

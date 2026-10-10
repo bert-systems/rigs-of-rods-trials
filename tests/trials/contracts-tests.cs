@@ -2,6 +2,9 @@ using RoR.Trials;
 using System.Text;
 void Check(bool valid,string name){if(!valid)throw new Exception(name);}
 Check(Contract.Validate(new("reference")).Count==0,"valid reference config");
+Check(Contract.Validate(new("phases",PerformanceProbe:true,ObserverProfiling:true)).Count==0,"diagnostic phase profile accepted with common probe");
+Check(Contract.Validate(new("phases",ObserverProfiling:true)).Count>0,"phase profiling needs explicit common probe");
+Check(Contract.Validate(new("phases",Observation:"off",PerformanceProbe:true,ObserverProfiling:true)).Count>0,"phase profiling cannot invent an off-mode ledger");
 Check(Contract.Validate(new("zero",Environment:new(Gravity:0))).Count>0,"unqualified zero gravity rejected");
 Check(Contract.Validate(new("asset",Vehicle:"../other.truck")).Count>0,"unsupported asset rejected");
 Check(Contract.Validate(new("wind",Environment:new(WindX:31))).Count>0,"wind magnitude rejected");

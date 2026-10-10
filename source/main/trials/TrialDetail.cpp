@@ -51,7 +51,7 @@ void Encode(std::vector<unsigned char>& v,const unsigned char* frame){
     // Layout assertions fix every record, with initialized reserved fields and no implicit padding.
     // Copy the defined wire representation in bulk instead of 4 byte pushes per float.
     const auto& h=*reinterpret_cast<const DetailHeader*>(frame);
-    v.resize(128+h.nodes*256+h.beams*112+h.contacts*104);
+    v.resize(DetailFrameBytes(h));
     std::memcpy(v.data(),frame,v.size());
 }
 }
@@ -118,7 +118,14 @@ void Detail::Finish(Actor& a){
     ++m_produced;auto head=m_head.load(std::memory_order_relaxed);
     const bool injectedFull=m_fault=="queue-overflow"&&m_trigger.load()&&h.tick==m_trigger.load()+500;
     if(injectedFull||head-m_tail.load(std::memory_order_acquire)>=m_capacity)++m_dropped;
-    else{std::memcpy(m_queue.data()+(head%m_capacity)*m_stride,m_scratch.data(),m_stride);m_head.store(head+1,std::memory_order_release);}
+    else{
+        // Only the populated contact prefix belongs to the frame. Fixed-stride
+        // slots retain their full reservation; unused contact tails are never read.
+        const auto used=DetailFrameBytes(h);
+        const auto tail=m_tail.load(std::memory_order_acquire);
+        CopyDetailFrame(m_queue.data()+(head%m_capacity)*m_stride,m_scratch.data());
+        m_health.Admit(head+1-tail,used);m_head.store(head+1,std::memory_order_release);
+    }
 }
 void Detail::Writer(){
 #ifdef _WIN32
@@ -126,33 +133,42 @@ void Detail::Writer(){
 #else
     FILE* file=std::fopen((m_root+"/detail.rort").c_str(),"wb");
 #endif
-    if(!file){m_error=true;return;}
+    if(!file){m_error=true;m_health.closed=true;return;}
+    auto sync=[&](){const auto start=std::chrono::steady_clock::now();const bool ok=Sync(file);
+        m_health.Synced(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-start).count());return ok;};
     std::vector<unsigned char> bytes,meta;bytes.reserve(m_stride);
     for(auto x:{1u,static_cast<unsigned>(m_nodes),static_cast<unsigned>(m_beams),static_cast<unsigned>(m_nodes*4+32),4000u,8000u})U32(meta,x);
-    if(std::fwrite("RORDTAIL",1,8,file)!=8||std::fwrite(meta.data(),1,meta.size(),file)!=meta.size()||!Sync(file))m_error=true;
+    if(std::fwrite("RORDTAIL",1,8,file)!=8||std::fwrite(meta.data(),1,meta.size(),file)!=meta.size()||!sync())m_error=true;
     std::ofstream events(m_root+"/impact-events.jsonl"),summaries(m_root+"/impact-summaries.jsonl"),gaps(m_root+"/detail-gaps.jsonl");
     std::uint64_t historyHead=0,historyCount=0,first=0,last=0,end=0,firstTrigger=0,lastContact=0,approachTick=0,written=0,pending=0,missing=0,episodes=0;
     Vec impulse;double contactWork=0,peakApplication=0,peakNet=0,windowPeak=0;bool faultApplied=false;
-    auto lastSync=std::chrono::steady_clock::now();
+    SyncSchedule syncSchedule;
     auto write=[&](const unsigned char* frame){
         const auto& h=*reinterpret_cast<const DetailHeader*>(frame);
         if(last&&h.tick!=last+1){auto lost=h.tick-last-1;missing+=lost;gaps<<"{\"afterTick\":"<<last<<",\"beforeTick\":"<<h.tick<<",\"missingTicks\":"<<lost<<"}\n";}
+        const auto encodeStart=std::chrono::steady_clock::now();
         Encode(bytes,frame);meta.clear();U32(meta,1);U32(meta,static_cast<unsigned>(bytes.size()));U32(meta,Crc32(bytes.data(),bytes.size()));
+        m_health.encode_ns+=std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-encodeStart).count();
         bool inject=m_fault=="storage-error"&&!faultApplied&&h.tick>=firstTrigger&&firstTrigger;
         const auto offset=Position(file);
+        const auto writeStart=std::chrono::steady_clock::now();
         bool ok=false;
         if(inject){faultApplied=true;std::fwrite("DATA",1,4,file);std::fwrite(meta.data(),1,meta.size(),file);std::fwrite(bytes.data(),1,64,file);}
         else ok=std::fwrite("DATA",1,4,file)==4&&std::fwrite(meta.data(),1,meta.size(),file)==meta.size()&&std::fwrite(bytes.data(),1,bytes.size(),file)==bytes.size()&&std::fwrite("DONE",1,4,file)==4;
+        m_health.write_ns+=std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-writeStart).count();
         if(!ok){m_error=true;++missing;bool recovered=offset>=0&&Rollback(file,offset);
             gaps<<"{\"tick\":"<<h.tick<<",\"reason\":\"writer failure\",\"injected\":"<<(inject?"true":"false")<<",\"partialFrameRolledBack\":"<<(recovered?"true":"false")<<"}\n";}
-        else{++written;++pending;}
+        else{++written;++pending;++m_health.written;m_health.bytes+=bytes.size()+20;}
         if(!first)first=h.tick;last=h.tick;
         auto now=std::chrono::steady_clock::now();
-        if(now-lastSync>std::chrono::milliseconds(250)){
-            if(Sync(file)){m_durable+=pending;pending=0;}else m_error=true;lastSync=now;
+        if(syncSchedule.Due(now)){
+            if(sync()){m_durable+=pending;pending=0;}else m_error=true;
+            // Begin the next nominal flush interval after this flush returns.
+            // A slow disk must not turn the following frame into another sync.
+            syncSchedule.Completed(std::chrono::steady_clock::now());
             std::ofstream progress(m_root+"/detail-progress.json");
             progress<<"{\"durable\":"<<m_durable.load()<<",\"written\":"<<written<<",\"lastWrittenTick\":"<<h.tick
-                <<",\"triggerTick\":"<<firstTrigger<<",\"requiredEndTick\":"<<end<<",\"dropped\":"<<Dropped()<<",\"ioError\":"<<(m_error.load()?"true":"false")<<"}\n";
+                <<",\"triggerTick\":"<<firstTrigger<<",\"requiredEndTick\":"<<end<<",\"dropped\":"<<Dropped()<<",\"ioError\":"<<(m_error.load()?"true":"false")<<",\"recorder\":"<<Health()<<"}\n";
         }
     };
     while(!m_stop.load(std::memory_order_acquire)||m_tail.load()<m_head.load()){
@@ -195,7 +211,8 @@ void Detail::Writer(){
         }
         peakNet=std::max(peakNet,net.Norm());windowPeak=std::max(windowPeak,net.Norm());
         if(firstTrigger&&h.tick<=end)write(frame);
-        if(!firstTrigger){std::memcpy(m_history.data()+(historyHead%m_history_capacity)*m_stride,frame,m_stride);++historyHead;historyCount=std::min<std::uint64_t>(historyCount+1,m_history_capacity);}
+        if(!firstTrigger){CopyDetailFrame(m_history.data()+(historyHead%m_history_capacity)*m_stride,frame);
+            ++historyHead;historyCount=std::min<std::uint64_t>(historyCount+1,m_history_capacity);}
         if(h.tick%10==0){
             summaries<<std::setprecision(17)<<"{\"tick\":"<<h.tick<<",\"timeSeconds\":"<<h.tick*h.dt<<",\"triggerTick\":"<<firstTrigger<<",\"windowEndTick\":"<<end
                 <<",\"contactApplications\":"<<h.barrierContacts<<",\"peakNetBarrierForceN\":"<<windowPeak<<",\"peakApplicationForceN\":"<<peakApplication
@@ -207,15 +224,16 @@ void Detail::Writer(){
         m_tail.store(tail+1,std::memory_order_release);
     }
     if(firstTrigger&&last<end){missing+=end-last;gaps<<"{\"afterTick\":"<<last<<",\"requiredEndTick\":"<<end<<",\"reason\":\"posthistory unavailable\"}\n";}
-    if(Sync(file)){m_durable+=pending;pending=0;}else m_error=true;
+    if(sync()){m_durable+=pending;pending=0;}else m_error=true;
     meta.clear();U64(meta,written);U64(meta,Dropped());U64(meta,missing);U32(meta,m_error.load()?1:0);
-    if(std::fwrite("END!",1,4,file)!=4||std::fwrite(meta.data(),1,meta.size(),file)!=meta.size()||!Sync(file))m_error=true;
+    if(std::fwrite("END!",1,4,file)!=4||std::fwrite(meta.data(),1,meta.size(),file)!=meta.size()||!sync())m_error=true;
     if(std::fclose(file))m_error=true;
+    m_health.closed=true;
     std::ofstream health(m_root+"/detail-health.json");
     health<<std::setprecision(17)<<"{\"schema\":1,\"produced\":"<<m_produced.load()<<",\"enqueued\":"<<m_head.load()<<",\"written\":"<<written
         <<",\"durable\":"<<m_durable.load()<<",\"dropped\":"<<Dropped()<<",\"missingRequiredTicks\":"<<missing<<",\"ioError\":"<<(m_error.load()?"true":"false")
         <<",\"closed\":true,\"triggerTick\":"<<firstTrigger<<",\"firstTick\":"<<first<<",\"lastTick\":"<<last<<",\"requiredEndTick\":"<<end
         <<",\"episodes\":"<<episodes<<",\"peakApplicationForceN\":"<<peakApplication<<",\"peakNetBarrierForceN\":"<<peakNet
-        <<",\"barrierImpulseNs\":["<<impulse.x<<","<<impulse.y<<","<<impulse.z<<"],\"barrierWorkJ\":"<<contactWork<<"}\n";
+        <<",\"barrierImpulseNs\":["<<impulse.x<<","<<impulse.y<<","<<impulse.z<<"],\"barrierWorkJ\":"<<contactWork<<",\"recorder\":"<<Health()<<"}\n";
 }
 }}

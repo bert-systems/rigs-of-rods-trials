@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #pragma once
 #include "TrialLedger.h"
+#include "TrialRecorderHealth.h"
 #include <atomic>
 #include <thread>
 #include <string>
@@ -42,6 +43,10 @@ static_assert(offsetof(DetailNode,channels)==64,"channel wire offset");
 static_assert(offsetof(DetailBeam,generated1)==64,"beam application wire offset");
 static_assert(offsetof(DetailContact,material)==96,"material wire offset");
 static_assert(offsetof(DetailHeader,center)==48,"cohort wire offset");
+inline std::size_t DetailFrameBytes(const DetailHeader& h) {return 128+static_cast<std::size_t>(h.nodes)*256+static_cast<std::size_t>(h.beams)*112+static_cast<std::size_t>(h.contacts)*104;}
+inline void CopyDetailFrame(unsigned char* dst,const unsigned char* src) {
+    std::memcpy(dst,src,DetailFrameBytes(*reinterpret_cast<const DetailHeader*>(src)));
+}
 class Detail;
 struct ContactSink {
     Detail* owner=nullptr;
@@ -65,6 +70,7 @@ public:
     bool Error() const {return m_error.load();}
     std::uint64_t Trigger() const {return m_trigger.load();}
     std::uint64_t Durable() const {return m_durable.load();}
+    std::string Health() const {const auto tail=m_tail.load(),head=m_head.load();return m_health.Json(head,tail,m_durable.load(),m_capacity,m_stride,Dropped(),Error());}
 private:
     void Writer();
     DetailHeader& Header() {return *reinterpret_cast<DetailHeader*>(m_scratch.data());}
@@ -80,5 +86,6 @@ private:
     std::atomic<std::uint64_t> m_head{0},m_tail{0},m_dropped{0},m_contact_lost{0},m_trigger{0},m_durable{0},m_produced{0};
     std::atomic<bool> m_stop{false},m_error{false};
     std::thread m_writer;
+    RecorderHealth m_health;
 };
 }}

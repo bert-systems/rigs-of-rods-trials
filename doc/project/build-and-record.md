@@ -1,5 +1,7 @@
 # Build, rebuild, run, and record
 
+Latest qualification: [Slice 06](slices/slice-06.md). Trial builds use `tools/trials/build.ps1 -Session <unique-root> -Parallel 6`; focused native CTests also build Release. `tools/trials/start.ps1 -Archive <unique-durable-root>` can keep trial archives on a different volume from native build outputs. Record both absolute roots and keep all originals. Storage/memory preflight floors still apply to the archive volume; do not silently lower them to fit a run. Different-volume performance measurements must remain separate. Optional observer profiling and continuous native screenshots belong in declared diagnostic/visual runs, not budget comparisons.
+
 Canonical Windows procedure for the `bert-systems/rigs-of-rods-trials` source fork. Established from the successful 2026-10-08 trial. Read [PROJECT.md](../../PROJECT.md) and [project memory](../../project-memory.md) first.
 
 ## Repository and proof requirements

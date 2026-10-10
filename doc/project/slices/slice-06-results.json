@@ -1,0 +1,1160 @@
+{
+  "baselineEvidence": "D:\\Rigs of Rods\\trial-slice-06-2026-10-09-230333\\report\\verification-06-baseline-20261009-230648",
+  "optimizedEvidence": "D:\\Rigs of Rods\\trial-slice-06-2026-10-09-230333\\report\\verification-06-optimized-20261009-233428",
+  "baselineSha256": "BA21F82392BC2A14F314A481EDB675E113A06ECABB7A0A89607854E5484D26CC",
+  "optimizedSha256": "72EB4485AAC9D7F853EA6C7FF2E57D77192792C1139D136024B396A154872520",
+  "prototypeSha256": "488645E7152260581FE384567BDD9BECC6356277BFC1FF56EB66423A8B6DF181",
+  "timings": {
+    "baseline": {
+      "off": {
+        "mediansUs": [
+          22.400000000000002,
+          22.400000000000002,
+          22.3
+        ],
+        "p95Us": [
+          32.1,
+          32.2,
+          32.6
+        ],
+        "medianOfMediansUs": 22.400000000000002
+      },
+      "full": {
+        "mediansUs": [
+          77.5,
+          77.60000000000001,
+          77.7
+        ],
+        "p95Us": [
+          102.8,
+          104.8,
+          104.7
+        ],
+        "medianOfMediansUs": 77.60000000000001
+      },
+      "overheadRatio": 3.4642857142857144,
+      "barrier": {
+        "stepMedianUs": 107.5,
+        "p95Us": 138.20000000000002,
+        "workerWallSeconds": 52.8980874,
+        "physicsFinishedWallSeconds": 20.0565324
+      }
+    },
+    "prototypeSameDrive": {
+      "off": {
+        "mediansUs": [
+          22.3,
+          22.3,
+          21.8
+        ],
+        "p95Us": [
+          33.7,
+          33.2,
+          32.8
+        ],
+        "medianOfMediansUs": 22.3
+      },
+      "full": {
+        "mediansUs": [
+          72.4,
+          72.7,
+          72.8
+        ],
+        "p95Us": [
+          94.10000000000001,
+          91.9,
+          94.10000000000001
+        ],
+        "medianOfMediansUs": 72.7
+      },
+      "overheadRatio": 3.2600896860986546,
+      "barrier": {
+        "stepMedianUs": 102.5,
+        "p95Us": 128.9,
+        "workerWallSeconds": 91.3036233,
+        "physicsFinishedWallSeconds": 28.032592
+      }
+    },
+    "optimized": {
+      "off": {
+        "mediansUs": [
+          22.2,
+          21.7,
+          22.1
+        ],
+        "p95Us": [
+          31.7,
+          31.8,
+          32.7
+        ],
+        "medianOfMediansUs": 22.1
+      },
+      "full": {
+        "mediansUs": [
+          73.5,
+          72.8,
+          73.7
+        ],
+        "p95Us": [
+          97.2,
+          92.8,
+          93.10000000000001
+        ],
+        "medianOfMediansUs": 73.5
+      },
+      "overheadRatio": 3.3257918552036196,
+      "barrier": {
+        "stepMedianUs": 100.8,
+        "p95Us": 122.60000000000001,
+        "workerWallSeconds": 24.0593455,
+        "physicsFinishedWallSeconds": 17.3022058
+      }
+    },
+    "finalSameDriveBarrier": {
+      "stepMedianUs": 101,
+      "p95Us": 130.7,
+      "workerWallSeconds": 60.1974443,
+      "physicsFinishedWallSeconds": 24.1080486,
+      "recorder": {
+        "schema": 1,
+        "enqueued": 24000,
+        "processed": 24000,
+        "queued": 0,
+        "capacity": 15709,
+        "highWater": 13734,
+        "reservedQueueBytes": 3221224704,
+        "copiedBytes": 3102745920,
+        "written": 12001,
+        "durable": 12001,
+        "pendingSync": 0,
+        "archiveBytes": 1550558284,
+        "dropped": 0,
+        "ioError": false,
+        "closed": true,
+        "syncCalls": 10,
+        "encodeCrcWallUs": 865511.9,
+        "fileWriteWallUs": 740762.7000000001,
+        "syncWallUs": 39452241.800000004,
+        "maxSyncWallUs": 16601594.6
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "60b9291963174236a164090f0f323770",
+        "94ab413184b14625bbedd82255007169"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "43d26f37dd5c4035808f0e8c4836e770",
+        "b59625a74f5a4b60b2baddb2a6ba4304"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "6d1d1bfac3974838b5cacc67a0c0592f",
+        "a6129fa4db6642aea4027fddf396e2de"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "0527f75a82bd4973a500057c20d8e764",
+        "d2c3965c62fa494f97109e4e79d4c932"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "8b239827bb514e4397f3ceba668ba066",
+        "8f73ea034e97440bab2d93e2519400e6"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "4b748f0cf3e0455ab377050aa43cb76e",
+        "9e4be79dcd53494dadb974e44b529f35"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "e7c3ddbf04024dd8a77c749e639311a0",
+        "4bcf7f4a8f3246bdba51bc21ec1ac170"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "8d01f236d8ee4be494a07ed9a72a06ce",
+        "61a09eeef0da45dd87c4fc8c6e1d4db0"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "dc7d654c68e7473c95e3fd6134a7be3d",
+        "c656612815f347ac94d2e3b14fca8f0a"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "94ab413184b14625bbedd82255007169",
+        "4bcf7f4a8f3246bdba51bc21ec1ac170"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "all accounting bytes except declared timer",
+      "attempts": [
+        "94ab413184b14625bbedd82255007169",
+        "4bcf7f4a8f3246bdba51bc21ec1ac170"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 0,
+      "normalizedSha256": "e9e41c6d55cf9d6414e33d262b21e2fb802e6b29ad6fe014acee8743647e7b98"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "b59625a74f5a4b60b2baddb2a6ba4304",
+        "61a09eeef0da45dd87c4fc8c6e1d4db0"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "all accounting bytes except declared timer",
+      "attempts": [
+        "b59625a74f5a4b60b2baddb2a6ba4304",
+        "61a09eeef0da45dd87c4fc8c6e1d4db0"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 0,
+      "normalizedSha256": "e9e41c6d55cf9d6414e33d262b21e2fb802e6b29ad6fe014acee8743647e7b98"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "a6129fa4db6642aea4027fddf396e2de",
+        "c656612815f347ac94d2e3b14fca8f0a"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "all accounting bytes except declared timer",
+      "attempts": [
+        "a6129fa4db6642aea4027fddf396e2de",
+        "c656612815f347ac94d2e3b14fca8f0a"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 0,
+      "normalizedSha256": "e9e41c6d55cf9d6414e33d262b21e2fb802e6b29ad6fe014acee8743647e7b98"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "60b9291963174236a164090f0f323770",
+        "e7c3ddbf04024dd8a77c749e639311a0"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "43d26f37dd5c4035808f0e8c4836e770",
+        "8d01f236d8ee4be494a07ed9a72a06ce"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "6d1d1bfac3974838b5cacc67a0c0592f",
+        "dc7d654c68e7473c95e3fd6134a7be3d"
+      ],
+      "records": 10000,
+      "mismatches": 0,
+      "fingerprints": 50,
+      "normalizedSha256": "8ccafabb920b6716be34697c5ba872a678a8cb4c3c13741cfe23fffadeb0ad09"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "663f566244d94ca2a3a375e029e7ae92",
+        "0738999ae17c403ca6a4ef44c9ddc759"
+      ],
+      "records": 24000,
+      "mismatches": 0,
+      "fingerprints": 120,
+      "normalizedSha256": "5fa9f229f29d46d43dbaaae6cfdbbeedb0c3a4ea7dbb5b1da8e472ee1d591e05"
+    },
+    {
+      "kind": "all accounting bytes except declared timer",
+      "attempts": [
+        "663f566244d94ca2a3a375e029e7ae92",
+        "0738999ae17c403ca6a4ef44c9ddc759"
+      ],
+      "records": 24000,
+      "mismatches": 0,
+      "fingerprints": 0,
+      "normalizedSha256": "5153701d26e58bf5848dbf72c164a8b012ec914feb9d2d5d0a17780d071506ab"
+    },
+    {
+      "kind": "every-tick sentinel/metadata plus sampled diagnostic fingerprint",
+      "attempts": [
+        "663f566244d94ca2a3a375e029e7ae92",
+        "9271c1838dbc451fa295a8666718ceb4"
+      ],
+      "records": 24000,
+      "mismatches": 0,
+      "fingerprints": 120,
+      "normalizedSha256": "5fa9f229f29d46d43dbaaae6cfdbbeedb0c3a4ea7dbb5b1da8e472ee1d591e05"
+    },
+    {
+      "kind": "all accounting bytes except declared timer",
+      "attempts": [
+        "663f566244d94ca2a3a375e029e7ae92",
+        "9271c1838dbc451fa295a8666718ceb4"
+      ],
+      "records": 24000,
+      "mismatches": 0,
+      "fingerprints": 0,
+      "normalizedSha256": "5153701d26e58bf5848dbf72c164a8b012ec914feb9d2d5d0a17780d071506ab"
+    }
+  ],
+  "detail": [
+    {
+      "attempt": "663f566244d94ca2a3a375e029e7ae92",
+      "records": 12001,
+      "first": 6267,
+      "last": 18267,
+      "dropped": 0,
+      "missing": 0,
+      "ioError": 0,
+      "gaps": [],
+      "contacts": 77363,
+      "payloadBytes": 1550318264,
+      "payloadSha256": "db395aa790d4a08d07b49c167adfc4306a131ef733143a11aa79e7ca6d06dabd"
+    },
+    {
+      "attempt": "702bfbcdd8bd47978f9982aa4824c817",
+      "records": 12001,
+      "first": 6267,
+      "last": 18267,
+      "dropped": 0,
+      "missing": 0,
+      "ioError": 0,
+      "gaps": [],
+      "contacts": 77363,
+      "payloadBytes": 1550318264,
+      "payloadSha256": "db395aa790d4a08d07b49c167adfc4306a131ef733143a11aa79e7ca6d06dabd"
+    },
+    {
+      "attempt": "9271c1838dbc451fa295a8666718ceb4",
+      "records": 12001,
+      "first": 6267,
+      "last": 18267,
+      "dropped": 0,
+      "missing": 0,
+      "ioError": 0,
+      "gaps": [],
+      "contacts": 77363,
+      "payloadBytes": 1550318264,
+      "payloadSha256": "db395aa790d4a08d07b49c167adfc4306a131ef733143a11aa79e7ca6d06dabd"
+    },
+    {
+      "attempt": "0738999ae17c403ca6a4ef44c9ddc759",
+      "records": 12001,
+      "first": 6267,
+      "last": 18267,
+      "dropped": 0,
+      "missing": 0,
+      "ioError": 0,
+      "gaps": [],
+      "contacts": 77363,
+      "payloadBytes": 1550318264,
+      "payloadSha256": "db395aa790d4a08d07b49c167adfc4306a131ef733143a11aa79e7ca6d06dabd"
+    },
+    {
+      "attempt": "e89a2d4aaac6436c827609188e4cea1f",
+      "records": 12000,
+      "first": 6267,
+      "last": 18267,
+      "dropped": 0,
+      "missing": 1,
+      "ioError": 1,
+      "gaps": [
+        [
+          10266,
+          10268
+        ]
+      ],
+      "contacts": 77354,
+      "payloadBytes": 1550188816,
+      "payloadSha256": "a1d57fb881738d647076f17100dd21c92d334449fb60b11eb58114fc6a97303a"
+    }
+  ],
+  "health": [
+    {
+      "attempt": "c2bd343f0d1f4b38b2c06f6bc1190b59",
+      "recorders": {
+        "schema": 1,
+        "aggregate": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 32768,
+          "highWater": 178,
+          "reservedQueueBytes": 68157440,
+          "copiedBytes": 20800000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 20801580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 21,
+          "encodeCrcWallUs": 204370.4,
+          "fileWriteWallUs": 10865.2,
+          "syncWallUs": 51280.200000000004,
+          "maxSyncWallUs": 5246.400000000001
+        },
+        "probe": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 174,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 1280000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 1281580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 22,
+          "encodeCrcWallUs": 13191.300000000001,
+          "fileWriteWallUs": 5047.5,
+          "syncWallUs": 41192.200000000004,
+          "maxSyncWallUs": 5834.3
+        },
+        "detail": null
+      }
+    },
+    {
+      "attempt": "e7c3ddbf04024dd8a77c749e639311a0",
+      "recorders": {
+        "schema": 1,
+        "aggregate": null,
+        "probe": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 199,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 1280000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 1281580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 21,
+          "encodeCrcWallUs": 11736,
+          "fileWriteWallUs": 5249.5,
+          "syncWallUs": 32908.2,
+          "maxSyncWallUs": 5011
+        },
+        "detail": null
+      }
+    },
+    {
+      "attempt": "4bcf7f4a8f3246bdba51bc21ec1ac170",
+      "recorders": {
+        "schema": 1,
+        "aggregate": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 32768,
+          "highWater": 233,
+          "reservedQueueBytes": 68157440,
+          "copiedBytes": 20800000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 20801580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 22,
+          "encodeCrcWallUs": 199800.1,
+          "fileWriteWallUs": 11101.6,
+          "syncWallUs": 48190,
+          "maxSyncWallUs": 3254.4
+        },
+        "probe": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 233,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 1280000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 1281580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 22,
+          "encodeCrcWallUs": 13879,
+          "fileWriteWallUs": 5789.2,
+          "syncWallUs": 29082.5,
+          "maxSyncWallUs": 3028.6
+        },
+        "detail": null
+      }
+    },
+    {
+      "attempt": "61a09eeef0da45dd87c4fc8c6e1d4db0",
+      "recorders": {
+        "schema": 1,
+        "aggregate": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 32768,
+          "highWater": 205,
+          "reservedQueueBytes": 68157440,
+          "copiedBytes": 20800000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 20801580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 21,
+          "encodeCrcWallUs": 206866.2,
+          "fileWriteWallUs": 10882,
+          "syncWallUs": 45391.4,
+          "maxSyncWallUs": 8887.5
+        },
+        "probe": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 205,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 1280000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 1281580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 21,
+          "encodeCrcWallUs": 13394.2,
+          "fileWriteWallUs": 5401.6,
+          "syncWallUs": 36573.1,
+          "maxSyncWallUs": 9787.9
+        },
+        "detail": null
+      }
+    },
+    {
+      "attempt": "8d01f236d8ee4be494a07ed9a72a06ce",
+      "recorders": {
+        "schema": 1,
+        "aggregate": null,
+        "probe": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 199,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 1280000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 1281580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 22,
+          "encodeCrcWallUs": 11671.300000000001,
+          "fileWriteWallUs": 5289.400000000001,
+          "syncWallUs": 34973.5,
+          "maxSyncWallUs": 4464.6
+        },
+        "detail": null
+      }
+    },
+    {
+      "attempt": "dc7d654c68e7473c95e3fd6134a7be3d",
+      "recorders": {
+        "schema": 1,
+        "aggregate": null,
+        "probe": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 188,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 1280000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 1281580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 21,
+          "encodeCrcWallUs": 11953.9,
+          "fileWriteWallUs": 5679,
+          "syncWallUs": 38460.4,
+          "maxSyncWallUs": 4432.2
+        },
+        "detail": null
+      }
+    },
+    {
+      "attempt": "c656612815f347ac94d2e3b14fca8f0a",
+      "recorders": {
+        "schema": 1,
+        "aggregate": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 32768,
+          "highWater": 199,
+          "reservedQueueBytes": 68157440,
+          "copiedBytes": 20800000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 20801580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 21,
+          "encodeCrcWallUs": 200118,
+          "fileWriteWallUs": 10519.7,
+          "syncWallUs": 41339,
+          "maxSyncWallUs": 6530.6
+        },
+        "probe": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 199,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 1280000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 1281580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 21,
+          "encodeCrcWallUs": 13551.5,
+          "fileWriteWallUs": 5439,
+          "syncWallUs": 37224.700000000004,
+          "maxSyncWallUs": 5501.3
+        },
+        "detail": null
+      }
+    },
+    {
+      "attempt": "0738999ae17c403ca6a4ef44c9ddc759",
+      "recorders": {
+        "schema": 1,
+        "aggregate": {
+          "schema": 1,
+          "enqueued": 24000,
+          "processed": 24000,
+          "queued": 0,
+          "capacity": 32768,
+          "highWater": 188,
+          "reservedQueueBytes": 68157440,
+          "copiedBytes": 49920000,
+          "written": 24000,
+          "durable": 24000,
+          "pendingSync": 0,
+          "archiveBytes": 49923760,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 45,
+          "encodeCrcWallUs": 499338.10000000003,
+          "fileWriteWallUs": 25843.5,
+          "syncWallUs": 102194,
+          "maxSyncWallUs": 6065.8
+        },
+        "probe": {
+          "schema": 1,
+          "enqueued": 24000,
+          "processed": 24000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 174,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 3072000,
+          "written": 24000,
+          "durable": 24000,
+          "pendingSync": 0,
+          "archiveBytes": 3075760,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 45,
+          "encodeCrcWallUs": 35439.4,
+          "fileWriteWallUs": 13152.9,
+          "syncWallUs": 71672,
+          "maxSyncWallUs": 5015.7
+        },
+        "detail": {
+          "schema": 1,
+          "enqueued": 24000,
+          "processed": 24000,
+          "queued": 0,
+          "capacity": 15709,
+          "highWater": 1502,
+          "reservedQueueBytes": 3221224704,
+          "copiedBytes": 3102745920,
+          "written": 12001,
+          "durable": 12001,
+          "pendingSync": 0,
+          "archiveBytes": 1550558284,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 16,
+          "encodeCrcWallUs": 855627.6,
+          "fileWriteWallUs": 758053.7000000001,
+          "syncWallUs": 750176.2000000001,
+          "maxSyncWallUs": 126450.40000000001
+        }
+      }
+    },
+    {
+      "attempt": "e89a2d4aaac6436c827609188e4cea1f",
+      "recorders": {
+        "schema": 1,
+        "aggregate": {
+          "schema": 1,
+          "enqueued": 24000,
+          "processed": 24000,
+          "queued": 0,
+          "capacity": 32768,
+          "highWater": 215,
+          "reservedQueueBytes": 68157440,
+          "copiedBytes": 49920000,
+          "written": 24000,
+          "durable": 24000,
+          "pendingSync": 0,
+          "archiveBytes": 49923760,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 45,
+          "encodeCrcWallUs": 506581.9,
+          "fileWriteWallUs": 30169.7,
+          "syncWallUs": 272280,
+          "maxSyncWallUs": 33182
+        },
+        "probe": {
+          "schema": 1,
+          "enqueued": 24000,
+          "processed": 24000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 219,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 3072000,
+          "written": 24000,
+          "durable": 24000,
+          "pendingSync": 0,
+          "archiveBytes": 3075760,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 46,
+          "encodeCrcWallUs": 35552.8,
+          "fileWriteWallUs": 18083.3,
+          "syncWallUs": 230272.6,
+          "maxSyncWallUs": 30567.9
+        },
+        "detail": {
+          "schema": 1,
+          "enqueued": 24000,
+          "processed": 24000,
+          "queued": 0,
+          "capacity": 15709,
+          "highWater": 2487,
+          "reservedQueueBytes": 3221224704,
+          "copiedBytes": 3102745920,
+          "written": 12000,
+          "durable": 12000,
+          "pendingSync": 0,
+          "archiveBytes": 1550428816,
+          "dropped": 0,
+          "ioError": true,
+          "closed": true,
+          "syncCalls": 12,
+          "encodeCrcWallUs": 848888.5,
+          "fileWriteWallUs": 759650.8,
+          "syncWallUs": 2051321.6,
+          "maxSyncWallUs": 357994.8
+        }
+      }
+    },
+    {
+      "attempt": "c0c3b025ac2449438225914061f01df8",
+      "recorders": {
+        "schema": 1,
+        "aggregate": {
+          "schema": 1,
+          "enqueued": 1000,
+          "processed": 1000,
+          "queued": 0,
+          "capacity": 32768,
+          "highWater": 199,
+          "reservedQueueBytes": 68157440,
+          "copiedBytes": 2080000,
+          "written": 1000,
+          "durable": 1000,
+          "pendingSync": 0,
+          "archiveBytes": 2080160,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 6,
+          "encodeCrcWallUs": 17455.5,
+          "fileWriteWallUs": 1187.7,
+          "syncWallUs": 37922.8,
+          "maxSyncWallUs": 10024.1
+        },
+        "probe": {
+          "schema": 1,
+          "enqueued": 1000,
+          "processed": 1000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 199,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 128000,
+          "written": 1000,
+          "durable": 1000,
+          "pendingSync": 0,
+          "archiveBytes": 128160,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 6,
+          "encodeCrcWallUs": 1472.1000000000001,
+          "fileWriteWallUs": 797.4,
+          "syncWallUs": 27693.2,
+          "maxSyncWallUs": 8331.1
+        },
+        "detail": null
+      }
+    },
+    {
+      "attempt": "8a58f868c74c4f09be5ac1587bcbbba2",
+      "recorders": {
+        "schema": 1,
+        "aggregate": {
+          "schema": 1,
+          "enqueued": 2000,
+          "processed": 2000,
+          "queued": 0,
+          "capacity": 32768,
+          "highWater": 199,
+          "reservedQueueBytes": 68157440,
+          "copiedBytes": 4160000,
+          "written": 2000,
+          "durable": 2000,
+          "pendingSync": 0,
+          "archiveBytes": 4160320,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 7,
+          "encodeCrcWallUs": 34462.8,
+          "fileWriteWallUs": 2202.8,
+          "syncWallUs": 40956.6,
+          "maxSyncWallUs": 7942.2
+        },
+        "probe": {
+          "schema": 1,
+          "enqueued": 2000,
+          "processed": 2000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 199,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 256000,
+          "written": 2000,
+          "durable": 2000,
+          "pendingSync": 0,
+          "archiveBytes": 256320,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 7,
+          "encodeCrcWallUs": 2696.3,
+          "fileWriteWallUs": 1209.4,
+          "syncWallUs": 29321,
+          "maxSyncWallUs": 9323.800000000001
+        },
+        "detail": null
+      }
+    },
+    {
+      "attempt": "8cedb00c39a047f9bede4b870bf498c8",
+      "recorders": {
+        "schema": 1,
+        "aggregate": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 32768,
+          "highWater": 193,
+          "reservedQueueBytes": 68157440,
+          "copiedBytes": 20800000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 20801580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 21,
+          "encodeCrcWallUs": 182730.9,
+          "fileWriteWallUs": 10360.1,
+          "syncWallUs": 120982,
+          "maxSyncWallUs": 18264.9
+        },
+        "probe": {
+          "schema": 1,
+          "enqueued": 10000,
+          "processed": 10000,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 193,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 1280000,
+          "written": 10000,
+          "durable": 10000,
+          "pendingSync": 0,
+          "archiveBytes": 1281580,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 21,
+          "encodeCrcWallUs": 13721.300000000001,
+          "fileWriteWallUs": 5071.8,
+          "syncWallUs": 75716.8,
+          "maxSyncWallUs": 8760.7
+        },
+        "detail": null
+      }
+    },
+    {
+      "attempt": "0d0e6b691fce4298a6336ffa3799c776",
+      "recorders": {
+        "schema": 1,
+        "aggregate": {
+          "schema": 1,
+          "enqueued": 400,
+          "processed": 400,
+          "queued": 0,
+          "capacity": 32768,
+          "highWater": 184,
+          "reservedQueueBytes": 68157440,
+          "copiedBytes": 832000,
+          "written": 400,
+          "durable": 400,
+          "pendingSync": 0,
+          "archiveBytes": 832080,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 5,
+          "encodeCrcWallUs": 7158.5,
+          "fileWriteWallUs": 618.7,
+          "syncWallUs": 19457,
+          "maxSyncWallUs": 9921.300000000001
+        },
+        "probe": {
+          "schema": 1,
+          "enqueued": 400,
+          "processed": 400,
+          "queued": 0,
+          "capacity": 65536,
+          "highWater": 184,
+          "reservedQueueBytes": 8388608,
+          "copiedBytes": 51200,
+          "written": 400,
+          "durable": 400,
+          "pendingSync": 0,
+          "archiveBytes": 51280,
+          "dropped": 0,
+          "ioError": false,
+          "closed": true,
+          "syncCalls": 5,
+          "encodeCrcWallUs": 584.3000000000001,
+          "fileWriteWallUs": 920.1,
+          "syncWallUs": 17802.8,
+          "maxSyncWallUs": 7429.5
+        },
+        "detail": null
+      }
+    }
+  ],
+  "copy": {
+    "fullStrideBytes": 4921344000,
+    "populatedBytes": 3102745920,
+    "reductionFraction": 0.3695328105493133,
+    "reservedQueueBytes": 3221224704,
+    "historyBytes": 820429056
+  },
+  "crc": {
+    "bytesPerRepeat": 65536000,
+    "byteTableMs": [
+      131.444,
+      128.211,
+      127.684
+    ],
+    "slicing8Ms": [
+      31.4885,
+      30.7704,
+      30.7713
+    ],
+    "guard": 466628602,
+    "speedup": 4.1665772976767315
+  },
+  "phaseProfile": {
+    "schema": 1,
+    "steps": 10000,
+    "totalStepWallUs": 767851.400000001,
+    "scope": "Opt-in diagnostic clock overhead included; solver/attribution phase includes native job waits. Not a budget benchmark.",
+    "phases": [
+      {
+        "name": "energyBefore",
+        "sumWallUs": 42467.59999999896,
+        "maxWallUs": 48.2
+      },
+      {
+        "name": "detailBefore",
+        "sumWallUs": 0,
+        "maxWallUs": 0
+      },
+      {
+        "name": "solverAndAttribution",
+        "sumWallUs": 668680.3999999971,
+        "maxWallUs": 220.20000000000002
+      },
+      {
+        "name": "energyAfterAndDetail",
+        "sumWallUs": 51248.300000002724,
+        "maxWallUs": 32.8
+      },
+      {
+        "name": "ledgerFinalizeAndQueue",
+        "sumWallUs": 2265.200000000013,
+        "maxWallUs": 8.4
+      }
+    ]
+  },
+  "proposedAggregateBudgetPassed": false,
+  "detailBudget": "Unqualified: no barrier off profile; one before/after detail run each",
+  "scope": "5 m/s single-pilot coast; fixed 5 m/s barrier; diagnostic fingerprints are not full engine checkpoints. Baseline and prototype coast, plus final cadence barrier, use D. Final repeated coast qualification uses C; cross-volume wall changes are confounded."
+}

@@ -34,7 +34,7 @@ $buildArgs=@('--build',"$Session\build",'--parallel',"$Parallel")
 if($Clean){$buildArgs+='--clean-first'}
 cmake @buildArgs 2>&1 | Tee-Object -Append $nativeLog
 if($LASTEXITCODE -ne 0){throw "Native build failed: $LASTEXITCODE"}
-cmake -S "$Repo\tests\trials" -B "$Session\ledger-tests" -G Ninja 2>&1 | Tee-Object -Append $nativeLog
+cmake -S "$Repo\tests\trials" -B "$Session\ledger-tests" -G Ninja -DCMAKE_BUILD_TYPE=Release 2>&1 | Tee-Object -Append $nativeLog
 if($LASTEXITCODE -ne 0){throw 'Ledger configure failed'}
 cmake --build "$Session\ledger-tests" 2>&1 | Tee-Object -Append $nativeLog
 if($LASTEXITCODE -ne 0){throw 'Ledger build failed'}

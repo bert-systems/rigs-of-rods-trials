@@ -43,7 +43,7 @@ public sealed class TrialService : BackgroundService
     {
         lock(gate){string? focus=attempts.Find(a=>a.Id==selected)?.Id??attempts.Find(a=>a.Execution is "Running" or "Finalizing" or "Starting" or "Paused" or "Pausing" or "Resuming")?.Id??attempts.LastOrDefault()?.Id;return new { configuration=Configuration, attempts=attempts.Select(a=>new {
             a.Id,a.RevisionId,a.RetryOf,a.Definition,a.DefinitionSha256,a.Execution,a.Capture,a.Validation,a.Coverage,
-            a.BlockedReason,a.ProcessId,a.ProcessPath,a.ExecutableSha256,a.ArchivePath,a.Latest,a.WorkerStatus,a.Impact,a.DetailProgress,
+            a.BlockedReason,a.ProcessId,a.ProcessPath,a.ExecutableSha256,a.ArchivePath,a.Latest,a.WorkerStatus,a.RecorderHealth,a.Impact,a.DetailProgress,
             history=(!compact||a.Id==focus?a.History:[]).ToArray(),impactHistory=(!compact||a.Id==focus?a.ImpactHistory:[]).ToArray(),events=a.Events.ToArray(),metrics=new Dictionary<string,object>(a.Metrics),a.Archived
         }).ToArray() };}
     }
@@ -53,7 +53,7 @@ public sealed class TrialService : BackgroundService
         lock(gate){
             var a=attempts.Find(x=>x.Id==id);if(a==null)return null;
             return new {a.Id,a.RevisionId,a.RetryOf,a.Definition,a.DefinitionSha256,a.Execution,a.Capture,a.Validation,a.Coverage,
-                a.BlockedReason,a.ProcessId,a.ProcessPath,a.ExecutableSha256,a.ArchivePath,a.Latest,a.WorkerStatus,a.Impact,a.DetailProgress,
+                a.BlockedReason,a.ProcessId,a.ProcessPath,a.ExecutableSha256,a.ArchivePath,a.Latest,a.WorkerStatus,a.RecorderHealth,a.Impact,a.DetailProgress,
                 events=a.Events.ToArray(),metrics=new Dictionary<string,object>(a.Metrics),a.Archived};
         }
     }
@@ -174,7 +174,7 @@ public sealed class TrialService : BackgroundService
         File.WriteAllText(Path.Combine(bin,"config","scripts","trial-evidence.as"),script);
         var e=a.Definition.Environment!;
         AtomicJson(Path.Combine(dir,"native-config.json"),new {
-            schema=1,a.Definition.Scenario,a.Definition.Accounting,a.Definition.Observation,a.Definition.PerformanceProbe,a.Definition.LaunchSpeedMps,a.Definition.DurationSeconds,a.Definition.SettleSeconds,
+            schema=1,a.Definition.Scenario,a.Definition.Accounting,a.Definition.Observation,a.Definition.PerformanceProbe,a.Definition.ObserverProfiling,a.Definition.LaunchSpeedMps,a.Definition.DurationSeconds,a.Definition.SettleSeconds,
             a.Definition.BarrierDistanceM,a.Definition.DetailFault,gravity=e.Gravity,density=e.Density,windX=e.WindX,windY=e.WindY,windZ=e.WindZ
         });
         string exe=Path.Combine(bin,"RoR.exe");
@@ -187,7 +187,8 @@ public sealed class TrialService : BackgroundService
             impactProfile=a.Definition.Scenario=="barrier-v1"?"whole-pilot-f32-v1 / barrier-approach-capture-v1":null,
             requiredDetail=a.Definition.Scenario=="barrier-v1"?new{preTicks=4000,postTicks=8000,nodeBytes=256,beamBytes=112,contactBytes=104,prehistoryBudgetMiB=1024,writerQueueBudgetMiB=3072,rawReservationGiB=3,resourceProfile="daf-detail-resources-v2"}:null,
             barrierAsset=a.Definition.Scenario=="barrier-v1"?new{asset="controlled-concrete-box-v1",geometry="native fixed collision box and visible mesh; resolved transform/material in barrier.json",speedDefinition="Signed movable-node COM velocity along frozen direction at front-node crossing 0.25 m before face",speedToleranceMps=Math.Max(.1,(a.Definition.TargetImpactSpeedMps??a.Definition.LaunchSpeedMps)*.02),alignmentDegrees=1,lateralM=.25}:null,
-            observerMode=a.Definition.Observation,performanceProbe=a.Definition.PerformanceProbe,
+            observerMode=a.Definition.Observation,performanceProbe=a.Definition.PerformanceProbe,observerProfiling=a.Definition.ObserverProfiling,
+            recorderHealth="schema1; independently sampled queue/write/sync diagnostics; archive CRC/count gates remain authoritative",
             probeDefinition="128-byte every-tick timer/sentinel; all-node world position/velocity/force/mass/cohort and beam L/k/d/strength/active FNV-1a diagnostic fingerprint every 200 ticks; shared probe cost excluded from timer; not an engine checkpoint",
             randomDrawPolicy="Native frand_11 sequence/draw operations preserved; no observer draws",renderer,evidenceFrames,visualCapture=evidenceFrames?"Native renderer screenshots requested every 0.5 render seconds; may be delayed":"Two native screenshots; optional external video",a.Id,a.RevisionId,a.RetryOf,a.Definition,a.DefinitionSha256,a.ExecutableSha256,sourceExecutable=source,
             privateExecutable=exe,requestedEnvironment=e,pressurePa=e.Density*287.05*e.TemperatureK,
@@ -228,6 +229,8 @@ public sealed class TrialService : BackgroundService
                         if(h.GetProperty("observation").GetString()!=a.Definition.Observation ||
                             h.GetProperty("performanceProbe").GetBoolean()!=a.Definition.PerformanceProbe)
                             throw new IOException("Native observer/probe mode mismatch.");
+                        if(a.Definition.ObserverProfiling&&(!h.TryGetProperty("observerProfiling",out var profiling)||!profiling.GetBoolean()))
+                            throw new IOException("Native diagnostic profiling capability mismatch.");
                         handshake=true;
                         lock(gate){ a.Execution="Running"; AddEvent(a,"handshake",$"Native {a.Definition.Observation}; declared probe {a.Definition.PerformanceProbe}; archive mode accepted."); catalog.Save(a); }
                     }
@@ -262,10 +265,26 @@ public sealed class TrialService : BackgroundService
                     lock(gate)
                     {
                         a.WorkerStatus=nativeStatus;
+                        if(nativeStatus.TryGetProperty("recorders",out var recorders))a.RecorderHealth=recorders;
                         if(nativeStatus.GetProperty("released").GetBoolean())releaseWall??=current;
                         if(nativeStatus.GetProperty("timeSeconds").GetDouble()>=a.Definition.SettleSeconds+a.Definition.DurationSeconds){physicsFinishedWall??=current;
                             if(a.Execution=="Running"){a.Execution="Finalizing";AddEvent(a,"capture-finalizing","Physics reached target; native archive writers are draining. Quality remains pending.");catalog.Save(a);}}
                         a.DetailProgress=ReadJson(Path.Combine(dir,"detail-progress.json"))??a.DetailProgress;
+                        // Finalizing may stop native main-thread polling. The detail writer
+                        // independently publishes current drain/sync progress until close.
+                        if(a.DetailProgress is {} dp && dp.TryGetProperty("recorder",out var detailRecorder)&&a.RecorderHealth is {} rh){
+                            var merged=JsonSerializer.Deserialize<Dictionary<string,JsonElement>>(rh.GetRawText(),Contract.Json)!;
+                            merged["detail"]=detailRecorder;a.RecorderHealth=JsonSerializer.SerializeToElement(merged,Contract.Json);
+                            if(detailRecorder.GetProperty("dropped").GetInt64()>0||detailRecorder.GetProperty("ioError").GetBoolean())a.Capture="Incomplete";
+                        }
+                        if(a.Execution=="Finalizing"&&a.RecorderHealth is {} draining){
+                            var merged=JsonSerializer.Deserialize<Dictionary<string,JsonElement>>(draining.GetRawText(),Contract.Json)!;
+                            foreach(string recorder in new[]{"aggregate","probe"})if(ReadJson(Path.Combine(dir,recorder+"-progress.json")) is {} progress){
+                                merged[recorder]=progress;
+                                if(progress.GetProperty("dropped").GetInt64()>0||progress.GetProperty("ioError").GetBoolean())a.Capture="Incomplete";
+                            }
+                            a.RecorderHealth=JsonSerializer.SerializeToElement(merged,Contract.Json);
+                        }
                         if(nativeStatus.GetProperty("dropped").GetInt64()>0 || nativeStatus.GetProperty("ioError").GetBoolean() ||
                             nativeStatus.TryGetProperty("detailDropped",out var dl)&&dl.GetInt64()>0 || nativeStatus.TryGetProperty("detailIoError",out var di)&&di.GetBoolean()) a.Capture="Incomplete";
                     }
@@ -327,6 +346,8 @@ public sealed class TrialService : BackgroundService
         {
             a.Execution=a.CancelRequested?"Cancelled":process.ExitCode==0&&handshake&&modules&&durationMet?"Completed":"Failed";
             a.WorkerStatus=finalHealth??finalStatus;
+            a.RecorderHealth=ReadJson(Path.Combine(dir,"recorder-health.json"))??a.RecorderHealth;
+            a.DetailProgress=ReadJson(Path.Combine(dir,"detail-progress.json"))??a.DetailProgress;
             if(finalHealth is not { } health || health.GetProperty("ioError").GetBoolean() ||
                health.GetProperty("dropped").GetInt64()>0) a.Capture="Incomplete";
             a.Capture=check.Complete&&(probe==null||probe.Complete)&&a.Capture!="Incomplete"?"Complete":"Incomplete";
@@ -342,6 +363,7 @@ public sealed class TrialService : BackgroundService
                 a.Metrics.Remove("maxMomentumUpdateResidualKgMps");a.Metrics.Remove("maxKineticWorkResidualJ");a.Metrics.Remove("maxKineticJ");
             }
             if(probe!=null)a.Metrics["performanceProbe"]=probe;
+            if(a.Definition.ObserverProfiling&&ReadJson(Path.Combine(dir,"observer-profile.json")) is {} profile)a.Metrics["observerProfile"]=profile;
             a.Metrics["qualification"]=qualification;
             if(!off&&check.Complete)a.Metrics["beamTransitions"]=TransitionReader.Read(Path.Combine(dir,"steps.rort"),check,0,20);
             if(detail!=null){a.Metrics["impactDetail"]=detail;a.Metrics["impactQualification"]=ImpactQualification.Evaluate(a.Definition,detail,ReadJson(Path.Combine(dir,"approach.json")),a.Execution=="Completed",a.Capture=="Complete");}
@@ -373,7 +395,7 @@ public sealed class TrialService : BackgroundService
     public string? Artifact(string id,string name)
     {
         var a=Find(id); if(a==null)return null;
-        if(new[]{"manifest.json","result.json","steps.rort","summaries.jsonl","capture-health.json","native-events.jsonl","process-provenance.json","beam-transitions.jsonl","probe.rort","probe-health.json","probe-summaries.jsonl","detail.rort","detail-health.json","detail-profile.json","detail-gaps.jsonl","barrier.json","approach.json","impact-events.jsonl","impact-summaries.jsonl","impact-beam-transitions.jsonl","contact-materials.json","detail-index.jsonl","detail-progress.json"}.Contains(name))
+        if(new[]{"manifest.json","result.json","steps.rort","summaries.jsonl","capture-health.json","native-events.jsonl","process-provenance.json","beam-transitions.jsonl","probe.rort","probe-health.json","probe-summaries.jsonl","detail.rort","detail-health.json","detail-profile.json","detail-gaps.jsonl","barrier.json","approach.json","impact-events.jsonl","impact-summaries.jsonl","impact-beam-transitions.jsonl","contact-materials.json","detail-index.jsonl","detail-progress.json","recorder-health.json","observer-profile.json","aggregate-progress.json","probe-progress.json"}.Contains(name))
             return Path.Combine(a.ArchivePath!,name);
         return null;
     }

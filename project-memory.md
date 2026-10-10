@@ -1,5 +1,23 @@
 # Project memory
 
+### 2026-10-09 — Slice 06: recorder health and performance hardening on dev
+
+Implemented populated detail prefix copies, slicing-by-eight CRC, cached fixture filenames and audited inactive detail skips; force writes/order/random draws and all wire formats remain intact. Added independently sampled queue/high-water/copied/written/durable/pending-sync/error/timing health, writer-owned Finalizing progress, terminal snapshots, immutable opt-in phase profiling and React health views. Read [delivery](doc/project/slices/slice-06.md) and [health semantics](apps/trials/recorder-health.md) before extending them.
+
+Producer copy traffic fell 36.95%, with raw window payload unchanged at 1,550,318,264 bytes. CRC isolated throughput 4.167×. Matched D: three-repeat coast full medians 77.6→72.7 µs (6.3% lower) on the prototype before cadence repair. Final C: same-build full/off 73.5/22.1 µs, 3.326×: proposed overhead still unmet. Diagnostic coast mean ~66.87 µs in solver/attribution, dominant span including job waits; optimize/qualify further before broader workloads.
+
+Real diagnostics exposed reset-before-sync feedback on a slow disk. Shared tested cadence starts the next nominal 250 ms interval after sync completes; header/final/footer sync stays forced. D: individual wall samples baseline/prototype/final 52.9/91.3/60.2 s; prototype/final sync calls 70/10. Final max sync 16.60 s, peak queue 87.4%. No general worker-wall speedup over baseline is claimed. No hard durability-latency SLA. Reserved ~782 MiB history/~3 GiB queue, rates/windows and storage floors remain resource v2.
+
+Fresh native outputs plus incremental implementation rebuilds, MSVC19.44 x64 Release/six jobs/cached Conan. Final native SHA 72EB4485AAC9D7F853EA6C7FF2E57D77192792C1139D136024B396A154872520; 475 native/CMake hashes match. Build source was dirty beyond starting HEAD 2a477eafc74b64c78c8b5f44ad27bdd24e418362; exact inventories identify it independently of later publication.
+
+Four healthy baseline/prototype/final D:/final C: dense payloads are identical, 12,001 frames/ticks6267–18267/77,363 contacts. 22 pairwise checks/276,000 paired comparisons have zero mismatches (accounting excludes timer; probe is sentinel plus diagnostic fingerprint). Final storage injection omits tick10267 but retains through18267, remains Incomplete/NotReady and permits independent fixture successor. Original reference tolerances unchanged; freefall/spring/damper/tensile-yield pass scoped gates. Native CTest2/2, locked managed/contracts, production React, final reinspection32 attempts and semantic corruption checks pass. Vehicle science, nonlinear closure, barrier-off/detail overhead, larger actors/scenes, physical disk-full and coordinator orphan handling remain open.
+
+Session D:\Rigs of Rods\trial-slice-06-2026-10-09-230333 holds build/logs/D: originals/report/media. D: approached reservation floor, so final qualification is durably retained at C:\Users\berts\Documents\RoR-trials-evidence\trial-slice-06-2026-10-09-230333, with dedicated visual sibling suffixed -visual. Explicit start.ps1 -Archive selects the durable volume without reducing preflight floors. Preserve both roots; no originals were deleted. A qualification harness was stopped/relabelled while native workers continued normally; prototype checks and all archives remain.
+
+Dedicated final-build barrier visual:29 native PNGs,58 nonblank decoded samples, actual image progression/visible WebM pixels in system Chrome. Ordinary-image player remains primary; Codex GPU video unverified. Final UI running/finalizing/closed/sticky-loss, profile form and mobile checks pass. Review ZIP contains media/source/logs/metadata and small raw streams; dense originals are separately inventoried. Native visual timing is not physics timing.
+
+Continue on dev and push verified slices there; master promotion remains user-managed. Next: later controlled impact-induced strength/removal reference qualification, then broader energy/environment work and comparison/sweeps. No new maintenance backlog is authorized by this entry.
+
 ### 2026-10-09 — Slice 05: native beam transition qualification on dev
 
 Implemented the next authorized major slice on dev. Native strength-only changes now emit event bit4 without an elastic-energy port, in unchanged aggregate schema 2/2080. Added dry tensile/compressive yield, native beam removal and synthetic cab-node break-guard fixtures, an independent native-rule/reference gate, bounded CRC-verified transition pages and React before/after/port views. Manifest schema 5 declares flags. Tick-boundary net changes do not resolve every intermediate mutation.

@@ -62,6 +62,7 @@ void Runtime::Probe(Actor& actor)
     const auto head=m_probe_head.load(std::memory_order_relaxed);
     if(head-m_probe_tail.load(std::memory_order_acquire)>=m_probe_queue.size()){++m_probe_dropped;return;}
     m_probe_queue[head%m_probe_queue.size()]=p;
+    m_probe_health.Admit(head+1-m_probe_tail.load(std::memory_order_acquire),128);
     m_probe_head.store(head+1,std::memory_order_release);
 }
 void Runtime::ProbeWriter()
@@ -71,18 +72,23 @@ void Runtime::ProbeWriter()
 #else
     FILE* f=std::fopen((m_root+"/probe.rort").c_str(),"wb");
 #endif
-    if(!f){m_probe_error=true;return;}
+    if(!f){m_probe_error=true;m_probe_health.closed=true;return;}
+    auto sync=[&](){const auto start=std::chrono::steady_clock::now();const bool ok=Sync(f);
+        m_probe_health.Synced(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-start).count());return ok;};
+    auto progress=[&](){const auto tail=m_probe_tail.load(),head=m_probe_head.load();std::ofstream out(m_root+"/probe-progress.json");
+        out<<m_probe_health.Json(head,tail,m_probe_written.load(),m_probe_queue.size(),128,m_probe_dropped.load(),m_probe_error.load())<<"\n";};
     std::vector<unsigned char> header;U32(header,1);U32(header,128);
-    bool ok=std::fwrite("RORPROBE",1,8,f)==8 && std::fwrite(header.data(),1,header.size(),f)==header.size() && Sync(f);
+    bool ok=std::fwrite("RORPROBE",1,8,f)==8 && std::fwrite(header.data(),1,header.size(),f)==header.size() && sync();
     if(!ok)m_probe_error=true;
     std::ofstream summaries(m_root+"/probe-summaries.jsonl");
     std::vector<unsigned char> bytes;bytes.reserve(128*128);
-    std::uint64_t pending=0;auto last=std::chrono::steady_clock::now();
+    std::uint64_t pending=0;SyncSchedule syncSchedule;
     while(!m_stop.load(std::memory_order_acquire)||m_probe_tail.load()<m_probe_head.load()){
         auto tail=m_probe_tail.load(std::memory_order_relaxed);
         const auto count=std::min<std::uint64_t>(128,m_probe_head.load(std::memory_order_acquire)-tail);
         if(count<128&&!m_stop.load()){std::this_thread::sleep_for(std::chrono::milliseconds(5));continue;}
         bytes.clear();
+        const auto encodeStart=std::chrono::steady_clock::now();
         for(std::uint64_t i=0;i<count;++i){
             const auto& p=m_probe_queue[(tail+i)%m_probe_queue.size()];
             U64(bytes,p.tick);for(auto n:{p.phase,p.nodes,p.beams,p.flags})U32(bytes,n);
@@ -96,21 +102,27 @@ void Runtime::ProbeWriter()
         if(count){
             std::vector<unsigned char> block;U32(block,static_cast<std::uint32_t>(count));
             U32(block,static_cast<std::uint32_t>(bytes.size()));U32(block,Crc32(bytes.data(),bytes.size()));
+            m_probe_health.encode_ns+=std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-encodeStart).count();
+            const auto writeStart=std::chrono::steady_clock::now();
             ok=std::fwrite("DATA",1,4,f)==4&&std::fwrite(block.data(),1,block.size(),f)==block.size()&&
                 std::fwrite(bytes.data(),1,bytes.size(),f)==bytes.size()&&std::fwrite("DONE",1,4,f)==4;
-            if(!ok)m_probe_error=true;else pending+=count;
+            m_probe_health.write_ns+=std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-writeStart).count();
+            if(!ok)m_probe_error=true;else {pending+=count;m_probe_health.written+=count;m_probe_health.bytes+=bytes.size()+20;}
             const auto now=std::chrono::steady_clock::now();
-            if(now-last>=std::chrono::milliseconds(250)||m_stop.load()){
-                if(Sync(f)){m_probe_written+=pending;pending=0;}else m_probe_error=true;last=now;
+            if(syncSchedule.Due(now)||m_stop.load()){
+                if(sync()){m_probe_written+=pending;pending=0;}else m_probe_error=true;syncSchedule.Completed(std::chrono::steady_clock::now());
+                progress();
             }
             summaries.flush();if(!summaries)m_probe_error=true;
             m_probe_tail.store(tail+count,std::memory_order_release);
         }else std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
-    if(Sync(f))m_probe_written+=pending;else m_probe_error=true;
+    if(sync())m_probe_written+=pending;else m_probe_error=true;
     std::vector<unsigned char> footer;U64(footer,m_probe_written.load());U64(footer,m_probe_dropped.load());U32(footer,m_probe_error.load()?1:0);
-    if(std::fwrite("END!",1,4,f)!=4||std::fwrite(footer.data(),1,footer.size(),f)!=footer.size()||!Sync(f))m_probe_error=true;
+    if(std::fwrite("END!",1,4,f)!=4||std::fwrite(footer.data(),1,footer.size(),f)!=footer.size()||!sync())m_probe_error=true;
     if(std::fclose(f)!=0)m_probe_error=true;
+    m_probe_health.closed=true;
+    progress();
     std::ofstream health(m_root+"/probe-health.json");
     health<<"{\"records\":"<<m_probe_written.load()<<",\"dropped\":"<<m_probe_dropped.load()<<",\"ioError\":"<<(m_probe_error.load()?"true":"false")<<"}\n";
 }

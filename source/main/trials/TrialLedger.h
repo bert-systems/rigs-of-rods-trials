@@ -179,19 +179,31 @@ public:
 };
 inline std::uint32_t Crc32(const unsigned char* bytes,std::size_t size)
 {
-    // Recorder threads use a byte table rather than eight bit iterations per byte.
-    // Same IEEE CRC-32 polynomial and archive bytes as schemas 1/2.
+    // Slicing by eight: same IEEE CRC-32 and archive bytes, with independent
+    // table lookups per eight-byte group. Explicit byte assembly is endian-safe
+    // and accepts unaligned buffers; no solver callback invokes this function.
     static const auto table=[](){
-        std::array<std::uint32_t,256> t{};
+        std::array<std::array<std::uint32_t,256>,8> t{};
         for(unsigned i=0;i<256;++i){
             std::uint32_t v=i;
             for(int b=0;b<8;++b)v=(v>>1)^(0xedb88320u&(0u-(v&1u)));
-            t[i]=v;
+            t[0][i]=v;
+        }
+        for(unsigned i=0;i<256;++i){
+            auto v=t[0][i];
+            for(int j=1;j<8;++j){v=(v>>8)^t[0][v&255];t[j][i]=v;}
         }
         return t;
     }();
     std::uint32_t crc=0xffffffffu;
-    for(std::size_t i=0;i<size;++i)crc=(crc>>8)^table[(crc^bytes[i])&255];
+    std::size_t i=0;
+    for(;i+8<=size;i+=8){
+        const auto a=crc^(static_cast<std::uint32_t>(bytes[i])|static_cast<std::uint32_t>(bytes[i+1])<<8|
+            static_cast<std::uint32_t>(bytes[i+2])<<16|static_cast<std::uint32_t>(bytes[i+3])<<24);
+        crc=table[7][a&255]^table[6][(a>>8)&255]^table[5][(a>>16)&255]^table[4][a>>24]^
+            table[3][bytes[i+4]]^table[2][bytes[i+5]]^table[1][bytes[i+6]]^table[0][bytes[i+7]];
+    }
+    for(;i<size;++i)crc=(crc>>8)^table[0][(crc^bytes[i])&255];
     return ~crc;
 }
 }} // namespace

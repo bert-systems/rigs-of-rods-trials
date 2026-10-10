@@ -8,7 +8,7 @@ public sealed record ExperimentDefinition(string Name, double LaunchSpeedMps = 5
     EnvironmentConfig? Environment = null, string Vehicle = "b6b0UID-semi.truck",
     string Terrain = "simple2.terrn2", string Scenario = "coast-v1", bool Accounting = true,
     string Observation = "full", bool PerformanceProbe = false, double BarrierDistanceM = 12,
-    double? TargetImpactSpeedMps = null, string DetailFault = "none");
+    double? TargetImpactSpeedMps = null, string DetailFault = "none", bool ObserverProfiling = false);
 public sealed record AttemptEvent(long Sequence, DateTimeOffset Time, string Kind, string Message);
 public sealed class Attempt
 {
@@ -28,6 +28,7 @@ public sealed class Attempt
     public string? ArchivePath { get; set; }
     public long CommandSequence { get; set; }
     public JsonElement? WorkerStatus { get; set; }
+    public JsonElement? RecorderHealth { get; set; }
     public JsonElement? Latest { get; set; }
     public List<JsonElement> History { get; set; } = [];
     public JsonElement? Impact { get; set; }
@@ -47,6 +48,7 @@ public static class Contract
         var errors = new List<string>();
         if(d.Observation is not ("full" or "off"))errors.Add("Observation must be full or off.");
         if(d.Observation=="off"&&!d.PerformanceProbe)errors.Add("Ledger-off runs require the declared timing/state probe.");
+        if(d.ObserverProfiling&&(d.Observation!="full"||!d.PerformanceProbe))errors.Add("Diagnostic observer profiling requires full observation and the performance probe.");
         if (string.IsNullOrWhiteSpace(d.Name) || d.Name.Length > 120) errors.Add("Name must contain 1–120 characters.");
         bool transition=TransitionFixture(d.Scenario);
         bool fixture=transition||d.Scenario is "freefall-v1" or "spring-v1" or "damper-v1";
