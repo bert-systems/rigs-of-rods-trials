@@ -61,3 +61,7 @@ From 2026-10-09, work from `dev` and commit/push completed slices to `origin/dev
 ## Latest delivery
 
 [Slice 05](doc/project/slices/slice-05.md) adds actual native yielding, strength/removal qualification and an archived transition ledger. [HTML evidence report](doc/project/reports/trial-slice-05-2026-10-09.html). Eleven final-profile trials passed their scoped gates; the initial checker failure remains retained. Slice 04 already qualifies the pinned 3/5/10 m/s barrier approach/capture matrix. Full accounting remains about 3.06-3.14x the measured ledger-off coast baseline; the proposed overhead target is unmet. Vehicle closure, physical material calibration and broader performance remain upcoming gates. Current work is committed/pushed to dev; master promotion is user-managed.
+
+## Local 2D sibling — 2026-10-12
+
+The user requested a simpler configurable planar trial game alongside this fork. [Local sibling project](../rigs-of-rods-trials-2D/PROJECT.md) uses Node/Phaser and an independent node-beam solver, with a gamer garage/proving-ground/replay interface and retained measurements. [Delivery crosslink](doc/project/slices/2d-sibling-2026-10-12.md). It preserves timing/quality principles without claiming native-kernel equivalence or physical vehicle/material calibration. Native engine implementation and qualification remain separate.

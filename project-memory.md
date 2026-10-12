@@ -1,5 +1,12 @@
 # Project memory
 
+### 2026-10-12 — independent 2D trials sibling
+
+User authorized a simpler 2D game at `D:\Rigs of Rods\rigs-of-rods-trials-2D` and emphasized gamer design. Delivered a local Node/Phaser planar node-beam prototype with a garage/proving-ground/replay interface, 0.5 ms stepping conventions, immutable serial fresh worker threads, full tick telemetry/detail/events and independent quality states. The kernel/assets are independent; native scientific/wire/acceptance contracts are unchanged and vehicle/material science remains NotReady.
+
+25/25 tests, eight final full-capture recorded impacts and exact repeated telemetry pairs; genuine Chrome authoring/pause/deformation/replay/export/mobile checks. Evidence `D:\Rigs of Rods\trials-2d-2026-10-12-080518-2516d1` preserves engineering prototypes/final originals. Full-rate recording remains below real time in the observed workload. Read [local sibling delivery](../rigs-of-rods-trials-2D/doc/session-01.md) and [crosslink](doc/project/slices/2d-sibling-2026-10-12.md). Native checkout began clean dev `34b85998899b5cb2cbda42cbf9b9f37bb3622527`; installed game and original baseline are preserved. This native update is documentation-only. New sibling has local dev history/no new remote; actual publication identities are in the evidence report's publication.json.
+
+
 ### 2026-10-10 — Slice 07: later collision-induced beam transitions on dev
 
 Added pinned two-mass yield/strength and removal fixtures, frozen native geometry/state, a distinct small detail reservation, double-precision local conformance checks, observed React chronology and exact-tick inspection. Read [delivery](doc/project/slices/slice-07.md), [results](doc/project/slices/slice-07-results.json) and [contract](apps/trials/impact-fixture-format.md). The reference is driven by recorded local lengths/contact inputs; it is not an independent predicted trajectory, physical material calibration or vehicle science. Wire layouts and existing force kernels/profiles remain unchanged.

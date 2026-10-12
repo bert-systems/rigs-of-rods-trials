@@ -114,3 +114,9 @@ These slice groupings are implementation sequencing; they do not replace the con
 ## Session closeout
 
 Each completed session should update [project-memory.md](project-memory.md), link its evidence/summary, and mark only work that was actually finished. Keep unresolved failures or hypotheses visible. Do not rewrite historical baseline numbers to match a later run.
+
+## 2026-10-12 — 2D sibling
+
+- [x] Create the user-requested independent Node/Phaser planar trials game in `D:\Rigs of Rods\rigs-of-rods-trials-2D`; [local delivery](../rigs-of-rods-trials-2D/doc/session-01.md).
+- [x] Verify25 model/archival tests, eight recorded impact runs, exact repeated telemetry and actual gamer UI/replay/mobile behavior.
+- [ ] Continue sibling recording performance/gameplay polish/contact/material calibration under its own [local backlog](../rigs-of-rods-trials-2D/todo.md). Native scientific/overhead gates remain unchanged.
