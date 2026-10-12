@@ -1,5 +1,12 @@
 # Project TODO
 
+## Completed sibling weather / stacked trials — 2026-10-12
+
+- [x] Independent2D0.9.0 optional seeded meteor fragments/hail/tornado proxy/dust/gust, declared wind/projectile impulses/work, CSV79 and three independent stacked worlds at shared numerical ticks.
+- [x] Immutable shared-weather comparisons, common pause/cancel, exact recorded replay, independent outcomes, damaged-lane recovery and read-only historical archives; [delivery](../rigs-of-rods-trials-2D/doc/session-10-weather-trio.md).
+- [x]93-test suite, unchanged12-run contact profile,6200-step prior-producer conformance, exact fresh-worker weather repeats/intervals and actual Chrome full recordings/student/cinema/mobile proof. Native implementation untouched.
+
+
 Updated: 2026-10-10. This is a planning record, not authorization to implement every item. Research, architecture evaluation and policy Q&A are complete. The [implementation specification](doc/project/design/trial-platform-implementation-spec.md) establishes review baseline 0.1; its proposed defaults/contracts need feasibility and qualification work before acceptance claims.
 
 Current publication workflow: develop, integrate, commit and push on `dev`. The user manages periodic pull requests into `master`; follow [AGENTS.md](AGENTS.md) rather than the historical automatic master-merge workflow.

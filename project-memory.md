@@ -1,5 +1,14 @@
 # Project memory
 
+### 2026-10-12 — 2D seeded environmental events and stacked experiments
+
+User requested optional meteor showers, hail, tornadoes, dust storms/other events and three simultaneous stacked trials. Independent sibling0.9.0 implements five seeded planar proxy kinds, recorded prescribed wind and projectile split impulses/work, honest step-average equivalent forces, CSV79 and three independent worlds at common numerical barriers in one fresh worker. Immutable group/member identities, same-weather tape default, shared controls, exact recorded alignment and per-lane outcome inspection/downloads. Read-only history imports preserve prior recordings; new attempts remain in the current root. Local siblingdev commit `e36c9ed166ff612dcb22d961e72b7ebb5754b573`; no sibling remote.
+
+93/93 tests, frozen isolated weather references, unchanged12-run contact qualification,6200-step weather-off original-field conformance, two fresh exact raw weather repeats with cohort/nodal interval checks. Genuine Chrome demonstration retained24000ticks per full stream across mass1080/1200/1320 lanes, four projectile strikes each, common pause/replay and different outcomes. Student/cinema/mobile regressions pass. Failed syntax, viewport-header and damaged-manifest test-expectation artifacts retained without relaxing acceptance limits. Evidence `D:\Rigs of Rods\trials-2d-weather-trio-2026-10-12-185843-856d12`; [delivery](../rigs-of-rods-trials-2D/doc/session-10-weather-trio.md), [model/controls](../rigs-of-rods-trials-2D/doc/weather-and-trio.md).
+
+Only this memory/todo closeout changes the native fork. Native C++ kernel, wire contracts, profiles, installed game and historical2026-10-08 build proof stay preserved. Independent planar weather is not atmospheric CFD, hypersonic meteor entry, native solver parity or calibrated material/vehicle energy dispersal. Scientific vehicle/material status staysNotReady. Native closeout commits/pushesdev under the standing workflow; exact publication/runtime/PID/source identities are external report/publication.json.
+
+
 ### 2026-10-12 — 2D visual courses, factorial plans and interval measurements
 
 User authorized three functional slices. Independent sibling0.8.0 adds SI course placement/move/removal/two-corner stop zones, bounded fully previewed factorial grids/repeats/order with SHA-linked worker plan identities, and exact raw force/energy interval measurements with optional moving-node impulses, actual vector peaks and replay/export. 77 checks; real authored3-gate worker goal, eight gravity/mass runs (1600full ticks per stream, independent g×t/exact per-cell telemetry hashes), and6000 applied force intervals/6001 boundaries checked independently. Original student/cinema browser workflows and mobile/no errors pass. Damaged plan members stay visible/excluded; semantic identity disagreements refuse results.
