@@ -1,5 +1,12 @@
 # Project memory
 
+### 2026-10-12 — 2D student experiments, version 0.2.0
+
+User requested extensive student setup/recording/observation and actual outcome measurement. The independent local 2D sibling now has six studies, immutable question/hypothesis/prediction, consumed payload/geometry/ideal-gas/region inputs, node sensors, full-rate outcome reduction/reinspection, 59-column CSV and controlled repeat comparisons. No native kernel, binary/wire/acceptance profile or vehicle-science gate changed. All empirical vehicle/material science stays NotReady.
+
+41/41 Node checks; final ten raw study runs/28,000 ticks per telemetry/detail stream; exact live/raw outcome dictionaries, identical gravity repeats, real student browser workflow and mobile checks. Evidence `D:\Rigs of Rods\trials-2d-student-2026-10-12-092649-646266` preserves prototypes/issues/final outputs. [Local 2D delivery](../rigs-of-rods-trials-2D/doc/session-02.md), [student contract](../rigs-of-rods-trials-2D/doc/student-experiments.md). This native closeout is documentation-only; installed game/historical proof intact. Local sibling dev/no new remote; native doc publication follows dev without master promotion.
+
+
 ### 2026-10-12 — independent 2D trials sibling
 
 User authorized a simpler 2D game at `D:\Rigs of Rods\rigs-of-rods-trials-2D` and emphasized gamer design. Delivered a local Node/Phaser planar node-beam prototype with a garage/proving-ground/replay interface, 0.5 ms stepping conventions, immutable serial fresh worker threads, full tick telemetry/detail/events and independent quality states. The kernel/assets are independent; native scientific/wire/acceptance contracts are unchanged and vehicle/material science remains NotReady.

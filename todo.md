@@ -120,3 +120,5 @@ Each completed session should update [project-memory.md](project-memory.md), lin
 - [x] Create the user-requested independent Node/Phaser planar trials game in `D:\Rigs of Rods\rigs-of-rods-trials-2D`; [local delivery](../rigs-of-rods-trials-2D/doc/session-01.md).
 - [x] Verify25 model/archival tests, eight recorded impact runs, exact repeated telemetry and actual gamer UI/replay/mobile behavior.
 - [ ] Continue sibling recording performance/gameplay polish/contact/material calibration under its own [local backlog](../rigs-of-rods-trials-2D/todo.md). Native scientific/overhead gates remain unchanged.
+
+- [x] 2026-10-12: student experiment/outcome slice in the independent 2D sibling; [local delivery](../rigs-of-rods-trials-2D/doc/session-02.md). 41 checks, 10 final raw studies, full-rate 59-column CSV and actual student visual workflow. Native engine science/performance gates remain unchanged.
