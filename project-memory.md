@@ -1,5 +1,9 @@
 # Project memory
 
+### 2026-10-12 — 2D cinematic replay and bounded recording
+
+Independent sibling version 0.3.0 adds selected Impact cinema presentation, actual archived chapters/phase measures/PNG, bounded synchronous raw write batches and admission/write/sync/loss progress. Physics/config/outcomes remain unchanged producer v2; native kernel/wire/acceptance and all vehicle/material scientific gates are unchanged. 46 checks and fourteen matched/profiling recorder archives preserve every same-vehicle telemetry/detail byte. Matched D: harness medians improve 1.100×/1.188×; no worker-wall/real-time or native overhead claim. Genuine student/cinematic browser evidence and original failures remain in `D:\Rigs of Rods\trials-2d-cinema-2026-10-12-142150-47269f`. [Local delivery](../rigs-of-rods-trials-2D/doc/session-03.md). Native update is documentation-only on dev; sibling remains local dev/no remote.
+
 ### 2026-10-12 — 2D student experiments, version 0.2.0
 
 User requested extensive student setup/recording/observation and actual outcome measurement. The independent local 2D sibling now has six studies, immutable question/hypothesis/prediction, consumed payload/geometry/ideal-gas/region inputs, node sensors, full-rate outcome reduction/reinspection, 59-column CSV and controlled repeat comparisons. No native kernel, binary/wire/acceptance profile or vehicle-science gate changed. All empirical vehicle/material science stays NotReady.
