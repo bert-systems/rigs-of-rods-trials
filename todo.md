@@ -129,3 +129,8 @@ Each completed session should update [project-memory.md](project-memory.md), lin
 
 - [x] Frozen scoped contact references, recorded wheel/braking experiments and observed course goals/reference comparisons; 62 checks and raw/browser evidence. [Delivery](../rigs-of-rods-trials-2D/doc/slice-06.md).
 - [ ] Continue coupled-contact, constitutive/material and measured-vehicle calibration before empirical prediction claims; sibling experiments do not qualify the native kernel.
+
+## Independent 2D functional slices07–09 — 2026-10-12
+
+- [x] Visual SI course design, reproducible factorial grids/order/repeats and exact archived force/energy/node interval lab;77checks and raw/browser/recovery evidence. [Delivery](../rigs-of-rods-trials-2D/doc/slice-09.md).
+- [ ] Continue coupled contact/topology and measured constitutive/vehicle calibration before empirical impact-energy/dispersal prediction claims.
