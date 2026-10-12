@@ -124,3 +124,8 @@ Each completed session should update [project-memory.md](project-memory.md), lin
 - [x] 2026-10-12: student experiment/outcome slice in the independent 2D sibling; [local delivery](../rigs-of-rods-trials-2D/doc/session-02.md). 41 checks, 10 final raw studies, full-rate 59-column CSV and actual student visual workflow. Native engine science/performance gates remain unchanged.
 
 - [x] 2026-10-12: independent 2D cinematic replay and bounded synchronous recorder slice; [local delivery](../rigs-of-rods-trials-2D/doc/session-03.md). No native engine/science/performance gate changed.
+
+## Independent 2D sibling — 2026-10-12 next slices
+
+- [x] Frozen scoped contact references, recorded wheel/braking experiments and observed course goals/reference comparisons; 62 checks and raw/browser evidence. [Delivery](../rigs-of-rods-trials-2D/doc/slice-06.md).
+- [ ] Continue coupled-contact, constitutive/material and measured-vehicle calibration before empirical prediction claims; sibling experiments do not qualify the native kernel.
