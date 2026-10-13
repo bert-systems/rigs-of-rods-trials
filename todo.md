@@ -165,3 +165,8 @@ Each completed session should update [project-memory.md](project-memory.md), lin
 - [x] Save [GCP cloud plan](../rigs-of-rods-trials-2D/doc/gcp-cloud-plan.md) and [three desktop options](../rigs-of-rods-trials-2D/doc/trials-2d-desktop-app-plan.md), including .NET; documentation-only delivery.
 - [x] User selected sibling .NET WPF/WebView2 hybrid; actual desktop/native service proof and [full implementation specification](../rigs-of-rods-trials-2D/doc/dotnet-hybrid-implementation-spec.md) delivered. [Proof](../rigs-of-rods-trials-2D/doc/dotnet-hybrid-spike.md).
 - [ ] Continue sibling service schemas, native SQLite library/recovery, fake/Ollama/Gemini providers and installer/crash/DPI qualification; cloud pilot remains unprovisioned. Native gates remain unchanged.
+
+## Independent 2D desktop services — 2026-10-13
+
+- [x] Protocol2 services, single-owner native SQLite library/revisions/backups and async evidence-cited cloud investigation; real GLM/GLM flash reports, restart/owned shutdown and141 Node/25 native checks qualified. [Delivery](../rigs-of-rods-trials-2D/doc/desktop-foundation-slices.md).
+- [ ] Continue sibling import/restore/migration/pagination, credential storage, native UX/crash/DPI/installer and optional cloud sync. Native science and wire gates remain unchanged.
