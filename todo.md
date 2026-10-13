@@ -154,3 +154,8 @@ Each completed session should update [project-memory.md](project-memory.md), lin
 
 - [x] Visual SI course design, reproducible factorial grids/order/repeats and exact archived force/energy/node interval lab;77checks and raw/browser/recovery evidence. [Delivery](../rigs-of-rods-trials-2D/doc/slice-09.md).
 - [ ] Continue coupled contact/topology and measured constitutive/vehicle calibration before empirical impact-energy/dispersal prediction claims.
+
+## Independent 2D impact investigation — 2026-10-13
+
+- [x] Archive-derived Impact Detective and virtual Skeleton Lab with source-linked loads/peaks, configurable teaching failure markers, comparisons, exports and real UI/worker evidence; [delivery](../rigs-of-rods-trials-2D/doc/session-13-impact-detective.md).
+- [ ] Qualify biomechanical instrumentation, response/convergence and measured calibration before empirical injury/fracture predictions. No native physical/scientific gate changed.
