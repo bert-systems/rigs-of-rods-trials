@@ -1,5 +1,11 @@
 # Project TODO
 
+## Completed sibling Occupant Lab / Terrain & Camera Studio — 2026-10-13
+
+- [x] Independent coupled dummy/seat/restraint/cabin models, actual raw head/load outcomes, CSV108 and continuous conservative contact/angle corrections. [Delivery](../rigs-of-rods-trials-2D/doc/session-12-occupant-terrain.md).
+- [x] Actual road profile/amplitude editing, source-selected synchronous cabin/wheel/route views, immutable active-edit isolation, 124 checks and real full-capture/repeat/browser evidence.
+- [ ] Continue sibling empirical dummy/restraint/material/vehicle calibration, larger/nonlinear/topology/convergence and moving/deformable obstacle qualification. Injury interpretation and true lateral/yaw/roll/overhead dynamics remain unsupported. Native scientific/performance gates stay unchanged.
+
 ## Completed sibling weather / stacked trials — 2026-10-12
 
 - [x] Independent2D0.9.0 optional seeded meteor fragments/hail/tornado proxy/dust/gust, declared wind/projectile impulses/work, CSV79 and three independent stacked worlds at shared numerical ticks.
