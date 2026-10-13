@@ -120,6 +120,13 @@ These slice groupings are implementation sequencing; they do not replace the con
 
 ## Session closeout
 
+### 2026-10-12 — approved independent 2D expansion order
+
+- [x] Crash Garage foundation in the independent sibling: eight chassis, ten surface presets, eight static templates, sectional structures/membranes, tire/contact packages, finishes and raw cabin/panel outcomes; 105 checks and actual worker/Chrome evidence. [Delivery](../rigs-of-rods-trials-2D/doc/session-11-crash-garage.md).
+- [ ] Next ordered milestone: Occupant Lab with qualified articulated masses, restraints and interior contacts. Keep injury/safety interpretation separate from raw model measurements.
+- [ ] Then: Terrain & Camera Studio with synchronized side/cutaway/wheel observations and course-map context. True overhead/oblique physics needs lateral/yaw/roll state.
+- [ ] Qualify movable/deformable barriers, resolved tire/terrain/shell models and empirical vehicle/material calibration before broader prediction claims. Native engine science/performance gates remain unchanged.
+
 Each completed session should update [project-memory.md](project-memory.md), link its evidence/summary, and mark only work that was actually finished. Keep unresolved failures or hypotheses visible. Do not rewrite historical baseline numbers to match a later run.
 
 ## 2026-10-12 — 2D sibling
