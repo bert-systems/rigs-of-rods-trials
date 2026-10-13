@@ -159,3 +159,8 @@ Each completed session should update [project-memory.md](project-memory.md), lin
 
 - [x] Archive-derived Impact Detective and virtual Skeleton Lab with source-linked loads/peaks, configurable teaching failure markers, comparisons, exports and real UI/worker evidence; [delivery](../rigs-of-rods-trials-2D/doc/session-13-impact-detective.md).
 - [ ] Qualify biomechanical instrumentation, response/convergence and measured calibration before empirical injury/fracture predictions. No native physical/scientific gate changed.
+
+## Independent 2D deployment planning — 2026-10-13
+
+- [x] Save [GCP cloud plan](../rigs-of-rods-trials-2D/doc/gcp-cloud-plan.md) and [three desktop options](../rigs-of-rods-trials-2D/doc/trials-2d-desktop-app-plan.md), including .NET; documentation-only delivery.
+- [ ] Select sibling desktop shell/platform and cloud pilot infrastructure before implementation. Native gates remain unchanged.
