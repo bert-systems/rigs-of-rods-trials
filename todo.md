@@ -188,3 +188,12 @@ Native scope is documentation-only. Sibling evidence D:\Rigs of Rods\trials-2d-w
 
 - [x] Present three interactive concepts: Proving Ground, Challenge Cards and Impact Studio, with minimal setup/presets, vehicle/obstacle emphasis, gamified improvement and raw occupant-response replay. [Design notes](doc/project/design/trial-shell-concepts.md). Design-only checks and visible pixels qualified; sample outcomes are illustrative.
 - [ ] Choose a shell direction with the user, then implement the selected flow with immutable setup, fresh attempts, actual recording/model status and archived replay. A design request does not authorize replacing the active trial UI or changing physical capabilities.
+## Sibling recorded refinement — 2026-10-13
+
+- [x] v9 recorded2/4-step isolated-rig refinement, true inner epochs/forces/events, physical frame vector view and111-column full physical CSV.
+- [x]27 refined references/all6 grazing crossings detected; requalify prior scopes with60 byte-identical one-step v8/v9 telemetry traces and unchanged limits/failures.
+- [x] Independent continuous landing diagnostic; smaller errors measured, original/refined shrinking-velocity requirements remain failed.
+- [x]165 Node/25 exact-final native checks, actual browser/desktop refined repeats,549 package/73 source hashes and held-response UI/capture proof.
+- [ ] Continue event-aware general swept contact and broader dry/coupled refinement, then empirical material/vehicle/dummy calibration. Fixed substeps do not establish generalCCD or native parity.
+
+Native scope memory/todo only. Sibling [delivery](../rigs-of-rods-trials-2D/doc/session-16-recorded-refinement.md), evidence D:\Rigs of Rods\trials-2d-refinement-2026-10-13-220403-65577f. Source fork dev/origin-dev; sibling localdev/no remote. Original archives/failures/installed game/historical proof preserved.
