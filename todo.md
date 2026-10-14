@@ -183,3 +183,8 @@ Each completed session should update [project-memory.md](project-memory.md), lin
 - [ ] Repair measured swept-contact miss and investigate tire-drop velocity convergence under a new2D producer/requalification scope; obtain empirical material/vehicle/dummy calibration before predictive claims.
 
 Native scope is documentation-only. Sibling evidence D:\Rigs of Rods\trials-2d-wheel-science-2026-10-13-205358-3738f1;2D local dev/no remote, native closeout on origin/dev. Native kernel parity and physical calibration not established.
+
+## Simplified trial shell design — 2026-10-13
+
+- [x] Present three interactive concepts: Proving Ground, Challenge Cards and Impact Studio, with minimal setup/presets, vehicle/obstacle emphasis, gamified improvement and raw occupant-response replay. [Design notes](doc/project/design/trial-shell-concepts.md). Design-only checks and visible pixels qualified; sample outcomes are illustrative.
+- [ ] Choose a shell direction with the user, then implement the selected flow with immutable setup, fresh attempts, actual recording/model status and archived replay. A design request does not authorize replacing the active trial UI or changing physical capabilities.
