@@ -170,3 +170,8 @@ Each completed session should update [project-memory.md](project-memory.md), lin
 
 - [x] Protocol2 services, single-owner native SQLite library/revisions/backups and async evidence-cited cloud investigation; real GLM/GLM flash reports, restart/owned shutdown and141 Node/25 native checks qualified. [Delivery](../rigs-of-rods-trials-2D/doc/desktop-foundation-slices.md).
 - [ ] Continue sibling import/restore/migration/pagination, credential storage, native UX/crash/DPI/installer and optional cloud sync. Native science and wire gates remain unchanged.
+
+## Independent2D numerical verification — 2026-10-13
+
+- [x] Frozen beam and occupied-crash numerical scopes, raw reference dossiers and Evidence Bench, with149 Node/25 native checks and exact fresh browser/desktop physical repeat. [Delivery](../rigs-of-rods-trials-2D/doc/session-14-science.md).
+- [ ] Continue sibling coupled wheel/contact, broader topology/swept/corner convergence and independent empirical material/vehicle/dummy calibration; native scientific gates remain unchanged.
