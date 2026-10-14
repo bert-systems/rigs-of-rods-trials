@@ -175,3 +175,11 @@ Each completed session should update [project-memory.md](project-memory.md), lin
 
 - [x] Frozen beam and occupied-crash numerical scopes, raw reference dossiers and Evidence Bench, with149 Node/25 native checks and exact fresh browser/desktop physical repeat. [Delivery](../rigs-of-rods-trials-2D/doc/session-14-science.md).
 - [ ] Continue sibling coupled wheel/contact, broader topology/swept/corner convergence and independent empirical material/vehicle/dummy calibration; native scientific gates remain unchanged.
+## 2D sibling wheel/contact science — 2026-10-13
+
+- [x] Independent wheel/contact/rotation/work references and21 full-rate recordings; Traction Lab recipes/raw dossiers/exports,6/7 convergence with failed criterion retained.
+- [x] Independent grazing corner/swept-entry diagnostic and6 recordings; observed150 m/s coarse-step miss retained and visible.
+- [x]156 Node/25 packaged native checks, actual browser and embedded beam/wheel trials, exact raw physical repeats,534 package/60 source hashes.
+- [ ] Repair measured swept-contact miss and investigate tire-drop velocity convergence under a new2D producer/requalification scope; obtain empirical material/vehicle/dummy calibration before predictive claims.
+
+Native scope is documentation-only. Sibling evidence D:\Rigs of Rods\trials-2d-wheel-science-2026-10-13-205358-3738f1;2D local dev/no remote, native closeout on origin/dev. Native kernel parity and physical calibration not established.
